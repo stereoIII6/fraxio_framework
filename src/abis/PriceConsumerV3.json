@@ -27,16 +27,16 @@
       "constant": true
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_priceFeed\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"getLatestPrice\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{\"constructor\":\"Network: Kovan Aggregator: ETH/USD Address: 0x9326BFA02ADD2366b30bacB125260Af641031331\",\"getLatestPrice()\":{\"notice\":\"Returns the latest price\"}}}},\"settings\":{\"compilationTarget\":{\"/C/Users/User/LINKHack/chainlinksetup/src/contracts/PriceConsumerV3.sol\":\"PriceConsumerV3\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/User/LINKHack/chainlinksetup/src/contracts/PriceConsumerV3.sol\":{\"keccak256\":\"0xbfdd8166daf078074b4fdbcde832cee4237b680415fa6b43af65f921c94afac1\",\"urls\":[\"bzz-raw://c5c85df123afa5073bad1ebccb9d8d8b313b077d946c8551c5fa239963801f30\",\"dweb:/ipfs/QmNztu7YvUXBaroe6tMbUZtELh1Yv8YJvBK4WntcdLu6Vn\"]},\"@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol\":{\"keccak256\":\"0x1862840d741dedb36e774534b877a13b5187555e3b78b8d2815f898b0dc02268\",\"urls\":[\"bzz-raw://64a15f4349aea6e60703f581a6280b71d6adb35ee74d2f3c4f130a2adc3efee3\",\"dweb:/ipfs/QmdVoSQvGfJNPnjQsAs7ZN3ueWghzTa72jSqzhGiQNDpkL\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506040516101f23803806101f28339818101604052602081101561003357600080fd5b8101908080519060200190929190505050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505061015e806100946000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c80638e15f47314610030575b600080fd5b61003861004e565b6040518082815260200191505060405180910390f35b6000806000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663feaf968c6040518163ffffffff1660e01b815260040160a06040518083038186803b1580156100b857600080fd5b505afa1580156100cc573d6000803e3d6000fd5b505050506040513d60a08110156100e257600080fd5b810190808051906020019092919080519060200190929190805190602001909291908051906020019092919080519060200190929190505050505050915050809150509056fea26469706673582212204299d2a9485dd31d578791335a10ee385f8d2b5c0bcba6a06a3d063a5b770b0164736f6c63430006060033",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c80638e15f47314610030575b600080fd5b61003861004e565b6040518082815260200191505060405180910390f35b6000806000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663feaf968c6040518163ffffffff1660e01b815260040160a06040518083038186803b1580156100b857600080fd5b505afa1580156100cc573d6000803e3d6000fd5b505050506040513d60a08110156100e257600080fd5b810190808051906020019092919080519060200190929190805190602001909291908051906020019092919080519060200190929190505050505050915050809150509056fea26469706673582212204299d2a9485dd31d578791335a10ee385f8d2b5c0bcba6a06a3d063a5b770b0164736f6c63430006060033",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.6+commit.6c089d02\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_priceFeed\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"getLatestPrice\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{\"constructor\":\"Network: Kovan Aggregator: ETH/USD Address: 0x9326BFA02ADD2366b30bacB125260Af641031331\",\"getLatestPrice()\":{\"notice\":\"Returns the latest price\"}}}},\"settings\":{\"compilationTarget\":{\"/C/Users/User/LINKHack/pyeFraxio/src/contracts/PriceConsumerV3.sol\":\"PriceConsumerV3\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/User/LINKHack/pyeFraxio/src/contracts/PriceConsumerV3.sol\":{\"keccak256\":\"0xbfdd8166daf078074b4fdbcde832cee4237b680415fa6b43af65f921c94afac1\",\"urls\":[\"bzz-raw://c5c85df123afa5073bad1ebccb9d8d8b313b077d946c8551c5fa239963801f30\",\"dweb:/ipfs/QmNztu7YvUXBaroe6tMbUZtELh1Yv8YJvBK4WntcdLu6Vn\"]},\"@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol\":{\"keccak256\":\"0x1862840d741dedb36e774534b877a13b5187555e3b78b8d2815f898b0dc02268\",\"urls\":[\"bzz-raw://64a15f4349aea6e60703f581a6280b71d6adb35ee74d2f3c4f130a2adc3efee3\",\"dweb:/ipfs/QmdVoSQvGfJNPnjQsAs7ZN3ueWghzTa72jSqzhGiQNDpkL\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516101f23803806101f28339818101604052602081101561003357600080fd5b8101908080519060200190929190505050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505061015e806100946000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c80638e15f47314610030575b600080fd5b61003861004e565b6040518082815260200191505060405180910390f35b6000806000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663feaf968c6040518163ffffffff1660e01b815260040160a06040518083038186803b1580156100b857600080fd5b505afa1580156100cc573d6000803e3d6000fd5b505050506040513d60a08110156100e257600080fd5b810190808051906020019092919080519060200190929190805190602001909291908051906020019092919080519060200190929190505050505050915050809150509056fea2646970667358221220e9cb88b6ae72a5339b9c3c9ed1acf4342946ed9cef173b9e5e3f7d1db148193064736f6c63430006060033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c80638e15f47314610030575b600080fd5b61003861004e565b6040518082815260200191505060405180910390f35b6000806000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663feaf968c6040518163ffffffff1660e01b815260040160a06040518083038186803b1580156100b857600080fd5b505afa1580156100cc573d6000803e3d6000fd5b505050506040513d60a08110156100e257600080fd5b810190808051906020019092919080519060200190929190805190602001909291908051906020019092919080519060200190929190505050505050915050809150509056fea2646970667358221220e9cb88b6ae72a5339b9c3c9ed1acf4342946ed9cef173b9e5e3f7d1db148193064736f6c63430006060033",
   "immutableReferences": {},
   "sourceMap": "135:715:2:-:0;;;337:101;5:9:-1;2:2;;;27:1;24;17:12;2:2;337:101:2;;;;;;;;;;;;;;;15:2:-1;10:3;7:11;4:2;;;31:1;28;21:12;4:2;337:101:2;;;;;;;;;;;;;;;;420:10;386:9;;:45;;;;;;;;;;;;;;;;;;337:101;135:715;;;;;;",
   "deployedSourceMap": "135:715:2:-:0;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;135:715:2;;;;;;;;;;;;;;;;12:1:-1;9;2:12;492:356:2;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;539:6;618:12;792:9;;;;;;;;;;;:25;;;:27;;;;;;;;;;;;;;;;;;;;;;5:9:-1;2:2;;;27:1;24;17:12;2:2;792:27:2;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;792:27:2;;;;;;;15:3:-1;10;7:12;4:2;;;32:1;29;22:12;4:2;792:27:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;557:262;;;;;;836:5;829:12;;;492:356;:::o",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.6.6;\n\nimport \"@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol\";\n\ncontract PriceConsumerV3 {\n    AggregatorV3Interface internal priceFeed;\n\n    /**\n     * Network: Kovan\n     * Aggregator: ETH/USD\n     * Address: 0x9326BFA02ADD2366b30bacB125260Af641031331\n     */\n    constructor(address _priceFeed) public {\n        priceFeed = AggregatorV3Interface(_priceFeed);\n    }\n\n    /**\n     * Returns the latest price\n     */\n    function getLatestPrice() public view returns (int256) {\n        (\n            ,\n            /* uint80 roundID */\n            int256 price,\n            ,\n            ,\n\n        ) =\n            /* uint startedAt */\n            /* uint timeStamp */\n            /* uint80 answeredInRound */\n            priceFeed.latestRoundData();\n        return price;\n    }\n}\n",
-  "sourcePath": "C:/Users/User/LINKHack/chainlinksetup/src/contracts/PriceConsumerV3.sol",
+  "sourcePath": "C:/Users/User/LINKHack/pyeFraxio/src/contracts/PriceConsumerV3.sol",
   "ast": {
-    "absolutePath": "/C/Users/User/LINKHack/chainlinksetup/src/contracts/PriceConsumerV3.sol",
+    "absolutePath": "/C/Users/User/LINKHack/pyeFraxio/src/contracts/PriceConsumerV3.sol",
     "exportedSymbols": {
       "PriceConsumerV3": [
         104
@@ -453,7 +453,7 @@
   },
   "legacyAST": {
     "attributes": {
-      "absolutePath": "/C/Users/User/LINKHack/chainlinksetup/src/contracts/PriceConsumerV3.sol",
+      "absolutePath": "/C/Users/User/LINKHack/pyeFraxio/src/contracts/PriceConsumerV3.sol",
       "exportedSymbols": {
         "PriceConsumerV3": [
           104
@@ -940,10 +940,16 @@
       "links": {},
       "address": "0x1705709c8f318E8da7FCb429E728C81AB9dE9682",
       "transactionHash": "0x5382b56b872c43e9c572e0f46471fc14ad73be14f27711f0a1716542e04a8396"
+    },
+    "1617664721971": {
+      "events": {},
+      "links": {},
+      "address": "0xbAB645f58EA30512BC7fce8337f605Bbe5AA4919",
+      "transactionHash": "0x056309f1587296b4710bede1ac68aa14c70495814682defdcc1878355853c09a"
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-04-05T22:50:29.846Z",
+  "updatedAt": "2021-04-05T23:19:19.516Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
