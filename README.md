@@ -1,9 +1,9 @@
-# Chainlink Truffle Box
+# PYE EDITOR
 
 <br/>
 <p align="center">
-<a href="https://chain.link" target="_blank">
-<img src="https://ipfs.io/ipfs/QmNxABXvcSesjc55zCmzQM9VgtnHWsnnnfeG5rDiJyHUUJ" width="225" alt="Chainlink Truffle logo">
+<a href="https://pye.herokuapp.com" target="_blank">
+<img src="https://ipfs.io/ipfs/QmNxABXvcSesjc55zCmzQM9VgtnHWsnnnfeG5rDiJyHUUJ" width="225" alt="logo">
 </a>
 </p>
 <br/>
@@ -23,8 +23,8 @@ npm install truffle -g
 2. Setup repo
 
 ```bash
-mkdir MyChainlinkProject
-cd MyChainlinkProject/
+mkdir PYE
+cd PYE/
 ```
 
 3. Unbox
