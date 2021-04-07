@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import Web3 from "web3";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Input, InputGroup, Form } from 'reactstrap';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -8,6 +8,7 @@ import store from "./store";
 import Screen from './Screen';
 import Coming from './Coming';
 import { getLayers } from "./action/layerActions.js";
+import './App.css';
 
 
 const IpfsHttpClient = require("ipfs-http-client");
@@ -22,6 +23,27 @@ const ipfs = IpfsHttpClient({
 
 class App extends Component {
 
+  async componentWillMount() {
+    await this.loadWeb3()
+    // await this.loadBlockChainData()
+  }
+
+  async loadWeb3() {
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+      await window.ethereum.enable();
+      console.log("ethereum", window.ethereum);
+    }
+    else if (window.web3) {
+      window.web3 = new Web3(window.web3.currentProvider);
+      console.log("web3", window.web3);
+    }
+    else window.alert("Use a Metamask");
+  }
+
+  async loadBlockChainData() {
+
+  }
   componentDidMount() {
     store.dispatch(getLayers());
   }
