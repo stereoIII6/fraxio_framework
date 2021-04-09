@@ -9,11 +9,6 @@ contract PriceConsumerV3 {
     AggregatorV3Interface internal ethPriceFeed;
     AggregatorV3Interface internal priceFeed;
 
-    /**
-     * Network: Kovan
-     * Aggregator: ETH/USD
-     * Address: 0x9326BFA02ADD2366b30bacB125260Af641031331
-     */
     constructor() public {
         ethPriceFeed = AggregatorV3Interface(
             0x8A753747A1Fa494EC906cE90E9f37563A8AF630e
@@ -42,4 +37,6 @@ contract PriceConsumerV3 {
         (, int256 linkPrice, , , ) = linkPriceFeed.latestRoundData();
         return (ethPrice, btcPrice, linkPrice);
     }
+
+    function getPriceHistory() {}
 }

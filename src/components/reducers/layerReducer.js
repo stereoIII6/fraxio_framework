@@ -4,10 +4,12 @@ import {
     ADD_LAYER,
     DEL_LAYER,
     BAKE_ALPHA,
-    MOVE_LAYER
+    MOVE_LAYER,
+    GET_FEED
 } from "../action/types";
 const initState = {
     layers: [],
+    priceFeed: {},
     loadingLayers: true,
 
 };
@@ -41,6 +43,12 @@ export default function (state = initState, action) {
             return {
                 ...state,
                 layers: action.payload
+            };
+        case GET_FEED:
+            console.log("reduced price feed", action.payload);
+            return {
+                ...state,
+                priceFeed: action.payload
             };
         default:
             return state;

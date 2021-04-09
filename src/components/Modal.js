@@ -38,9 +38,9 @@ const onChange = (e) => {
 
 }
 
-export default function Modal({ open, children, onClose, layer, layers, rulerChange }) {
+export default function Modal({ open, children, onClose, layer, layers, rulerChange, priceFeed }) {
     if (!open) return null;
-    console.log(layers);
+    console.log(layers, priceFeed);
 
 
 
@@ -60,9 +60,10 @@ export default function Modal({ open, children, onClose, layer, layers, rulerCha
 
                             <Input type="select">
                                 <option id="default" >----</option>
-                                <option id="pricechange" >Price Change</option>
-                                <option id="temperature" >Temperature</option>
-                                <option id="custom" >Custom</option>
+
+                                <option key="ETH" id="ETH" >{`ETH - ${(window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)} $`}</option>
+                                <option key="BTC" id="BTC" >{`BTC - ${(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)} $`}</option>
+                                <option key="LINK" id="LINK" >{`LINK - ${(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)} $`}</option>
                             </Input>
                             <Input type="text" id="oracle_path" placeholder="Oracle" />
                             <h6>Triggers </h6>

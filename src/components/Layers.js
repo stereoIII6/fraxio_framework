@@ -31,16 +31,19 @@ class Layers extends Component {
     }
     static propTypes = {
         layers: PropTypes.array,
+        priceFeed: PropTypes.object,
         addLayer: PropTypes.func,
         deleteLayer: PropTypes.func,
         moveLayer: PropTypes.func,
         layersLoaded: PropTypes.func,
         bakeAlpha: PropTypes.func
     };
+
     toggle = (e) => {
         e.preventDefault();
         this.setState({ isOpen: !this.state.isOpen, activeLayer: e.target.id });
         console.log(this.state.isOpen);
+        console.log(this.props.priceFeed);
     }
     rulerChange = (e) => {
         e.preventDefault();
@@ -197,7 +200,7 @@ class Layers extends Component {
                         ))
 
                     }</div>
-                    <Modal open={this.state.isOpen} onClose={this.toggle} layer={this.state.activeLayer} layers={this.props.layers} rulerChange={this.rulerChange}>
+                    <Modal open={this.state.isOpen} priceFeed={this.props.priceFeed} onClose={this.toggle} layer={this.state.activeLayer} layers={this.props.layers} rulerChange={this.rulerChange}>
                         Dynamic Content Editor&nbsp;
                     </Modal>
                 </div>
@@ -207,5 +210,6 @@ class Layers extends Component {
 }
 const mapStateToProps = state => ({
     layers: state.layerState.layers,
+    priceFeed: state.layerState.priceFeed
 });
 export default connect(mapStateToProps, { addLayer, deleteLayer, moveLayer, layersLoaded, bakeAlpha })(Layers);

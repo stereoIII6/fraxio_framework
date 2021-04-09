@@ -5,12 +5,21 @@ import {
     ADD_LAYER,
     DEL_LAYER,
     MOVE_LAYER,
-    BAKE_ALPHA
+    BAKE_ALPHA,
+    GET_FEED
 } from "./types";
 
 export const getLayers = () => (dispatch) => {
     console.log("action get layers");
     dispatch(setLoadLayer());
+};
+
+export const getPriceFeeds = (feed) => {
+    console.log("action get prices");
+    return {
+        type: GET_FEED,
+        payload: feed
+    }
 };
 
 export const layersLoaded = () => {

@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Screen from './Screen';
 import Coming from './Coming';
-import { getLayers } from "./action/layerActions.js";
+import { getLayers, getPriceFeeds } from "./action/layerActions.js";
 import './App.css';
 import PriceConsumerV3 from '../abis/PriceConsumerV3.json';
 const RinkPCAddress = '0x8Ba6488144d2430EC82301A42B7Dcf073211aB8b';
@@ -47,11 +47,12 @@ class App extends Component {
     const web3 = window.web3;
     const accounts = await web3.eth.getAccounts();
     const RinkOracle = new web3.eth.Contract(PriceConsumerV3.abi, RinkPCAddress);
-    console.log(accounts[0]);
+    console.log(web3.eth);
     console.log(PriceConsumerV3);
 
     const result = await RinkOracle.methods.getLatestPrices().call();
-    console.log(result);
+    console.log(result, Date());
+    store.dispatch(getPriceFeeds(result));
 
   }
   componentDidMount() {
@@ -157,6 +158,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
+
           <div>
             <div className="container-fluid mt-5">
               <div className="row">
