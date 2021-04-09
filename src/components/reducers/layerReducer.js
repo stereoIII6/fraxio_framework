@@ -5,7 +5,8 @@ import {
     DEL_LAYER,
     BAKE_ALPHA,
     MOVE_LAYER,
-    GET_FEED
+    GET_FEED,
+    EDIT_LAYER
 } from "../action/types";
 const initState = {
     layers: [],
@@ -34,6 +35,12 @@ export default function (state = initState, action) {
             };
         case DEL_LAYER:
             console.log("reduced delete layer", action.payload);
+            return {
+                ...state,
+                layers: action.payload
+            };
+        case EDIT_LAYER:
+            console.log("reduced edit layer", action.payload);
             return {
                 ...state,
                 layers: action.payload

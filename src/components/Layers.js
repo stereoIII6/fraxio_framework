@@ -2,7 +2,7 @@ import React, { Component, useState } from 'react';
 import { Button, InputGroup, Input, Form } from 'reactstrap';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addLayer, deleteLayer, moveLayer, layersLoaded, bakeAlpha } from "./action/layerActions.js";
+import { addLayer, deleteLayer, moveLayer, layersLoaded, bakeAlpha, editLayer } from "./action/layerActions.js";
 import Modal from "./Modal";
 const _ = require('lodash');
 class Layers extends Component {
@@ -11,7 +11,7 @@ class Layers extends Component {
         key: null,
         obj: {
             alpha: {
-
+                d: null,
                 x: 10, // xposition
                 y: 10, // yposition
                 z: 100, // scale
@@ -36,7 +36,8 @@ class Layers extends Component {
         deleteLayer: PropTypes.func,
         moveLayer: PropTypes.func,
         layersLoaded: PropTypes.func,
-        bakeAlpha: PropTypes.func
+        bakeAlpha: PropTypes.func,
+        editLayer: PropTypes.func
     };
 
     toggle = (e) => {
@@ -135,6 +136,38 @@ class Layers extends Component {
         this.setState({ [e.target.name]: value });
         // console.log(e.target.value);
     }
+    onSwitch = (e) => {
+        e.preventDefault();
+        const chosenFeed = e.target.value;
+        // this.setState({ [e.target.name]: value });
+        console.log(this.props.layers, e.target.id)
+        const editedLayer = {
+            path: this.props.layers[e.target.id].path,
+            key: this.props.layers[e.target.id].key,
+            name: this.props.layers[e.target.id].name,
+            obj: {
+                alpha: null,
+                start: {
+                    d: chosenFeed,
+                    x: this.state.obj.alpha.x,
+                    y: this.state.obj.alpha.y,
+                    z: this.state.obj.alpha.z,
+                    o: this.state.obj.alpha.o,
+                    r: this.state.obj.alpha.r,
+                },
+                mid: this.props.layers.mid,
+                top: this.props.layers.top,
+                low: this.props.layers.low,
+                bottom: this.props.layers.bottom,
+                custom: this.props.layers.custom
+            }
+        }
+        let editedLayers = this.props.layers;
+        editedLayers[e.target.id] = editedLayer;
+        this.props.editLayer(editedLayers);
+        document.getElementById('start_form').value = chosenFeed;
+        console.log("select price feed ", editedLayer);
+    }
     goAddLayer = (e) => {
         e.preventDefault();
         const newLayer = {
@@ -200,7 +233,7 @@ class Layers extends Component {
                         ))
 
                     }</div>
-                    <Modal open={this.state.isOpen} priceFeed={this.props.priceFeed} onClose={this.toggle} layer={this.state.activeLayer} layers={this.props.layers} rulerChange={this.rulerChange}>
+                    <Modal open={this.state.isOpen} priceFeed={this.props.priceFeed} onSwitch={this.onSwitch} onClose={this.toggle} layer={this.state.activeLayer} layers={this.props.layers} rulerChange={this.rulerChange}>
                         Dynamic Content Editor&nbsp;
                     </Modal>
                 </div>
@@ -212,4 +245,4 @@ const mapStateToProps = state => ({
     layers: state.layerState.layers,
     priceFeed: state.layerState.priceFeed
 });
-export default connect(mapStateToProps, { addLayer, deleteLayer, moveLayer, layersLoaded, bakeAlpha })(Layers);
+export default connect(mapStateToProps, { addLayer, deleteLayer, moveLayer, layersLoaded, bakeAlpha, editLayer })(Layers);

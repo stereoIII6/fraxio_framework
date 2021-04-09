@@ -76,8 +76,8 @@ class App extends Component {
       // console.log("Buffer :", Buffer(reader.result));
       this.setState({ buffer: Buffer(reader.result) })
     }
-
   }
+
   submitFile = (e) => {
     e.preventDefault();
     // console.log("file submitted");

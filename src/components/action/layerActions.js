@@ -4,6 +4,7 @@ import {
     LAYERS_LOADED,
     ADD_LAYER,
     DEL_LAYER,
+    EDIT_LAYER,
     MOVE_LAYER,
     BAKE_ALPHA,
     GET_FEED
@@ -65,6 +66,14 @@ export const deleteLayer = (newLayers) => {
     return {
         type: DEL_LAYER,
         payload: newLayers
+    };
+};
+
+export const editLayer = (edited) => {
+    console.log("action edit layer", edited);
+    return {
+        type: EDIT_LAYER,
+        payload: edited
     };
 };
 

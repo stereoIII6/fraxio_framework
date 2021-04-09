@@ -32,13 +32,7 @@ const OVER_STYLES = {
 
 }
 
-const onChange = (e) => {
-    e.preventDefault();
-    console.log(e.target.id);
-
-}
-
-export default function Modal({ open, children, onClose, layer, layers, rulerChange, priceFeed }) {
+export default function Modal({ open, children, onClose, layer, layers, rulerChange, priceFeed, onSwitch }) {
     if (!open) return null;
     console.log(layers, priceFeed);
 
@@ -58,22 +52,23 @@ export default function Modal({ open, children, onClose, layer, layers, rulerCha
                     <div className="row">
                         <div className="col-4 pb-2">
 
-                            <Input type="select">
-                                <option id="default" >----</option>
+                            <Input type="select" id={layer} onChange={onSwitch}>
+                                <option key="DEFAULT" id="default" >----</option>
 
-                                <option key="ETH" id="ETH" >{`ETH - ${(window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)} $`}</option>
-                                <option key="BTC" id="BTC" >{`BTC - ${(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)} $`}</option>
-                                <option key="LINK" id="LINK" >{`LINK - ${(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)} $`}</option>
+                                <option key="ETH" id={layer} value={(window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)}>{`ETH - ${(window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)} $`}</option>
+                                <option key="BTC" id={layer} value={(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)}>{`BTC - ${(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)} $`}</option>
+                                <option key="LINK" id={layer} value={(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)}>{`LINK - ${(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)} $`}</option>
                             </Input>
                             <Input type="text" id="oracle_path" placeholder="Oracle" />
                             <h6>Triggers </h6>
                             <InputGroup >
-                                <Input type="text" id="top" placeholder="Top" style={{ background: "limegreen" }} />
-                                <Input type="text" id="mid" placeholder="Mid" style={{ background: "cornflowerblue" }} />
-                                <Input type="text" id="start" placeholder="Start" style={{ background: "lightblue" }} />
-                                <Input type="text" id="low" placeholder="Low" style={{ background: "cornflowerblue" }} />
-                                <Input type="text" id="bottom" placeholder="Bottom" style={{ background: "tomato" }} />
-                                <Input type="text" id="costom" placeholder="Custom" style={{ background: "beige" }} />
+                                {console.log(layers[layer].obj, "tween check")}
+                                <Input type="text" id="top_form" placeholder="Top" style={{ background: "limegreen" }} />
+                                <Input type="text" id="mid_form" placeholder="Mid" style={{ background: "cornflowerblue" }} />
+                                <Input type="text" id="start_form" placeholder="Start" style={{ background: "lightblue" }} />
+                                <Input type="text" id="low_form" placeholder="Low" style={{ background: "cornflowerblue" }} />
+                                <Input type="text" id="bottom_form" placeholder="Bottom" style={{ background: "tomato" }} />
+                                <Input type="text" id="costom_form" placeholder="Custom" style={{ background: "beige" }} />
                             </InputGroup>
                             <h6>Active</h6>
                             <InputGroup >
@@ -105,13 +100,22 @@ export default function Modal({ open, children, onClose, layer, layers, rulerCha
                         </div>
                         <div className="col-8" style={{}}>
                             Screen Preview
-                            <div style={{ backgroundImage: `url("https://ipfs.io/ipfs/QmTNbkJ5x3iY4VEiEUARfrCreqBZ3tXHU3oFnsUK7QnDie")`, width: "485px", height: "280px", overflow: "hidden", position: "relative", top: "20px", left: "0" }}>
+                            <div style={{
+                                backgroundImage: `url("https://ipfs.io/ipfs/QmTNbkJ5x3iY4VEiEUARfrCreqBZ3tXHU3oFnsUK7QnDie")`,
+                                width: "485px", height: "280px", overflow: "hidden", position: "relative", top: "20px", left: "0"
+                            }}>
                                 {
                                     console.log(layer),
                                     layers.map(laya => (
                                         console.log(laya.key),
-                                        laya.key.toString() == layer.toString() ? <div key={laya.key} style={{ width: "485px", height: "280px", position: "absolute", top: "0", left: "0", overflow: "hidden" }}>
-                                            <img id="layers[layer].obj.alpha" src={`https://ipfs.io/ipfs/${laya.path}`} style={{ position: "absolute", top: `${laya.obj.alpha.y * 2 / 3}px`, left: `${laya.obj.alpha.x * 2 / 3}px`, width: `${(laya.obj.alpha.z / 100 * ((750 * 2 / 3) - 20))}px`, opacity: `${laya.obj.alpha.o / 100}`, transform: `rotate(${laya.obj.alpha.r}deg)` }} />
+                                        laya.key.toString() === layer.toString() ? <div key={laya.key} style={{ width: "485px", height: "280px", position: "absolute", top: "0", left: "0", overflow: "hidden" }}>
+                                            {laya.obj.alpha !== null ? <img id="layers[layer].obj.alpha" src={`https://ipfs.io/ipfs/${laya.path}`} style={{
+                                                position: "absolute", top: `${laya.obj.alpha.y * 2 / 3}px`, left: `${laya.obj.alpha.x * 2 / 3}px`,
+                                                width: `${(laya.obj.alpha.z / 100 * ((750 * 2 / 3) - 20))}px`, opacity: `${laya.obj.alpha.o / 100}`, transform: `rotate(${laya.obj.alpha.r}deg)`
+                                            }} /> : <img id="layers[layer].obj.alpha" src={`https://ipfs.io/ipfs/${laya.path}`} style={{
+                                                position: "absolute", top: `${laya.obj.start.y * 2 / 3}px`, left: `${laya.obj.start.x * 2 / 3}px`,
+                                                width: `${(laya.obj.start.z / 100 * ((750 * 2 / 3) - 20))}px`, opacity: `${laya.obj.start.o / 100}`, transform: `rotate(${laya.obj.start.r}deg)`
+                                            }} />}
                                         </div> : null
                                     ))}
                             </div>
