@@ -1,15 +1,42 @@
-const PriceConsumerV3 = artifacts.require('PriceConsumerV3')
-const KOVAN_ETH_USD_PRICE_FEED = '0x9326BFA02ADD2366b30bacB125260Af641031331'
+const PriceConsumerV3 = artifacts.require('PriceConsumerV3');
 
-module.exports = async (deployer, network, [defaultAccount]) => {
-    // Local (development) networks need their own deployment of the LINK
-    // token and the Oracle contract
+const KOVAN_ETH_USD_FEED = '0x9326BFA02ADD2366b30bacB125260Af641031331';
+const KOVAN_BTC_USD_FEED = '0x6135b13325bfC4B00278B4abC5e20bbce2D6580e';
+const KOVAN_LINK_USD_FEED = '0x396c5E36DD0a0F5a5D33dae44368D4193f69a1F0';
 
-    // currently hardcoded for Kovan
-    let priceFeedAddress = KOVAN_ETH_USD_PRICE_FEED
+const RINK_ETH_USD_FEED = '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e';
+const RINK_BTC_USD_FEED = '0xECe365B379E1dD183B20fc5f022230C044d51404';
+const RINK_LINK_USD_FEED = '0xd8bD0a1cB028a31AA859A21A3758685a95dE4623';
+
+// RINKEBY FEED ORACLE CONTRACTS
+
+/*
+ETH     0xA8A5F4AC446C2a348fC6e7850F6BC4FC0a651920 // Latest Price
+BTC     0x1fcE45060e9476f470e81FB70a097de6dB28cbF3 // Latest Price
+LINK    0xA6345caA694846232AC9D257f1bDd3aA4D3c42e2 // Latest Price 
+*/
+
+const XDAI_ETH_USD_FEED = '0xa767f745331D267c7751297D982b050c93985627';
+const XDAI_BTC_USD_FEED = '0x6C1d7e76EF7304a40e8456ce883BC56d3dEA3F7d';
+const XDAI_LINK_USD_FEED = '0xed322A5ac55BAE091190dFf9066760b86751947B';
+
+const POLY_ETH_USD_FEED = '0xF9680D99D6C9589e2a93a78A04A279e509205945';
+const POLY_BTC_USD_FEED = '0xc907E116054Ad103354f2D350FD2514433D57F6f';
+const POLY_LINK_USD_FEED = '0xb77fa460604b9C6435A235D057F7D319AC83cb53';
+
+module.exports = async (deployer, networks, [defaultAccount]) => {
+
+    const kovanFeedAddress = [KOVAN_ETH_USD_FEED, KOVAN_BTC_USD_FEED, KOVAN_LINK_USD_FEED];
+    const rinkebyFeedAddress = [RINK_ETH_USD_FEED, RINK_BTC_USD_FEED, RINK_LINK_USD_FEED];
+    const xdaiFeedAddress = [XDAI_ETH_USD_FEED, XDAI_BTC_USD_FEED, XDAI_LINK_USD_FEED];
+    const polygonFeedAddress = [POLY_ETH_USD_FEED, POLY_BTC_USD_FEED, POLY_LINK_USD_FEED];
+    let priceFeedAddress = rinkebyFeedAddress;
+
     try {
-        await deployer.deploy(PriceConsumerV3, KOVAN_ETH_USD_PRICE_FEED, { from: defaultAccount })
-    } catch (err) {
+        await deployer.deploy(`PriceConsumerV3`);
+    }
+
+    catch (err) {
         console.error(err)
     }
 }

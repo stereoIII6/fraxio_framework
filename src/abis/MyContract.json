@@ -5018,6 +5018,71 @@
     "version": "0.6.6+commit.6c089d02.Emscripten.clang"
   },
   "networks": {
+    "4": {
+      "events": {
+        "0xe1fe3afa0f7f761ff0a8b89086790efd5140d2907ebd5b7ff6bfcb5e075fd4c5": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "id",
+              "type": "bytes32"
+            }
+          ],
+          "name": "ChainlinkCancelled",
+          "type": "event"
+        },
+        "0x7cc135e0cebb02c3480ae5d74d377283180a2601f8f644edf7987b009316c63a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "id",
+              "type": "bytes32"
+            }
+          ],
+          "name": "ChainlinkFulfilled",
+          "type": "event"
+        },
+        "0xb5e6e01e79f91267dc17b4e6314d5d4d03593d2ceee0fbb452b750bd70ea5af9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "id",
+              "type": "bytes32"
+            }
+          ],
+          "name": "ChainlinkRequested",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x71c395EE4765970F41A85a50FA093efd7A19a2DC",
+      "transactionHash": "0x3b860d484238ead8b8fa870248f134fbc52bb428df0f42eedc3ffcfdb4bf8271"
+    },
     "1617664721971": {
       "events": {},
       "links": {},
@@ -5026,7 +5091,7 @@
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-04-05T23:47:07.680Z",
+  "updatedAt": "2021-04-08T22:23:57.142Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "This contract is designed to work on multiple networks, including local test networks",

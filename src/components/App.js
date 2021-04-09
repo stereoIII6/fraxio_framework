@@ -9,6 +9,8 @@ import Screen from './Screen';
 import Coming from './Coming';
 import { getLayers } from "./action/layerActions.js";
 import './App.css';
+import PriceConsumerV3 from '../abis/PriceConsumerV3.json';
+const RinkPCAddress = '0x8Ba6488144d2430EC82301A42B7Dcf073211aB8b';
 
 
 const IpfsHttpClient = require("ipfs-http-client");
@@ -25,7 +27,7 @@ class App extends Component {
 
   async componentWillMount() {
     await this.loadWeb3()
-    // await this.loadBlockChainData()
+    await this.loadBlockChainData()
   }
 
   async loadWeb3() {
@@ -42,6 +44,14 @@ class App extends Component {
   }
 
   async loadBlockChainData() {
+    const web3 = window.web3;
+    const accounts = await web3.eth.getAccounts();
+    const RinkOracle = new web3.eth.Contract(PriceConsumerV3.abi, RinkPCAddress);
+    console.log(accounts[0]);
+    console.log(PriceConsumerV3);
+
+    const result = await RinkOracle.methods.getLatestPrices().call();
+    console.log(result);
 
   }
   componentDidMount() {
