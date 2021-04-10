@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import KeyFrames from './KeyFrames';
 import Layers from './Layers';
 import Media from './Media';
 
@@ -12,6 +13,8 @@ class Screen extends Component {
                     <Layers />
 
                     <Media />
+
+                    <KeyFrames />
 
                 </div>
                 <div className="row p-0 m-0">

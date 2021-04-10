@@ -7,7 +7,11 @@ import {
     EDIT_LAYER,
     MOVE_LAYER,
     BAKE_ALPHA,
-    GET_FEED
+    GET_FEED,
+    TOGGLE_MODAL,
+    SET_LAYER_ACTIVE,
+    SET_LAYER_INACTIVE,
+    SET_KEY_ACTIVE
 } from "./types";
 
 export const getLayers = () => (dispatch) => {
@@ -38,18 +42,41 @@ export const setLoadLayer = () => {
 
 };
 
-export const bakeAlpha = (inputAlpha, layer, param, layers) => {
+export const bakeAlpha = (inputAlpha, layer, layerState, layers) => {
     // console.log("action bake ruler " + param + "layer" + layer + "to ", inputAlpha);
-    let bakeLayers = [];
-
-    layers.map(laya => (
-        laya.key.toString() === layer.toString() ? (laya.obj.alpha = inputAlpha, console.log("baking done")) : null,
-        bakeLayers.push(laya)
-    ));
-    console.log("action bake Ruler", bakeLayers)
+    let bakeLayers = layers;
+    bakeLayers[layer].obj.alpha = inputAlpha;
+    // console.log("action bake Ruler", bakeLayers)
     return {
         type: BAKE_ALPHA,
         payload: bakeLayers
+    };
+};
+export const doToggle = (bool) => {
+    return {
+        type: TOGGLE_MODAL,
+        payload: bool
+    };
+};
+export const activateLayer = (id) => {
+    return {
+        type: SET_LAYER_ACTIVE,
+        payload: Number(id)
+    };
+
+};
+export const deActivateLayer = () => {
+    return {
+        type: SET_LAYER_INACTIVE,
+        payload: null
+    };
+
+};
+export const changeKey = (frame) => {
+    console.log(frame, "action activeKey")
+    return {
+        type: SET_KEY_ACTIVE,
+        payload: frame
     };
 };
 

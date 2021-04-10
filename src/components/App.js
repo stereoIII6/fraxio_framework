@@ -10,6 +10,8 @@ import Coming from './Coming';
 import { getLayers, getPriceFeeds } from "./action/layerActions.js";
 import './App.css';
 import PriceConsumerV3 from '../abis/PriceConsumerV3.json';
+
+// SMART CONTRACTS
 const RinkPCAddress = '0x8Ba6488144d2430EC82301A42B7Dcf073211aB8b';
 
 

@@ -6,17 +6,48 @@ import {
     BAKE_ALPHA,
     MOVE_LAYER,
     GET_FEED,
-    EDIT_LAYER
+    EDIT_LAYER,
+    TOGGLE_MODAL,
+    SET_LAYER_ACTIVE,
+    SET_LAYER_INACTIVE,
+    SET_KEY_ACTIVE
+
 } from "../action/types";
 const initState = {
     layers: [],
     priceFeed: {},
     loadingLayers: true,
-
+    activeLayer: null,
+    activeKey: 2,
+    isOpen: false
 };
 
 export default function (state = initState, action) {
     switch (action.type) {
+        case TOGGLE_MODAL:
+            return {
+                ...state,
+                isOpen: action.payload,
+                layers: [...state.layers]
+            };
+        case SET_LAYER_ACTIVE:
+            return {
+                ...state,
+                activeLayer: action.payload,
+                layers: [...state.layers]
+            };
+        case SET_LAYER_INACTIVE:
+            return {
+                ...state,
+                activeLayer: null,
+                layers: [...state.layers]
+            };
+        case SET_KEY_ACTIVE:
+            return {
+                ...state,
+                activeKey: action.payload,
+                layers: [...state.layers]
+            };
         case LOAD_LAYERS:
             return {
                 ...state,
@@ -25,7 +56,8 @@ export default function (state = initState, action) {
         case LAYERS_LOADED:
             return {
                 ...state,
-                loadingLayers: false
+                loadingLayers: false,
+                layers: [...state.layers]
             };
         case ADD_LAYER:
             console.log("reduced add layer", action.payload);
