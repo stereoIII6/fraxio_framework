@@ -200,12 +200,12 @@ class Layers extends Component {
     onSwitch = (e) => {
         e.preventDefault();
         const chosenFeed = e.target.value;
-        this.setState({ [e.target.name]: chosenFeed });
+        // this.setState({ [e.target.name]: chosenFeed });
         // console.log(this.props.layers, this.props.activeLayer)
         const editedLayer = {
-            path: this.props.layers[this.props.activeLayer].path,
-            key: this.props.layers[this.props.activeLayer].key,
-            name: this.props.layers[this.props.activeLayer].name,
+            path: this.props.layers[e.target.id].path,
+            key: this.props.layers[e.target.id].key,
+            name: this.props.layers[e.target.id].name,
             obj: {
                 alpha: {
                     d: e.target.value,
@@ -227,9 +227,14 @@ class Layers extends Component {
         let editedLayers = this.props.layers;
         editedLayers[this.props.activeLayer] = editedLayer;
         this.props.editLayer(editedLayers);
+        this.setState(editedLayers);
         const factor = [200, 150, 100, 75, 50, 25];
-        for (let i = 0; i < factor.length; i++) { document.getElementById(`keyView${i}`).value = chosenFeed / 100 * factor[i] * this.state.obj.alpha.s; }
-
+        document.getElementById(`keyView${0}`).value = chosenFeed / 100 * factor[0];
+        document.getElementById(`keyView${1}`).value = chosenFeed / 100 * factor[1];
+        document.getElementById(`keyView${2}`).value = chosenFeed / 100 * factor[2];
+        document.getElementById(`keyView${3}`).value = chosenFeed / 100 * factor[3];
+        document.getElementById(`keyView${4}`).value = chosenFeed / 100 * factor[4];
+        document.getElementById(`keyView${5}`).value = chosenFeed / 100 * factor[5];
 
         console.log("select price feed ", editedLayer);
     }
@@ -287,6 +292,7 @@ class Layers extends Component {
             r: this.state.obj.alpha.r,
             s: this.state.obj.alpha.s,
         };
+        console.log("fillIn", fillIn);
         const fillTop = this.props.activeKey === 0 ? fillIn : this.state.top;
         const fillMid = this.props.activeKey === 1 ? fillIn : this.state.mid;
         const fillStart = this.props.activeKey === 2 ? fillIn : this.state.start;
@@ -325,8 +331,9 @@ class Layers extends Component {
         let editedLayers = this.props.layers;
         editedLayers[this.props.activeLayer] = layerState;
         this.props.editLayer(editedLayers);
-        console.log("reset layer ", editedLayers);
+        console.log("go edit layer ", editedLayers);
         console.log(this.state.obj);
+
         this.closeLayer(e);
     }
 

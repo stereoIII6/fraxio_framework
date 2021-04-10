@@ -53,14 +53,12 @@ export default function Modal({ open, children, onClose, layer, layers, aKey, ru
                         <div className="col-4 pb-2">
 
                             <Input type="select" id={layer} name="select" onChange={onSwitch}>
-                                <option key="DEFAULT" id="default" value={"000"}>Choose Oracle</option>
+                                <option key="DEFAULT" id={layer} value={"000"}>Choose Oracle</option>
                                 <option key="ETH" id={layer} value={(window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)}>{`ETH - ${(window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)} $`}</option>
                                 <option key="BTC" id={layer} value={(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)}>{`BTC - ${(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)} $`}</option>
                                 <option key="LINK" id={layer} value={(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)}>{`LINK - ${(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)} $`}</option>
                             </Input>
-                            <h6>Trigger Auto Squeeze //{layers[layer].obj.alpha.s / 100 * 2}</h6>
-                            <div key={layer} name={layer} id={layer}>
-                                <CustomInput type="range" id="s" name={layer} min="0" max="500" value={layers[layer].obj.alpha.s} onChange={rulerChange} /></div>
+
                             <h6>Triggers </h6>
                             <InputGroup >
                                 {/* console.log(layers[layer].obj, layers[layer].key, "input tween check")*/}

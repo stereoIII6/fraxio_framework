@@ -30,7 +30,7 @@ class Media extends Component {
                                 ))}
                         </div>
                     </div>
-                    <div className="col-3" style={{ wordWrap: "break-word", fontSize: "0.3em" }} >
+                    <div className="col-3" style={{ wordWrap: "break-word", fontSize: "0.6em" }} >
                         {JSON.stringify(this.props.layers)}
                     </div>
                 </div>
