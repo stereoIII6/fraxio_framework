@@ -228,12 +228,7 @@ class Layers extends Component {
         this.props.editLayer(editedLayers);
         this.setState(editedLayers);
         const factor = [200, 150, 100, 75, 50, 25];
-        document.getElementById(`keyView${0}`).value = chosenFeed / 100 * factor[0];
-        document.getElementById(`keyView${1}`).value = chosenFeed / 100 * factor[1];
-        document.getElementById(`keyView${2}`).value = chosenFeed / 100 * factor[2];
-        document.getElementById(`keyView${3}`).value = chosenFeed / 100 * factor[3];
-        document.getElementById(`keyView${4}`).value = chosenFeed / 100 * factor[4];
-        document.getElementById(`keyView${5}`).value = chosenFeed / 100 * factor[5];
+        document.getElementById(`keyView${this.props.activeKey}`).value = chosenFeed / 100 * factor[2];
 
         console.log("onSwitch price feed form ", editedLayer);
     }
