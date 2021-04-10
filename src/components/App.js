@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import Web3 from "web3";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Input, InputGroup, Form } from 'reactstrap';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -7,7 +7,10 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Screen from './Screen';
 import Coming from './Coming';
-import { getLayers } from "./action/layerActions.js";
+import { getLayers, getPriceFeeds } from "./action/layerActions.js";
+import './App.css';
+import PriceConsumerV3 from '../abis/PriceConsumerV3.json';
+const RinkPCAddress = '0x8Ba6488144d2430EC82301A42B7Dcf073211aB8b';
 
 
 const IpfsHttpClient = require("ipfs-http-client");
@@ -22,6 +25,36 @@ const ipfs = IpfsHttpClient({
 
 class App extends Component {
 
+  async componentWillMount() {
+    await this.loadWeb3()
+    await this.loadBlockChainData()
+  }
+
+  async loadWeb3() {
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+      await window.ethereum.enable();
+      console.log("ethereum", window.ethereum);
+    }
+    else if (window.web3) {
+      window.web3 = new Web3(window.web3.currentProvider);
+      console.log("web3", window.web3);
+    }
+    else window.alert("Use a Metamask");
+  }
+
+  async loadBlockChainData() {
+    const web3 = window.web3;
+    const accounts = await web3.eth.getAccounts();
+    const RinkOracle = new web3.eth.Contract(PriceConsumerV3.abi, RinkPCAddress);
+    console.log(web3.eth);
+    console.log(PriceConsumerV3);
+
+    const result = await RinkOracle.methods.getLatestPrices().call();
+    console.log(result, Date());
+    store.dispatch(getPriceFeeds(result));
+
+  }
   componentDidMount() {
     store.dispatch(getLayers());
   }
@@ -43,8 +76,8 @@ class App extends Component {
       // console.log("Buffer :", Buffer(reader.result));
       this.setState({ buffer: Buffer(reader.result) })
     }
-
   }
+
   submitFile = (e) => {
     e.preventDefault();
     // console.log("file submitted");
@@ -125,6 +158,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
+
           <div>
             <div className="container-fluid mt-5">
               <div className="row">

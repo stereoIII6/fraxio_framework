@@ -32,15 +32,9 @@ const OVER_STYLES = {
 
 }
 
-const onChange = (e) => {
-    e.preventDefault();
-    console.log(e.target.id);
-
-}
-
-export default function Modal({ open, children, onClose, layer, layers, rulerChange }) {
+export default function Modal({ open, children, onClose, layer, layers, rulerChange, priceFeed, onSwitch, goResetLayer, goSaveLayer }) {
     if (!open) return null;
-    console.log(layers);
+    console.log(layers, priceFeed);
 
 
 
@@ -58,21 +52,23 @@ export default function Modal({ open, children, onClose, layer, layers, rulerCha
                     <div className="row">
                         <div className="col-4 pb-2">
 
-                            <Input type="select">
-                                <option id="default" >----</option>
-                                <option id="pricechange" >Price Change</option>
-                                <option id="temperature" >Temperature</option>
-                                <option id="custom" >Custom</option>
+                            <Input type="select" id={layer} name="select" onChange={onSwitch}>
+                                <option key="DEFAULT" id="default" value="default">----</option>
+
+                                <option key="ETH" id={layer} value={(window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)}>{`ETH - ${(window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)} $`}</option>
+                                <option key="BTC" id={layer} value={(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)}>{`BTC - ${(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)} $`}</option>
+                                <option key="LINK" id={layer} value={(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)}>{`LINK - ${(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)} $`}</option>
                             </Input>
                             <Input type="text" id="oracle_path" placeholder="Oracle" />
                             <h6>Triggers </h6>
                             <InputGroup >
-                                <Input type="text" id="top" placeholder="Top" style={{ background: "limegreen" }} />
-                                <Input type="text" id="mid" placeholder="Mid" style={{ background: "cornflowerblue" }} />
-                                <Input type="text" id="start" placeholder="Start" style={{ background: "lightblue" }} />
-                                <Input type="text" id="low" placeholder="Low" style={{ background: "cornflowerblue" }} />
-                                <Input type="text" id="bottom" placeholder="Bottom" style={{ background: "tomato" }} />
-                                <Input type="text" id="costom" placeholder="Custom" style={{ background: "beige" }} />
+                                {console.log(layers[layer].obj, "tween check")}
+                                <Input type="text" id="top_form" placeholder="Top" style={{ background: "limegreen" }} />
+                                <Input type="text" id="mid_form" placeholder="Mid" style={{ background: "cornflowerblue" }} />
+                                <Input type="text" id="start_form" placeholder="Start" style={{ background: "lightblue" }} />
+                                <Input type="text" id="low_form" placeholder="Low" style={{ background: "cornflowerblue" }} />
+                                <Input type="text" id="bottom_form" placeholder="Bottom" style={{ background: "tomato" }} />
+                                <Input type="text" id="costom_form" placeholder="Custom" style={{ background: "beige" }} />
                             </InputGroup>
                             <h6>Active</h6>
                             <InputGroup >
@@ -83,34 +79,43 @@ export default function Modal({ open, children, onClose, layer, layers, rulerCha
                                 <Input type="button" id="bottom" style={{ width: "32px", background: "tomato" }} />
                                 <Input type="button" id="costom" style={{ width: "32px", background: "beige" }} />
                             </InputGroup>
-                            {console.log(layers),
+                            {
                                 layers.map(lay => (
-                                    console.log(layer),
+                                    // console.log(layer),
                                     lay.key.toString() === layer.toString() ?
-                                        <div key={layer}>
-                                            <h6>X Position //{lay.obj.alpha.x}</h6>
-                                            <CustomInput type="range" id="x" name={layer} min="-750" max="750" value={lay.obj.alpha.x} onChange={rulerChange} />
-                                            <h6>Y Position // {lay.obj.alpha.y}</h6>
-                                            <CustomInput type="range" id="y" name={layer} min="-430" max="430" value={lay.obj.alpha.y} onChange={rulerChange} />
-                                            <h6>Scale {lay.obj.alpha.z}</h6>
-                                            <CustomInput type="range" id="z" name={layer} min="1" max="120" value={lay.obj.alpha.z} onChange={rulerChange} />
-                                            <h6>Transparancy / Opacity {lay.obj.alpha.o}</h6>
-                                            <CustomInput type="range" id="o" name={layer} min="0" max="100" value={lay.obj.alpha.o} onChange={rulerChange} />
-                                            <h6>Rotation {lay.obj.alpha.r}</h6>
-                                            <CustomInput type="range" id="r" name={layer} min="-360" max="360" value={lay.obj.alpha.r} onChange={rulerChange} />
-                                            <Button id="save" className="btn-success">SAVE</Button><Button id="reset" className="btn-danger">RESET</Button>
+                                        <div key={layer} name={layer}>
+                                            <h6>X Position //{lay.obj.alpha !== null ? lay.obj.alpha.x : lay.obj.start.x}</h6>
+                                            <CustomInput type="range" id="x" name={layer} min="-750" max="750" value={lay.obj.alpha !== null ? lay.obj.alpha.x : lay.obj.start.x} onChange={rulerChange} />
+                                            <h6>Y Position // {lay.obj.alpha !== null ? lay.obj.alpha.y : lay.obj.start.y}</h6>
+                                            <CustomInput type="range" id="y" name={layer} min="-430" max="430" value={lay.obj.alpha !== null ? lay.obj.alpha.y : lay.obj.start.y} onChange={rulerChange} />
+                                            <h6>Scale {lay.obj.alpha !== null ? lay.obj.alpha.z : lay.obj.start.z}</h6>
+                                            <CustomInput type="range" id="z" name={layer} min="1" max="120" value={lay.obj.alpha !== null ? lay.obj.alpha.z : lay.obj.start.z} onChange={rulerChange} />
+                                            <h6>Transparancy / Opacity {lay.obj.alpha !== null ? lay.obj.alpha.o : lay.obj.start.o}</h6>
+                                            <CustomInput type="range" id="o" name={layer} min="0" max="100" value={lay.obj.alpha !== null ? lay.obj.alpha.o : lay.obj.start.o} onChange={rulerChange} />
+                                            <h6>Rotation {lay.obj.alpha !== null ? lay.obj.alpha.r : lay.obj.start.r}</h6>
+                                            <CustomInput type="range" id="r" name={layer} min="-360" max="360" value={lay.obj.alpha !== null ? lay.obj.alpha.r : lay.obj.start.r} onChange={rulerChange} />
+                                            <Button id={lay.key} className="btn-success" onClick={goSaveLayer}>{`SAVE ${lay.key}`}</Button><Button id={lay.key} className="btn-danger" onClick={goResetLayer}>RESET</Button>
                                         </div> : null
                                 ))}
                         </div>
                         <div className="col-8" style={{}}>
                             Screen Preview
-                            <div style={{ backgroundImage: `url("https://ipfs.io/ipfs/QmTNbkJ5x3iY4VEiEUARfrCreqBZ3tXHU3oFnsUK7QnDie")`, width: "485px", height: "280px", overflow: "hidden", position: "relative", top: "20px", left: "0" }}>
+                            <div style={{
+                                backgroundImage: `url("https://ipfs.io/ipfs/QmTNbkJ5x3iY4VEiEUARfrCreqBZ3tXHU3oFnsUK7QnDie")`,
+                                width: "485px", height: "280px", overflow: "hidden", position: "relative", top: "20px", left: "0"
+                            }}>
                                 {
                                     console.log(layer),
                                     layers.map(laya => (
                                         console.log(laya.key),
-                                        laya.key.toString() == layer.toString() ? <div key={laya.key} style={{ width: "485px", height: "280px", position: "absolute", top: "0", left: "0", overflow: "hidden" }}>
-                                            <img id="layers[layer].obj.alpha" src={`https://ipfs.io/ipfs/${laya.path}`} style={{ position: "absolute", top: `${laya.obj.alpha.y * 2 / 3}px`, left: `${laya.obj.alpha.x * 2 / 3}px`, width: `${(laya.obj.alpha.z / 100 * ((750 * 2 / 3) - 20))}px`, opacity: `${laya.obj.alpha.o / 100}`, transform: `rotate(${laya.obj.alpha.r}deg)` }} />
+                                        laya.key.toString() === layer.toString() ? <div key={laya.key} style={{ width: "485px", height: "280px", position: "absolute", top: "0", left: "0", overflow: "hidden" }}>
+                                            {laya.obj.alpha !== null ? <img id="layers[layer].obj.alpha" src={`https://ipfs.io/ipfs/${laya.path}`} style={{
+                                                position: "absolute", top: `${laya.obj.alpha.y * 2 / 3}px`, left: `${laya.obj.alpha.x * 2 / 3}px`,
+                                                width: `${(laya.obj.alpha.z / 100 * ((750 * 2 / 3) - 20))}px`, opacity: `${laya.obj.alpha.o / 100}`, transform: `rotate(${laya.obj.alpha.r}deg)`
+                                            }} /> : <img id="layers[layer].obj.alpha" src={`https://ipfs.io/ipfs/${laya.path}`} style={{
+                                                position: "absolute", top: `${laya.obj.start.y * 2 / 3}px`, left: `${laya.obj.start.x * 2 / 3}px`,
+                                                width: `${(laya.obj.start.z / 100 * ((750 * 2 / 3) - 20))}px`, opacity: `${laya.obj.start.o / 100}`, transform: `rotate(${laya.obj.start.r}deg)`
+                                            }} />}
                                         </div> : null
                                     ))}
                             </div>

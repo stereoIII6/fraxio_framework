@@ -1,6 +1,6 @@
-const HDWalletProvider = require('@truffle/hdwallet-provider')
-require('dotenv').config()
-
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const Web3 = require("web3");
+require('dotenv').config();
 const mnemonic = process.env.MNEMONIC
 
 module.exports = {
@@ -46,7 +46,7 @@ module.exports = {
     xdai: {
       provider: function () {
         return new HDWalletProvider(
-          process.env.MNEMONIC,
+          mnemonic,
           process.env.XDAI_URL)
       },
       network_id: 100,
@@ -54,7 +54,7 @@ module.exports = {
       gasPrice: 1000000000
     },
     polygon: {
-      provider: () => new HDWalletProvider(process.env.MNEMONIC, process.env.POLYGON_URL),
+      provider: () => new HDWalletProvider(mnemonic, process.env.POLYGON_URL),
       network_id: 80001,
       confirmations: 2,
       timeoutBlocks: 200,

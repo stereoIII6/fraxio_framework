@@ -1,6 +1,7 @@
 {
-  "name": "piefrax",
+  "name": "pyefrax",
   "version": "0.0.1",
+  "author": "stereoIII6",
   "description": "App Still in Experimental Beta Version",
   "private": true,
   "main": "truffle-config.js",
@@ -34,7 +35,7 @@
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
     "@openzeppelin/contracts": "^3.4.1",
-    "@truffle/hdwallet-provider": "^1.2.1",
+    "@truffle/hdwallet-provider": "^1.0.40",
     "apollo-boost": "^0.1.28",
     "babel-polyfill": "6.26.0",
     "babel-preset-env": "1.7.0",

@@ -4,6 +4,9 @@
 <p align="center">
 <a href="https://pye.herokuapp.com" target="_blank">
 <img src="https://ipfs.io/ipfs/QmNxABXvcSesjc55zCmzQM9VgtnHWsnnnfeG5rDiJyHUUJ" width="225" alt="logo">
+
+# PYE EDITOR on FRAX.IO
+
 </a>
 </p>
 <br/>

@@ -4,13 +4,23 @@ import {
     LAYERS_LOADED,
     ADD_LAYER,
     DEL_LAYER,
+    EDIT_LAYER,
     MOVE_LAYER,
-    BAKE_ALPHA
+    BAKE_ALPHA,
+    GET_FEED
 } from "./types";
 
 export const getLayers = () => (dispatch) => {
     console.log("action get layers");
     dispatch(setLoadLayer());
+};
+
+export const getPriceFeeds = (feed) => {
+    console.log("action get prices");
+    return {
+        type: GET_FEED,
+        payload: feed
+    }
 };
 
 export const layersLoaded = () => {
@@ -56,6 +66,14 @@ export const deleteLayer = (newLayers) => {
     return {
         type: DEL_LAYER,
         payload: newLayers
+    };
+};
+
+export const editLayer = (edited) => {
+    console.log("action edit layer", edited);
+    return {
+        type: EDIT_LAYER,
+        payload: edited
     };
 };
 

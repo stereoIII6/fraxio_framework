@@ -2,7 +2,7 @@ import React, { Component, useState } from 'react';
 import { Button, InputGroup, Input, Form } from 'reactstrap';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addLayer, deleteLayer, moveLayer, layersLoaded, bakeAlpha } from "./action/layerActions.js";
+import { addLayer, deleteLayer, moveLayer, layersLoaded, bakeAlpha, editLayer } from "./action/layerActions.js";
 import Modal from "./Modal";
 const _ = require('lodash');
 class Layers extends Component {
@@ -11,7 +11,7 @@ class Layers extends Component {
         key: null,
         obj: {
             alpha: {
-
+                d: null,
                 x: 10, // xposition
                 y: 10, // yposition
                 z: 100, // scale
@@ -31,26 +31,31 @@ class Layers extends Component {
     }
     static propTypes = {
         layers: PropTypes.array,
+        priceFeed: PropTypes.object,
         addLayer: PropTypes.func,
         deleteLayer: PropTypes.func,
         moveLayer: PropTypes.func,
         layersLoaded: PropTypes.func,
-        bakeAlpha: PropTypes.func
+        bakeAlpha: PropTypes.func,
+        editLayer: PropTypes.func
     };
+
     toggle = (e) => {
         e.preventDefault();
         this.setState({ isOpen: !this.state.isOpen, activeLayer: e.target.id });
         console.log(this.state.isOpen);
+        console.log(this.props.priceFeed);
     }
     rulerChange = (e) => {
         e.preventDefault();
-        console.log(`init by layer ${e.target.name}`);
+        console.log(`init by layer ${e.target.name}`, this.props.layers[e.target.name].obj.alpha);
+        // if (this.props.layers[e.target.name].obj.alpha !== null) {
         switch (e.target.id) {
             case "x":
                 this.props.layers.map(laya => (
                     laya.key.toString() === e.target.name ?
                         this.props.bakeAlpha({
-
+                            d: laya.obj.alpha.d,
                             x: parseInt(e.target.value), // xposition
                             y: laya.obj.alpha.y, // yposition
                             z: laya.obj.alpha.z, // scale
@@ -65,7 +70,7 @@ class Layers extends Component {
                 this.props.layers.map(laya => (
                     laya.key.toString() === e.target.name ?
                         this.props.bakeAlpha({
-
+                            d: laya.obj.alpha.d,
                             x: laya.obj.alpha.x, // yposition
                             y: parseInt(e.target.value), // xposition
                             z: laya.obj.alpha.z, // scale
@@ -80,7 +85,7 @@ class Layers extends Component {
                 this.props.layers.map(laya => (
                     laya.key.toString() === e.target.name ?
                         this.props.bakeAlpha({
-
+                            d: laya.obj.alpha.d,
                             x: laya.obj.alpha.x, // x position
                             y: laya.obj.alpha.y, // y position
                             z: parseInt(e.target.value), // scale
@@ -95,7 +100,7 @@ class Layers extends Component {
                 this.props.layers.map(laya => (
                     laya.key.toString() === e.target.name ?
                         this.props.bakeAlpha({
-
+                            d: laya.obj.alpha.d,
                             x: laya.obj.alpha.x, // opacity
                             y: laya.obj.alpha.y, // yposition
                             z: laya.obj.alpha.z, // scale
@@ -110,7 +115,7 @@ class Layers extends Component {
                 this.props.layers.map(laya => (
                     laya.key.toString() === e.target.name ?
                         this.props.bakeAlpha({
-
+                            d: laya.obj.alpha.d,
                             x: laya.obj.alpha.x,// rotation
                             y: laya.obj.alpha.y, // yposition
                             z: laya.obj.alpha.z, // scale
@@ -122,6 +127,86 @@ class Layers extends Component {
                 )
                 break;
         }
+        /*  }
+          else {
+        switch (e.target.id) {
+            case "x":
+                this.props.layers.map(laya => (
+                    laya.key.toString() === e.target.name ?
+                        this.props.bakeAlpha({
+                            d: laya.obj.start.d,
+                            x: parseInt(e.target.value), // xposition
+                            y: laya.obj.start.y, // yposition
+                            z: laya.obj.start.z, // scale
+                            o: laya.obj.start.o, // opacity
+                            r: laya.obj.start.r,// rotation
+
+                        }, e.target.name, e.target.id, this.props.layers) : null
+                )
+                )
+                break;
+            case "y":
+                this.props.layers.map(laya => (
+                    laya.key.toString() === e.target.name ?
+                        this.props.bakeAlpha({
+                            d: laya.obj.start.d,
+                            x: laya.obj.start.x, // yposition
+                            y: parseInt(e.target.value), // xposition
+                            z: laya.obj.start.z, // scale
+                            o: laya.obj.start.o, // opacity
+                            r: laya.obj.start.r,// rotation
+
+                        }, e.target.name, e.target.id, this.props.layers) : null
+                )
+                )
+                break;
+            case "z":
+                this.props.layers.map(laya => (
+                    laya.key.toString() === e.target.name ?
+                        this.props.bakeAlpha({
+                            d: laya.obj.start.d,
+                            x: laya.obj.start.x, // x position
+                            y: laya.obj.start.y, // y position
+                            z: parseInt(e.target.value), // scale
+                            o: laya.obj.start.o, // opacity
+                            r: laya.obj.start.r,// rotation
+
+                        }, e.target.name, e.target.id, this.props.layers) : null
+                )
+                )
+                break;
+            case "o":
+                this.props.layers.map(laya => (
+                    laya.key.toString() === e.target.name ?
+                        this.props.bakeAlpha({
+                            d: laya.obj.start.d,
+                            x: laya.obj.start.x, // opacity
+                            y: laya.obj.start.y, // yposition
+                            z: laya.obj.start.z, // scale
+                            o: parseInt(e.target.value), // xposition
+                            r: laya.obj.start.r,// rotation
+
+                        }, e.target.name, e.target.id, this.props.layers) : null
+                )
+                )
+                break;
+            case "r":
+                this.props.layers.map(laya => (
+                    laya.key.toString() === e.target.name ?
+                        this.props.bakeAlpha({
+                            d: laya.obj.start.d,
+                            x: laya.obj.start.x,// rotation
+                            y: laya.obj.start.y, // yposition
+                            z: laya.obj.start.z, // scale
+                            o: laya.obj.start.o, // opacity
+                            r: parseInt(e.target.value), // xposition
+
+                        }, e.target.name, e.target.id, this.props.layers) : null
+                )
+                )
+                break;
+        }
+        } */
         console.log(`ruler change alpha.${e.target.id}`);
     }
     onChange = (e) => {
@@ -131,6 +216,38 @@ class Layers extends Component {
                 : e.target.value;
         this.setState({ [e.target.name]: value });
         // console.log(e.target.value);
+    }
+    onSwitch = (e) => {
+        e.preventDefault();
+        const chosenFeed = e.target.value;
+        // this.setState({ [e.target.name]: value });
+        console.log(this.props.layers, e.target.id)
+        const editedLayer = {
+            path: this.props.layers[e.target.id].path,
+            key: this.props.layers[e.target.id].key,
+            name: this.props.layers[e.target.id].name,
+            obj: {
+                alpha: {
+                    d: chosenFeed,
+                    x: this.state.obj.alpha.x,
+                    y: this.state.obj.alpha.y,
+                    z: this.state.obj.alpha.z,
+                    o: this.state.obj.alpha.o,
+                    r: this.state.obj.alpha.r,
+                },
+                start: this.props.layers.start,
+                mid: this.props.layers.mid,
+                top: this.props.layers.top,
+                low: this.props.layers.low,
+                bottom: this.props.layers.bottom,
+                custom: this.props.layers.custom
+            }
+        }
+        let editedLayers = this.props.layers;
+        editedLayers[e.target.id] = editedLayer;
+        this.props.editLayer(editedLayers);
+        document.getElementById('start_form').value = chosenFeed;
+        console.log("select price feed ", editedLayer);
     }
     goAddLayer = (e) => {
         e.preventDefault();
@@ -153,6 +270,87 @@ class Layers extends Component {
         const newLayers = this.props.layers.filter(layer => layer.key.toString() !== dropLayer.toString());
         console.log(newLayers);
         this.props.deleteLayer(newLayers);
+    }
+    goResetLayer = (e) => {
+        e.preventDefault();
+        const layerState = {
+            path: this.props.layers[e.target.id].path,
+            key: this.props.layers[e.target.id].key,
+            name: this.props.layers[e.target.id].name,
+            obj: {
+                alpha: {
+                    d: null,
+                    x: 10, // xposition
+                    y: 10, // yposition
+                    z: 100, // scale
+                    o: 100, // opacity
+                    r: 0 // rotation
+                },
+                top: null,
+                mid: null,
+                start: null,
+                low: null,
+                bottom: null,
+                custom: null
+            }
+        }
+        this.setState(layerState);
+        let editedLayers = this.props.layers;
+        editedLayers[e.target.id] = layerState;
+        this.props.editLayer(editedLayers);
+        console.log("reset layer ", editedLayers);
+    }
+    goSaveLayer = (e) => {
+        e.preventDefault();
+        const layerState = {
+            path: this.props.layers[e.target.id].path,
+            key: this.props.layers[e.target.id].key,
+            name: this.props.layers[e.target.id].name,
+            obj: {
+                start: {
+                    d: this.props.layers[e.target.id].obj.alpha.d,
+                    x: this.props.layers[e.target.id].obj.alpha.x, // xposition
+                    y: this.props.layers[e.target.id].obj.alpha.y, // yposition
+                    z: this.props.layers[e.target.id].obj.alpha.z, // scale
+                    o: this.props.layers[e.target.id].obj.alpha.o, // opacity
+                    r: this.props.layers[e.target.id].obj.alpha.r // rotation
+                },
+                top: null,
+                mid: null,
+                alpha: null,
+                low: null,
+                bottom: null,
+                custom: null
+            }
+        }
+        const initState = {
+            path: this.props.layers[e.target.id].path,
+            key: this.props.layers[e.target.id].key,
+            name: this.props.layers[e.target.id].name,
+            obj: {
+                alpha: {
+                    d: null,
+                    x: 10, // xposition
+                    y: 10, // yposition
+                    z: 100, // scale
+                    o: 100, // opacity
+                    r: 0 // rotation
+                },
+                top: null,
+                mid: null,
+                start: null,
+                low: null,
+                bottom: null,
+                custom: null
+            }
+        }
+        this.setState(initState);
+        let editedLayers = this.props.layers;
+        editedLayers[e.target.id] = layerState;
+        this.props.editLayer(editedLayers);
+        console.log("reset layer ", editedLayers);
+        console.log(this.state.obj);
+        this.toggle(e);
     }
     render() {
         // const [isOpen, setIsOpen] = useState(false);
@@ -197,7 +395,16 @@ class Layers extends Component {
                         ))
 
                     }</div>
-                    <Modal open={this.state.isOpen} onClose={this.toggle} layer={this.state.activeLayer} layers={this.props.layers} rulerChange={this.rulerChange}>
+                    <Modal
+                        open={this.state.isOpen}
+                        priceFeed={this.props.priceFeed}
+                        goResetLayer={this.goResetLayer}
+                        goSaveLayer={this.goSaveLayer}
+                        onSwitch={this.onSwitch}
+                        onClose={this.toggle}
+                        layer={this.state.activeLayer}
+                        layers={this.props.layers}
+                        rulerChange={this.rulerChange}>
                         Dynamic Content Editor&nbsp;
                     </Modal>
                 </div>
@@ -207,5 +414,6 @@ class Layers extends Component {
 }
 const mapStateToProps = state => ({
     layers: state.layerState.layers,
+    priceFeed: state.layerState.priceFeed
 });
-export default connect(mapStateToProps, { addLayer, deleteLayer, moveLayer, layersLoaded, bakeAlpha })(Layers);
+export default connect(mapStateToProps, { addLayer, deleteLayer, moveLayer, layersLoaded, bakeAlpha, editLayer })(Layers);

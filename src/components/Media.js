@@ -15,7 +15,10 @@ class Media extends Component {
                         this.props.layers.map(laya => (
 
                             <div key={laya.key} style={{ width: "750px", height: "430px", position: "absolute", top: "0", left: "0", overflow: "hidden" }}>
-                                <img id="layers[layer].obj.alpha" src={`https://ipfs.io/ipfs/${laya.path}`} style={{ position: "absolute", top: `${laya.obj.alpha.y}px`, left: `${laya.obj.alpha.x}px`, width: `${(laya.obj.alpha.z / 100 * ((750) - 20))}px`, opacity: `${laya.obj.alpha.o / 100}`, transform: `rotate(${laya.obj.alpha.r}deg)` }} />
+                                { laya.obj.alpha !== null ?
+                                    <img id="layers[layer].obj.alpha" src={`https://ipfs.io/ipfs/${laya.path}`} style={{ position: "absolute", top: `${laya.obj.alpha.y}px`, left: `${laya.obj.alpha.x}px`, width: `${(laya.obj.alpha.z / 100 * ((750) - 20))}px`, opacity: `${laya.obj.alpha.o / 100}`, transform: `rotate(${laya.obj.alpha.r}deg)` }} />
+                                    : <img id="layers[layer].obj.alpha" src={`https://ipfs.io/ipfs/${laya.path}`} style={{ position: "absolute", top: `${laya.obj.start.y}px`, left: `${laya.obj.start.x}px`, width: `${(laya.obj.start.z / 100 * ((750) - 20))}px`, opacity: `${laya.obj.start.o / 100}`, transform: `rotate(${laya.obj.start.r}deg)` }} />
+                                }
                             </div>
                         ))}
                 </div>
