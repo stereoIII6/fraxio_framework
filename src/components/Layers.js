@@ -216,16 +216,17 @@ class Layers extends Component {
                     r: this.state.obj.alpha.r,
                     s: this.state.obj.alpha.s,
                 },
-                start: this.props.layers.start,
-                mid: this.props.layers.mid,
-                top: this.props.layers.top,
-                low: this.props.layers.low,
-                bottom: this.props.layers.bottom,
-                custom: this.props.layers.custom
+                start: this.props.layers[e.target.id].start,
+                mid: this.props.layers[e.target.id].mid,
+                top: this.props.layers[e.target.id].top,
+                low: this.props.layers[e.target.id].low,
+                bottom: this.props.layers[e.target.id].bottom,
+                custom: this.props.layers[e.target.id].custom
             }
         }
         let editedLayers = this.props.layers;
         editedLayers[this.props.activeLayer] = editedLayer;
+        console.log("edited layer", editedLayers);
         this.props.editLayer(editedLayers);
         this.setState(editedLayers);
         const factor = [200, 150, 100, 75, 50, 25];
