@@ -53,22 +53,23 @@ export default function Modal({ open, children, onClose, layer, layers, aKey, ru
                         <div className="col-4 pb-2">
 
                             <Input type="select" id={layer} name="select" onChange={onSwitch}>
-                                <option key="DEFAULT" id="default" value={null}>Choose Oracle</option>
-
+                                <option key="DEFAULT" id="default" value={"000"}>Choose Oracle</option>
                                 <option key="ETH" id={layer} value={(window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)}>{`ETH - ${(window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)} $`}</option>
                                 <option key="BTC" id={layer} value={(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)}>{`BTC - ${(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)} $`}</option>
                                 <option key="LINK" id={layer} value={(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)}>{`LINK - ${(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)} $`}</option>
                             </Input>
-                            <Input type="text" id="oracle_path" placeholder="Oracle" />
+                            <h6>Trigger Auto Squeeze //{layers[layer].obj.alpha.s / 100 * 2}</h6>
+                            <div key={layer} name={layer} id={layer}>
+                                <CustomInput type="range" id="s" name={layer} min="0" max="500" value={layers[layer].obj.alpha.s} onChange={rulerChange} /></div>
                             <h6>Triggers </h6>
                             <InputGroup >
                                 {/* console.log(layers[layer].obj, layers[layer].key, "input tween check")*/}
-                                <Input type="text" id="top_form" placeholder="Top" style={{ background: "limegreen" }} />
-                                <Input type="text" id="mid_form" placeholder="Mid" style={{ background: "cornflowerblue" }} />
-                                <Input type="text" id="start_form" placeholder="Start" style={{ background: "lightblue" }} />
-                                <Input type="text" id="low_form" placeholder="Low" style={{ background: "cornflowerblue" }} />
-                                <Input type="text" id="bottom_form" placeholder="Bottom" style={{ background: "tomato" }} />
-                                <Input type="text" id="costom_form" placeholder="Custom" style={{ background: "beige" }} />
+                                <Input type="text" id={`keyView0`} placeholder="Top" style={{ background: "MediumSeaGreen" }} />
+                                <Input type="text" id={`keyView1`} placeholder="Mid" style={{ background: "LimeGreen" }} />
+                                <Input type="text" id={`keyView2`} placeholder="Start" style={{ background: "cornflowerblue" }} />
+                                <Input type="text" id={`keyView3`} placeholder="Low" style={{ background: "violet" }} />
+                                <Input type="text" id={`keyView4`} placeholder="Bottom" style={{ background: "tomato" }} />
+                                <Input type="text" id={`keyView5`} placeholder="Custom" style={{ background: "orange" }} />
                             </InputGroup>
                             <h6>Active</h6>
                             <KeyFrames />

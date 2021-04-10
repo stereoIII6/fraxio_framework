@@ -46,7 +46,7 @@ export default function (state = initState, action) {
             return {
                 ...state,
                 activeKey: action.payload,
-                layers: [...state.layers]
+
             };
         case LOAD_LAYERS:
             return {

@@ -16,7 +16,8 @@ class Layers extends Component {
                 y: 10, // yposition
                 z: 100, // scale
                 o: 100, // opacity
-                r: 0 // rotation
+                r: 0, // rotation
+                s: 500 // squeeze auto set values
             },
             top: null,
             mid: null,
@@ -32,7 +33,8 @@ class Layers extends Component {
                 y: 10, // yposition
                 z: 100, // scale
                 o: 100, // opacity
-                r: 0 // rotation
+                r: 0, // rotation
+                s: 500 // squeeze auto set values
             },
             top: null,
             mid: null,
@@ -93,6 +95,8 @@ class Layers extends Component {
                             z: this.props.layers[e.target.name].obj.alpha.z, // scale
                             o: this.props.layers[e.target.name].obj.alpha.o, // opacity
                             r: this.props.layers[e.target.name].obj.alpha.r,// rotation
+                            s: this.props.layers[e.target.name].obj.alpha.s, // opacity
+
 
                         }, e.target.name, this.state, this.props.layers) : console.log(this.props.activeLayer)
                 ),
@@ -109,6 +113,8 @@ class Layers extends Component {
                             z: this.props.layers[e.target.name].obj.alpha.z, // scale
                             o: this.props.layers[e.target.name].obj.alpha.o, // opacity
                             r: this.props.layers[e.target.name].obj.alpha.r,// rotation
+                            s: this.props.layers[e.target.name].obj.alpha.s, // opacity
+
 
                         }, e.target.name, this.state, this.props.layers) : null
                 ), this.setState(this.props.layers[e.target.name])
@@ -124,6 +130,8 @@ class Layers extends Component {
                             z: parseInt(e.target.value), // scale
                             o: this.props.layers[e.target.name].obj.alpha.o, // opacity
                             r: this.props.layers[e.target.name].obj.alpha.r,// rotation
+                            s: this.props.layers[e.target.name].obj.alpha.s, // opacity
+
 
                         }, e.target.name, this.state, this.props.layers) : null
                 ), this.setState(this.props.layers[e.target.name])
@@ -139,6 +147,8 @@ class Layers extends Component {
                             z: this.props.layers[e.target.name].obj.alpha.z, // scale
                             o: parseInt(e.target.value), // xposition
                             r: this.props.layers[e.target.name].obj.alpha.r,// rotation
+                            s: this.props.layers[e.target.name].obj.alpha.s, // opacity
+
 
                         }, e.target.name, this.state, this.props.layers) : null
                 ), this.setState(this.props.layers[e.target.name])
@@ -154,6 +164,23 @@ class Layers extends Component {
                             z: this.props.layers[e.target.name].obj.alpha.z, // scale
                             o: this.props.layers[e.target.name].obj.alpha.o, // opacity
                             r: parseInt(e.target.value), // xposition
+                            s: this.props.layers[e.target.name].obj.alpha.s, // opacity
+
+                        }, e.target.name, this.state, this.props.layers) : null
+                ), this.setState(this.props.layers[e.target.name])
+                )
+                break;
+            case "s":
+                this.props.layers.map(laya => (
+                    Number(e.target.name) === this.props.activeLayer ?
+                        this.props.bakeAlpha({
+                            d: this.props.layers[e.target.name].obj.alpha.d,
+                            x: this.props.layers[e.target.name].obj.alpha.x,// rotation
+                            y: this.props.layers[e.target.name].obj.alpha.y, // yposition
+                            z: this.props.layers[e.target.name].obj.alpha.z, // scale
+                            o: this.props.layers[e.target.name].obj.alpha.o, // opacity
+                            r: this.props.layers[e.target.name].obj.alpha.r,
+                            s: parseInt(e.target.value), // xposition
 
                         }, e.target.name, this.state, this.props.layers) : null
                 ), this.setState(this.props.layers[e.target.name])
@@ -173,7 +200,7 @@ class Layers extends Component {
     onSwitch = (e) => {
         e.preventDefault();
         const chosenFeed = e.target.value;
-        // this.setState({ [e.target.name]: value });
+        this.setState({ [e.target.name]: chosenFeed });
         // console.log(this.props.layers, this.props.activeLayer)
         const editedLayer = {
             path: this.props.layers[this.props.activeLayer].path,
@@ -181,12 +208,13 @@ class Layers extends Component {
             name: this.props.layers[this.props.activeLayer].name,
             obj: {
                 alpha: {
-                    d: chosenFeed,
+                    d: e.target.value,
                     x: this.state.obj.alpha.x,
                     y: this.state.obj.alpha.y,
                     z: this.state.obj.alpha.z,
                     o: this.state.obj.alpha.o,
                     r: this.state.obj.alpha.r,
+                    s: this.state.obj.alpha.s,
                 },
                 start: this.props.layers.start,
                 mid: this.props.layers.mid,
@@ -199,7 +227,10 @@ class Layers extends Component {
         let editedLayers = this.props.layers;
         editedLayers[this.props.activeLayer] = editedLayer;
         this.props.editLayer(editedLayers);
-        document.getElementById('start_form').value = chosenFeed;
+        const factor = [200, 150, 100, 75, 50, 25];
+        for (let i = 0; i < factor.length; i++) { document.getElementById(`keyView${i}`).value = chosenFeed / 100 * factor[i] * this.state.obj.alpha.s; }
+
+
         console.log("select price feed ", editedLayer);
     }
     goAddLayer = (e) => {
@@ -247,32 +278,41 @@ class Layers extends Component {
     goSaveLayer = (e) => {
         e.preventDefault();
         console.log(this.props.layers[this.props.activeLayer].obj, this.props.activeLayer, "click go save layer");
+        const fillIn = {
+            d: this.state.obj.alpha.d,
+            x: this.state.obj.alpha.x,
+            y: this.state.obj.alpha.y,
+            z: this.state.obj.alpha.z,
+            o: this.state.obj.alpha.o,
+            r: this.state.obj.alpha.r,
+            s: this.state.obj.alpha.s,
+        };
+        const fillTop = this.props.activeKey === 0 ? fillIn : this.state.top;
+        const fillMid = this.props.activeKey === 1 ? fillIn : this.state.mid;
+        const fillStart = this.props.activeKey === 2 ? fillIn : this.state.start;
+        const fillLow = this.props.activeKey === 3 ? fillIn : this.state.low;
+        const fillBottom = this.props.activeKey === 4 ? fillIn : this.state.bottom;
+        const fillCustom = this.props.activeKey === 5 ? fillIn : this.state.custom;
         const layerState = {
             path: this.props.layers[this.props.activeLayer].path,
             key: this.props.layers[this.props.activeLayer].key,
             name: this.props.layers[this.props.activeLayer].name,
             obj: {
-                start: {
-                    d: this.state.obj.alpha.x,
-                    x: this.state.obj.alpha.x,
-                    y: this.state.obj.alpha.y,
-                    z: this.state.obj.alpha.z,
-                    o: this.state.obj.alpha.o,
-                    r: this.state.obj.alpha.r,
-                },
-                top: this.state.obj.top,
-                mid: this.state.obj.mid,
+                start: fillStart,
+                top: fillTop,
+                mid: fillMid,
                 alpha: {
                     d: null,
                     x: 10, // xposition
                     y: 10, // yposition
                     z: 100, // scale
                     o: 100, // opacity
-                    r: 0 // rotation
+                    r: 0, // rotation
+                    s: 500,
                 },
-                low: null,
-                bottom: null,
-                custom: null
+                low: fillLow,
+                bottom: fillBottom,
+                custom: fillCustom
             }
         }
         this.setState({
