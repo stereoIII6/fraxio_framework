@@ -32,10 +32,12 @@ const OVER_STYLES = {
 
 }
 
-export default function Modal({ open, children, onClose, layer, layers, aKey, rulerChange, priceFeed, onSwitch, goResetLayer, goSaveLayer }) {
+export default function Modal({ open, children, onClose, onChange, layer, layers, aKey, rulerChange, priceFeed, onSwitch, goResetLayer, goSaveLayer }) {
     if (!open) return null;
     console.log(layers, priceFeed, "modal start check");
-
+    const color_set = ["MediumSeaGreen", "LimeGreen", "cornflowerblue", "violet", "tomato", "orange"];
+    let colori = "lightgrey";
+    colori = color_set[aKey];
 
 
     return ReactDom.createPortal(<>
@@ -59,22 +61,18 @@ export default function Modal({ open, children, onClose, layer, layers, aKey, ru
                                 <option key="LINK" id={layer} value={(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)}>{`LINK - ${(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)} $`}</option>
                             </Input>
 
-                            <h6>Triggers </h6>
-                            <InputGroup >
-                                {/* console.log(layers[layer].obj, layers[layer].key, "input tween check")*/}
-                                <Input type="text" id={`keyView0`} placeholder="Top" style={{ background: "MediumSeaGreen" }} />
-                                <Input type="text" id={`keyView1`} placeholder="Mid" style={{ background: "LimeGreen" }} />
-                                <Input type="text" id={`keyView2`} placeholder="Start" style={{ background: "cornflowerblue" }} />
-                                <Input type="text" id={`keyView3`} placeholder="Low" style={{ background: "violet" }} />
-                                <Input type="text" id={`keyView4`} placeholder="Bottom" style={{ background: "tomato" }} />
-                                <Input type="text" id={`keyView5`} placeholder="Custom" style={{ background: "orange" }} />
-                            </InputGroup>
+
                             <h6>Active</h6>
                             <KeyFrames />
                             {console.log(layers),
                                 layers.map(lay => (
                                     Number(lay.key) === layer ? (console.log(layer, layers, lay, "module rulers layers"),
                                         <div key={layer} name={layer} id={layer}>
+                                            <h6>Triggers </h6>
+                                            <InputGroup >
+                                                { }
+                                                <Input type="text" id={`keyView`} placeholder="Top" style={{ background: colori }} onChange={onChange} />
+                                            </InputGroup>
                                             <h6>X Position //{layers[layer].obj.alpha.x}</h6>
                                             <CustomInput type="range" id="x" name={layer} min="-750" max="750" value={layers[layer].obj.alpha.x} onChange={rulerChange} />
                                             <h6>Y Position // {layers[layer].obj.alpha.y}</h6>

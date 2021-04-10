@@ -9,6 +9,7 @@ class Layers extends Component {
     state = {
         path: null,
         key: null,
+        oracle: "",
         obj: {
             alpha: {
                 d: null,
@@ -195,7 +196,7 @@ class Layers extends Component {
                 ? e.target.checked
                 : e.target.value;
         this.setState({ [e.target.name]: value });
-        // console.log(e.target.value);
+        console.log("onChange", e.target.name, e.target.value);
     }
     onSwitch = (e) => {
         e.preventDefault();
@@ -204,6 +205,7 @@ class Layers extends Component {
             path: this.props.layers[e.target.id].path,
             key: this.props.layers[e.target.id].key,
             name: this.props.layers[e.target.id].name,
+            oracle: this.state.oracle,
             obj: {
                 alpha: {
                     d: e.target.value,
@@ -228,7 +230,7 @@ class Layers extends Component {
         this.props.editLayer(editedLayers);
         this.setState(editedLayers);
         const factor = [200, 150, 100, 75, 50, 25];
-        document.getElementById(`keyView${this.props.activeKey}`).value = chosenFeed / 100 * factor[2];
+        document.getElementById(`keyView`).value = chosenFeed / 100 * factor[2];
 
         console.log("onSwitch price feed form ", editedLayer);
     }
@@ -238,6 +240,7 @@ class Layers extends Component {
             path: document.getElementById("path").value,
             key: this.props.layers.length,
             name: document.getElementById("name").value !== "" ? document.getElementById("name").value : this.props.layers.length,
+            oracle: "",
             obj: this.state.iObj
         }
 
@@ -298,6 +301,7 @@ class Layers extends Component {
             path: this.props.layers[this.props.activeLayer].path,
             key: this.props.layers[this.props.activeLayer].key,
             name: this.props.layers[this.props.activeLayer].name,
+            oracle: this.state.oracle,
             obj: {
                 start: fillStart,
                 top: fillTop,
@@ -375,6 +379,7 @@ class Layers extends Component {
                         goResetLayer={this.goResetLayer}
                         goSaveLayer={this.goSaveLayer}
                         onSwitch={this.onSwitch}
+                        onChange={this.onChange}
                         onClose={this.closeLayer}
                         layer={this.props.activeLayer}
                         aKey={this.props.activeKey}
