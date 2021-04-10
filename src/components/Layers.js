@@ -200,8 +200,6 @@ class Layers extends Component {
     onSwitch = (e) => {
         e.preventDefault();
         const chosenFeed = e.target.value;
-        // this.setState({ [e.target.name]: chosenFeed });
-        // console.log(this.props.layers, this.props.activeLayer)
         const editedLayer = {
             path: this.props.layers[e.target.id].path,
             key: this.props.layers[e.target.id].key,
@@ -216,16 +214,16 @@ class Layers extends Component {
                     r: this.state.obj.alpha.r,
                     s: this.state.obj.alpha.s,
                 },
-                start: this.props.layers[e.target.id].start,
-                mid: this.props.layers[e.target.id].mid,
-                top: this.props.layers[e.target.id].top,
-                low: this.props.layers[e.target.id].low,
-                bottom: this.props.layers[e.target.id].bottom,
-                custom: this.props.layers[e.target.id].custom
+                start: this.state.obj.start,
+                mid: this.state.obj.mid,
+                top: this.state.obj.top,
+                low: this.state.obj.low,
+                bottom: this.state.obj.bottom,
+                custom: this.state.obj.custom
             }
         }
         let editedLayers = this.props.layers;
-        editedLayers[this.props.activeLayer] = editedLayer;
+        editedLayers[e.target.id] = editedLayer;
         console.log("edited layer", editedLayers);
         this.props.editLayer(editedLayers);
         this.setState(editedLayers);
@@ -237,7 +235,7 @@ class Layers extends Component {
         document.getElementById(`keyView${4}`).value = chosenFeed / 100 * factor[4];
         document.getElementById(`keyView${5}`).value = chosenFeed / 100 * factor[5];
 
-        console.log("select price feed ", editedLayer);
+        console.log("onSwitch price feed form ", editedLayer);
     }
     goAddLayer = (e) => {
         e.preventDefault();
@@ -250,6 +248,7 @@ class Layers extends Component {
 
         console.log("click add layer", newLayer);
         this.props.addLayer(newLayer);
+        this.setState(newLayer);
         document.getElementById("path").value = "";
         document.getElementById("name").value = "";
     }
@@ -283,7 +282,7 @@ class Layers extends Component {
     }
     goSaveLayer = (e) => {
         e.preventDefault();
-        console.log(this.props.layers[this.props.activeLayer].obj, this.props.activeLayer, "click go save layer");
+        console.log(this.props.layers[e.target.id].obj, "click go save layer");
         const fillIn = {
             d: this.state.obj.alpha.d,
             x: this.state.obj.alpha.x,
@@ -294,12 +293,12 @@ class Layers extends Component {
             s: this.state.obj.alpha.s,
         };
         console.log("fillIn", fillIn);
-        const fillTop = this.props.activeKey === 0 ? fillIn : this.state.top;
-        const fillMid = this.props.activeKey === 1 ? fillIn : this.state.mid;
-        const fillStart = this.props.activeKey === 2 ? fillIn : this.state.start;
-        const fillLow = this.props.activeKey === 3 ? fillIn : this.state.low;
-        const fillBottom = this.props.activeKey === 4 ? fillIn : this.state.bottom;
-        const fillCustom = this.props.activeKey === 5 ? fillIn : this.state.custom;
+        const fillTop = this.props.activeKey === 0 ? fillIn : this.props.layers[this.props.activeLayer].obj.top;
+        const fillMid = this.props.activeKey === 1 ? fillIn : this.props.layers[this.props.activeLayer].obj.mid;
+        const fillStart = this.props.activeKey === 2 ? fillIn : this.props.layers[this.props.activeLayer].obj.start;
+        const fillLow = this.props.activeKey === 3 ? fillIn : this.props.layers[this.props.activeLayer].obj.low;
+        const fillBottom = this.props.activeKey === 4 ? fillIn : this.props.layers[this.props.activeLayer].obj.bottom;
+        const fillCustom = this.props.activeKey === 5 ? fillIn : this.props.layers[this.props.activeLayer].obj.custom;
         const layerState = {
             path: this.props.layers[this.props.activeLayer].path,
             key: this.props.layers[this.props.activeLayer].key,
@@ -322,19 +321,12 @@ class Layers extends Component {
                 custom: fillCustom
             }
         }
-        this.setState({
-            path: null,
-            key: null,
-            name: null,
-            obj: this.state.iObj,
-
-        });
         let editedLayers = this.props.layers;
         editedLayers[this.props.activeLayer] = layerState;
         this.props.editLayer(editedLayers);
         console.log("go edit layer ", editedLayers);
         console.log(this.state.obj);
-
+        this.setState(editedLayers);
         this.closeLayer(e);
     }
 

@@ -73,7 +73,7 @@ export default function Modal({ open, children, onClose, layer, layers, aKey, ru
                             <KeyFrames />
                             {console.log(layers),
                                 layers.map(lay => (
-                                    Number(lay.key) === layer ? (console.log(layer, layers, lay, "module rulers"),
+                                    Number(lay.key) === layer ? (console.log(layer, layers, lay, "module rulers layers"),
                                         <div key={layer} name={layer} id={layer}>
                                             <h6>X Position //{layers[layer].obj.alpha.x}</h6>
                                             <CustomInput type="range" id="x" name={layer} min="-750" max="750" value={layers[layer].obj.alpha.x} onChange={rulerChange} />

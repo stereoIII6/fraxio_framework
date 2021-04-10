@@ -34,7 +34,7 @@ export default function (state = initState, action) {
             return {
                 ...state,
                 activeLayer: action.payload,
-                layers: [...state.layers]
+                // layers: [...state.layers]
             };
         case SET_LAYER_INACTIVE:
             return {
