@@ -21,9 +21,9 @@ const AVAXPCAddress = '0x1fcE45060e9476f470e81FB70a097de6dB28cbF3';
 const AVAXPYEAddress = '0xA6345caA694846232AC9D257f1bDd3aA4D3c42e2';
 const AVAXFRXAddress = '';
 
-const PolygonPCAddress = '0xA8A5F4AC446C2a348fC6e7850F6BC4FC0a651920';
-const PolygonPYEAddress = '0x1fcE45060e9476f470e81FB70a097de6dB28cbF3';
-const PolygonFRXAddress = '';
+const POLYPCAddress = '0xA8A5F4AC446C2a348fC6e7850F6BC4FC0a651920';
+const POLYPYEAddress = '0x1fcE45060e9476f470e81FB70a097de6dB28cbF3';
+const POLYFRXAddress = '';
 
 // SMART CONTRACTS MAIN NET
 const xDaiPCAddress = '0xfbcF2A044Ef4483cdC2aE8d2f57e05962eA3C82F';
@@ -62,15 +62,38 @@ class App extends Component {
 
   async loadBlockChainData() {
     const web3 = window.web3;
-    console.log("network",web3.net);
+    
     const accounts = await web3.eth.getAccounts();
-    const RinkOracle = new web3.eth.Contract(PriceConsumerV3.abi, RinkPCAddress);
-    const RinkPYEFreezer = new web3.eth.Contract(OracleNFT.abi, RinkPYEAddress);
-    const RinkFRXionizer = new web3.eth.Contract(PriceConsumerV3.abi, RinkFRXAddress);
-    console.log(web3.eth);
+    const network = await web3.eth.net.getNetworkType();
+    const networkId = await web3.eth.net.getId()
+    console.log("network", network, networkId);
+   
+      if(networkId === 4){
+        const Oracle = new web3.eth.Contract(PriceConsumerV3.abi, RinkPCAddress);
+        const PYEFreezer = new web3.eth.Contract(OracleNFT.abi, RinkPYEAddress);
+        const FRXionizer = new web3.eth.Contract(PriceConsumerV3.abi, RinkFRXAddress);
+      }
+      if (networkId === 80001) {
+      const Oracle = new web3.eth.Contract(PriceConsumerV3.abi, POLYPCAddress);
+      const PYEFreezer = new web3.eth.Contract(OracleNFT.abi, POLYPYEAddress);
+      const FRXionizer = new web3.eth.Contract(PriceConsumerV3.abi, POLYFRXAddress);
+      }
+    if (networkId === 100) {
+      const Oracle = new web3.eth.Contract(PriceConsumerV3.abi, xDaiPCAddress);
+      const PYEFreezer = new web3.eth.Contract(OracleNFT.abi, xDaiPYEAddress);
+      const FRXionizer = new web3.eth.Contract(PriceConsumerV3.abi, xDaiFRXAddress);
+    }
+    if (networkId === 1) {
+      const Oracle = new web3.eth.Contract(PriceConsumerV3.abi, AVAXPCAddress);
+      const PYEFreezer = new web3.eth.Contract(OracleNFT.abi, AVAXPYEAddress);
+      const FRXionizer = new web3.eth.Contract(PriceConsumerV3.abi, AVAXFRXAddress);
+    }
+      
+      
+      console.log(web3.eth);
    
 
-    const result = await RinkOracle.methods.getLatestPrices().call();
+    const result = await Oracle.methods.getLatestPrices().call();
     console.log(result, Date());
     store.dispatch(getPriceFeeds(result));
 
