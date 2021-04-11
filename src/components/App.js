@@ -12,11 +12,23 @@ import './App.css';
 import PriceConsumerV3 from '../abis/PriceConsumerV3.json';
 import OracleNFT from "../abis/OracleNFT.json";
 
-// SMART CONTRACTS
+// SMART CONTRACTS TEST NET
 const RinkPCAddress = '0x8Ba6488144d2430EC82301A42B7Dcf073211aB8b';
 const RinkPYEAddress = '0xAcE3f096A5B7b84939eAc2A26C04C50da531F719';
-const RinkFRXAddress = '0x8Ba6488144d2430EC82301A42B7Dcf073211aB8b';
+const RinkFRXAddress = '';
 
+const AVAXPCAddress = '0x1fcE45060e9476f470e81FB70a097de6dB28cbF3';
+const AVAXPYEAddress = '0xA6345caA694846232AC9D257f1bDd3aA4D3c42e2';
+const AVAXFRXAddress = '';
+
+const PolygonPCAddress = '0xA8A5F4AC446C2a348fC6e7850F6BC4FC0a651920';
+const PolygonPYEAddress = '0x1fcE45060e9476f470e81FB70a097de6dB28cbF3';
+const PolygonFRXAddress = '';
+
+// SMART CONTRACTS MAIN NET
+const xDaiPCAddress = '0xfbcF2A044Ef4483cdC2aE8d2f57e05962eA3C82F';
+const xDaiPYEAddress = '0xA8A5F4AC446C2a348fC6e7850F6BC4FC0a651920';
+const xDaiFRXAddress = '';
 
 const IpfsHttpClient = require("ipfs-http-client");
 
@@ -50,6 +62,7 @@ class App extends Component {
 
   async loadBlockChainData() {
     const web3 = window.web3;
+    console.log("network",web3.net);
     const accounts = await web3.eth.getAccounts();
     const RinkOracle = new web3.eth.Contract(PriceConsumerV3.abi, RinkPCAddress);
     const RinkPYEFreezer = new web3.eth.Contract(OracleNFT.abi, RinkPYEAddress);

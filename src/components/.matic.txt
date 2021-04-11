@@ -1,0 +1,53 @@
+Metadata of "oraclenft" was published successfully.
+
+@openzeppelin/contracts/token/ERC721/ERC721.sol : 
+
+dweb:/ipfs/QmVkFoHVN6XWztbJDHrWfMCRPV4QsbFGj6QPZYeMjQRfhr
+
+@openzeppelin/contracts/token/ERC721/IERC721.sol : 
+
+dweb:/ipfs/QmUGzDmecP936jzgM7SYyGwR1YgBGsveoHHJTbDfB8jbGF
+
+@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol : 
+
+dweb:/ipfs/QmdAPS8uLrzPJEeFZyJVkwTtaL3KB9jo9wJm1UcoJP55wT
+
+@openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol : 
+
+dweb:/ipfs/QmXtKfvWj1v6oha8urbnw4RmjSpmQjZsGGqK5qk5trK4nH
+
+@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol : 
+
+dweb:/ipfs/QmNdzitXaFADaxooWpB4WsckkDyr4j6GQRxBjyKXsvEeXv
+
+@openzeppelin/contracts/utils/Address.sol : 
+
+dweb:/ipfs/QmXmxubE3jnatFgZuN8ay1VV6hZ8WRmhvUjNpeVjki15HX
+
+@openzeppelin/contracts/utils/Context.sol : 
+
+dweb:/ipfs/QmTbFya18786ckJfLYUoWau9jBTKfmWnWm5XSViWvB7PXN
+
+@openzeppelin/contracts/utils/Counters.sol : 
+
+dweb:/ipfs/QmZ92pU9DJ3h1qREMFvDQhArSy6fh6zA983NeLFHRs1qKJ
+
+@openzeppelin/contracts/utils/Strings.sol : 
+
+dweb:/ipfs/QmUpgMg8EFDnv87ePKUjXxXpJT3qwHRj9VDNSnRxu7T9sy
+
+@openzeppelin/contracts/utils/introspection/ERC165.sol : 
+
+dweb:/ipfs/Qmejonoaj5MLekPus229rJQHcC6E9dz2xorjHJR84fMfmn
+
+@openzeppelin/contracts/utils/introspection/IERC165.sol : 
+
+dweb:/ipfs/QmcsVgLgzWdor3UnAztUkXKNGcysm1MPneWksF72AvnwBx
+
+OracleNFT.sol : 
+
+dweb:/ipfs/QmXRZzJEeGFpcW2YKeaaTjrMZ7G8eDbfbskozVx3A6tDVo
+
+metadata.json : 
+
+dweb:/ipfs/QmQZSKyNuK3tYpQSKZdyaYxwUL6x6y5LPSnMqiY7ddqLDc
