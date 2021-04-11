@@ -49,6 +49,16 @@ module.exports = {
           mnemonic,
           process.env.XDAI_URL)
       },
+      network_id: 43113,
+      gas: 500000,
+      gasPrice: 1000000000
+    },
+    avax: {
+      provider: function () {
+        return new HDWalletProvider(
+          mnemonic,
+          process.env.AVAX_URL)
+      },
       network_id: 100,
       gas: 500000,
       gasPrice: 1000000000
