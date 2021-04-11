@@ -10,9 +10,12 @@ import Coming from './Coming';
 import { getLayers, getPriceFeeds } from "./action/layerActions.js";
 import './App.css';
 import PriceConsumerV3 from '../abis/PriceConsumerV3.json';
+import OracleNFT from "../abis/OracleNFT.json";
 
 // SMART CONTRACTS
 const RinkPCAddress = '0x8Ba6488144d2430EC82301A42B7Dcf073211aB8b';
+const RinkPYEAddress = '0xAcE3f096A5B7b84939eAc2A26C04C50da531F719';
+const RinkFRXAddress = '0x8Ba6488144d2430EC82301A42B7Dcf073211aB8b';
 
 
 const IpfsHttpClient = require("ipfs-http-client");
@@ -49,8 +52,10 @@ class App extends Component {
     const web3 = window.web3;
     const accounts = await web3.eth.getAccounts();
     const RinkOracle = new web3.eth.Contract(PriceConsumerV3.abi, RinkPCAddress);
+    const RinkPYEFreezer = new web3.eth.Contract(OracleNFT.abi, RinkPYEAddress);
+    const RinkFRXionizer = new web3.eth.Contract(PriceConsumerV3.abi, RinkFRXAddress);
     console.log(web3.eth);
-    console.log(PriceConsumerV3);
+   
 
     const result = await RinkOracle.methods.getLatestPrices().call();
     console.log(result, Date());

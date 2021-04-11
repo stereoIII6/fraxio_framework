@@ -32,11 +32,12 @@ const OVER_STYLES = {
 
 }
 
-export default function Modal({ open, children, onClose, onChange, layer, layers, aKey, rulerChange, priceFeed, onSwitch, goResetLayer, goSaveLayer }) {
+export default function Modal({ open, children, onClose, onChange, layer, layers, aKey, rulerChange, priceFeed, onSwitch, goResetLayer, goSaveLayer, oracle }) {
     if (!open) return null;
-    console.log(layers, priceFeed, "modal start check");
+    console.log(layers, oracle, "modal start check");
     const color_set = ["MediumSeaGreen", "LimeGreen", "cornflowerblue", "violet", "tomato", "orange"];
     let colori = "lightgrey";
+    let prebake;
     colori = color_set[aKey];
 
 
@@ -54,11 +55,11 @@ export default function Modal({ open, children, onClose, onChange, layer, layers
                     <div className="row">
                         <div className="col-4 pb-2">
 
-                            <Input type="select" id={layer} name="select" onChange={onSwitch}>
-                                <option key="DEFAULT" id={layer} value={"000"}>Choose Oracle</option>
-                                <option key="ETH" id={layer} value={(window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)}>{`ETH - ${(window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)} $`}</option>
-                                <option key="BTC" id={layer} value={(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)}>{`BTC - ${(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)} $`}</option>
-                                <option key="LINK" id={layer} value={(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)}>{`LINK - ${(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)} $`}</option>
+                            <Input type="select" id={"switch" + layer} name={layer} onChange={onSwitch}>
+                                <option key="DEFAULT" id={"DEFAULT"} value={"DEFAULT-0000"}>Choose Oracle</option>
+                                <option key="ETH" id={"ETH"} value={"ETH-" + (window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)}>{`ETH - ${(window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)} $`}</option>
+                                <option key="BTC" id={"BTC"} value={"BTC-" + (window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)}>{`BTC - ${(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)} $`}</option>
+                                <option key="LINK" id={"LINK"} value={"LINK-" + (window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)}>{`LINK - ${(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)} $`}</option>
                             </Input>
 
 
@@ -68,11 +69,14 @@ export default function Modal({ open, children, onClose, onChange, layer, layers
                                 layers.map(lay => (
                                     Number(lay.key) === layer ? (console.log(layer, layers, lay, "module rulers layers"),
                                         <div key={layer} name={layer} id={layer}>
-                                            <h6>Triggers </h6>
-                                            <InputGroup >
-                                                { }
-                                                <Input type="text" id={`keyView`} placeholder="Top" style={{ background: colori }} onChange={onChange} />
-                                            </InputGroup>
+                                            <h6>Key Trigger {layers[layer].obj.alpha.d}</h6>
+
+                                            { }
+                                            <CustomInput type="range" id="d" name={layer} min="1"
+                                                style={{ background: colori }} onChange={rulerChange}
+                                                value={layers[layer].obj.alpha.d}
+                                                max={layers[layer].obj.alpha.d * 1.2} />
+
                                             <h6>X Position //{layers[layer].obj.alpha.x}</h6>
                                             <CustomInput type="range" id="x" name={layer} min="-750" max="750" value={layers[layer].obj.alpha.x} onChange={rulerChange} />
                                             <h6>Y Position // {layers[layer].obj.alpha.y}</h6>

@@ -2,7 +2,15 @@ import React, { Component } from 'react';
 import { Button, InputGroup, Input, Form } from 'reactstrap';
 import PropTypes from "prop-types";
 import { connect, dispatch } from "react-redux";
-import { doToggle, activateLayer, deActivateLayer, changeKey, addLayer, deleteLayer, moveLayer, layersLoaded, bakeAlpha, editLayer } from "./action/layerActions.js";
+import {
+    doToggle,
+    activateLayer,
+    deActivateLayer,
+    changeKey, addLayer,
+    deleteLayer, moveLayer,
+    layersLoaded,
+    bakeAlpha, bakeOracle, editLayer
+} from "./action/layerActions.js";
 import Modal from "./Modal";
 const _ = require('lodash');
 class Layers extends Component {
@@ -12,7 +20,7 @@ class Layers extends Component {
         oracle: "",
         obj: {
             alpha: {
-                d: null,
+                d: 0,
                 x: 10, // xposition
                 y: 10, // yposition
                 z: 100, // scale
@@ -20,16 +28,17 @@ class Layers extends Component {
                 r: 0, // rotation
                 s: 500 // squeeze auto set values
             },
-            top: null,
-            mid: null,
-            start: null,
-            low: null,
-            bottom: null,
-            custom: null
+            top: { s: 500 },
+            mid: { s: 500 },
+            start: { s: 500 },
+            low: { s: 500 },
+            bottom: { s: 500 },
+            custom: { s: 500 }
+        
         },
         iObj: {
             alpha: {
-                d: null,
+                d: 0,
                 x: 10, // xposition
                 y: 10, // yposition
                 z: 100, // scale
@@ -37,12 +46,12 @@ class Layers extends Component {
                 r: 0, // rotation
                 s: 500 // squeeze auto set values
             },
-            top: null,
-            mid: null,
-            start: null,
-            low: null,
-            bottom: null,
-            custom: null
+            top: {s: 500 },
+            mid: {s: 500 },
+            start: {s: 500},
+            low: {s: 500 },
+            bottom: {s: 500},
+            custom: {s: 500 }
         },
 
     }
@@ -54,6 +63,7 @@ class Layers extends Component {
         moveLayer: PropTypes.func,
         layersLoaded: PropTypes.func,
         bakeAlpha: PropTypes.func,
+        bakeOracle: PropTypes.func,
         editLayer: PropTypes.func,
         activeLayer: PropTypes.number,
         activeKey: PropTypes.number,
@@ -187,6 +197,22 @@ class Layers extends Component {
                 ), this.setState(this.props.layers[e.target.name])
                 )
                 break;
+            case "d":
+                this.props.layers.map(laya => (
+                    Number(e.target.name) === this.props.activeLayer ?
+                        this.props.bakeAlpha({
+                            d: parseInt(e.target.value),
+                            x: this.props.layers[e.target.name].obj.alpha.x,// rotation
+                            y: this.props.layers[e.target.name].obj.alpha.y, // yposition
+                            z: this.props.layers[e.target.name].obj.alpha.z, // scale
+                            o: this.props.layers[e.target.name].obj.alpha.o, // opacity
+                            r: this.props.layers[e.target.name].obj.alpha.r,
+                            s: this.props.layers[e.target.name].obj.alpha.s, // xposition
+
+                        }, e.target.name, this.state, this.props.layers) : null
+                ), this.setState(this.props.layers[e.target.name])
+                )
+                break;
         }
         // console.log(`ruler change alpha.${e.target.id, e.target.value}`);
     }
@@ -196,43 +222,36 @@ class Layers extends Component {
                 ? e.target.checked
                 : e.target.value;
         this.setState({ [e.target.name]: value });
-        console.log("onChange", e.target.name, e.target.value);
+        console.log("onChange name", e.target.name, e.target.value);
     }
     onSwitch = (e) => {
         e.preventDefault();
-        const chosenFeed = e.target.value;
-        const editedLayer = {
-            path: this.props.layers[e.target.id].path,
-            key: this.props.layers[e.target.id].key,
-            name: this.props.layers[e.target.id].name,
-            oracle: this.state.oracle,
-            obj: {
-                alpha: {
-                    d: e.target.value,
-                    x: this.state.obj.alpha.x,
-                    y: this.state.obj.alpha.y,
-                    z: this.state.obj.alpha.z,
-                    o: this.state.obj.alpha.o,
-                    r: this.state.obj.alpha.r,
-                    s: this.state.obj.alpha.s,
-                },
-                start: this.state.obj.start,
-                mid: this.state.obj.mid,
-                top: this.state.obj.top,
-                low: this.state.obj.low,
-                bottom: this.state.obj.bottom,
-                custom: this.state.obj.custom
-            }
-        }
-        let editedLayers = this.props.layers;
-        editedLayers[e.target.id] = editedLayer;
-        console.log("edited layer", editedLayers);
-        this.props.editLayer(editedLayers);
-        this.setState(editedLayers);
-        const factor = [200, 150, 100, 75, 50, 25];
-        document.getElementById(`keyView`).value = chosenFeed / 100 * factor[2];
-
-        console.log("onSwitch price feed form ", editedLayer);
+        const chosenFeed = e.target.value.split("-");
+        this.props.layers.map(laya => (
+            Number(e.target.name) === this.props.activeLayer ?
+                this.props.bakeOracle({
+                    obj: {
+                        alpha: {
+                            d: chosenFeed[1],
+                            x: this.props.layers[e.target.name].obj.alpha.y, // xposition
+                            y: this.props.layers[e.target.name].obj.alpha.y, // yposition
+                            z: this.props.layers[e.target.name].obj.alpha.z, // scale
+                            o: this.props.layers[e.target.name].obj.alpha.o, // opacity
+                            r: this.props.layers[e.target.name].obj.alpha.r,// rotation
+                            s: this.props.layers[e.target.name].obj.alpha.s, // opacity
+                        }
+                        , top: this.props.layers[e.target.name].obj.top,
+                        mid: this.props.layers[e.target.name].obj.mid,
+                        start: this.props.layers[e.target.name].obj.start,
+                        low: this.props.layers[e.target.name].obj.low,
+                        bottom: this.props.layers[e.target.name].obj.bottom,
+                        custom: this.props.layers[e.target.name].obj.alpha
+                    }, oracle: e.target.value
+                }, e.target.name, this.state, this.props.layers) : console.log("oracle baked", this.props.activeLayer)
+        ),
+            this.setState(this.props.layers[e.target.name])
+        )
+        console.log("switch state", this.state);
     }
     goAddLayer = (e) => {
         e.preventDefault();
@@ -280,17 +299,11 @@ class Layers extends Component {
     }
     goSaveLayer = (e) => {
         e.preventDefault();
-        console.log(this.props.layers[e.target.id].obj, "click go save layer");
-        const fillIn = {
-            d: this.state.obj.alpha.d,
-            x: this.state.obj.alpha.x,
-            y: this.state.obj.alpha.y,
-            z: this.state.obj.alpha.z,
-            o: this.state.obj.alpha.o,
-            r: this.state.obj.alpha.r,
-            s: this.state.obj.alpha.s,
-        };
+        // console.log(this.props.layers[e.target.id].obj, "click go save layer");
+        const fillIn = this.state.obj.alpha;
         console.log("fillIn", fillIn);
+        console.log( this.props.layers[this.props.activeLayer].obj,"savecheck");
+        // console.log(this.props.layers[this.props.activeLayer], this.props.layers[e.target.id]);
         const fillTop = this.props.activeKey === 0 ? fillIn : this.props.layers[this.props.activeLayer].obj.top;
         const fillMid = this.props.activeKey === 1 ? fillIn : this.props.layers[this.props.activeLayer].obj.mid;
         const fillStart = this.props.activeKey === 2 ? fillIn : this.props.layers[this.props.activeLayer].obj.start;
@@ -298,16 +311,16 @@ class Layers extends Component {
         const fillBottom = this.props.activeKey === 4 ? fillIn : this.props.layers[this.props.activeLayer].obj.bottom;
         const fillCustom = this.props.activeKey === 5 ? fillIn : this.props.layers[this.props.activeLayer].obj.custom;
         const layerState = {
-            path: this.props.layers[this.props.activeLayer].path,
-            key: this.props.layers[this.props.activeLayer].key,
-            name: this.props.layers[this.props.activeLayer].name,
+            path: this.props.layers[e.target.id].path,
+            key: this.props.layers[e.target.id].key,
+            name: this.props.layers[e.target.id].name,
             oracle: this.state.oracle,
             obj: {
                 start: fillStart,
                 top: fillTop,
                 mid: fillMid,
                 alpha: {
-                    d: null,
+                    d: 0,
                     x: 10, // xposition
                     y: 10, // yposition
                     z: 100, // scale
@@ -323,7 +336,7 @@ class Layers extends Component {
         let editedLayers = this.props.layers;
         editedLayers[this.props.activeLayer] = layerState;
         this.props.editLayer(editedLayers);
-        console.log("go edit layer ", editedLayers);
+        console.log("goedit layer ", editedLayers);
         console.log(this.state.obj);
         this.setState(editedLayers);
         this.closeLayer(e);
@@ -383,8 +396,10 @@ class Layers extends Component {
                         onClose={this.closeLayer}
                         layer={this.props.activeLayer}
                         aKey={this.props.activeKey}
+                        oracle={this.state.obj.alpha.d}
                         layers={this.props.layers}
                         rulerChange={this.rulerChange}>
+
                         Dynamic Content Editor&nbsp;
                     </Modal>
                 </div>
@@ -399,4 +414,4 @@ const mapStateToProps = state => ({
     activeLayer: state.layerState.activeLayer,
     activeKey: state.layerState.activeKey
 });
-export default connect(mapStateToProps, { doToggle, changeKey, activateLayer, deActivateLayer, addLayer, deleteLayer, moveLayer, layersLoaded, bakeAlpha, editLayer })(Layers);
+export default connect(mapStateToProps, { doToggle, changeKey, activateLayer, deActivateLayer, addLayer, deleteLayer, moveLayer, layersLoaded, bakeAlpha, bakeOracle, editLayer })(Layers);

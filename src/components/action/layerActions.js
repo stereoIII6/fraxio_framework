@@ -7,6 +7,7 @@ import {
     EDIT_LAYER,
     MOVE_LAYER,
     BAKE_ALPHA,
+    BAKE_ORACLE,
     GET_FEED,
     TOGGLE_MODAL,
     SET_LAYER_ACTIVE,
@@ -49,6 +50,18 @@ export const bakeAlpha = (inputAlpha, layer, layerState, layers) => {
     // console.log("action bake Ruler", bakeLayers)
     return {
         type: BAKE_ALPHA,
+        payload: bakeLayers
+    };
+};
+export const bakeOracle = (inputOracle, layer, layerState, layers) => {
+    // console.log("action bake ruler " + param + "layer" + layer + "to ", inputAlpha);
+    let bakeLayers = layers;
+    bakeLayers[layer].obj = inputOracle.obj;
+    bakeLayers[layer].oracle = inputOracle.oracle;
+
+    // console.log("action bake Ruler", bakeLayers)
+    return {
+        type: BAKE_ORACLE,
         payload: bakeLayers
     };
 };

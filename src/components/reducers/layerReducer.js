@@ -4,6 +4,7 @@ import {
     ADD_LAYER,
     DEL_LAYER,
     BAKE_ALPHA,
+    BAKE_ORACLE,
     MOVE_LAYER,
     GET_FEED,
     EDIT_LAYER,
@@ -78,6 +79,13 @@ export default function (state = initState, action) {
                 layers: action.payload
             };
         case BAKE_ALPHA:
+            console.log("reduced bakeAlpha layer", action.payload);
+            return {
+                ...state,
+                layers: action.payload
+            };
+
+        case BAKE_ORACLE:
             console.log("reduced bakeAlpha layer", action.payload);
             return {
                 ...state,

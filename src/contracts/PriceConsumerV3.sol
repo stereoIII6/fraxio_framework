@@ -38,5 +38,4 @@ contract PriceConsumerV3 {
         return (ethPrice, btcPrice, linkPrice);
     }
 
-    function getPriceHistory() {}
 }
