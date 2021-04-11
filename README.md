@@ -1,8 +1,8 @@
 # PYE EDITOR
 
 
-<p> Fractional Interactive </p>
-<p> NFTs We are creating an NFT Editor that enables you to design multiple layers of Interactive Art. </p>
+<p> Fractional Interactive Non Fungible Tokens </p>
+<p> An NFT Editor that enables you to design multiple layers of Interactive Art. </p>
 
 <br/>
 <p align="center">
