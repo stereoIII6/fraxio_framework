@@ -116,10 +116,11 @@ class App extends Component {
       result[2] = await Oracle.methods.priceFeed().call();
       console.log(result, Date());
       let results = {
-        eth: result[0],
-        btc: result[1],
-        link: result[2]
+        0: result[0].toString(),
+        1: result[1].toString(),
+        2: result[2].toString()
       } 
+      console.log(results,Date());
       store.dispatch(getPriceFeeds(results));
     }
     
