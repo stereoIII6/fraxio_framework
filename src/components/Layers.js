@@ -28,12 +28,12 @@ class Layers extends Component {
                 r: 0, // rotation
                 s: 500 // squeeze auto set values
             },
-            top: { s: 500 },
-            mid: { s: 500 },
-            start: { s: 500 },
-            low: { s: 500 },
-            bottom: { s: 500 },
-            custom: { s: 500 }
+            top: null,
+            mid: null,
+            start: null,
+            low: null,
+            bottom: null,
+            custom: null
         
         },
         iObj: {
@@ -46,12 +46,12 @@ class Layers extends Component {
                 r: 0, // rotation
                 s: 500 // squeeze auto set values
             },
-            top: {s: 500 },
-            mid: {s: 500 },
-            start: {s: 500},
-            low: {s: 500 },
-            bottom: {s: 500},
-            custom: {s: 500 }
+            top: null,
+            mid: null,
+            start: null,
+            low: null,
+            bottom: null,
+            custom: null
         },
 
     }
@@ -233,7 +233,7 @@ class Layers extends Component {
                     obj: {
                         alpha: {
                             d: chosenFeed[1],
-                            x: this.props.layers[e.target.name].obj.alpha.y, // xposition
+                            x: this.props.layers[e.target.name].obj.alpha.x, // xposition
                             y: this.props.layers[e.target.name].obj.alpha.y, // yposition
                             z: this.props.layers[e.target.name].obj.alpha.z, // scale
                             o: this.props.layers[e.target.name].obj.alpha.o, // opacity
@@ -245,7 +245,7 @@ class Layers extends Component {
                         start: this.props.layers[e.target.name].obj.start,
                         low: this.props.layers[e.target.name].obj.low,
                         bottom: this.props.layers[e.target.name].obj.bottom,
-                        custom: this.props.layers[e.target.name].obj.alpha
+                        custom: this.props.layers[e.target.name].obj.custom
                     }, oracle: e.target.value
                 }, e.target.name, this.state, this.props.layers) : console.log("oracle baked", this.props.activeLayer)
         ),

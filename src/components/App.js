@@ -10,14 +10,15 @@ import Coming from './Coming';
 import { getLayers, getPriceFeeds } from "./action/layerActions.js";
 import './App.css';
 import PriceConsumerV3 from '../abis/PriceConsumerV3.json';
+import FujiConsumer from '../abis/FujiConsumer.json';
 import OracleNFT from "../abis/OracleNFT.json";
 
 // SMART CONTRACTS TEST NET
 const RinkPCAddress = '0x8Ba6488144d2430EC82301A42B7Dcf073211aB8b';
-const RinkPYEAddress = '0xAcE3f096A5B7b84939eAc2A26C04C50da531F719';
+const RinkPYEAddress = '0x99c6Cc73E23AFE69E3304A7715330047935776eB'; // UPDATED BUT KILL is Buggy
 const RinkFRXAddress = '';
 
-const AVAXPCAddress = '0xfbcF2A044Ef4483cdC2aE8d2f57e05962eA3C82F';
+const AVAXPCAddress = '0x0fc02Fd016c4EA6EDCA7b6a3f06B8819DaF0a5E8';
 const AVAXPYEAddress = '0xA6345caA694846232AC9D257f1bDd3aA4D3c42e2';
 const AVAXFRXAddress = '';
 
@@ -88,14 +89,41 @@ class App extends Component {
       PYEFreezer = new web3.eth.Contract(OracleNFT.abi, xDaiPYEAddress);
       FRXionizer = new web3.eth.Contract(PriceConsumerV3.abi, xDaiFRXAddress);
     }
-      
+   
+    if (networkId === 1) {
+      console.log(network);
+      Oracle = new web3.eth.Contract(FujiConsumer.abi, AVAXPCAddress);
+      PYEFreezer = new web3.eth.Contract(OracleNFT.abi, AVAXPYEAddress);
+      FRXionizer = new web3.eth.Contract(FujiConsumer.abi, AVAXFRXAddress);
+    }
+    
       
       console.log(web3.eth);
    
 
-    const result = await Oracle.methods.getLatestPrices().call();
-    console.log(result, Date());
-    store.dispatch(getPriceFeeds(result));
+    if(networkId !== 1) {
+      const result = await Oracle.methods.getLatestPrices().call();
+      console.log(result, Date());
+      store.dispatch(getPriceFeeds(result));
+    }
+    else {
+      const result = [];
+      const ethCall = await Oracle.methods.requestpriceFeed("0x34195E3eD889BBe21a532A48Ec90A845f65b9dFA", "b5070ea61b2f4405a833c25ac5b4812e").send({ from: accounts[0] });
+      result[0] = await Oracle.methods.priceFeed().call();
+      const btcCall = await Oracle.methods.requestpriceFeed("0x34195E3eD889BBe21a532A48Ec90A845f65b9dFA", "9f571dd18edb4caa943a153d2608cae6").send({ from: accounts[0] });
+      result[1] = await Oracle.methods.priceFeed().call();
+      const linkCall = await Oracle.methods.requestpriceFeed("0x34195E3eD889BBe21a532A48Ec90A845f65b9dFA", "f09c5c8766c3445394d22fa16cdaaa8f").send({ from: accounts[0] });
+      result[2] = await Oracle.methods.priceFeed().call();
+      console.log(result, Date());
+      let results = {
+        eth: result[0],
+        btc: result[1],
+        link: result[2]
+      } 
+      store.dispatch(getPriceFeeds(results));
+    }
+    
+    
 
   }
   componentDidMount() {
