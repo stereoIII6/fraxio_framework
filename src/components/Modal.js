@@ -57,9 +57,9 @@ export default function Modal({ open, children, onClose, onChange, layer, layers
 
                             <Input type="select" id={"switch" + layer} name={layer} onChange={onSwitch}>
                                 <option key="DEFAULT" id={"DEFAULT"} value={"DEFAULT-0000"}>Choose Oracle</option>
-                                <option key="ETH" id={"ETH"} value={"ETH-" + (window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)}>{`ETH - ${(window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2)} $`}</option>
-                                <option key="BTC" id={"BTC"} value={"BTC-" + (window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)}>{`BTC - ${(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)} $`}</option>
-                                <option key="LINK" id={"LINK"} value={"LINK-" + (window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)}>{`LINK - ${(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)} $`}</option>
+                                <option key="ETH" id={"ETH"} value={"ETH-" + (window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2).toString()}>{`ETH - ${(window.web3.utils.fromWei(priceFeed["0"], "Mwei") / 100).toFixed(2).toString()} `}</option>
+                                <option key="BTC" id={"BTC"} value={"BTC-" + (window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2).toString()}>{`BTC - ${(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2).toString()} `}</option>
+                                <option key="LINK" id={"LINK"} value={"LINK-" + (window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2).toString()}>{`LINK - ${(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2).toString()} `}</option>
                             </Input>
 
 

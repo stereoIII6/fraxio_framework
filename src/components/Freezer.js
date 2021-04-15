@@ -84,7 +84,7 @@ class Freezer extends Component {
             const accounts = await web3.eth.getAccounts();
             const RinkPYEFreezer = new web3.eth.Contract(OracleNFT.abi, RinkPYEAddress);
             console.log(accounts[0], state);        
-        const result = await RinkPYEFreezer.methods.bakePYE(accounts[0], state).send({ from: accounts[0] });
+        const result = await RinkPYEFreezer.methods.bakePYE(accounts[0], state,).send({ from: accounts[0] });
             console.log(result);
             this.state.send = false;
                
