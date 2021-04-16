@@ -34,10 +34,13 @@ const OVER_STYLES = {
 
 export default function Modal({ open, children, onClose, onChange, layer, layers, aKey, rulerChange, priceFeed, onSwitch, goResetLayer, goSaveLayer, oracle }) {
     if (!open) return null;
-    console.log(layers, oracle, "modal start check");
+    console.log(layers, priceFeed, "modal start check");
     const color_set = ["MediumSeaGreen", "LimeGreen", "cornflowerblue", "violet", "tomato", "orange"];
     let colori = "lightgrey";
     let prebake;
+    let priceETH = (priceFeed[0]/10 ** 8);
+    let priceBTC = (priceFeed[1] / 10 ** 8);
+    let priceLINK = (priceFeed[2] / 10 ** 8);
     colori = color_set[aKey];
 
 
@@ -54,14 +57,22 @@ export default function Modal({ open, children, onClose, onChange, layer, layers
                 <Form>
                     <div className="row">
                         <div className="col-4 pb-2">
-
+                        {/*
                             <Input type="select" id={"switch" + layer} name={layer} onChange={onSwitch}>
+                                { console.log("select modal",priceETH)}
                                 <option key="DEFAULT" id={"DEFAULT"} value={"DEFAULT-0000"}>Choose Oracle</option>
-                                <option key="ETH" id={"ETH"} value={"ETH-" + (window.web3.utils.fromWei(priceFeed["0"].toString(), "Mwei") / 100).toFixed(2)}>{`ETH - ${(window.web3.utils.fromWei(priceFeed["0"].toString(), "Mwei") / 100).toFixed(2)}`}</option>
-                                <option key="BTC" id={"BTC"} value={"BTC-" + (window.web3.utils.fromWei(priceFeed["1"].toString(), "Mwei") / 100).toFixed(2)}>{`BTC - ${(window.web3.utils.fromWei(priceFeed["1"].toString(), "Mwei") / 100).toFixed(2)} `}</option>
-                                <option key="LINK" id={"LINK"} value={"LINK-" + (window.web3.utils.fromWei(priceFeed["2"].toString(), "Mwei") / 100).toFixed(2)}>{`LINK - ${(window.web3.utils.fromWei(priceFeed["2"].toString(), "Mwei") / 100).toFixed(2)} `}</option>
+                                <option key="ETH" id={"ETH"} value={"ETH-" + (window.web3.utils.fromWei(priceETH, "Mwei") / 100).toFixed(2)}>{`ETH - ${(window.web3.utils.fromWei(priceETH, "Mwei") / 100).toFixed(2)}`}</option>
+                                <option key="BTC" id={"BTC"} value={"BTC-" + (window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)}>{`BTC - ${(window.web3.utils.fromWei(priceFeed["1"], "Mwei") / 100).toFixed(2)} `}</option>
+                                <option key="LINK" id={"LINK"} value={"LINK-" + (window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)}>{`LINK - ${(window.web3.utils.fromWei(priceFeed["2"], "Mwei") / 100).toFixed(2)} `}</option>
+                        </Input>
+                        */}
+                            <Input type="select" id={"switch" + layer} name={layer} onChange={onSwitch}>
+                                {console.log("select modal", priceETH)}
+                                <option key="DEFAULT" id={"DEFAULT"} value={"DEFAULT-0000"}>Choose Oracle</option>
+                                <option key="ETH" id={"ETH"} value={(priceETH)}>{`ETH - ${priceETH.toFixed(2)}`}</option>
+                                <option key="BTC" id={"BTC"} value={(priceBTC)}>{`BTC - ${priceBTC.toFixed(2)} `}</option>
+                                <option key="LINK" id={"LINK"} value={(priceLINK)}>{`LINK - ${priceLINK.toFixed(2)} `}</option>
                             </Input>
-
 
                             <h6>Active</h6>
                             <KeyFrames />

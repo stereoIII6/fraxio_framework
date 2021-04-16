@@ -21,7 +21,7 @@ export const getLayers = () => (dispatch) => {
 };
 
 export const getPriceFeeds = (feed) => {
-    console.log("action get prices ", feed);
+    console.log("action get prices // ", feed);
     return {
         type: GET_FEED,
         payload: feed

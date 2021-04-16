@@ -92,7 +92,7 @@ export default function (state = initState, action) {
                 layers: action.payload
             };
         case GET_FEED:
-            console.log("reduced price feed", action.payload);
+            console.log("reduced price feed // ", action.payload);
             return {
                 ...state,
                 priceFeed: action.payload

@@ -116,9 +116,9 @@ class App extends Component {
       result[2] = await Oracle.methods.priceFeed().call();
       console.log(result, Date());
       let results = {
-        0: result[0].toString(),
-        1: result[1].toString(),
-        2: result[2].toString()
+        0: (result[0] * 10 ** 6).toString() ,
+        1: (result[1] * 10 ** 6).toString(),
+        2: (result[2] * 10 ** 6).toString()
       } 
       console.log(results,Date());
       store.dispatch(getPriceFeeds(results));
