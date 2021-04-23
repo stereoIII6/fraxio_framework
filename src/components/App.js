@@ -6,12 +6,16 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Provider } from "react-redux";
 import store from "./store";
 import Screen from './Screen';
+import Editor from './subs/Editor/Editor';
+import MaskTwo from './subs/Editor/MaskTwo';
+import MaskThree from './subs/Editor/MaskThree';
 import Coming from './Coming';
 import { getLayers, getPriceFeeds } from "./action/layerActions.js";
 import './App.css';
 import PriceConsumerV3 from '../abis/PriceConsumerV3.json';
 import FujiConsumer from '../abis/FujiConsumer.json';
 import OracleNFT from "../abis/OracleNFT.json";
+import TopMenu from './subs/Navigation/TopMaenu';
 
 // SMART CONTRACTS TEST NET
 const RinkPCAddress = '0x8Ba6488144d2430EC82301A42B7Dcf073211aB8b';
@@ -63,45 +67,45 @@ class App extends Component {
 
   async loadBlockChainData() {
     const web3 = window.web3;
-    
+
     const accounts = await web3.eth.getAccounts();
     const network = await web3.eth.net.getNetworkType();
     const networkId = await web3.eth.net.getId()
     console.log("network", network, networkId);
-   let Oracle;
-   let PYEFreezer;
-   let FRXionizer;
-      if(networkId === 4){
-        console.log(network);
-        Oracle = new web3.eth.Contract(PriceConsumerV3.abi, RinkPCAddress);
-        PYEFreezer = new web3.eth.Contract(OracleNFT.abi, RinkPYEAddress);
-        FRXionizer = new web3.eth.Contract(PriceConsumerV3.abi, RinkFRXAddress);
-      }
-      if (networkId === 80001) {
-        console.log(network);
+    let Oracle;
+    let PYEFreezer;
+    let FRXionizer;
+    if (networkId === 4) {
+      console.log(network);
+      Oracle = new web3.eth.Contract(PriceConsumerV3.abi, RinkPCAddress);
+      PYEFreezer = new web3.eth.Contract(OracleNFT.abi, RinkPYEAddress);
+      FRXionizer = new web3.eth.Contract(PriceConsumerV3.abi, RinkFRXAddress);
+    }
+    if (networkId === 80001) {
+      console.log(network);
       Oracle = new web3.eth.Contract(PriceConsumerV3.abi, POLYPCAddress);
       PYEFreezer = new web3.eth.Contract(OracleNFT.abi, POLYPYEAddress);
       FRXionizer = new web3.eth.Contract(PriceConsumerV3.abi, POLYFRXAddress);
-      }
+    }
     if (networkId === 100) {
       console.log(network);
       Oracle = new web3.eth.Contract(PriceConsumerV3.abi, xDaiPCAddress);
       PYEFreezer = new web3.eth.Contract(OracleNFT.abi, xDaiPYEAddress);
       FRXionizer = new web3.eth.Contract(PriceConsumerV3.abi, xDaiFRXAddress);
     }
-   
+
     if (networkId === 1) {
       console.log(network);
       Oracle = new web3.eth.Contract(FujiConsumer.abi, AVAXPCAddress);
       PYEFreezer = new web3.eth.Contract(OracleNFT.abi, AVAXPYEAddress);
       FRXionizer = new web3.eth.Contract(FujiConsumer.abi, AVAXFRXAddress);
     }
-    
-      
-      console.log(web3.eth);
-   
 
-    if(networkId !== 1) {
+
+    console.log(web3.eth);
+
+
+    if (networkId !== 1) {
       const result = await Oracle.methods.getLatestPrices().call();
       console.log(result, Date());
       store.dispatch(getPriceFeeds(result));
@@ -116,15 +120,15 @@ class App extends Component {
       result[2] = await Oracle.methods.priceFeed().call();
       console.log(result, Date());
       let results = {
-        0: (result[0] * 10 ** 6).toString() ,
+        0: (result[0] * 10 ** 6).toString(),
         1: (result[1] * 10 ** 6).toString(),
         2: (result[2] * 10 ** 6).toString()
-      } 
-      console.log(results,Date());
+      }
+      console.log(results, Date());
       store.dispatch(getPriceFeeds(results));
     }
-    
-    
+
+
 
   }
   componentDidMount() {
@@ -230,10 +234,50 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
+          <main>
+            <div className="container py-4">
+              <TopMenu />
 
-          <div>
-            <div className="container-fluid mt-5">
-              <div className="row">
+              <div className="mb-4 p-5" id="blue">
+
+                <Editor />
+
+              </div>
+              <div className="mb-4 p-5" id="blue">
+
+                <MaskTwo />
+
+              </div>
+              <div className="mb-4 p-5" id="blue">
+
+                <MaskThree />
+
+              </div>
+
+              <div className="row ">
+                <div className="col-md-5" id="violet">
+                  <div className="h-100 text-white rounded-3">
+                    &nbsp;
+                  </div>
+                </div>
+                <div className="col-md-5" id="green">
+                  <div className="h-100 border rounded-3">
+                    &nbsp;
+                  </div>
+                </div>
+              </div>
+
+              <footer className="pt-3 mt-4 text-muted border-top">
+                <div className="row">
+                  <div className="col"></div><div className="col"></div><div className="col"></div>
+                </div>
+                &copy; Fractio 2021
+            </footer>
+            </div>
+          </main>
+
+          <div className="row">
+            { /*
                 <main role="main" className="col-lg-12 d-flex text-center">
                   <div className="col-4" >
 
@@ -269,11 +313,11 @@ class App extends Component {
                     : null}
 
 
-                </main>
-              </div>
-            </div>
-            <Screen />
+                </main> */ }
           </div>
+
+
+
         </div>
       </Provider>
     );

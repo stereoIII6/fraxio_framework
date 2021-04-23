@@ -5,3 +5,8 @@ svg, path, img {
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;
 }
+body {font-family: "Comfortaa";}
+#input_mask { border-radius:9px; margin-top: 18px;height:48px; }
+#blue {background: rgba(73,165,163,0.32); border-radius: 9px;}
+#green {background: rgba(73,165,263,0.32); border-radius: 9px;}
+#violet {background: rgba(73,54,163,0.32); border-radius: 9px;}
