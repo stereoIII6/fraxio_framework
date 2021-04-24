@@ -6,7 +6,35 @@ svg, path, img {
   user-select: none;
 }
 body {font-family: "Comfortaa";}
-#input_mask { border-radius:9px; margin-top: 18px;height:48px; }
+#input_mask { border-radius:9px; margin-top: 0px;height:60px; }
+#input_btn { border-radius:9px; margin-top: 0px;height:60px; background:rgba(73,165,263,0.32); }
 #blue {background: rgba(73,165,163,0.32); border-radius: 9px;}
 #green {background: rgba(73,165,263,0.32); border-radius: 9px;}
 #violet {background: rgba(73,54,163,0.32); border-radius: 9px;}
+#file {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+#file + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: mediumseagreen;
+    display: inline-block;
+}
+
+#file:focus + label,
+#file + label:hover {
+    background-color: red;
+}
+#file + label {
+	cursor: pointer; /* "hand" cursor */
+}
+#file:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}

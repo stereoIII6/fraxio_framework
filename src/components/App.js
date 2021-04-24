@@ -243,28 +243,19 @@ class App extends Component {
                 <Editor />
 
               </div>
-              <div className="mb-4 p-5" id="blue">
+              <div className="mb-4 p-5" id="green">
 
                 <MaskTwo />
 
               </div>
-              <div className="mb-4 p-5" id="blue">
+              <div className="mb-4 p-5" id="violet">
 
                 <MaskThree />
 
               </div>
 
-              <div className="row ">
-                <div className="col-md-5" id="violet">
-                  <div className="h-100 text-white rounded-3">
-                    &nbsp;
-                  </div>
-                </div>
-                <div className="col-md-5" id="green">
-                  <div className="h-100 border rounded-3">
-                    &nbsp;
-                  </div>
-                </div>
+              <div className="container py-4" id="green">
+                
               </div>
 
               <footer className="pt-3 mt-4 text-muted border-top">

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Blockie, EthAddress } from "rimble-ui";
+import PropTypes from "prop-types";
+import { connect, dispatch } from "react-redux";
 class TopMenu extends Component {
     state = {  }
     render() { 
