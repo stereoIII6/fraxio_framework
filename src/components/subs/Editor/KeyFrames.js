@@ -5,9 +5,9 @@ class KeyFrames extends Component {
     render() { 
         return ( 
             <div style={{textAlign: "center", marginBottom: "2em"}}>
-                <Button className="btn btn-info">+</Button>
-                <Button className="btn btn-success">Key 0</Button>
-                <Button className="btn btn-info">+</Button>
+                <Button className="btn btn-info m-2">+</Button>
+                <Button className="btn btn-success m-2">Key 0</Button>
+                <Button className="btn btn-info m-2">+</Button>
             </div>
          );
     }
