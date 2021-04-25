@@ -1,7 +1,5 @@
 import {
-    GET_FRAMES,
-    GET_FRAME,
-    LOAD_FRAMES
+    GET_FRAMES
 } from "../action/types";
 const initState = {
     frames: [],
