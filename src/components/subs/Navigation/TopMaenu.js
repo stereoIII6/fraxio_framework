@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Blockie, EthAddress } from "rimble-ui";
-// import PropTypes from "prop-types";
+// import { Blockie, EthAddress } from "rimble-ui";
+import PropTypes from "prop-types";
 import { connect, dispatch } from "react-redux";
 class TopMenu extends Component {
     state = {  }
@@ -23,6 +23,11 @@ class TopMenu extends Component {
                         spotcolor: "#000"
                     }} />*/}
                     </div></div>
+                    <div className="row">
+                        <div className="col"></div>
+                        <div className="col"></div>
+                        <div className="col"></div>
+                    </div>
             </header>
          );
     }
