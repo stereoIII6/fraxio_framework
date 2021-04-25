@@ -8,7 +8,6 @@ import store from "./store";
 import Editor from './subs/Editor/Editor';
 import MaskTwo from './subs/Editor/MaskTwo';
 import MaskThree from './subs/Editor/MaskThree';
-import Coming from './Coming';
 import { getLayers, getPriceFeeds } from "./action/layerActions.js";
 import './App.css';
 import PriceConsumerV3 from '../abis/PriceConsumerV3.json';
