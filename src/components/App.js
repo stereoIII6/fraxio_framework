@@ -5,7 +5,6 @@ import { Button, Input, InputGroup, Form } from 'reactstrap';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Provider } from "react-redux";
 import store from "./store";
-import Screen from './Screen';
 import Editor from './subs/Editor/Editor';
 import MaskTwo from './subs/Editor/MaskTwo';
 import MaskThree from './subs/Editor/MaskThree';
