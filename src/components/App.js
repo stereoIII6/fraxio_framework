@@ -8,7 +8,7 @@ import store from "./store";
 import Editor from './subs/Editor/Editor';
 import MaskTwo from './subs/Editor/MaskTwo';
 import MaskThree from './subs/Editor/MaskThree';
-// import TopMenu from './subs/Navigation/TopMaenu';
+import TopMenu from './subs/Navigation/TopMaenu';
 import { getLayers, getPriceFeeds } from "./action/layerActions.js";
 import './App.css';
 import PriceConsumerV3 from '../abis/PriceConsumerV3.json';
@@ -235,8 +235,7 @@ class App extends Component {
         <div className="App">
           <main>
             <div className="container py-4">
-             {/* <TopMenu />*/}
-
+             <TopMenu />
               <div className="mb-4 p-5" id="blue">
 
                 <Editor />

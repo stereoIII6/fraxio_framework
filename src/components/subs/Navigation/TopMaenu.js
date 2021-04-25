@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Blockie, EthAddress } from "rimble-ui";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { connect, dispatch } from "react-redux";
 class TopMenu extends Component {
     state = {  }
@@ -12,14 +12,16 @@ class TopMenu extends Component {
                         <img src="./logo.png" alt="" style={{ width: "46px" }} /> <h1 style={{ margin: "8px 0em 3px 20px" }}>Fractio.xyz</h1>
                     </a>
                     </div>
-                    <div className="col" style={{ textAlign: "right" }}><Blockie opts={{
+                    <div className="col" style={{ textAlign: "right" }}>
+                        
+                        {/*<Blockie opts={{
                         seed: "accounts[0]",
                         color: "#dfe",
                         bgcolor: "#a71",
                         size: 6,
                         scale: 6,
                         spotcolor: "#000"
-                    }} />
+                    }} />*/}
                     </div></div>
             </header>
          );
