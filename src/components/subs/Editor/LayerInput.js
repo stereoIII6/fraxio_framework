@@ -9,6 +9,7 @@ class LayerInput extends Component {
                 </hr> <Form>
                     <InputGroup bssize="normal">
                         <Input type="select" bssize="normal">
+                            <option name="hidden" value="hidden" bssize="normal">Hidden</option>
                             <option name="form" value="form" bssize="normal">SVG Form</option>
                             <option name="typo" value="typo" bssize="normal">Typography</option>
                             <option name="img" value="img" bssize="normal">Images</option>
@@ -16,6 +17,7 @@ class LayerInput extends Component {
                             <option name="video" value="video" bssize="normal">Video</option>
                         </Input>
                         <Input type="select" bssize="normal" style={{width:"90px"}}>
+                            <option name="static" value="static">Static</option>
                             <option name="time" value="time">Timeline</option>
                             <option name="pfeed" value="pfeed">PriceFeed</option>
                             <option name="sports" value="sports">Sport Results</option>
