@@ -6,9 +6,8 @@
   "private": true,
   "main": "truffle-config.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-
+    "start": "node --max-old-space-size=4096 node_modules/.bin/react-scripts start",
+    "build": "node --max-old-space-size=4096 node_modules/.bin/react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "compile": "npx truffle compile",
