@@ -1,4 +1,3 @@
-import { Input } from "reactstrap";
 import {
     LOAD_LAYERS,
     LAYERS_LOADED,
