@@ -20,8 +20,8 @@ class TopMenu extends Component {
                         seed="accounts[0]"
                         color="#dfe"
                         bgcolor="#a71"
-                        size="6"
-                        scale="3"
+                        size={6}
+                        scale={3}
                         spotcolor="#000"
                             />{" account[0] "}
                             </Button>
