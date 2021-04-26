@@ -14,6 +14,7 @@ import './App.css';
 import PriceConsumerV3 from '../abis/PriceConsumerV3.json';
 import FujiConsumer from '../abis/FujiConsumer.json';
 import OracleNFT from "../abis/OracleNFT.json";
+import Team from './subs/Team/Team';
 
 
 // SMART CONTRACTS TEST NET
@@ -253,12 +254,15 @@ class App extends Component {
               </div>
 
               <div className="container py-4" id="green">
-                
+                <Team />
+                <hr></hr>
               </div>
 
               <footer className="pt-3 mt-4 text-muted border-top">
                 <div className="row">
-                  <div className="col"></div><div className="col"></div><div className="col"></div>
+                  <div className="col">
+                   
+                    </div><div className="col"></div><div className="col"></div>
                 </div>
                 &copy; Fractio 2021
             </footer>

@@ -25,6 +25,7 @@ class LayerInput extends Component {
                 </hr> <Form>
                     <InputGroup bssize="normal" onSubmit={this.onSubmit}>
                         <Input type="select" bssize="normal" name="LayerData" id="LayerData" onChange={this.onChange}>
+                            <option name="default" value="default" bssize="normal">Choose Layer Type</option>
                             <option name="empty" value="empty" bssize="normal">Empty</option>
                             <option name="form" value="form" bssize="normal">SVG Form</option>
                             <option name="typo" value="typo" bssize="normal">Typography</option>
@@ -33,6 +34,7 @@ class LayerInput extends Component {
                             <option name="video" value="video" bssize="normal">Video</option>
                         </Input>
                         <Input type="select" bssize="normal" style={{ width: "90px" }} name="LayerFeed" id="LayerFeed" onChange={this.onChange}>
+                            <option name="default" value="default" >Choose Oracle Feed</option>
                             <option name="static" value="static">Static</option>
                             <option name="time" value="time">Timeline</option>
                             <option name="pfeed" value="pfeed">PriceFeed</option>
