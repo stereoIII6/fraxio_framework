@@ -5,7 +5,7 @@ import { Button, Input, InputGroup, Form } from 'reactstrap';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Provider } from "react-redux";
 import store from "./store";
-import Editor from './subs/Editor/Editor';
+import Screen from './Screen';
 import MaskTwo from './subs/Editor/MaskTwo';
 import MaskThree from './subs/Editor/MaskThree';
 import TopMenu from './subs/Navigation/TopMenu';
@@ -14,7 +14,7 @@ import './App.css';
 import PriceConsumerV3 from '../abis/PriceConsumerV3.json';
 import FujiConsumer from '../abis/FujiConsumer.json';
 import OracleNFT from "../abis/OracleNFT.json";
-import Team from './subs/Team/Team';
+
 
 
 // SMART CONTRACTS TEST NET
@@ -239,24 +239,10 @@ class App extends Component {
              <TopMenu />
               <div className="mb-4 p-5" id="blue">
 
-                <Editor />
+                <Screen />
 
               </div>
-              <div className="mb-4 p-5" id="green">
-
-                <MaskTwo />
-
-              </div>
-              <div className="mb-4 p-5" id="violet">
-
-                <MaskThree />
-
-              </div>
-
-              <div className="container py-4" id="green">
-                <Team />
-                <hr></hr>
-              </div>
+              
 
               <footer className="pt-3 mt-4 text-muted border-top">
                 <div className="row">

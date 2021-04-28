@@ -35,10 +35,10 @@ class LayerInput extends Component {
                         </Input>
                         <Input type="select" bssize="normal" style={{ width: "90px" }} name="LayerFeed" id="LayerFeed" onChange={this.onChange}>
                             <option name="default" value="default" >Choose Oracle Feed</option>
-                            <option name="static" value="static">Static</option>
-                            <option name="time" value="time">Timeline</option>
-                            <option name="pfeed" value="pfeed">PriceFeed</option>
-                            <option name="sports" value="sports">Sport Results</option>
+                            <option name="static" value="static">No Feed</option>
+                            <option name="time" value="time">Timeline Feed</option>
+                            <option name="pfeed" value="pfeed">Price Feed</option>
+                            <option name="sports" value="sports">Sport Results Feed</option>
                         </Input>
                         <>
                             <Button onClick={this.handleClick} id="upbtn" className="btn btn-info" >

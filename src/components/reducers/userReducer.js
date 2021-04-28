@@ -1,12 +1,14 @@
 import {
     LOAD_USERS,
-    USERS_LOADED
+    USERS_LOADED,
+    SET_SCREEN_MODE
 
 } from "../action/types";
 
 const initState = {
     users: [],
-    loadingUsers: false
+    loadingUsers: false,
+    screenMode: "about"
 };
 
 export default function (state = initState, action) {
@@ -17,6 +19,11 @@ export default function (state = initState, action) {
                 users: action.payload,
                 loadingUsers: false
             };
+        case SET_SCREEN_MODE:
+            return {
+                ...state,
+                screenMode: action.payload
+            }
         default:
             return state;
     }

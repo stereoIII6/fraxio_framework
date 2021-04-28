@@ -26,6 +26,7 @@ export const LOAD_USERS = "LOAD_USERS";
 export const USERS_LOADED = "USERS_LOADED";
 export const READ_LOGS = "READ_LOGS";
 export const WRITE_LOG = "WRITE_LOG";
+export const SET_SCREEN_MODE = "SET_SCREEN_MODE";
 
 export const LOAD_PYES = "LOAD_PYES";
 export const PYES_LOADED = "PYES_LOADED";

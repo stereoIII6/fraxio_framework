@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { connect, dispatch } from "react-redux";
+import { getUsers, setScreenMode } from "../../action/userActions";
 import Blockies from 'react-blockies';
 import { Button } from 'reactstrap';
 
 class TopMenu extends Component {
-    state = {  }
+    static propTypes = {
+        getUsers: PropTypes.func,
+        setScreenMode: PropTypes.func,
+        screenMode: PropTypes.string
+    };
+    state = {
+        screenMode: "about"
+    };
+    onClick = (e) => {
+        e.preventDefault();
+        console.log(e.target.id);
+        this.setState({screenMode: e.target.id});
+        this.props.setScreenMode(e.target.id);
+    }
     render() { 
         return ( 
             <header className="pb-3 mb-4 border-bottom">
@@ -28,13 +42,13 @@ class TopMenu extends Component {
                     </div></div>
                     <div className="row">
                         <div className="col-7 pb-0 mb-0">
-                            <Button className="btn btn-light" >About</Button>
-                            <Button className="btn btn-light" >Team</Button>
-                            <Button className="btn btn-light" >RoadMap</Button>
-                            <Button className="btn btn-light" >PYEditor</Button>
-                            <Button className="btn btn-light" >Freezers</Button>
-                            <Button className="btn btn-light" >Swap</Button>
-                            <Button className="btn btn-light" >Contact</Button>
+                            <Button className="btn btn-light" onClick={this.onClick} id="about_lnk" >About</Button>
+                            <Button className="btn btn-light" onClick={this.onClick} id="team_lnk" >Team</Button>
+                            <Button className="btn btn-light" onClick={this.onClick} id="roadmap_lnk" >RoadMap</Button>
+                            <Button className="btn btn-light" onClick={this.onClick} id="pyeditor_lnk" >PYEditor</Button>
+                            <Button className="btn btn-light" onClick={this.onClick} id="freezer_lnk" >Freezers</Button>
+                            <Button className="btn btn-light" onClick={this.onClick} id="swap_lnk" >Swap</Button>
+                            <Button className="btn btn-light" onClick={this.onClick} id="contact_lnk" >Contact</Button>
                         </div>
                         <div className="col pb-0 mb-0"></div>
                         <div className="col-4 pb-0 mb-0">
@@ -47,5 +61,7 @@ class TopMenu extends Component {
          );
     }
 }
- 
-export default TopMenu;
+const mapStateToProps = state => ({
+    screenMode: state.userState.screenMode
+});
+export default connect(mapStateToProps, { getUsers, setScreenMode })(TopMenu);
