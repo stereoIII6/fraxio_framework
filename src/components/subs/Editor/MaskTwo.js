@@ -6,6 +6,9 @@ class MaskTwo extends Component {
     render() {
         return (
             <div>
+                <h1 className="m-0 p-0">PYE Layer Editor</h1>
+                <hr>
+                </hr>
                 <Layers />                
             </div>
         );

@@ -5,7 +5,7 @@ class MaskOne extends Component {
     render() { 
         return ( 
             <div>
-                <h2 className="m-0 p-0">Create a PYE Token !</h2>
+                <h1 className="m-0 p-0">Create a PYE Token !</h1>
                 <Form>
                     <hr></hr>
                    

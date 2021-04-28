@@ -8,7 +8,7 @@ class MaskThree extends Component {
     render() {
         return (
             <div>
-                <h2 className="m-0 p-0">PYE Keyframe Editor</h2>
+                <h1 className="m-0 p-0">PYE Keyframe Editor</h1>
                 <hr></hr>
                 <MediaPreview />
                 <KeyFrames />

@@ -8,7 +8,7 @@ import {
 const initState = {
     users: [],
     loadingUsers: false,
-    screenMode: "about"
+    screenMode: "landing_lnk"
 };
 
 export default function (state = initState, action) {
