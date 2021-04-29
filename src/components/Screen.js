@@ -21,7 +21,7 @@ class Screen extends Component {
      };
     render() { 
         return ( 
-            <div>{
+            <div id="screen">{
                 this.props.screenMode === "landing_lnk" ? <Landing /> :
                 this.props.screenMode === "pyeditor_lnk" ? <Editor /> :
                 this.props.screenMode === "about_lnk" ? <About /> :

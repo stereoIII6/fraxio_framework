@@ -35,6 +35,12 @@ const xDaiPCAddress = '0x7503508AC329901F9f99390BAc069BC78Df81A66';
 const xDaiPYEAddress = '0xA8A5F4AC446C2a348fC6e7850F6BC4FC0a651920';
 const xDaiFRXAddress = '';
 
+const fresh = "#9fe6c3ff";
+const sky =  "#aad9d8ff";
+const purple = "#d1cfd5ff";
+const grey ="#e2e3dbbf";
+const blue = "#7c9cb6ff";
+
 const IpfsHttpClient = require("ipfs-http-client");
 
 const ipfs = IpfsHttpClient({
@@ -233,7 +239,7 @@ class App extends Component {
 
     return (
       <Provider store={store}>
-        <div className="App">
+        <div className="App" style={{background:grey,height:"100%"}}>
           <main>
             <div className="container py-4">
              <TopMenu />
