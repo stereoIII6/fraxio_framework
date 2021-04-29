@@ -16,7 +16,8 @@ class Team extends Component {
                 <p>Chief Digital Architect<br />
                 aron@fractio.xyz<br />
                 Germany, Berlin<br />
-                <a href="https://github.com/theD1617">theD1617@github</a></p></div>
+                <a href="https://github.com/theD1617">theD1617@github</a>
+                <i>Always </i></p></div>
             </div>
             <div className="row mb-5">
                 <div className="col-8 pt-2" style={{background: purple, color: grey }}><b style={{fontSize: "2em"}}>Daniel 'codeK1LL3R' P.</b><p>Social Media Engineer<br />daniel@fractio.xyz<br /><a href="https://github.com/RIPMyLife">RIPMyLife@github</a></p></div>
@@ -27,7 +28,7 @@ class Team extends Component {
                 <div className="col-8 pt-2" style={{background: fresh, color: purple }}><b style={{fontSize: "2em"}}>Irvin '1rvin' C.</b><p>Business &amp; Marketing Strategist<br />irvin@fractio.xyz<br /><a href="https://github.com/1rvinC">1rvinC@github</a></p></div>
             </div>
             <div className="row mb-5">
-                <div className="col-8 pt-2" style={{background: blue, color: sky }}><b style={{fontSize: "2em"}}>Louell 'Alchemist21' S.</b><p>Technical &amp; Community Manager<br />louell@fractio.xyz<br /><a href="https://github.com/Alchemist21">Alchemist21@github</a></p></div>
+                <div className="col-8 pt-2" style={{background: blue, color: fresh }}><b style={{fontSize: "2em"}}>Louell 'Alchemist21' S.</b><p>Technical &amp; Community Manager<br />louell@fractio.xyz<br /><a href="https://github.com/Alchemist21">Alchemist21@github</a></p></div>
                 <div className="col-4" style={{background: sky}}><img src="" alt="" /></div>
             </div>
             <div className="row mb-5">
