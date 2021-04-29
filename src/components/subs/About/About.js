@@ -5,7 +5,7 @@ class About extends Component {
         return ( <div>
             <h1>About</h1><hr></hr>
             
-            <p>Fractio is a platform that allows you to easily make dynamic digital art that evolves and reacts to the real world.<br/><br/>
+            <p style={{fontSize: "1.5em"}}>Fractio is a platform that allows you to easily make dynamic digital art that evolves and reacts to the real world.<br/><br/>
             <br/><br/>
             Our goal is to remove the boundaries that limit what you can work with. When art and information integrate, the limits become only your imagination.<br /><br />
             A painting of a tropical seascape that displays the sunrise and sunset in Maui in real time; A rocketship that blasts off to the moon when a crypto 
