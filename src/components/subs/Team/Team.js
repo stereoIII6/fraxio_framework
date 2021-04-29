@@ -16,7 +16,7 @@ class Team extends Component {
                 <p>Chief Digital Architect<br />
                 aron@fractio.xyz<br />
                 Germany, Berlin<br />
-                <a href="https://github.com/theD1617">theD1617@github</a>
+                <a href="https://github.com/theD1617">theD1617@github</a><br/heroku >
                 <i>Always </i></p></div>
             </div>
             <div className="row mb-5">

@@ -39,7 +39,7 @@ class TopMenu extends Component {
                         <div className="btn p-2 mr-1" onClick={this.onClick} style={{ background: sky, color: blue, borderRadius: "9px" }} id="mlk_lnk">
                             0 MLK
                         </div>
-                        <div className="btn p-2 mr-1" onClick={this.onClick} style={{ background: grey, color: purple, borderRadius: "9px" }} id="mlk_lnk">
+                        <div className="btn p-2 mr-1" style={{ background: grey, color: purple, borderRadius: "9px" }} id="net">
                             network
                         </div>
                         <div className="btn p-2 mr-1" onClick={this.onClick}
