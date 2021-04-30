@@ -30,28 +30,30 @@ class RoadMap extends Component {
         this.setState({ op421: 0 });
     }
     render() {
-        return (<div style={{ position: "relative", top: 0, left: 0 }} ><h1>Road Map</h1><hr></hr>
-            <div style={{ position: "relative", top: 0, left: 0 }}>
-                <div style={{ position: "absolute", top: 10, left: 0 }} > <img src="../../../bg.png" style={{ width: "100%" }} /></div>
+        return (<div style={{ position: "relative", top: 0, left: 0, width: "100%" }} ><h1>Road Map</h1><hr></hr>
+            <div style={{ position: "relative", top: 0, left: 0, width: "100%" }}>
+                <div style={{ position: "absolute", top: 10, left: 0, width: "100%" }} > <img src="../../../Roadmap.png" style={{ width: "100%" }} /></div>
+               {/*
+               <div style={{ position: "absolute", top: 10, left: 0, width: "100%" }} > <img src="../../../bg.png" style={{ width: "100%" }} /></div>
                 
-                <div style={{ position: "absolute", top: 10, left: 0 }} > <img src="../../../Road.png" style={{ width: "100%" }} /></div>
+                <div style={{ position: "absolute", top: 10, left: 0, width: "100%" }} > <img src="../../../Road.png" style={{ width: "100%" }} /></div>
                 
-                <div style={{ position: "absolute", top: 10, left: 0, opacity: this.state.op221 }} id="221_up" ><img src="../../../2q21_up.png" style={{width: "100%"}} /></div>
-                <div style={{ position: "absolute", top: 10, left: 0 }} id="221_down" ><img src="../../../2q21_down.png" style={{ width: "100%" }} /></div>
-                
-
-                <div style={{ position: "absolute", top: 10, left: 0, opacity: this.state.op321 }} id="321_up" ><img src="../../../3q21_up.png" style={{ width: "100%" }} /></div>
-                <div style={{ position: "absolute", top: 10, left: 0 }} id="321_down" ><img src="../../../3q21_down.png" style={{ width: "100%" }} /></div>
+                <div style={{ position: "absolute", top: 10, left: 0, width: "100%", opacity: this.state.op221 }} id="221_up" ><img src="../../../2q21_up.png" style={{width: "100%"}} /></div>
+                <div style={{ position: "absolute", top: 10, left: 0, width: "100%" }} id="221_down" ><img src="../../../2q21_down.png" style={{ width: "100%" }} /></div>
                 
 
-                <div style={{ position: "absolute", top: 10, left: 0, opacity: this.state.op421 }} id="421_up" ><img src="../../../4q21_up.png" style={{ width: "100%" }} /></div>
-                <div style={{ position: "absolute", top: 10, left: 0 }} id="421_down" ><img src="../../../4q21_down.png" style={{ width: "100%" }} /></div>
-                <div style={{ position: "absolute", top: "230px", left: "240px", background: "tomato", height: "100px", width: "100px", opacity: 0 }}
+                <div style={{ position: "absolute", top: 10, left: 0, width: "100%", opacity: this.state.op321 }} id="321_up" ><img src="../../../3q21_up.png" style={{ width: "100%" }} /></div>
+                <div style={{ position: "absolute", top: 10, left: 0, width: "100%" }} id="321_down" ><img src="../../../3q21_down.png" style={{ width: "100%" }} /></div>
+                
+
+                <div style={{ position: "absolute", top: 10, left: 0, width: "100%", opacity: this.state.op421 }} id="421_up" ><img src="../../../4q21_up.png" style={{ width: "100%" }} /></div>
+                <div style={{ position: "absolute", top: 10, left: 0, width: "100%" }} id="421_down" ><img src="../../../4q21_down.png" style={{ width: "100%" }} /></div>
+                <div style={{ position: "absolute", top: "300px", left: "320px", background: "tomato", height: "100px", width: "100px", opacity: 0.5 }}
                     onMouseOver={this.onHover321} onMouseLeave={this.onLeave321}>&nbsp;</div>
-                <div style={{ position: "absolute", top: "140px", left: "230px", background: "tomato", height: "100px", width: "100px", opacity: 0 }}
+                <div style={{ position: "absolute", top: "190px", left: "310px", background: "tomato", height: "100px", width: "100px", opacity: 0.5 }}
                     onMouseOver={this.onHover221} onMouseLeave={this.onLeave221}>&nbsp;</div>
-                <div style={{ position: "absolute", top: "300px", left: "290px", background: "tomato", height: "100px", width: "100px", opacity: 0 }}
-                    onMouseOver={this.onHover421} onMouseLeave={this.onLeave421}>&nbsp;</div>
+                <div style={{ position: "absolute", top: "380px", left: "380px", background: "tomato", height: "100px", width: "100px", opacity: 0.5 }}
+               onMouseOver={this.onHover421} onMouseLeave={this.onLeave421}>&nbsp;</div> */}
             </div>
         </div>);
     }
