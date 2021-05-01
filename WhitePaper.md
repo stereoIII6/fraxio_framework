@@ -8,8 +8,37 @@
 + Fractio Token [???]
 + Milk Pools [???/MLK] 
 
-2] 
+2] Technologies
++ Ethereum Blockchain
++ IPFS
++ Filecoin
++ The Graph
++ Chainlink
 
+3] Use Cases 
++ Advertisement
++ Sport Bets
++ Trading Signals
++ Dynamic Art
++ NFT Games
++ Collectibles
++ Music Albums
++ Weather Maps
++ Activity Maps
++ Event Tokens
++ Geo Based Tokens
+...
+
+5] Strategy
++ Tech First
++ Explore Conquer
++ Double Up Security
+
+6] Phylosophy
++ Onboard the Public
++ Use Case Launchpad
++ The tool to create custom Digital Media on the Blockchain
++ The Future was Yesterday
 
 # Tokenomics
 
@@ -148,5 +177,62 @@ Costs:
 In order to swap FRX tokens in a decentral Fashion 
 Fractio Framework offers its users to provide Milquidity
 by supplying MLK Tokens and FRX Tokens to a MLK Pool.
+
+# Technologies 
+
+## Ethereum Blockchain
+
+## IPFS
+
+## Filecoin
+
+## The Graph
+
+## Chainlink
+
+# Use Cases 
+
+## Advertisement
+
+## Sport Bets
+
+## Trading Signals
+
+## Dynamic Art
+
+## NFT Games
+
+## Collectibles
+
+## Music Albums
+
+## Weather Maps
+
+## Activity Maps
+
+## Event Tokens
+
+## Geo Based Tokens
+
+## ...
+
+# Strategy
+
+## Tech First
+
+## Explore Conquer
+
+## Double Up Security
+
+# Phylosophy
+
+## Onboard the Public
+
+## Use Case Launchpad
+
+## The tool to create custom Digital Media on the Blockchain
+
+## The Future was Yesterday
+
 
 
