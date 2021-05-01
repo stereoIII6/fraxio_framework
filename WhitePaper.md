@@ -57,7 +57,7 @@ Fractio Framework - Digital Asset Factory
 
 # Tokenomics
 
-## MILK Token [MLK] ERC20
+## MILK Token [MLK] ERC20 / ERC677
 
 The Milk Token is Fractio's Governance and Cash Token 
 for the entire Fractio Framework. The Plan is to peg it 
@@ -111,7 +111,7 @@ The Distribution Scheme of the MLK Tokens:
 5 Billion final Mint Event
 ```
 
-## PYE Token [PYE] ERC721
+## PYE Token [PYE] ERC721 / ERC1155
 
 The PYE token is a multilayer interactive token
 it utilizes layer technology, verifiable andomness,
@@ -149,7 +149,7 @@ A PYE Token with 1 Layer costs 80 MLK + network fees
 if once draft saved.
 ```
 
-## Fractio Token [FRX] ERC20
+## Fractio Token [FRX] ERC20 / ERC677
 
 Fractio Tokens [FRX] are fractionized PYE Tokens.
 The PYE Token ERC721 Standard is unique and has to be 
@@ -192,7 +192,7 @@ and Fractionizing
 + Network Fees
 ```
 
-## Milquidity MLK Pools
+## Milquidity Pools [MLQP] ERC20 / ERC721 / ERC677 / ERC1155
 
 In order to swap FRX tokens in a decentral Fashion 
 Fractio Framework offers its users to provide Milquidity
@@ -320,9 +320,19 @@ PYE token completly unique.
 
 ## NFT Games
 
-
+The NFT Gaming Space can utilize all types of digital interactive assets.
+Players Rank Health ...,  can all be stored and visualized by a PYE Token
+Levels, Items, Rankings all can be stored as PYE Asset and even display 
+Real Time Game Data or Real Word Oracle Data.
 
 ## Collectibles
+
+Sports Tradingcards are a good example how Real world data can be utilized
+in Collectibles. The Player Image and stats can simply be pegged to 
+Real World Oracle Sports Results Feeds of this very Player. It could 
+as well display his latest post on social media.
+
+## Memes
 
 The Blockchain space has a deeply rooted Meme Culture attached to it. Some 
 Memes are so Spot On that they are simply priceless. Memes are going to 
@@ -365,7 +375,23 @@ Token is pegged to
 
 ## Activity Maps
 
+PYE Activity Maps can visualize any Type of Data Stream for 
+Example Metadata of a Group of Tokenholders and render a map
+of their specified activity.
+
+```
+Example:
+A Hackathon takes place and every user gets a Token this 
+Token reads out the github repo activity data of all users
+and creates a heatmap of wich team was most productive 
+in deployments, codechanges, or lines of code.
+```
+
 ## Event Tokens
+
+PYE Event Tokens can be usd as Proof of Participation, 
+as Proof of uthorization or as Proof of Authentification
+Token...
 
 ## Geo Based Tokens
 
