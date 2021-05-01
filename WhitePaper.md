@@ -240,11 +240,34 @@ PYE token completly unique.
 
 ## Collectibles
 
+The Blockchain space has a deeply rooted Meme Culture attached to it. Some 
+Memes are so Spot On that they are simply priceless. Memes are going to 
+come alive with the PYE token and can be fed with external data feeds 
+to keep the Meme burning hot.
+
+``` 
+Example:
+There is a Meme of a Politician and his last Tweet 
+gets displayed in a Speech Bubble.
+```
+
 ## Music Albums
+
+The Pye Token can be utilized as Music Medium. It secures your Media and only
+makes ist accessible to users of the child FRX Token. It can display Videos
+and store wav. and .aiff quality sound formats. The data you upload is immutable
+and its acces restricted exactly like the token. You can add programmable 
+functionalities to the album that react to real time data.
+
+```
+Example:
+A musician can release his album with an hidden track that only gets released 
+after a certain amount of sales.
+```
 
 ## Weather Maps
 
-Pye weather maps will be able to display weather information for 
+PYE weather maps are able to display weather information for 
 specific locations utilizing realtime weather data. The token could 
 send out warnings in case of approaching dangarous climate changes.
 
