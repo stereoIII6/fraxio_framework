@@ -67,7 +67,7 @@ The Distribution Scheme of the MLK Tokens:
 
 ## PYE Token [PYE] ERC721
 
-The PYE token is a multilayer nteractive token
+The PYE token is a multilayer interactive token
 it utilizes layer technology, verifiable andomness,
 Real Time Oracle Data Feeds and Real Time Data Feeds
 to generate interactive Audio Visual Tokens that can 
