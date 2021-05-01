@@ -98,7 +98,7 @@ The second Mint Event is on the xDai Ethereum Sidechain
 and planned for Q4 2021
 
 The third Mint Event is on AVAX Ethereum Sidechain
-and planned for Q2 2021
+and planned for Q2 2022
 ```
 
 ```
@@ -358,5 +358,14 @@ new standards.
 
 ## The Future was Yesterday
 
+# Organisation Structure
+## Core Team
+## DAO Governance
+## Core Concept
+## Rentability 
+## Liquidity
+## Projects
+
+# Roadmap 2021
 
 
