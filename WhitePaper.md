@@ -1,12 +1,15 @@
 # WhitePaper v.1.0 [04/2021]
 
+Fractio Framework - Digital Asset Factory
+
+
 # INDEX
 
 1] Tokenomics
-+ Milk Token [MLK]
-+ Pye Token [PYE]
-+ Fractio Token [???]
-+ Milk Pools [???/MLK] 
++ Milk Token [MLK] Governance & Currency Token
++ Pye Token [PYE] Interactive Asset Class
++ Fractio Token [FRX] Fractional Asset Class
++ Milk Pools [MLQP] MLQiudity Pool Asset Class
 
 2] Technologies
 + Ethereum Blockchain
@@ -39,10 +42,22 @@
 + Use Case Launchpad
 + The tool to create custom Digital Media on the Blockchain
 + The Future was Yesterday
++ Fractio Ethos
+
+7] Organisation Structure
++ Core Team
++ DAO Governance
++ Core Concept
++ Rentability 
++ Liquidity
++ Projects
+
+8] Roadmap 2021
+
 
 # Tokenomics
 
-## MILK Token [MLK] ERC20
+## MILK Token [MLK] ERC20 / ERC677
 
 The Milk Token is Fractio's Governance and Cash Token 
 for the entire Fractio Framework. The Plan is to peg it 
@@ -84,7 +99,7 @@ The second Mint Event is on the xDai Ethereum Sidechain
 and planned for Q4 2021
 
 The third Mint Event is on AVAX Ethereum Sidechain
-and planned for Q2 2021
+and planned for Q2 2022
 ```
 
 ```
@@ -96,7 +111,7 @@ The Distribution Scheme of the MLK Tokens:
 5 Billion final Mint Event
 ```
 
-## PYE Token [PYE] ERC721
+## PYE Token [PYE] ERC721 / ERC1155
 
 The PYE token is a multilayer interactive token
 it utilizes layer technology, verifiable andomness,
@@ -134,7 +149,7 @@ A PYE Token with 1 Layer costs 80 MLK + network fees
 if once draft saved.
 ```
 
-## Fractio Token [FRX] ERC20
+## Fractio Token [FRX] ERC20 / ERC677
 
 Fractio Tokens [FRX] are fractionized PYE Tokens.
 The PYE Token ERC721 Standard is unique and has to be 
@@ -158,7 +173,9 @@ FRX tokens is fixed.
 ```
 Example:
 
-PYE_alpha gets locked at a ratio 1:1000 and returns 1000 FRX_alpha each worth 1/1000 PYE_alpha
+PYE_alpha gets locked at a ratio 1:1000 
+and returns 1000 FRX_alpha each worth 
+1/1000 PYE_alpha
 ```
 
 When the value of the Parent PYE Token changes the 
@@ -170,27 +187,90 @@ MLK Tokens and Network Fees.
 ```
 Costs:
 
-100 MLK for Locking PYE and Fractionizing
+100 MLK for Locking PYE 
+and Fractionizing
 + Network Fees
 ```
 
-## Milquidity MLK Pools
+## Milquidity Pools [MLQP] ERC20 / ERC721 / ERC677 / ERC1155
 
 In order to swap FRX tokens in a decentral Fashion 
 Fractio Framework offers its users to provide Milquidity
-by supplying MLK Tokens and FRX Tokens to a MLK Pool.
+by supplying MLK Tokens and FRX Tokens to a MLQPool.
+MLQP's can be run as a regular swapping Pool or as an
+bid auction pool. The real time ratio of a specific FRX : MLK in
+the MLQP determines the value of the specific FRX.
+
+MLQP Auctions are entirely customizable you have the
+choice to offer Tokens single by single in custom 
+intervals or all at once in a single interval.
+
+```
+Example:
+10 FRX are Pooled with 10000 MLK Tokens and the 
+tokens get auctioned one after the other at a 
+custom start price of 1000 MLK per FRX with an 
+interval of 1 week. Each user can only Bid once 
+per Interval and the user with the highest MLK 
+bid recieves the FRX token out of the Pool.
+```
+
 
 # Technologies 
 
 ## Ethereum Blockchain
 
+Fractio is Utilizing Ethereum Blockchain Technology 
+and can theoretically be deployed on any Ethereum 
+Sidechain that has a running Chainlink Oracle and 
+VRF Node. The Smart Contract language that Fractio
+uses is Solidity. Since Fractio is a DAO the main 
+focus on the selection of our Chains is actually 
+decentralization. Private Smart Contract Chains 
+like for example BSC are incompatible with our 
+decentral ethos.
+
 ## IPFS
+
+The Interplanetary File System IPFS helps Fractio
+to store PYE Token data in a decentral manner. It
+also provides a faster and more efficient network
+infrastructure for our project. 
+
+Every user will have his own IPFS directory on 
+a Fractio IPFS Node and subdirectories for every 
+PYE Token. 
+
+We are planning to build a entirely new approach
+of a pinning mechanism that lets users pin data 
+by liking buying or commenting on PYE Tokens.
 
 ## Filecoin
 
+Fractio is soon launching a Filecoin Node to 
+support the IPFS Infrastructure we are building
+by storing the Files on our Node and creating
+a DAO Goverened Filestorage Network
+
 ## The Graph
 
+The PYE Token , FRX Token , MLK Token
+MLQ Pool each get an own suGraph hosted
+on the graph. It enables Fractio to utilize 
+the GraphQL database Structure in a decentral 
+manner that saves large amounts of time and 
+energy and enables way faster and more efficient 
+searchquerys.
+
 ## Chainlink
+
+Chainlink provides Fractio with Real World Oracle
+Data and Verifiable Randomness. Chainlink is the
+actual reason Fractio even exists. The team met
+at the Chainlink Spring Hackathon 2021 and came
+up with a pretty sweet Idea that turned out to 
+become a use case Launchpad for the entire Ethereum 
+Space.
 
 # Use Cases 
 
@@ -199,8 +279,9 @@ The PYE Token can be utilized for unique advertisement experiences
 such as dynamic Bonus 
 ```
 Example:
-The first Buyer get a Bonus of 50% the next Buyer gets 49% and they 
-decrement for every following Buyer at a fixed rate per Buyer
+The first Buyer get a Bonus of 50% the next Buyer 
+gets 49% and they decrement for every following 
+Buyer at a fixed rate per Buyer
 ```
 This could incentivise customers to buy products quicker if they are 
 holder of the Dynamic Bonus PYE Token 
@@ -214,9 +295,12 @@ on the Token and Event Scores can be used to trigger animations.
 
 ```
 Example:
-There is a UFC Fight and 2 PYE Tokens (1 for each Fighter) were Fractionized to 
-1 Million Tokens each. The Token Sale can determin the Betting Odds or Oracle Odds
-can be included. The holders of the Winning token share the Prize Pool.
+There is a UFC Fight and 2 PYE Tokens (1 for 
+each Fighter) were Fractionized to 1 Million 
+Tokens each. The Token Sale can determin the 
+Betting Odds or Oracle Odds can be included. 
+The holders of the Winning token share the 
+Prize Pool.
 ```
 
 ## Trading Signals
@@ -236,9 +320,19 @@ PYE token completly unique.
 
 ## NFT Games
 
-
+The NFT Gaming Space can utilize all types of digital interactive assets.
+Players Rank Health ...,  can all be stored and visualized by a PYE Token
+Levels, Items, Rankings all can be stored as PYE Asset and even display 
+Real Time Game Data or Real Word Oracle Data.
 
 ## Collectibles
+
+Sports Tradingcards are a good example how Real world data can be utilized
+in Collectibles. The Player Image and stats can simply be pegged to 
+Real World Oracle Sports Results Feeds of this very Player. It could 
+as well display his latest post on social media.
+
+## Memes
 
 The Blockchain space has a deeply rooted Meme Culture attached to it. Some 
 Memes are so Spot On that they are simply priceless. Memes are going to 
@@ -247,8 +341,8 @@ to keep the Meme burning hot.
 
 ``` 
 Example:
-There is a Meme of a Politician and his last Tweet 
-gets displayed in a Speech Bubble.
+There is a Meme of a Politician and his 
+last Tweet gets displayed in a Speech Bubble.
 ```
 
 ## Music Albums
@@ -261,8 +355,9 @@ functionalities to the album that react to real time data.
 
 ```
 Example:
-A musician can release his album with an hidden track that only gets released 
-after a certain amount of sales.
+A musician can release his album with an hidden 
+track that only gets released after a certain 
+amount of sales.
 ```
 
 ## Weather Maps
@@ -273,13 +368,30 @@ send out warnings in case of approaching dangarous climate changes.
 
 ```
 Example:
-A picture of a Landscape that displays the Actual weather of the
-Location the PYE Token is pegged to
+A picture of a Landscape that displays 
+the Actual weather of theLocation the PYE 
+Token is pegged to
 ```
 
 ## Activity Maps
 
+PYE Activity Maps can visualize any Type of Data Stream for 
+Example Metadata of a Group of Tokenholders and render a map
+of their specified activity.
+
+```
+Example:
+A Hackathon takes place and every user gets a Token this 
+Token reads out the github repo activity data of all users
+and creates a heatmap of wich team was most productive 
+in deployments, codechanges, or lines of code.
+```
+
 ## Event Tokens
+
+PYE Event Tokens can be usd as Proof of Participation, 
+as Proof of uthorization or as Proof of Authentification
+Token...
 
 ## Geo Based Tokens
 
@@ -288,6 +400,18 @@ Location the PYE Token is pegged to
 # Strategy
 
 ## Tech First
+
+Fratio Framework wants to provide leading tech solutions
+to gamify the blockchain space and onboard non crypto 
+users into the world of the web3. Our approach is to 
+create a Framework of Use Case models that clients can
+utilize to create literally any type of digital asset.
+Our tools eliminate the need for coding skills to create
+Interactive Dynamic Assets. Graphic Designers and Digital
+Artists and all types of creatives will be able to adapt 
+a worklow in no time. Fractio's goal is to explore the 
+limits of existing Standards and to create the need for
+new standards.
 
 ## Explore Conquer
 
@@ -303,5 +427,22 @@ Location the PYE Token is pegged to
 
 ## The Future was Yesterday
 
+## Ethos
+
+# Organisation Structure
+
+## Core Team
+
+## DAO Governance
+
+## Core Concept
+
+## Rentability 
+
+## Liquidity
+
+## Projects
+
+# Roadmap 2021
 
 
