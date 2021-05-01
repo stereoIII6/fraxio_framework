@@ -42,6 +42,7 @@ Fractio Framework - Digital Asset Factory
 + Use Case Launchpad
 + The tool to create custom Digital Media on the Blockchain
 + The Future was Yesterday
++ Fractio Ethos
 
 7] Organisation Structure
 + Core Team
@@ -219,13 +220,57 @@ bid recieves the FRX token out of the Pool.
 
 ## Ethereum Blockchain
 
+Fractio is Utilizing Ethereum Blockchain Technology 
+and can theoretically be deployed on any Ethereum 
+Sidechain that has a running Chainlink Oracle and 
+VRF Node. The Smart Contract language that Fractio
+uses is Solidity. Since Fractio is a DAO the main 
+focus on the selection of our Chains is actually 
+decentralization. Private Smart Contract Chains 
+like for example BSC are incompatible with our 
+decentral ethos.
+
 ## IPFS
+
+The Interplanetary File System IPFS helps Fractio
+to store PYE Token data in a decentral manner. It
+also provides a faster and more efficient network
+infrastructure for our project. 
+
+Every user will have his own IPFS directory on 
+a Fractio IPFS Node and subdirectories for every 
+PYE Token. 
+
+We are planning to build a entirely new approach
+of a pinning mechanism that lets users pin data 
+by liking buying or commenting on PYE Tokens.
 
 ## Filecoin
 
+Fractio is soon launching a Filecoin Node to 
+support the IPFS Infrastructure we are building
+by storing the Files on our Node and creating
+a DAO Goverened Filestorage Network
+
 ## The Graph
 
+The PYE Token , FRX Token , MLK Token
+MLQ Pool each get an own suGraph hosted
+on the graph. It enables Fractio to utilize 
+the GraphQL database Structure in a decentral 
+manner that saves large amounts of time and 
+energy and enables way faster and more efficient 
+searchquerys.
+
 ## Chainlink
+
+Chainlink provides Fractio with Real World Oracle
+Data and Verifiable Randomness. Chainlink is the
+actual reason Fractio even exists. The team met
+at the Chainlink Spring Hackathon 2021 and came
+up with a pretty sweet Idea that turned out to 
+become a use case Launchpad for the entire Ethereum 
+Space.
 
 # Use Cases 
 
@@ -344,8 +389,6 @@ new standards.
 
 ## Explore Conquer
 
-
-
 ## Double Up Security
 
 # Phylosophy
@@ -358,12 +401,20 @@ new standards.
 
 ## The Future was Yesterday
 
+## Ethos
+
 # Organisation Structure
+
 ## Core Team
+
 ## DAO Governance
+
 ## Core Concept
+
 ## Rentability 
+
 ## Liquidity
+
 ## Projects
 
 # Roadmap 2021
