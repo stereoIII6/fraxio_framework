@@ -1,12 +1,15 @@
 # WhitePaper v.1.0 [04/2021]
 
+Fractio Framework - Digital Asset Factory
+
+
 # INDEX
 
 1] Tokenomics
-+ Milk Token [MLK]
-+ Pye Token [PYE]
-+ Fractio Token [???]
-+ Milk Pools [???/MLK] 
++ Milk Token [MLK] Governance & Currency Token
++ Pye Token [PYE] Interactive Asset Class
++ Fractio Token [FRX] Fractional Asset Class
++ Milk Pools [MLQP] MLQiudity Pool Asset Class
 
 2] Technologies
 + Ethereum Blockchain
@@ -39,6 +42,17 @@
 + Use Case Launchpad
 + The tool to create custom Digital Media on the Blockchain
 + The Future was Yesterday
+
+7] Organisation Structure
++ Core Team
++ DAO Governance
++ Core Concept
++ Rentability 
++ Liquidity
++ Projects
+
+8] Roadmap 2021
+
 
 # Tokenomics
 
@@ -178,7 +192,24 @@ Costs:
 
 In order to swap FRX tokens in a decentral Fashion 
 Fractio Framework offers its users to provide Milquidity
-by supplying MLK Tokens and FRX Tokens to a MLK Pool.
+by supplying MLK Tokens and FRX Tokens to a MLQPool.
+MLQP's can be run as a regular swapping Pool or as an
+bid auction pool. The real time ratio of a specific FRX : MLK in
+the MLQP determines the value of the specific FRX.
+
+MLQP Auctions are entirely customizable you have the
+choice to offer Tokens single by single in custom 
+intervals or all at once in a single interval.
+
+```
+Example:
+10 FRX are Pooled with 10000 MLK Tokens and the tokens get 
+auctioned one after the other at a custom start price of 
+1000 MLK per FRX with an interval of 1 week. Each user can 
+only Bid once per Interval and the user with the highest MLK 
+bid recieves the FRX token out of the Pool.
+```
+
 
 # Technologies 
 
