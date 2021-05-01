@@ -61,7 +61,9 @@ Polls and Proposals and also for Voting.
 The Token Supply is fixed to a maximum amount of 
 27 Billion MLK Tokens the Tokens are to be spread
 through Multiple Ethereum Sidechains and the Mainnet
-with bridge Contracts. 
+with bridge Contracts. The Initial Price of 1 MLK 
+Token will be 0.0000036 ETH and the minimum Order
+for the Mainnet Mint Event 5000
 
 The Contract Safe will keep 5 Billion MLK Tokens locked 
 until all other Tokens have been minted and distributed.
@@ -193,20 +195,64 @@ by supplying MLK Tokens and FRX Tokens to a MLK Pool.
 # Use Cases 
 
 ## Advertisement
+The PYE Token can be utilized for unique advertisement experiences
+such as dynamic Bonus 
+```
+Example:
+The first Buyer get a Bonus of 50% the next Buyer gets 49% and they 
+decrement for every following Buyer at a fixed rate per Buyer
+```
+This could incentivise customers to buy products quicker if they are 
+holder of the Dynamic Bonus PYE Token 
 
 ## Sport Bets
 
+The PYE Token can be used for Betting by creating 2 PYE Tokens and anchoring 
+them into a PYE Bet Contract. depending on the games outcome the winning pye 
+token holder will then recieve  the price pool. Event Results can be displayed 
+on the Token and Event Scores can be used to trigger animations.
+
+```
+Example:
+There is a UFC Fight and 2 PYE Tokens (1 for each Fighter) were Fractionized to 
+1 Million Tokens each. The Token Sale can determin the Betting Odds or Oracle Odds
+can be included. The holders of the Winning token share the Prize Pool.
+```
+
 ## Trading Signals
+
+The PYE Token can be utilized as trading Signal Token that aqquires Real
+Time Oracle Data and transforms chosen Price Feeds into visual Output of
+buying and selling oppurtunities on a chosen currency pair. It can even
+trigger external functions and perform a transaction if approved.
 
 ## Dynamic Art
 
+The PYE Editor is a way to allow artist, designers and all types of 
+creatives to design new Forms of digital Art that have yet to be discovered.
+The tokens can interact with oracle information reflecting live real world 
+data. Futhermore we can add verifiable random data to each layer making each 
+PYE token completly unique.
+
 ## NFT Games
+
+
 
 ## Collectibles
 
 ## Music Albums
 
 ## Weather Maps
+
+Pye weather maps will be able to display weather information for 
+specific locations utilizing realtime weather data. The token could 
+send out warnings in case of approaching dangarous climate changes.
+
+```
+Example:
+A picture of a Landscape that displays the Actual weather of the
+Location the PYE Token is pegged to
+```
 
 ## Activity Maps
 
