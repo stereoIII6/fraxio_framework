@@ -289,7 +289,21 @@ Location the PYE Token is pegged to
 
 ## Tech First
 
+Fratio Framework wants to provide leading tech solutions
+to gamify the blockchain space and onboard non crypto 
+users into the world of the web3. Our approach is to 
+create a Framework of Use Case models that clients can
+utilize to create literally any type of digital asset.
+Our tools eliminate the need for coding skills to create
+Interactive Dynamic Assets. Graphic Designers and Digital
+Artists and all types of creatives will be able to adapt 
+a worklow in no time. Fractio's goal is to explore the 
+limits of existing Standards and to create the need for
+new standards.
+
 ## Explore Conquer
+
+
 
 ## Double Up Security
 
