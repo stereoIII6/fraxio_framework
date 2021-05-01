@@ -172,7 +172,9 @@ FRX tokens is fixed.
 ```
 Example:
 
-PYE_alpha gets locked at a ratio 1:1000 and returns 1000 FRX_alpha each worth 1/1000 PYE_alpha
+PYE_alpha gets locked at a ratio 1:1000 
+and returns 1000 FRX_alpha each worth 
+1/1000 PYE_alpha
 ```
 
 When the value of the Parent PYE Token changes the 
@@ -184,7 +186,8 @@ MLK Tokens and Network Fees.
 ```
 Costs:
 
-100 MLK for Locking PYE and Fractionizing
+100 MLK for Locking PYE 
+and Fractionizing
 + Network Fees
 ```
 
@@ -203,10 +206,11 @@ intervals or all at once in a single interval.
 
 ```
 Example:
-10 FRX are Pooled with 10000 MLK Tokens and the tokens get 
-auctioned one after the other at a custom start price of 
-1000 MLK per FRX with an interval of 1 week. Each user can 
-only Bid once per Interval and the user with the highest MLK 
+10 FRX are Pooled with 10000 MLK Tokens and the 
+tokens get auctioned one after the other at a 
+custom start price of 1000 MLK per FRX with an 
+interval of 1 week. Each user can only Bid once 
+per Interval and the user with the highest MLK 
 bid recieves the FRX token out of the Pool.
 ```
 
@@ -230,8 +234,9 @@ The PYE Token can be utilized for unique advertisement experiences
 such as dynamic Bonus 
 ```
 Example:
-The first Buyer get a Bonus of 50% the next Buyer gets 49% and they 
-decrement for every following Buyer at a fixed rate per Buyer
+The first Buyer get a Bonus of 50% the next Buyer 
+gets 49% and they decrement for every following 
+Buyer at a fixed rate per Buyer
 ```
 This could incentivise customers to buy products quicker if they are 
 holder of the Dynamic Bonus PYE Token 
@@ -245,9 +250,12 @@ on the Token and Event Scores can be used to trigger animations.
 
 ```
 Example:
-There is a UFC Fight and 2 PYE Tokens (1 for each Fighter) were Fractionized to 
-1 Million Tokens each. The Token Sale can determin the Betting Odds or Oracle Odds
-can be included. The holders of the Winning token share the Prize Pool.
+There is a UFC Fight and 2 PYE Tokens (1 for 
+each Fighter) were Fractionized to 1 Million 
+Tokens each. The Token Sale can determin the 
+Betting Odds or Oracle Odds can be included. 
+The holders of the Winning token share the 
+Prize Pool.
 ```
 
 ## Trading Signals
@@ -278,8 +286,8 @@ to keep the Meme burning hot.
 
 ``` 
 Example:
-There is a Meme of a Politician and his last Tweet 
-gets displayed in a Speech Bubble.
+There is a Meme of a Politician and his 
+last Tweet gets displayed in a Speech Bubble.
 ```
 
 ## Music Albums
@@ -292,8 +300,9 @@ functionalities to the album that react to real time data.
 
 ```
 Example:
-A musician can release his album with an hidden track that only gets released 
-after a certain amount of sales.
+A musician can release his album with an hidden 
+track that only gets released after a certain 
+amount of sales.
 ```
 
 ## Weather Maps
@@ -304,8 +313,9 @@ send out warnings in case of approaching dangarous climate changes.
 
 ```
 Example:
-A picture of a Landscape that displays the Actual weather of the
-Location the PYE Token is pegged to
+A picture of a Landscape that displays 
+the Actual weather of theLocation the PYE 
+Token is pegged to
 ```
 
 ## Activity Maps
