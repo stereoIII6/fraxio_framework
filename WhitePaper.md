@@ -274,6 +274,14 @@ use case launchpad for the entire Ethereum ecosystem.
 
 # Use Cases 
 
+## Dynamic Art
+
+The PYE Editor is a way to allow artists, designers, and all types of 
+creatives to design new forms of digital art that have yet to be discovered.
+The tokens can interact with oracle information reflecting live real world 
+data. Futhermore, we can add verifiable random data to each layer making each 
+PYE token completly unique.
+
 ## Advertisement
 The PYE Token can be utilized for unique advertisement experiences
 such as dynamic bonuses 
@@ -289,67 +297,58 @@ holder of the Dynamic Bonus PYE Token
 ## Sport Bets
 
 The PYE Token can be used for betting by creating 2 PYE tokens and anchoring 
-them into a PYE bet contract. depending on the games outcome the winning pye 
+them into a PYE bet contract. Depending on the game's outcome, the winning PYE 
 token holder will then recieve the prize pool. Event results can be displayed 
-on the token and eEvent scores can be used to trigger animations.
+on the token and event scores can be used to trigger animations.
 
 ```
 Example:
-There is a UFC Fight and 2 PYE Tokens (1 for 
-each Fighter) were Fractionized to 1 Million 
-Tokens each. The token sale can determine the 
-betting odds or oracle odds can be included. 
+There is a UFC Fight and 2 PYE tokens (1 for 
+each fighter) were fractionized to 1 million 
+tokens each. The token sale can determine the 
+betting odds, or oracle odds can be included. 
 The holders of the winning token share the 
 prize pool.
 ```
 
 ## Trading Signals
 
-The PYE Token can be utilized as trading Signal Token that aqquires Real
-Time Oracle Data and transforms chosen Price Feeds into visual Output of
+The PYE token can be utilized as a trading signal token that aquires real-time
+oracle data and transforms chosen price feeds into visual output of
 buying and selling oppurtunities on a chosen currency pair. It can even
 trigger external functions and perform a transaction if approved.
-
-## Dynamic Art
-
-The PYE Editor is a way to allow artist, designers and all types of 
-creatives to design new Forms of digital Art that have yet to be discovered.
-The tokens can interact with oracle information reflecting live real world 
-data. Futhermore we can add verifiable random data to each layer making each 
-PYE token completly unique.
 
 ## NFT Games
 
 The NFT Gaming Space can utilize all types of digital interactive assets.
-Players Rank Health ...,  can all be stored and visualized by a PYE Token
-Levels, Items, Rankings all can be stored as PYE Asset and even display 
-Real Time Game Data or Real Word Oracle Data.
+Players rank, health, levels, items, etc. can all be stored and visualized 
+as a PYE Asset, and even display real-time game data or real-word oracle data.
 
 ## Collectibles
 
-Sports Tradingcards are a good example how Real world data can be utilized
-in Collectibles. The Player Image and stats can simply be pegged to 
-Real World Oracle Sports Results Feeds of this very Player. It could 
-as well display his latest post on social media.
+Sports trading cards are a good example how real-world data can be utilized
+in collectibles. An athlete's image and stats can simply be pegged to 
+real-world sports results feeds. It could also display his/her latest 
+post on social media.
 
 ## Memes
 
-The Blockchain space has a deeply rooted Meme Culture attached to it. Some 
-Memes are so Spot On that they are simply priceless. Memes are going to 
+The Blockchain space has a deeply rooted meme culture attached to it. Some 
+memes are so ubiquitous that they are simply priceless. Memes are going to 
 come alive with the PYE token and can be fed with external data feeds 
-to keep the Meme burning hot.
+to keep the meme burning hot.
 
 ``` 
 Example:
-There is a Meme of a Politician and his 
-last Tweet gets displayed in a Speech Bubble.
+There is a meme of a politician and his 
+last tweet gets displayed in a speech bubble.
 ```
 
 ## Music Albums
 
-The Pye Token can be utilized as Music Medium. It secures your Media and only
-makes ist accessible to users of the child FRX Token. It can display Videos
-and store wav. and .aiff quality sound formats. The data you upload is immutable
+The Pye Token can be utilized as music medium. It secures your media and only
+makes it accessible to owners of the child FRX Token. It can display videos
+and store .wav and .aiff quality sound formats. The data you upload is immutable
 and its acces restricted exactly like the token. You can add programmable 
 functionalities to the album that react to real time data.
 
@@ -364,42 +363,42 @@ amount of sales.
 
 PYE weather maps are able to display weather information for 
 specific locations utilizing realtime weather data. The token could 
-send out warnings in case of approaching dangarous climate changes.
+send out warnings in case of approaching dangerous climate changes.
 
 ```
 Example:
-A picture of a Landscape that displays 
-the Actual weather of theLocation the PYE 
-Token is pegged to
+A picture of a landscape that displays 
+the actual weather of the location the PYE 
+token is pegged to.
 ```
 
 ## Activity Maps
 
-PYE Activity Maps can visualize any Type of Data Stream for 
-Example Metadata of a Group of Tokenholders and render a map
+PYE activity maps can visualize any type of data stream (for 
+example, metadata of a group of tokenholders), and render a map
 of their specified activity.
 
 ```
 Example:
-A Hackathon takes place and every user gets a Token this 
-Token reads out the github repo activity data of all users
+A Hackathon takes place and every user gets a token - this 
+token reads out the github repo activity data of all users
 and creates a heatmap of wich team was most productive 
 in deployments, codechanges, or lines of code.
 ```
 
 ## Event Tokens
 
-PYE Event Tokens can be usd as Proof of Participation, 
+PYE event tokens can be usd as Proof of Participation, 
 as Proof of Authorization or as Proof of Authentification
-Token. Whenever a Real Life Events occur the PYE Event 
-Token can be utilized as Ticket Area Pass and Participation
+Token. Whenever a real-life event occurs, the PYE Event 
+Token can be utilized as ticket area Pass and Participation
 Protocol.
 
 ## Geo Based Tokens
 
-The PYE Framework is able to render Maps of Geopositions if 
-authorized it can render the Geopositions of Tokenholders 
-onto a map or display the users Geodata !
+The PYE framework is able to render maps of geopositions - if 
+authorized, it can render the geopositions of tokenholders 
+onto a map or display the users geodata.
 
 ## ...
 
@@ -407,23 +406,23 @@ onto a map or display the users Geodata !
 
 ## Tech First
 
-Fratio Framework wants to provide leading tech solutions
-to gamify the blockchain space and onboard non crypto 
+Fratio wants to provide leading tech solutions
+to gamify the blockchain space and onboard non-crypto 
 users into the world of the web3. Our approach is to 
-create a Framework of Use Case models that clients can
+create a framework of use case models that clients can
 utilize to create literally any type of digital asset.
 Our tools eliminate the need for coding skills to create
-Interactive Dynamic Assets. Graphic Designers and Digital
-Artists and all types of creatives will be able to adapt 
+Interactive dynamic assets. Graphic designers, digital
+artists, and all types of creatives will be able to adapt 
 a worklow in no time. Fractio's goal is to explore the 
-limits of existing Standards and to create the need for
+limits of existing standards and to create the need for
 new standards.
 
 ## Explore Conquer
 
 ## Double Up Security
 
-# Phylosophy
+# Philosophy
 
 ## Onboard the Public
 
@@ -448,31 +447,30 @@ new standards.
 ## DAO Governance
 
 The Fractio Framework is a Decentral Autonomous
-Organisation. The Organnisation is layered into 
-3 authorization levels.
+Organization. The Organization is layered into 
+3 authorization levels:
 
-The Core Team Level 3
-The Meta Team Level 2
-The Fractio Community Level 1
+The Core Team: Level 3
+The Meta Team: Level 2
+The Fractio Community: Level 1
 
-The Core Auth Team is the Core Team of Project 
-Developers, Marketers and Business Strategists 
-that keep the Project evolving and ake sure it
-operates frictionless. In order to become a 
-Core Team Member you have to be a Meta Team 
-Member, be nominated and voted by at least 10% 
-of Fractio Community Level 3 and at least 20% 
-of Meta Team Level 2 Votes to be eligible to 
-apply for the 
+The Core Auth Team is the core team of project 
+developers, marketers and business strategists 
+that keep the project evolving and make sure it
+operates frictionlessly. In order to become a 
+Core Team Member, you have to be a Meta Team 
+Member, be nominated and voted in by at least 10% 
+of Fractio Community Level 3, and at least 20% 
+of Meta Team Level 2 Votes to be eligible.
 
-The Meta Team is the Team is a Team of 
-Fractio Governance Board members that
-are authorized to create proposals,
-events , polls, and fundraisers
-on the Governance Board, Voting on 
+The Meta Team is a Team of Fractio
+Governance Board members that are
+authorized to create proposals,
+events, polls, and fundraisers
+on the Governance Board, voting on 
 proposals on the Governace Board
-and can be Nominated as Admins, Managers,
-Moderators or Core Team Applicants.
+and can be nominated as admins, managers,
+moderators or Core Team applicants.
 It requires a minimum amount of 
 250000 MLK Tokens to be eligible for 
 the Meta Team it costs 1000 MLK / Month
