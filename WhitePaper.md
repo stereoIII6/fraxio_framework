@@ -390,10 +390,16 @@ in deployments, codechanges, or lines of code.
 ## Event Tokens
 
 PYE Event Tokens can be usd as Proof of Participation, 
-as Proof of uthorization or as Proof of Authentification
-Token...
+as Proof of Authorization or as Proof of Authentification
+Token. Whenever a Real Life Events occur the PYE Event 
+Token can be utilized as Ticket Area Pass and Participation
+Protocol.
 
 ## Geo Based Tokens
+
+The PYE Framework is able to render Maps of Geopositions if 
+authorized it can render the Geopositions of Tokenholders 
+onto a map or display the users Geodata !
 
 ## ...
 
@@ -433,7 +439,7 @@ new standards.
 
 ## Core Team
 
-+ Chief Digital Architect - Aron Ayuk
++ Chief Digital Architect - Aron Ayuk  
 + Social Media Engineer - Daniel Poblano
 + Business & Marketing Strategist - Irvin Chen
 + Technical Community Manager - Louell Sala
@@ -442,11 +448,79 @@ new standards.
 ## DAO Governance
 
 The Fractio Framework is a Decentral Autonomous
-Organisation 
+Organisation. The Organnisation is layered into 
+3 authorization levels.
+
+The Core Team Level 3
+The Meta Team Level 2
+The Fractio Community Level 1
+
+The Core Auth Team is the Core Team of Project 
+Developers, Marketers and Business Strategists 
+that keep the Project evolving and ake sure it
+operates frictionless. In order to become a 
+Core Team Member you have to be a Meta Team 
+Member, be nominated and voted by at least 10% 
+of Fractio Community Level 3 and at least 20% 
+of Meta Team Level 2 Votes to be eligible to 
+apply for the 
+
+The Meta Team is the Team is a Team of 
+Fractio Governance Board members that
+are authorized to create proposals,
+events , polls, and fundraisers
+on the Governance Board, Voting on 
+proposals on the Governace Board
+and can be Nominated as Admins, Managers,
+Moderators or Core Team Applicants.
+It requires a minimum amount of 
+250000 MLK Tokens to be eligible for 
+the Meta Team it costs 1000 MLK / Month
+to be a Member of the Meta Team.
+
+The Fractio Community is the Base Layer
+of our DAO every user that signed to our 
+Plattform and verifyed his digital id 
+is automatically drafted to our Fractio 
+Community. Every Member has the right to 
+leave one vote on every proposal or poll 
+and outside of thegovernance board use 
+the plattform at the exact same conditions 
+as every other member.
 
 ## Core Concept
 
+The Fractio Framework is a Software as a
+Service Framework that enables users without 
+knowledge of code languages to create 
+interactive digital assets of any shape 
+and size for any imaginable use case we will
+come up with
+
+The Core Team Pitches Ideas and Concepts
+inspired by the Fractio Community.
+
+The Meta Team creates Polls, Fundraisers 
+and Proposals to engage the Community.
+
+The Community decides and inspires the 
+Core Team for new Gov Pitches
+
+The Concept is based on a 1 user gets 
+1 vote on 1 event phylosophy and needs
+strict surveillance in terms of digital 
+id thats why we are developing a mechanism
+that detects and eliminates any form of 
+double id or id fraud. The id shall not 
+rely on any single point of failure like 
+national id cards or credit card details.
+
 ## Rentability 
+
+Aside all the use cases that Fractio
+adds to the Blockchain ecosystem there
+are other lucrative aspects that allow
+Fractio to 
 
 ## Liquidity
 
