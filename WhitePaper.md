@@ -463,7 +463,7 @@ Member, be nominated and voted in by at least 10%
 of Fractio Community Level 3, and at least 20% 
 of Meta Team Level 2 Votes to be eligible.
 
-The Meta Team is a Team of Fractio
+The Meta Team is a team of Fractio
 Governance Board members that are
 authorized to create proposals,
 events, polls, and fundraisers
@@ -477,41 +477,41 @@ the Meta Team it costs 1000 MLK / Month
 to be a Member of the Meta Team.
 
 The Fractio Community is the Base Layer
-of our DAO every user that signed to our 
-Plattform and verifyed his digital id 
+of our DAO - every user that signed to our 
+plattform and verified their digital ID 
 is automatically drafted to our Fractio 
-Community. Every Member has the right to 
+Community. Every member has the right to 
 leave one vote on every proposal or poll 
-and outside of thegovernance board use 
+and outside of the governance board use 
 the plattform at the exact same conditions 
 as every other member.
 
 ## Core Concept
 
-The Fractio Framework is a Software as a
-Service Framework that enables users without 
+The Fractio Framework is a software-as-a-service
+Framework that enables users without 
 knowledge of code languages to create 
 interactive digital assets of any shape 
 and size for any imaginable use case we will
 come up with
 
-The Core Team Pitches Ideas and Concepts
-inspired by the Fractio Community.
+The Core Team pitches ideas and concepts
+inspired by the Fractio community.
 
-The Meta Team creates Polls, Fundraisers 
-and Proposals to engage the Community.
+The Meta Team creates polls, fundraisers 
+and proposals to engage the community.
 
-The Community decides and inspires the 
-Core Team for new Gov Pitches
+The community decides and inspires the 
+Core Team for new governance pitches
 
-The Concept is based on a 1 user gets 
-1 vote on 1 event phylosophy and needs
+The Concept is based on the philosophy
+that 1 user gets 1 vote on 1 event, and needs
 strict surveillance in terms of digital 
-id thats why we are developing a mechanism
+ID - that's why we are developing a mechanism
 that detects and eliminates any form of 
-double id or id fraud. The id shall not 
+double ID or ID fraud. The ID shall not 
 rely on any single point of failure like 
-national id cards or credit card details.
+national ID cards or credit card details.
 
 ## Rentability 
 
