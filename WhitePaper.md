@@ -433,7 +433,16 @@ new standards.
 
 ## Core Team
 
++ Chief Digital Architect - Aron Ayuk
++ Social Media Engineer - Daniel Poblano
++ Business & Marketing Strategist - Irvin Chen
++ Technical Community Manager - Louell Sala
++ Operational Security Manager - Nathan Misner
+
 ## DAO Governance
+
+The Fractio Framework is a Decentral Autonomous
+Organisation 
 
 ## Core Concept
 
