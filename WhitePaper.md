@@ -11,14 +11,22 @@ Fractio Framework - Digital Asset Factory
 + Fractio Token [FRX] Fractional Asset Class
 + Milk Pools [MLQP] MLQiudity Pool Asset Class
 
-2] Technologies
+2] Organisation Structure
++ Core Team
++ DAO Governance
++ Core Concept
++ Rentability 
++ Liquidity
++ Projects
+
+3] Technologies
 + Ethereum Blockchain
 + IPFS
 + Filecoin
 + The Graph
 + Chainlink
 
-3] Use Cases 
+4] Use Cases 
 + Advertisement
 + Sport Bets
 + Trading Signals
@@ -33,26 +41,18 @@ Fractio Framework - Digital Asset Factory
 ...
 
 5] Strategy
-+ Tech First
++ Technology First
 + Explore Conquer
 + Double Up Security
 
-6] Phylosophy
+6] Philosophy
 + Onboard the Public
 + Use Case Launchpad
 + The tool to create custom Digital Media on the Blockchain
 + The Future was Yesterday
 + Fractio Ethos
 
-7] Organisation Structure
-+ Core Team
-+ DAO Governance
-+ Core Concept
-+ Rentability 
-+ Liquidity
-+ Projects
-
-8] Roadmap 2021
+7] Roadmap 2021
 
 
 # Tokenomics
@@ -61,9 +61,9 @@ Fractio Framework - Digital Asset Factory
 
 The Milk Token is Fractio's Governance and Cash Token 
 for the entire Fractio Framework. The Plan is to peg it 
-to a DAO goverened Formula to stabilize the MLK Price in
+to a DAO governed Formula to stabilize the MLK Price in
 order to provide reliable Price structures. The MLK
-Token is based on the ERC20 Token Standard and utilizes 
+Token is based on the ERC20 / ERC677 Token Standard and utilizes 
 Chainlink Oracles and Governance Proposals as Input
 Parameters for the embedded stabizing function FR-72981
 
@@ -71,10 +71,10 @@ There are several use Cases for MLK on our Platform.
 MLK is used to create PYE Tokens, it is used to split
 your PYE Tokens to FRX Tokens, it is used for creating
 a Milk Pool "Milquidity" and can be used to create 
-Polls and Proposals and also for Voting.
+Polls, Proposals and also for Voting.
 
 The Token Supply is fixed to a maximum amount of 
-27 Billion MLK Tokens the Tokens are to be spread
+27 000 000 000 MLK Tokens the Tokens are to be spread
 through Multiple Ethereum Sidechains and the Mainnet
 with bridge Contracts. The Initial Price of 1 MLK 
 Token will be 0.0000036 ETH and the minimum Order
@@ -98,23 +98,23 @@ and planned for the Q3 2021
 The second Mint Event is on the xDai Ethereum Sidechain
 and planned for Q4 2021
 
-The third Mint Event is on AVAX Ethereum Sidechain
+The third Mint Event is on AVAX / Polygon Ethereum Sidechain
 and planned for Q2 2022
 ```
 
 ```
 The Distribution Scheme of the MLK Tokens:
-7 Billion operational recources
+7 Billion operational recources 
 5 Billion first Public Mint Event
-5 Billion second Public Milk Event
-5 Billion third Public Milk Event
+5 Billion second Public Mint Event
+5 Billion third Public Mint Event
 5 Billion final Mint Event
 ```
 
 ## PYE Token [PYE] ERC721 / ERC1155
 
 The PYE token is a multilayer interactive token
-it utilizes layer technology, verifiable andomness,
+it utilizes layer technology, verifiable randomness,
 Real Time Oracle Data Feeds and Real Time Data Feeds
 to generate interactive Audio Visual Tokens that can 
 animate single layers to Data Feed Triggers or even 
@@ -140,7 +140,8 @@ Costs:
 ```
 Example:
 A PYE Token with 3 Layers and 1 external function 
-trigger costs 130 MLK + networf feesif not draft saved.
+trigger costs 130 MLK + network
+fees if not draft saved.
 
 A PYE Token with 1 Layer costs 70 MLK + network fees 
 if not draft saved.
