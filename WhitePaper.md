@@ -2,7 +2,7 @@
 
 ## Fractio Framework - Digital Asset Factory
 
-<img src="https://ipfs.io/ipfs/QmV8uLnmjKJvAThn6b3EqrQcBwKtNjsWXCZ32qxdQsXgVu" />
+<img src="https://ipfs.io/ipfs/QmV8uLnmjKJvAThn6b3EqrQcBwKtNjsWXCZ32qxdQsXgVu" height="120px" />
 
 The Fractio Framework is a software-as-a-service
 Framework that enables users to create interactive 
@@ -87,7 +87,7 @@ decentralized, fair & autonomous
 
 ## Milk Token [MLK] ERC20
 
-<img src="https://ipfs.io/ipfs/QmXArMG27xgNaPLkEk452YYUSJmmZ6kwUsXLwkY2gTqpVG" />
+<img src="https://ipfs.io/ipfs/QmXArMG27xgNaPLkEk452YYUSJmmZ6kwUsXLwkY2gTqpVG" height="120px"/>
 
 The Milk Token is Fractio's governance and payment token 
 for the entire Fractio framework. The plan is to peg it 
@@ -143,6 +143,8 @@ The Distribution Scheme of the MLK Tokens:
 
 ## PYE Token [PYE] ERC721 / ERC1155
 
+<img src="https://ipfs.io/ipfs/QmTyTx2buJjzvTs4cBa9Qbx5s9XC2WC3NYHzmXSp85yzJA" height="120px"/>
+
 The PYE token is a multilayer interactive token.
 It utilizes layer technology, verifiable randomness,
 real-time oracle data feeds and real-time data feeds
@@ -182,6 +184,8 @@ if once draft saved.
 ```
 
 ## Fractio Token [FRX] ERC20 
+
+<img src="https://ipfs.io/ipfs/QmTyTx2buJjzvTs4cBa9Qbx5s9XC2WC3NYHzmXSp85yzJA" height="120px"/>
 
 Fractio tokens [FRX] are fractionized PYE tokens.
 The PYE token ERC721 standard is unique and has to be 
