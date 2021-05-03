@@ -5,20 +5,35 @@ Fractio Framework - Digital Asset Factory
 
 # INDEX
 
+0] Philosophy
++ Onboard the Public
++ Use Case Launchpad
++ The tool to create custom Digital Media on the Blockchain
++ The Future was Yesterday
++ Fractio Ethos
+
 1] Tokenomics
 + Milk Token [MLK] Governance & Currency Token
 + Pye Token [PYE] Interactive Asset Class
 + Fractio Token [FRX] Fractional Asset Class
 + Milk Pools [MLQP] MLQiudity Pool Asset Class
 
-2] Technologies
+2] Organizational Structure
++ Core Team
++ DAO Governance
++ Core Concept
++ Rentability 
++ Liquidity
++ Projects
+
+3] Technologies
 + Ethereum Blockchain
 + IPFS
 + Filecoin
 + The Graph
 + Chainlink
 
-3] Use Cases 
+4] Use Cases 
 + Advertisement
 + Sport Bets
 + Trading Signals
@@ -33,52 +48,50 @@ Fractio Framework - Digital Asset Factory
 ...
 
 5] Strategy
-+ Tech First
++ Technology First
 + Explore Conquer
 + Double Up Security
 
-6] Philosophy
-+ Onboard the Public
-+ Use Case Launchpad
-+ The tool to create custom Digital Media on the Blockchain
-+ The Future was Yesterday
-+ Fractio Ethos
+6] Roadmap 2021
+_________________________________________________________________________________________
+_________________________________________________________________________________________
 
-7] Organizational Structure
-+ Core Team
-+ DAO Governance
-+ Core Concept
-+ Rentability 
-+ Liquidity
-+ Projects
+# Philosophy
 
-8] Roadmap 2021
+## Public Onboarding
 
+## Use Case Launchpad
+
+## The tool to create custom Digital Media on the Blockchain
+
+## The Future was Yesterday
+
+## Ethos
 
 # Tokenomics
 
-## MILK Token [MLK] ERC20 / ERC677
+## Milk Token [MLK] ERC677
 
 The Milk Token is Fractio's governance and payment token 
 for the entire Fractio framework. The plan is to peg it 
-to a DAO-goverened formula to stabilize the MLK Price in
-order to provide reliable price structures. MLK is basked
-on the ERC20 Token Standard and utilizes Chainlink
+to a DAO-governed formula to stabilize the MLK Price in
+order to provide reliable price structures. MLK is based
+on the ERC677 Token Standard and utilizes Chainlink
 Oracles and Governance Proposals as input parameters
-for the embedded stabizing function FR-72981
+for the embedded stabizing function FR-72981.
 
 There are several use cases for MLK on our platform.
 MLK is used to create PYE Tokens, to split PYE
 Tokens to FRX Tokens, to create a Milk Pool
-"Milquidity", to create polls and proposals, 
-and can be used for Voting.
+"Milquidity", to create polls, proposals, 
+and voting.
 
 The token supply is fixed to a maximum amount of 
 27 billion MLK tokens - the tokens are to be spread
 through multiple Ethereum sidechains and the mainnet
 with bridge contracts. The initial price of 1 MLK 
 token will be 0.0000036 ETH and the minimum order
-for the Mainnet Mint Event will be 5000
+for the Mainnet Mint Event will be 5000.
 
 The contract safe will keep 5 Billion MLK tokens locked 
 until all other tokens have been minted and distributed.
@@ -87,9 +100,9 @@ Income to enable MLK trading on our framework in both
 directions.
 
 Every Mint Event will release the MLK tokens to 
-all ME participants - they will be distributed evenly
-after the total target sale amount of 50 Million USD has
-been reached. 
+all Mint Event participants - they will be distributed 
+evenly after the total target sale amount of 
+17000 ETH has been reached. 
 ```
 Mint Events:
 The first Mint event is on the Ethereum Mainnet
@@ -98,16 +111,16 @@ and planned for Q3 2021
 The second Mint Event is on the xDai Ethereum Sidechain
 and planned for Q4 2021
 
-The third Mint Event is on AVAX Ethereum Sidechain
+The third Mint Event is on AVAX, Polygon or other Ethereum Sidechains
 and planned for Q2 2022
 ```
 
 ```
 The Distribution Scheme of the MLK Tokens:
-7 Billion: operational recources
+7 Billion: operational resources
 5 Billion: 1st Public Mint Event
-5 Billion: 2nd Public Milk Event
-5 Billion: 3rd Public Milk Event
+5 Billion: 2nd Public Mint Event
+5 Billion: 3rd Public Mint Event
 5 Billion: 4th and final Mint Event
 ```
 
@@ -151,7 +164,7 @@ A PYE Token with 1 Layer costs 80 MLK + network fees
 if once draft saved.
 ```
 
-## Fractio Token [FRX] ERC20 / ERC677
+## Fractio Token [FRX] ERC20 
 
 Fractio tokens [FRX] are fractionized PYE tokens.
 The PYE token ERC721 standard is unique and has to be 
@@ -204,7 +217,7 @@ bid auction pool. The real time ratio of a specific FRX : MLK in
 the MLQP determines the value of the specific FRX.
 
 MLQP auctions are entirely customizable - you have the
-choice to offer tokens inidividually in custom 
+choice to offer tokens individually in custom 
 intervals or all at once.
 
 ```
@@ -214,8 +227,93 @@ tokens get auctioned one after the other at a
 custom start price of 1000 MLK per FRX with an 
 interval of 1 week. Each user can only bid once 
 per interval and the user with the highest MLK 
-bid recieves the FRX token out of the pool.
+bid receives the FRX token out of the pool.
 ```
+
+# Organisation Structure
+
+## Core Team
+
++ Chief Digital Architect - Aron Ayuk  
++ Social Media Engineer - Daniel Poblano
++ Business & Marketing Strategist - Irvin Chen
++ Technical Community Manager - Louell Sala
++ Operational Security Manager - Nathan Misner
+
+## DAO Governance
+
+The Fractio Framework is a Decentralized Autonomous
+Organization. The Organization is layered into 
+3 authorization levels:
+
+The Core Team: Level 3
+The Meta Team: Level 2
+The Fractio Community: Level 1
+
+The Core Auth Team is the core team of project 
+developers, marketers and business strategists 
+that keep the project evolving and make sure it
+operates frictionlessly. In order to become a 
+Core Team Member, you have to be a Meta Team 
+Member, be nominated and voted in by at least 10% 
+of Fractio Community Level 3, and at least 20% 
+of Meta Team Level 2 Votes to be eligible.
+
+The Meta Team is a team of Fractio
+Governance Board members that are
+authorized to create proposals,
+events, polls, and fundraisers
+on the Governance Board, voting on 
+proposals on the Governance Board
+and can be nominated as admins, managers,
+moderators or Core Team applicants.
+It requires a minimum amount of 
+250000 MLK Tokens to be eligible for 
+the Meta Team and it costs 1000 MLK/Month
+to be a Member of the Meta Team.
+
+The Fractio Community is the Base Layer
+of our DAO - every user that signed to our 
+plattform and verified their digital ID 
+is automatically drafted to our Fractio 
+Community. Every member has the right to 
+leave one vote on every proposal or poll 
+and outside of the governance board use 
+the plattform at the exact same conditions 
+as every other member.
+
+## Core Concept
+
+The Fractio Framework is a software-as-a-service
+Framework that enables users without coding 
+experience to create interactive digital assets 
+of any shape and size for any imaginable use case.
+
+The Core Team pitches ideas and concepts
+inspired by the Fractio community.
+
+The Meta Team creates polls, fundraisers 
+and proposals to engage the community.
+
+The community decides and inspires the 
+Core Team for new governance pitches
+
+The Concept is based on the philosophy
+that 1 user gets 1 vote on 1 event, and needs
+strict surveillance in terms of digital 
+ID - that's why we are developing a mechanism
+that detects and eliminates any form of 
+double ID or ID fraud. The ID shall not 
+rely on any single point of failure like 
+national ID cards or credit card details.
+
+## Projects
+
+Artist Workshops for Mainnet Mint Event Token Auction
+5 Workshops LA NY Berlin Atlanta Philly 
+
+Video Workshops
+
 
 
 # Technologies 
@@ -226,15 +324,15 @@ Fractio is utilizing Ethereum blockchain technology
 and can theoretically be deployed on any Ethereum 
 sidechain that has a running Chainlink Oracle and 
 VRF node. The smart contract language that Fractio
-uses is Solidity. Because Fractio is a DAO, the main 
+uses is Solidity and because Fractio is a DAO, the main 
 focus on the selection of our chains is decentralization.
 Private smart contract chains (Binance Smart Chain for example)
-are incompatible with our decentral ethos.
+are incompatible with our decentralized ethos.
 
 ## IPFS
 
 The Interplanetary File System (IPFS) helps Fractio
-store PYE Token data in a decentral manner. It
+store PYE Token data in a decentralized manner. It
 also provides a faster and more efficient network
 infrastructure for our project. 
 
@@ -251,44 +349,47 @@ by liking, buying, or commenting on PYE Tokens.
 Fractio is soon launching a Filecoin node to 
 support the IPFS infrastructure we are building
 by storing the files on our node and creating
-a DAO-goverened filestorage network
+a DAO-governed file storage network
 
 ## The Graph
 
 The PYE token, FRX token, MLK token, and
-MLQ Pool each get their own suGraph hosted
-on the graph. It enables Fractio to utilize 
-the GraphQL database structure in a decentral 
+MLQ Pool each get their own subGraph hosted
+on theGraph. It enables Fractio to utilize 
+the GraphQL database structure in a decentralized 
 manner that saves large amounts of time and 
 energy and enables much faster and more efficient 
-searchquerys.
+search queries.
 
 ## Chainlink
 
 Chainlink provides Fractio with real-world oracle
-data and verifiable randomness, where needed. Chainlink is the
+data and verifiable randomness, when needed. Chainlink is the
 actual reason Fractio even exists. The team met
 at the Chainlink Spring Hackathon 2021 and came
-up with an idea that turned out to become a  
-use case launchpad for the entire Ethereum ecosystem.
+up with an idea that grew into this project.
 
 # Use Cases 
 
 ## Dynamic Art
 
-The PYE Editor is a way to allow artists, designers, and all types of 
-creatives to design new forms of digital art that have yet to be discovered.
-The tokens can interact with oracle information reflecting live real world 
-data. Futhermore, we can add verifiable random data to each layer making each 
-PYE token completly unique.
+The PYE Editor is a way to allow artists, designers, 
+and all types of creatives to design new forms of 
+digital art.
+
+The tokens can interact with oracle information reflecting 
+live real world data. Futhermore, we can add verifiable random 
+data to each layer making each PYE token completely unique.
 
 ## Advertisement
+
 The PYE Token can be utilized for unique advertisement experiences
-such as dynamic bonuses 
+such as dynamic bonuses that can react to real time sales data and 
+update the display automatically.
 ```
 Example:
-The first buyer gets a bonus of 50%, the next buyer 
-gets 49% and they decrement for every following 
+The PYE Token displays a bonus of 50% for the first buyer, the 
+next buyer gets 49% displayed and they decrement for every following 
 buyer at a fixed rate per buyer
 ```
 This could incentivize customers to buy products quicker if they are 
@@ -315,14 +416,15 @@ prize pool.
 
 The PYE token can be utilized as a trading signal token that aquires real-time
 oracle data and transforms chosen price feeds into visual output of
-buying and selling oppurtunities on a chosen currency pair. It can even
+buying and selling opportunities on a chosen currency pair. It can even
 trigger external functions and perform a transaction if approved.
 
 ## NFT Games
 
 The NFT Gaming Space can utilize all types of digital interactive assets.
-Players rank, health, levels, items, etc. can all be stored and visualized 
-as a PYE Asset, and even display real-time game data or real-word oracle data.
+Players rank, health, levels, items and other assets can all be stored 
+and visualized as a PYE Asset, and even display real-time game data or 
+real-word oracle data.
 
 ## Collectibles
 
@@ -359,11 +461,13 @@ track that only gets released after a certain
 amount of sales.
 ```
 
-## Weather Maps
+## Weather Insurance 
 
-PYE weather maps are able to display weather information for 
-specific locations utilizing realtime weather data. The token could 
-send out warnings in case of approaching dangerous climate changes.
+PYE Weather Insurance Tokens are able to display read 
+information for specific locations utilizing real time 
+weather data. The token could send out warnings in case of 
+approaching dangerous climate changes and for example help 
+insurances set their rates and store.
 
 ```
 Example:
@@ -404,7 +508,7 @@ onto a map or display the users geodata.
 
 # Strategy
 
-## Tech First
+## Technology First
 
 Fratio wants to provide leading tech solutions
 to gamify the blockchain space and onboard non-crypto 
@@ -421,108 +525,6 @@ new standards.
 ## Explore Conquer
 
 ## Double Up Security
-
-# Philosophy
-
-## Onboard the Public
-
-## Use Case Launchpad
-
-## The tool to create custom Digital Media on the Blockchain
-
-## The Future was Yesterday
-
-## Ethos
-
-# Organisation Structure
-
-## Core Team
-
-+ Chief Digital Architect - Aron Ayuk  
-+ Social Media Engineer - Daniel Poblano
-+ Business & Marketing Strategist - Irvin Chen
-+ Technical Community Manager - Louell Sala
-+ Operational Security Manager - Nathan Misner
-
-## DAO Governance
-
-The Fractio Framework is a Decentral Autonomous
-Organization. The Organization is layered into 
-3 authorization levels:
-
-The Core Team: Level 3
-The Meta Team: Level 2
-The Fractio Community: Level 1
-
-The Core Auth Team is the core team of project 
-developers, marketers and business strategists 
-that keep the project evolving and make sure it
-operates frictionlessly. In order to become a 
-Core Team Member, you have to be a Meta Team 
-Member, be nominated and voted in by at least 10% 
-of Fractio Community Level 3, and at least 20% 
-of Meta Team Level 2 Votes to be eligible.
-
-The Meta Team is a team of Fractio
-Governance Board members that are
-authorized to create proposals,
-events, polls, and fundraisers
-on the Governance Board, voting on 
-proposals on the Governace Board
-and can be nominated as admins, managers,
-moderators or Core Team applicants.
-It requires a minimum amount of 
-250000 MLK Tokens to be eligible for 
-the Meta Team it costs 1000 MLK / Month
-to be a Member of the Meta Team.
-
-The Fractio Community is the Base Layer
-of our DAO - every user that signed to our 
-plattform and verified their digital ID 
-is automatically drafted to our Fractio 
-Community. Every member has the right to 
-leave one vote on every proposal or poll 
-and outside of the governance board use 
-the plattform at the exact same conditions 
-as every other member.
-
-## Core Concept
-
-The Fractio Framework is a software-as-a-service
-Framework that enables users without 
-knowledge of code languages to create 
-interactive digital assets of any shape 
-and size for any imaginable use case we will
-come up with
-
-The Core Team pitches ideas and concepts
-inspired by the Fractio community.
-
-The Meta Team creates polls, fundraisers 
-and proposals to engage the community.
-
-The community decides and inspires the 
-Core Team for new governance pitches
-
-The Concept is based on the philosophy
-that 1 user gets 1 vote on 1 event, and needs
-strict surveillance in terms of digital 
-ID - that's why we are developing a mechanism
-that detects and eliminates any form of 
-double ID or ID fraud. The ID shall not 
-rely on any single point of failure like 
-national ID cards or credit card details.
-
-## Rentability 
-
-Aside all the use cases that Fractio
-adds to the Blockchain ecosystem there
-are other lucrative aspects that allow
-Fractio to 
-
-## Liquidity
-
-## Projects
 
 # Roadmap 2021
 
