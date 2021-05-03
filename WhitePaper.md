@@ -87,6 +87,8 @@ decentralized, fair & autonomous
 
 ## Milk Token [MLK] ERC20
 
+<img src"https://ipfs.io/ipfs/QmXArMG27xgNaPLkEk452YYUSJmmZ6kwUsXLwkY2gTqpVG" />
+
 The Milk Token is Fractio's governance and payment token 
 for the entire Fractio framework. The plan is to peg it 
 to a DAO-governed formula to stabilize the MLK Price in
