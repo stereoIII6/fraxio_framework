@@ -185,7 +185,7 @@ if once draft saved.
 
 ## Fractio Token [FRX] ERC20 
 
-<img src="https://ipfs.io/ipfs/QmTyTx2buJjzvTs4cBa9Qbx5s9XC2WC3NYHzmXSp85yzJA" height="120px"/>
+<img src="https://ipfs.io/ipfs/QmaWATYDAi4WbzbUM3pQ2gZrDwB9fpWWEL9ehf59YVCzis" height="120px"/>
 
 Fractio tokens [FRX] are fractionized PYE tokens.
 The PYE token ERC721 standard is unique and has to be 
