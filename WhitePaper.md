@@ -17,8 +17,6 @@ standards and eliminate the need for code.
 0] Philosophy
 + Public Onboarding
 + Use Case Launchpad
-+ The tool to create custom Digital Media on the Blockchain
-+ The Future was Yesterday
 + Fractio Ethos
 
 1] Tokenomics
@@ -41,16 +39,16 @@ standards and eliminate the need for code.
 + Chainlink
 
 4] Use Cases 
-+ Dynamic Art
-+ Advertisement
-+ Sport Bets
-+ Trading Signals
-+ NFT Games
-+ Collectibles
-+ Music Albums
-+ Weather Insurance
-+ Activity Maps
-+ Event Tokens
++ Dynamic Art 
++ Advertisement 
++ Sport Bets 
++ Trading Signals 
++ NFT Games 
++ Collectibles 
++ Music Albums 
++ Weather Insurance 
++ Activity Maps 
++ Event Tokens 
 + Geo Based Tokens
 ...
 
@@ -68,15 +66,21 @@ ________________________________________________________________________________
 
 ## Public Onboarding
 
-
+Fractio's target audience are commercial users, private users, 
+celebrities and organisations that produce digital media. 
+Our Framework enables them to utilize web3 technology and 
+create digital asset classes on the blockchain without 
+coding knowledge.  
 
 ## Use Case Launchpad
 
-## The tool to create custom Digital Media on the Blockchain
-
-## The Future was Yesterday
+Our Framework empowers users to create digital asset classes
+that will revolutionize existing standards and develop one 
+that doesn't yet exist. 
 
 ## Ethos
+
+decentralized, fair & autonomous
 
 # Tokenomics
 
