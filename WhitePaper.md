@@ -1,4 +1,4 @@
-# WhitePaper v.1.0 [04/2021]
+# WhitePaper v.1.0 [05/2021]
 
 ## Fractio Framework - Digital Asset Factory
 
