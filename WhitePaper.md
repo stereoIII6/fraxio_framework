@@ -244,7 +244,7 @@ per interval and the user with the highest MLK
 bid receives the FRX token out of the pool.
 ```
 
-# Organisation Structure
+# Organizational Structure
 
 ## Core Team
 
