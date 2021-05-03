@@ -84,13 +84,13 @@ decentralized, fair & autonomous
 
 # Tokenomics
 
-## Milk Token [MLK] ERC677
+## Milk Token [MLK] ERC20
 
 The Milk Token is Fractio's governance and payment token 
 for the entire Fractio framework. The plan is to peg it 
 to a DAO-governed formula to stabilize the MLK Price in
 order to provide reliable price structures. MLK is based
-on the ERC677 Token Standard and utilizes Chainlink
+on the ERC20 Token Standard and utilizes Chainlink
 Oracles and Governance Proposals as input parameters
 for the embedded stabizing function FR-72981.
 
@@ -221,9 +221,9 @@ and Fractionizing
 + Network Fees
 ```
 
-## Milquidity Pools [MLQP] ERC20 / ERC721 / ERC677 / ERC1155
+## Milquidity Pools [MLQP] ERC20
 
-In order to swap FRX tokens in a decentral fashion, the
+In order to swap FRX tokens in a decentralized fashion, the
 Fractio framework allows its users to provide Milquidity
 by supplying MLK Tokens and FRX Tokens to a MLQPool.
 MLQP's can be run as a regular swapping pool or as a
@@ -323,12 +323,16 @@ national ID cards or credit card details.
 
 ## Projects
 
-Artist Workshops for Mainnet Mint Event Token Auction
-5 Workshops LA NY Berlin Atlanta Philly 
+Artist workshops for Mainnet Mint Event Token Auction.
+These workshops are part of our launch campaign. The 
+goal is to teach chosen artists how to use and create
+digital asset classes on the Fractio Framework. The 
+artworks these artist have created will then be auctioned
+on the Mainnet Minting Event.
 
-Video Workshops
-
-
+Video Workshops are another tool to onboard artist 
+to the Mainnet Mint Event Token Auction and are the 
+digital approach to our Workshops.
 
 # Technologies 
 
@@ -532,14 +536,49 @@ utilize to create literally any type of digital asset.
 Our tools eliminate the need for coding skills to create
 Interactive dynamic assets. Graphic designers, digital
 artists, and all types of creatives will be able to adapt 
-a worklow in no time. Fractio's goal is to explore the 
-limits of existing standards and to create the need for
-new standards.
+a worklow in no time. 
 
 ## Explore Conquer
 
+Our focus is to explore the boundaries of existing 
+standards and develop the most efficient tools
+to utilize blockchain technology.  
+
 ## Double Up Security
+
+Our decentralized ethos requires us to build a trustless 
+ecosystem. We are very strict about our Id Protocol and
+determined to provide the safest possible but at the 
+same time frictionless service for our users. 
 
 # Roadmap 2021
 
+## Q2 2021
+
+PYE Editor
+IPFS Integration
+The Graph Integration
+UIX Design
+Filecoin Integration
+3rd Party Viewer
+Testnet Launch (Rinkeby)
+
+## Q3 2021
+
+MLK Token
+Creator Workshops
+The Fractionizer
+Pool Contract
+Governance
+Marketplace
+Operationa Security Tests
+Mainnet Launch
+
+## Q4 2021
+
+Initial PYE Voting
+Crosschain Verification
+xDai Bridge
+Operationa Security Tests
+xDai Launch
 
