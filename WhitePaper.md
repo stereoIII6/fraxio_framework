@@ -34,14 +34,14 @@ Fractio Framework - Digital Asset Factory
 + Chainlink
 
 4] Use Cases 
++ Dynamic Art
 + Advertisement
 + Sport Bets
 + Trading Signals
-+ Dynamic Art
 + NFT Games
 + Collectibles
 + Music Albums
-+ Weather Maps
++ Weather Insurance
 + Activity Maps
 + Event Tokens
 + Geo Based Tokens
@@ -53,6 +53,7 @@ Fractio Framework - Digital Asset Factory
 + Double Up Security
 
 6] Roadmap 2021
+
 _________________________________________________________________________________________
 _________________________________________________________________________________________
 
