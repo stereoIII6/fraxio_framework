@@ -571,7 +571,7 @@ same time frictionless service for our users.
 + Pool Contract
 + Governance
 + Marketplace
-+ Operationa Security Tests
++ Operational Security Tests
 + Mainnet Launch
 
 ## Q4 2021
@@ -579,6 +579,17 @@ same time frictionless service for our users.
 + Initial PYE Voting
 + Crosschain Verification
 + xDai Bridge
-+ Operationa Security Tests
++ Operational Security Tests
 + xDai Launch
 
+# Conclusions
+
+We have introduced Fractio Framework 
+and as we continue to work on Fractio,
+we will prioritize our core ethos. 
+
+Decentralized, fair & autonomous.
+
+We look forward to extending the usage 
+of our framework to other projects in 
+the ecosystem.
