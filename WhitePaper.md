@@ -1,12 +1,21 @@
 # WhitePaper v.1.0 [04/2021]
 
-Fractio Framework - Digital Asset Factory
+## Fractio Framework - Digital Asset Factory
+
+The Fractio Framework is a software-as-a-service
+Framework that enables users to create interactive 
+digital assets that react to real time oracle data.
+It is DAO-governed and utilizes auth-levels and 
+id-verification to guarantee a fair and secure 
+governance infrastructure. Our technology aims 
+to realize the full potential of existing 
+standards and eliminate the need for code.
 
 
 # INDEX
 
 0] Philosophy
-+ Onboard the Public
++ Public Onboarding
 + Use Case Launchpad
 + The tool to create custom Digital Media on the Blockchain
 + The Future was Yesterday
@@ -22,8 +31,6 @@ Fractio Framework - Digital Asset Factory
 + Core Team
 + DAO Governance
 + Core Concept
-+ Rentability 
-+ Liquidity
 + Projects
 
 3] Technologies
@@ -60,6 +67,8 @@ ________________________________________________________________________________
 # Philosophy
 
 ## Public Onboarding
+
+
 
 ## Use Case Launchpad
 
