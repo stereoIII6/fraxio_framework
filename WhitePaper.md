@@ -555,30 +555,30 @@ same time frictionless service for our users.
 
 ## Q2 2021
 
-PYE Editor
-IPFS Integration
-The Graph Integration
-UIX Design
-Filecoin Integration
-3rd Party Viewer
-Testnet Launch (Rinkeby)
++ PYE Editor
++ IPFS Integration
++ The Graph Integration
++ UIX Design
++ Filecoin Integration
++ 3rd Party Viewer
++ Testnet Launch (Rinkeby)
 
 ## Q3 2021
 
-MLK Token
-Creator Workshops
-The Fractionizer
-Pool Contract
-Governance
-Marketplace
-Operationa Security Tests
-Mainnet Launch
++ MLK Token
++ Creator Workshops
++ The Fractionizer
++ Pool Contract
++ Governance
++ Marketplace
++ Operationa Security Tests
++ Mainnet Launch
 
 ## Q4 2021
 
-Initial PYE Voting
-Crosschain Verification
-xDai Bridge
-Operationa Security Tests
-xDai Launch
++ Initial PYE Voting
++ Crosschain Verification
++ xDai Bridge
++ Operationa Security Tests
++ xDai Launch
 
