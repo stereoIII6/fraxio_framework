@@ -165,8 +165,8 @@ the torque factor = TF [range: 4-6]
 the cycle length = CL [range: 6-18 months]
 amount of locked cycles = LC [range: 1-5 cycles]
 
-LM = 100 / (TF * (LC / (CL / 10)))
-LR = 80 / (TF / LC) + (CL - 6)
++ LM = 100 / (TF * (LC / (CL / 10)))
++ LR = 80 / (TF / LC) + (CL - 6)
 
 https://docs.google.com/spreadsheets/d/1F_0-w1Kt4dx7M4xnyzCXMDIF0SEs-4hzT2zEruNUvU8/edit?usp=sharing
 
