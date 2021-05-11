@@ -22,10 +22,11 @@ standards and eliminate the need for code.
 + Fractio Ethos
 
 1] Tokenomics
-+ Milk Token [MLK] Governance & Currency Token
-+ Pye Token [PYE] Interactive Asset Class
-+ Fractio Token [FRX] Fractional Asset Class
-+ Milk Pools [MLQP] MLQiudity Pool Asset Class
++ Milq Token [MLQ] Currency Token
++ Pye Token [PYE] Interactive Asset 
++ Fractio Token [FRX] Fractional Asset 
++ Milquidity Pools [MLQP] MLQiudity Pool Asset 
++ Milq Shake Token [SHK] milq Shake Token Asset  
 
 2] Organizational Structure
 + Core Team
@@ -85,171 +86,79 @@ decentralized, fair & autonomous
 
 # Tokenomics
 
-## Milk Token [MLK] ERC20
+## PYE Token [PYE] ERC721
 
-<img src="https://ipfs.io/ipfs/QmXArMG27xgNaPLkEk452YYUSJmmZ6kwUsXLwkY2gTqpVG" height="120px"/>
+Using the native editor on the Fractio platform, users can create non-fungible, multilayer, interactive digital assets called PYE tokens. Real-time oracle data feeds and verifiable randomness are easily integrated into the token, so users are able to generate audio/visual assets that can react to, or even trigger, real world events. The layer editor makes this all possible without the need for code from the end user.
+The use cases for the PYE Token are nearly unlimited. A simple example is NFT artwork that changes the image displayed based upon the market price of a crypto asset such as bitcoin.
+Users of the Fractio framework can mint PYE tokens at any time. 
+Minting the PYE token requires platform fees in the form of Milk tokens (MLQ) and network fees.
+Example Costs:
 
-The Milk Token is Fractio's governance and payment token 
-for the entire Fractio framework. The plan is to peg it 
-to a DAO-governed formula to stabilize the MLK Price in
-order to provide reliable price structures. MLK is based
-on the ERC20 Token Standard and utilizes Chainlink
-Oracles and Governance Proposals as input parameters
-for the embedded stabizing function FR-72981.
-
-There are several use cases for MLK on our platform.
-MLK is used to create PYE Tokens, to split PYE
-Tokens to FRX Tokens, to create a Milk Pool
-"Milquidity", to create polls, proposals, 
-and voting.
-
-The token supply is fixed to a maximum amount of 
-27 billion MLK tokens - the tokens are to be spread
-through multiple Ethereum sidechains and the mainnet
-with bridge contracts. The initial price of 1 MLK 
-token will be 0.0000036 ETH and the minimum order
-for the Mainnet Mint Event will be 5000.
-
-The contract safe will keep 5 Billion MLK tokens locked 
-until all other tokens have been minted and distributed.
-It will be used as a liquidity pool against the Mint Event
-Income to enable MLK trading on our framework in both 
-directions.
-
-Every Mint Event will release the MLK tokens to 
-all Mint Event participants - they will be distributed 
-evenly after the total target sale amount of 
-17000 ETH has been reached. 
-```
-Mint Events:
-The first Mint event is on the Ethereum Mainnet
-and planned for Q3 2021
-
-The second Mint Event is on the xDai Ethereum Sidechain
-and planned for Q4 2021
-
-The third Mint Event is on AVAX, Polygon or other Ethereum Sidechains
-and planned for Q2 2022
-```
-
-```
-The Distribution Scheme of the MLK Tokens:
-7 Billion: operational resources
-5 Billion: 1st Public Mint Event
-5 Billion: 2nd Public Mint Event
-5 Billion: 3rd Public Mint Event
-5 Billion: 4th and final Mint Event
-```
-
-## PYE Token [PYE] ERC721 / ERC1155
-
-<img src="https://ipfs.io/ipfs/QmTyTx2buJjzvTs4cBa9Qbx5s9XC2WC3NYHzmXSp85yzJA" height="120px"/>
-
-The PYE token is a multilayer interactive token.
-It utilizes layer technology, verifiable randomness,
-real-time oracle data feeds and real-time data feeds
-to generate interactive audio/visual tokens that can 
-animate single layers to data feed triggers or even 
-trigger external smart contract functions on the 
-blockchain.
-
-The use cases for the PYE Token are close to unlimited. 
-A simple example is NFT artwork that changes the image displayed
-based upon the market price of a crypto asset such as bitcoin.
-
-The token supply is unlimited, and users of the 
-Fractio framework can mint PYE tokens at any time.
-
-Minting the PYE token requires MLK tokens and network fees. 
-
-```
-Costs:
-10 MLK per layer
-50 MLK per external function trigger
-10 MLK per draft save
-50 MLK per mint
+10 MLQ per layer
+50 MLQ per external function trigger
+10 MLQ per draft save
+50 MLQ per mint
 + Network Fees
-```
 
-```
-Example:
+Use Example:
 A PYE Token with 3 Layers and 1 external function 
-trigger costs 130 MLK + network fees if not draft saved.
+trigger costs 130 MLQ + network fees if not draft saved.
 
-A PYE Token with 1 Layer costs 70 MLK + network fees 
+A PYE Token with 1 Layer costs 70 MLQ + network fees 
 if not draft saved.
 
-A PYE Token with 1 Layer costs 80 MLK + network fees 
-if once draft saved.
-```
+A PYE Token with 1 Layer costs 80 MLQ + network fees 
+once draft saved.
 
-## Fractio Token [FRX] ERC20 
+## Milq Token [MLQ] ERC20
+The Milk Token (MLQ) is Fractio’s utility token, and is used in every aspect of the framework. MLQ is needed to:
+Utilize the layer editor to create and mint PYE tokens
+Buy or trade PYE tokens
+Fractionize PYE tokens into FRX
+Participate in liquidity pools
+The token supply is fixed to a maximum amount of 27 billion MLQ tokens - the tokens are to be spread through the Ethereum mainnet and multiple sidechains using bridge contracts. The initial price of 1 MLQ token will be 0.0000036 ETH and the minimum order for the Mainnet Mint Event will be 5000.
+The contract safe will keep 5 Billion MLQ tokens locked until all other tokens have been minted and distributed. It will be used as a liquidity pool against the Mint Event income to enable the trading of tokens on our framework.
+Every Mint Event will release the MLQ tokens to all participants - they will be distributed evenly after the total target sale amount of 17000 ETH has been reached.
+Planned Mint Events:
+Ethereum Mainnet
+xDai Ethereum Sidechain
+AVAX, Polygon, or other Ethereum Sidechains
 
-<img src="https://ipfs.io/ipfs/QmaWATYDAi4WbzbUM3pQ2gZrDwB9fpWWEL9ehf59YVCzis" height="120px"/>
+## Fractio Token [FRX] ERC20
 
-Fractio tokens [FRX] are fractionized PYE tokens.
-The PYE token ERC721 standard is unique and has to be 
-locked into the Fractionizer contract FR-81369.
-The FRX token conforms to the ERC20 standard and has a fixed 
-amount that the user customizes after he locks his PYE into 
-contract, creating the new FRX asset class.
-
-Every FRX asset class has its own contract address,
-token name (MyPyeTokenName) and Symbol [FRX_MPTN],
-and gets minted onto the creator's address.
-
-The FRX tokens each represent a fraction of the
-parent PYE token. FRX tokens are fungible tokens
-that are tied to the non-fungible Value of a parent 
-PYE token. If the creator decides to mint 100 FRX
-total supply from his parent PYE every FRX will be 
-worth 1/100 Parent PYE. The supply of specific
-FRX tokens is fixed.
-
-```
+Using Fractio’s “Fractionizer” contract (FR-81369), users can lock their unique ERC-721 standard PYE token and create any specified number or FRX tokens, each one representative of an equal portion of the parent PYE token. FRX tokens conform to the ERC-20 standard and have a fixed amount that the user customizes when they lock their PYE into the contract. 
+FRX tokens are fungible tokens that are tied to the non-fungible value of a parent PYE token. If the creator decides to fractionize their parent PYE into 100 FRX tokens, each FRX will be representative of 1/100th of the parent PYE. The supply of specific FRX tokens is fixed, as determined at the time the parent PYE is locked into the fractionizer contract.
+Each FRX asset class has its own contract address, token name (MyPyeTokenName) and Symbol [FRX_MPTN], and gets minted onto the creator's address.
 Example:
 
-PYE_alpha gets locked at a ratio 1:1000 
-and returns 1000 FRX_alpha each worth 
-1/1000 PYE_alpha
-```
+PYE_alpha gets locked at a ratio of 1:1000 
+and returns 1000 FRX_alpha, each representing
+1/1000th of PYE_alpha
 
-When the value of the parent PYE token changes, the 
-value of the FRX token changes proportionally
+When the value of the parent PYE token changes, the value of the FRX token changes proportionally. Locking PYE to mint FRX requires MLQ tokens and network fees.
+Example Costs:
 
-The locking of PYE and minting of FRX requires 
-MLK tokens and network fees.
-
-```
-Costs:
-
-100 MLK for Locking PYE 
-and Fractionizing
+100 MLQ for locking
+and fractionizing PYE 
 + Network Fees
-```
 
 ## Milquidity Pools [MLQP] ERC20
+Fractio will have multiple liquidity pools that support the overall ecosystem.
+In order to facilitate swapping between the aforementioned PYE, MLK, and FRX tokens in a decentralized fashion, users may provide “Milquidity” to a pool (MLQP). MLQP's can be run as regular swapping pools or as bid-auction pools, and are entirely customizable.
+In order to facilitate the purchase of MLQ tokens, users may also provide liquidity in pairs of MLQ-ETH or MLQ-DAI. Users who lock their Milquidity in these pools will receive compensation in the form of Milq Shake tokens (SHK).
 
-In order to swap FRX tokens in a decentralized fashion, the
-Fractio framework allows its users to provide Milquidity
-by supplying MLK Tokens and FRX Tokens to a MLQPool.
-MLQP's can be run as a regular swapping pool or as a
-bid auction pool. The real time ratio of a specific FRX : MLK in
-the MLQP determines the value of the specific FRX.
+## Milq Shake Tokens [SHK] ERC20
+Milq Shake tokens (SHK) are the governance token of the Fractio framework. They are earned by staking in the MLQP pools for a minimum cycle of 1 year up to 5 years. Holders of SHK will be eligible to receive a share of the revenues generated by Fractio. Additionally, early adopters and holders of certain levels of SHK will be part of the “meta team” in the governance structure. They are able to create proposals for the rest of the community to vote upon, and may shape the very direction of the entire framework.
+The MLQP tokens that are frozen in the stake contract are partly “deepfrozen” (not withdrawable until the end of the cycle) and “meltable” (withdrawable at any time). The same procedure also applies to the SHK tokens the user can claim from 
+the revenue stream. The percentages are determined by the amount of half year cycles :
 
-MLQP auctions are entirely customizable - you have the
-choice to offer tokens individually in custom 
-intervals or all at once.
+(EXAMPLE IMAGE)
 
-```
-Example:
-10 FRX are pooled with 10000 MLK Tokens and the 
-tokens get auctioned one after the other at a 
-custom start price of 1000 MLK per FRX with an 
-interval of 1 week. Each user can only bid once 
-per interval and the user with the highest MLK 
-bid receives the FRX token out of the pool.
-```
+The Total Supply of SHK is fixed at 1618033 SHK Tokens the initial value of the Token is 12.50 Dai.
+
+## Token Distribution Schedule
+
+
 
 # Organizational Structure
 
@@ -289,8 +198,8 @@ proposals on the Governance Board
 and can be nominated as admins, managers,
 moderators or Core Team applicants.
 It requires a minimum amount of 
-250000 MLK Tokens to be eligible for 
-the Meta Team and it costs 1000 MLK/Month
+100 SHK Tokens to be eligible for 
+the Meta Team and it costs 1000 MLQ/Month
 to be a Member of the Meta Team.
 
 The Fractio Community is the Base Layer
@@ -327,6 +236,63 @@ that detects and eliminates any form of
 double ID or ID fraud. The ID shall not 
 rely on any single point of failure like 
 national ID cards or credit card details.
+
+## The Launch Plans
+
++ Test Net Launch [active]
+  We are creating the core contracts and the frontend 
+  of the framework on the rinkeby testnet as sandbox
+  environment. All chain internal functions are 
+  thouroughly tested and audited before mainnet launches.
+
++ Artist & Designer Workshops [coming soon]
+  Physical and Online Workshops will teach creatives how to utilize the fractio
+  framework for their purposes. The creatives can participate in the initial 
+  PYE token competition.
+
++ Core Mint [planned mid Q3]
+  The core mint is the initial minting ceremony of the 
+  first 7 Billion MLQ tokens and the entire SHK supply of 1618033 Million Tokens.
+  The tokens are the neccessary Collateral for the Main Milquidity Pools.
+
++ Private Mint
+  5 Billion MLQ tokens will be minted and sold to early adopters of the Fractio Framework.  
+
++ Public Premint
+  1 Billion MLQ_IOU tokens will be auctioned to the broad public before the staking launches on mainnet.
+  
++ Ethereum Mainnet Launch
+  The Fractio Framework launches on the Ethereum mainnet and allows users to create milquidity pools on mainnet.
+
++ PYE Token competition
+  Creatives compete against each other creating the most exiting interactive PYE token. The tokens 
+  created in this competition are going to be the first PYE tokens minted on the mainnet in history.
+
++ Public Mint
+  The day before the first PYEs are being auctioned on the market the public mint event will take place
+  MLQ_IOU will be exchanged to MLQ and the Main Milquidity Pools will be open to the public.
+
++ Crosschain VRF Launch
+  In order to verify that tokens do not already exist on another chain we are developing the 
+  croschain vrf analyzer that makes sure that tokens can only exist once on all chains Fractio uses.
+  
++ Private Premint
+  1 Billion MLQ_IOU tokens will be auctioned to the early adopters before the staking launches on mainnet.
+  
++ xDai Mainnet Launch
+  The Fractio Framework launches on the xDai mainnet and allows users to create PYE Tokens.
+  It automatically veryfies that the tokens are globally unique.
+  
++ Public Mint
+  The day before the first PYEs are being auctioned on the market the public mint event will take place
+  MLQ_IOU will be exchanged to MLQ and the Main Milquidity Pools will be open to the public.
+  
++ Bridge Launch
+  The bridge allows users to move the PYE tokens they own from on chain to another. 
+
++ Airdrop Uno 
+  500 Million MLQ Tokens + 50000 FRX Tokns will be distributed to frequent users. 
+
 
 ## Projects
 
