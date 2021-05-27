@@ -369,7 +369,7 @@ betting odds, or oracle odds can be included.
 The holders of the winning token share the 
 prize pool.
 ```
-<img src="https://ipfs.io/ipfs/QmQDbqptkodNryYU9ART8soQE5dGAcyYwurMzJQxxWF4gH" height="120px" />
+<img src="https://ipfs.io/ipfs/QmQLWopggDTZWwxHmgQY5fxcd1KS54cvzVLzDSw2AHBDSr" height="120px" />
 
 ## Trading Signals
 
