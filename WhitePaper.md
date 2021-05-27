@@ -106,12 +106,11 @@ Fractionize PYE tokens into FRX and participate in liquidity pools.
 The token supply is fixed to a maximum amount of 27 billion MLQ tokens - 
 the tokens are to be spread through the Ethereum mainnet and multiple sidechains 
 using bridge contracts. The initial price of 1 MLQ token will be the ~0.01 Dai 
-equivalent in ETH.
-The contract safe will keep 5 Billion MLQ tokens locked until all other tokens 
+equivalent in ETH. The contract safe will keep 5 Billion MLQ tokens locked until all other tokens 
 have been minted and distributed. It will be used as a liquidity pool against 
 the Mint Event income to enable the trading of tokens on our framework.
-Every Mint Event will release the MLQ tokens to all participants - they will 
-be distributed evenly after the total target sale amount of 17000 ETH has been reached.
+Every Mint Event will release the MLQ tokens to all participants.
+
 Planned Mint Events:
 Ethereum Mainnet
 xDai Ethereum Sidechain
@@ -332,6 +331,8 @@ The PYE Editor is a way to allow artists, designers,
 and all types of creatives to design new forms of 
 digital art.
 
+https://www.youtube.com/watch?v=4B3m7343M1c
+
 The tokens can interact with oracle information reflecting 
 live real world data. Futhermore, we can add verifiable random 
 data to each layer making each PYE token completely unique.
@@ -347,6 +348,8 @@ The PYE Token displays a bonus of 50% for the first buyer, the
 next buyer gets 49% displayed and they decrement for every following 
 buyer at a fixed rate per buyer
 ```
+
+
 This could incentivize customers to buy products quicker if they are 
 holder of the Dynamic Bonus PYE Token 
 
@@ -366,6 +369,7 @@ betting odds, or oracle odds can be included.
 The holders of the winning token share the 
 prize pool.
 ```
+<img src="https://ipfs.io/ipfs/QmQDbqptkodNryYU9ART8soQE5dGAcyYwurMzJQxxWF4gH/" size="120px">
 
 ## Trading Signals
 
