@@ -87,6 +87,9 @@ decentralized, fair & autonomous
 <img src="https://ipfs.io/ipfs/QmevQwvrszQX4eHa7v4QR9JphGGgDttmnUZ32Qm7VYLTNB" height="120px" />
 
 Using the native editor on the Fractio platform, users can create non-fungible, multilayer, interactive digital assets called PYE tokens. Real-time oracle data feeds and verifiable randomness are easily integrated into the token, so users are able to generate audio/visual assets that can react to, or even trigger, real world events. The layer editor makes this all possible without the need for code from the end user.
+
+<img src="https://ipfs.io/ipfs/QmcAcDpHCSSFNYd8HT4UxTjrTD9hZgymTDomvg1U8LxGft" height="120px" />
+
 The use cases for the PYE Token are nearly unlimited. A simple example is NFT artwork that changes the image displayed based upon the market price of a crypto asset such as bitcoin.
 Users of the Fractio framework can mint PYE tokens at any time. 
 Minting the PYE token requires platform fees in the form of Milq tokens (MLQ) and network fees.
