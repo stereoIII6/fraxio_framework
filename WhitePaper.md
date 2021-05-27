@@ -378,6 +378,8 @@ oracle data and transforms chosen price feeds into visual output of
 buying and selling opportunities on a chosen currency pair. It can even
 trigger external functions and perform a transaction if approved.
 
+
+
 ## NFT Games
 
 The NFT Gaming Space can utilize all types of digital interactive assets.
@@ -392,7 +394,7 @@ in collectibles. An athlete's image and stats can simply be pegged to
 real-world sports result feeds. It could also display his/her latest 
 post on social media.
 
-## Memes
+## Memes 
 
 The Blockchain space has a deeply rooted meme culture attached to it. Some 
 memes are so ubiquitous that they are simply priceless. Memes are going to 
