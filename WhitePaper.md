@@ -407,6 +407,8 @@ There is a meme of a celebrity and his
 last tweet gets displayed in a speech bubble.
 ```
 
+<img src="https://ipfs.io/ipfs/QmVeCLc7vsXTuxtGYmCdogj2uXhNtQ91q1f9pzrJoTgHB3" height="120px" />
+
 ## Music Albums
 
 The Pye Token can be utilized as music medium. It secures your media and only
