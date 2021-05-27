@@ -77,6 +77,8 @@ Our Framework empowers users to create digital asset classes
 that will revolutionize existing standards and develop one 
 that doesn't exist yet. 
 
+<img src="https://ipfs.io/ipfs/QmPJ8oCYk5FokpyiVmXyZGCS7rRpEL1GJ774ocw711bkHs" height="120px" />
+
 ## Ethos
 
 decentralized, fair & autonomous
