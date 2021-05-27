@@ -118,6 +118,9 @@ AVAX, Polygon, or other Ethereum Sidechains
 <img src="https://ipfs.io/ipfs/QmV8uLnmjKJvAThn6b3EqrQcBwKtNjsWXCZ32qxdQsXgVu" height="120px" />
 
 Using Fractio’s “Fractionizer” contract (FR-81369), users can lock their unique ERC-721 standard PYE token and create any specified number or FRX tokens, each one representative of an equal portion of the parent PYE token. FRX tokens conform to the ERC-20 standard and have a fixed amount that the user customizes when they lock their PYE into the contract. 
+
+<img src="https://ipfs.io/ipfs/QmTaPAkCfxNk94QTuTbShiywS2o81q6V3isHxgC2DUwgSM" height="120px" />
+
 FRX tokens are fungible tokens that are tied to the non-fungible value of a parent PYE token. If the creator decides to fractionize their parent PYE into 100 FRX tokens, each FRX will be representative of 1/100th of the parent PYE. The supply of specific FRX tokens is fixed, as determined at the time the parent PYE is locked into the fractionizer contract.
 Each FRX asset class has its own contract address, token name (MyPyeTokenName) and Symbol [FRX_MPTN], and gets minted onto the creator's address.
 Example:
