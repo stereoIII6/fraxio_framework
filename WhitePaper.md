@@ -2,7 +2,7 @@
 
 ## Fractio Framework - Digital Asset Factory
 
-<img src="https://ipfs.io/ipfs/QmV8uLnmjKJvAThn6b3EqrQcBwKtNjsWXCZ32qxdQsXgVu" height="120px" />
+<img src="https://ipfs.io/ipfs/Qmf3LzQNUsAiGHBgYwnZr4DSA3MR6SbtCNKSgfYqB7LbbZ" height="120px" />
 
 The Fractio Framework enables users to create interactive 
 digital assets that react to real time oracle data.
