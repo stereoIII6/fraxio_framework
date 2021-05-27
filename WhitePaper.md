@@ -331,7 +331,7 @@ The PYE Editor is a way to allow artists, designers,
 and all types of creatives to design new forms of 
 digital art.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4B3m7343M1c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<img src="https://ipfs.io/ipfs/QmcbfMjGoJ4iLCVK2Zc6M2fPj9c5Fj6hwwfDcVLNDYFAoq" height="120px" />
 
 The tokens can interact with oracle information reflecting 
 live real world data. Futhermore, we can add verifiable random 
@@ -369,7 +369,7 @@ betting odds, or oracle odds can be included.
 The holders of the winning token share the 
 prize pool.
 ```
-<img src="https://ipfs.io/ipfs/QmQDbqptkodNryYU9ART8soQE5dGAcyYwurMzJQxxWF4gH" size="120px" />
+<img src="https://ipfs.io/ipfs/QmQDbqptkodNryYU9ART8soQE5dGAcyYwurMzJQxxWF4gH" height="120px" />
 
 ## Trading Signals
 
