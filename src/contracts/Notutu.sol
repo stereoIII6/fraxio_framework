@@ -26,9 +26,7 @@ contract N0tUtu {
     constructor() public {
         
         // XDAI SETUP COMPLETE 
-        ethPriceFeed = AggregatorV3Interface(
-            0xa767f745331D267c7751297D982b050c93985627 // XDAI
-        );
+    
         btcPriceFeed = AggregatorV3Interface(
             0x6C1d7e76EF7304a40e8456ce883BC56d3dEA3F7d // XDAI
         );
