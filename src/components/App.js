@@ -1,26 +1,43 @@
+// React Dep Imports
 import React, { Component } from 'react';
+import { Provider } from "react-redux";
 import Web3 from "web3";
+import store from "./store";
+
+// CSS & Frontend Functions
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import { Button, Input, InputGroup, Form } from 'reactstrap';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Provider } from "react-redux";
-import store from "./store";
+
+
+// Import Actions
+import { getLayers, getPriceFeeds } from "./action/layerActions.js";
+
+
+// Import Components
 import Screen from './Screen';
 import MaskTwo from './subs/Editor/MaskTwo';
 import MaskThree from './subs/Editor/MaskThree';
 import TopMenu from './subs/Navigation/TopMenu';
-import { getLayers, getPriceFeeds } from "./action/layerActions.js";
-import './App.css';
+
+// Contract ABIs
 import PriceConsumerV3 from '../abis/PriceConsumerV3.json';
 import FujiConsumer from '../abis/FujiConsumer.json';
 import OracleNFT from "../abis/OracleNFT.json";
-
-
+import nftCreator from "../abis/PYE.json";
+import Factory from "../abis/Factory.json";
+import Fractionizer from "../abis/Fractionizer.json";
 
 // SMART CONTRACTS TEST NET
 const RinkPCAddress = '0x8Ba6488144d2430EC82301A42B7Dcf073211aB8b';
 const RinkPYEAddress = '0x99c6Cc73E23AFE69E3304A7715330047935776eB'; // UPDATED BUT KILL is Buggy
 const RinkFRXAddress = '';
+const RinkPYEnftCreatorAddress = '';
+const RinkFactoryAddress = '';
+const RinkFractionizerAddress = '';
+
 
 const AVAXPCAddress = '0x0fc02Fd016c4EA6EDCA7b6a3f06B8819DaF0a5E8';
 const AVAXPYEAddress = '0xA6345caA694846232AC9D257f1bDd3aA4D3c42e2';
@@ -81,11 +98,18 @@ class App extends Component {
     let Oracle;
     let PYEFreezer;
     let FRXionizer;
+    let PYEnftCreator;
+    let Factory;
+    // let Fractionizer;
+
     if (networkId === 4) {
       console.log(network);
       Oracle = new web3.eth.Contract(PriceConsumerV3.abi, RinkPCAddress);
       PYEFreezer = new web3.eth.Contract(OracleNFT.abi, RinkPYEAddress);
       FRXionizer = new web3.eth.Contract(PriceConsumerV3.abi, RinkFRXAddress);
+      PYEnftCreator = new web3.eth.Contract(nftCreator.abi, RinkFRXAddress);
+      Factory = new web3.eth.Contract(Factory.abi, RinkFRXAddress);
+      // Fractionizer = new web3.eth.Contract(Fractionizer.abi, RinkFRXAddress);
     }
     if (networkId === 80001) {
       console.log(network);

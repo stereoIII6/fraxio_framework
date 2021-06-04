@@ -9,31 +9,35 @@ class Team extends Component {
     state = {  }
     render() { 
         return ( <div>
-            <h1>This is Team Fractio ...</h1><hr></hr>
             <div className="row mb-5">
-                <div className="col-4" style={{background: sky}}><img src="../../../reo.png" alt="" style={{width: "100%"}} /></div>
-                <div className="col-8 pt-2" style={{ background: blue, color: fresh }}><b style={{ fontSize: "2em" }}>Aron <i>'stereoTYPE'</i> A.</b>
+                <div className="col-4 m-0 w-100" style={{background: sky}}></div>
+                <div className="col-8 pt-2 m-0 w-100" style={{ background: blue, color: fresh }}><b style={{ fontSize: "2em" }}>Aron <i>'stereoTYPE'</i> A.</b>
                 <p>Chief Digital Architect<br />
                 aron@fractio.xyz<br />
                 Germany, Berlin<br />
                 <a href="https://github.com/theD1617">theD1617@github</a><br/>
-                <i>Always </i></p></div>
+                <i>Always </i></p>
+                    <img src="../../../stereo.png" alt="" style={{ width: "180px", float: "right" }} /></div>
             </div>
             <div className="row mb-5">
-                <div className="col-8 pt-2" style={{background: purple, color: grey }}><b style={{fontSize: "2em"}}>Daniel 'codeK1LL3R' P.</b><p>Social Media Engineer<br />daniel@fractio.xyz<br /><a href="https://github.com/RIPMyLife">RIPMyLife@github</a></p></div>
-                <div className="col-4" style={{background: sky}}><img src="" alt="" /></div>
+                <div className="col-8 pt-2" style={{background: purple, color: grey }}><b style={{fontSize: "2em"}}>Daniel 'codeK1LL3R' P.</b><p>Social Media Engineer<br />daniel@fractio.xyz<br /><a href="https://github.com/RIPMyLife">RIPMyLife@github</a></p>
+                    <img src="daniel.png" alt="" style={{ width: "180px", float: "right" }} /></div>
+                <div className="col-4" style={{ background: sky }}></div>
             </div>
             <div className="row mb-5">
-                <div className="col-4" style={{background: sky}}><img src="" alt="" /></div>
-                <div className="col-8 pt-2" style={{background: fresh, color: purple }}><b style={{fontSize: "2em"}}>Irvin '1rvin' C.</b><p>Business &amp; Marketing Strategist<br />irvin@fractio.xyz<br /><a href="https://github.com/1rvinC">1rvinC@github</a></p></div>
+                <div className="col-4" style={{background: sky}}></div>
+                <div className="col-8 pt-2" style={{background: fresh, color: purple }}><b style={{fontSize: "2em"}}>Irvin '1rvin' C.</b><p>Business &amp; Marketing Strategist<br />irvin@fractio.xyz<br /><a href="https://github.com/1rvinC">1rvinC@github</a></p>
+                    <img src="irvin.png" alt="" style={{ width: "180px", float: "right" }} /></div>
             </div>
             <div className="row mb-5">
-                <div className="col-8 pt-2" style={{background: blue, color: fresh }}><b style={{fontSize: "2em"}}>Louell 'Alchemist21' S.</b><p>Technical &amp; Community Manager<br />louell@fractio.xyz<br /><a href="https://github.com/Alchemist21">Alchemist21@github</a></p></div>
-                <div className="col-4" style={{background: sky}}><img src="" alt="" /></div>
+                <div className="col-8 pt-2" style={{background: blue, color: fresh }}><b style={{fontSize: "2em"}}>Louell 'Alchemist21' S.</b><p>Technical Community Manager<br />louell@fractio.xyz<br /><a href="https://github.com/Alchemist21">Alchemist21@github</a></p>
+                    <img src="louell.png" alt="" style={{ width: "180px", float: "right" }}/></div>
+                <div className="col-4" style={{background: sky}}></div>
             </div>
             <div className="row mb-5">
-                <div className="col-4" style={{background: sky}} ><img src="" alt="" /></div>
-                <div className="col-8 pt-2" style={{background: grey, color: purple }}><b style={{fontSize: "2em"}}>Nathan 'xHitz' M.</b><p>Operational Security Manager<br />nathan@fractio.xyz<br /><a href="https://github.com/xHitz">xHitz@github</a></p></div>
+                <div className="col-4" style={{background: sky}} ></div>
+                <div className="col-8 pt-2" style={{background: grey, color: purple }}><b style={{fontSize: "2em"}}>Nathan 'xHitz' M.</b><p>Operational Security Manager<br />nathan@fractio.xyz<br /><a href="https://github.com/xHitz">xHitz@github</a></p>
+                    <img src="nathan.png" alt="" style={{ width: "180px", float: "right" }}/></div>
             </div>
             
         </div> );
