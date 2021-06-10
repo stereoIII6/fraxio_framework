@@ -47,6 +47,7 @@ pragma solidity ^0.6.6;
 //////////////////////////////////////////////////////////////////////////////////////
 
 import "./Fractionizer.sol";
+
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 // import "https://raw.githubusercontent.com/smartcontractkit/chainlink/master/evm-contracts/src/v0.6/VRFConsumerBase.sol";
@@ -89,10 +90,16 @@ contract Factory {
 //////////////////////////////////////////////////////////////////////////////////////
 
     constructor(uint256 _pin) public {
+
+
+        // Admin Account Setup
+        admin = payable(msg.sender); // Admin Address
+        pin = _pin; // Admin Password
+
         
-        admin = payable(msg.sender);
-        pin = _pin;
-        frxCount = frxCount + 1;
+        // frxCount = frxCount + 1;
+
+        // Price Feed Oracle Call
         ethPriceFeed = AggregatorV3Interface(
             0x8A753747A1Fa494EC906cE90E9f37563A8AF630e
         );
@@ -108,7 +115,7 @@ contract Factory {
     //////////////////////////////////////////////////////
     
     modifier onlyAdmin(uint256 _pin) {
-        require(admin == msg.sender, "not authorized");
+        require(admin == msg.sender, "not authorized"); // Only Contract Admin Authorized
         _;
     }
     
@@ -136,7 +143,13 @@ contract Factory {
     //////////////////////////////////////////////////////  
 
     
-    function nftSafe(address _nftAdr, uint256 _nftId, address _frxAdr, uint256 _amnt) private returns(bool, address, address, uint256, uint256){
+    function nftSafe(
+        address _nftAdr, // NFT Address
+        uint256 _nftId,  // NFT Id
+        address _frxAdr, // FRX Contract Address
+        uint256 _amnt
+        ) 
+    private returns(bool, address, address, uint256, uint256){
       IERC721 nft = IERC721(_nftAdr);
       nft.transferFrom(msg.sender,address(this), _nftId);
       safeMap[_nftAdr][_nftId][_frxAdr] = _amnt; 

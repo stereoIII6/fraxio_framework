@@ -108,7 +108,7 @@ class App extends Component {
       PYEFreezer = new web3.eth.Contract(OracleNFT.abi, RinkPYEAddress);
       FRXionizer = new web3.eth.Contract(PriceConsumerV3.abi, RinkFRXAddress);
       PYEnftCreator = new web3.eth.Contract(nftCreator.abi, RinkFRXAddress);
-      Factory = new web3.eth.Contract(Factory.abi, RinkFRXAddress);
+      // Factory = new web3.eth.Contract(Factory.abi, RinkFRXAddress);
       // Fractionizer = new web3.eth.Contract(Fractionizer.abi, RinkFRXAddress);
     }
     if (networkId === 80001) {
