@@ -17,7 +17,7 @@ export const SET_KEY_INACTIVE = "SET_KEY_INACTIVE";
 export const GET_FRAME = "GET_FRAME";
 export const LOAD_FRAMES = "LOAD_FRAMES";
 
-
+export const GET_ERC721_TX = "GET_ERC721_TX";
 
 export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";

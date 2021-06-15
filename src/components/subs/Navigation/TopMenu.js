@@ -67,7 +67,7 @@ class TopMenu extends Component {
                         <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="team_lnk" >Team</div>
                         <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="roadmap_lnk" >RoadMap</div>
                         <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="pyeditor_lnk" >PYEditor</div>
-                        <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="freezer_lnk" >Fractionize</div>
+                        <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="frx_lnk" >Fractionize</div>
                         <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="swap_lnk" >Swap</div>
                         <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="contact_lnk" >Contact</div>
                     </div>
