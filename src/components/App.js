@@ -38,6 +38,7 @@ const RinkFRXAddress = '';
 const RinkPYEnftCreatorAddress = '';
 const RinkFactoryAddress = '';
 const RinkFractionizerAddress = '';
+const RinkMLQAddress = '0xc28e24cddb16b729a25baa21e9d670033897ba1f';
 
 
 const AVAXPCAddress = '0x0fc02Fd016c4EA6EDCA7b6a3f06B8819DaF0a5E8';
@@ -95,12 +96,45 @@ class App extends Component {
 
     const accounts = await web3.eth.getAccounts();
     console.log("// AUTO init action",accounts[0]);
-    store.dispatch(getUsers(accounts));
+    
     //console.log(store);
 
     const network = await web3.eth.net.getNetworkType();
     const networkId = await web3.eth.net.getId()
     console.log("network", network, networkId);
+
+    let minABI = [
+      // balanceOf
+      {
+        "constant":true,
+        "inputs":[{"name":"_owner","type":"address"}],
+        "name":"balanceOf",
+        "outputs":[{"name":"balance","type":"uint256"}],
+        "type":"function"
+      },
+      // decimals
+      {
+        "constant":true,
+        "inputs":[],
+        "name":"decimals",
+        "outputs":[{"name":"","type":"uint8"}],
+        "type":"function"
+      }
+    ];
+    
+    let contract = new web3.eth.Contract(minABI,RinkMLQAddress);
+    async function getBalance() {
+      const myBalance = await contract.methods.balanceOf(accounts[0]).call();
+      console.log("Balancein",myBalance);
+      store.dispatch(getUsers(accounts, network, myBalance));
+      return myBalance;
+      
+    }
+    
+
+    const balance = getBalance();
+    
+    
     let Oracle;
     let PYEFreezer;
     let FRXionizer;

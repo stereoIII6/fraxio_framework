@@ -8,6 +8,8 @@ import {
 
 const initState = {
     users: [],
+    net: "",
+    bal:null,
     erc721s: [],
     loadingUsers: false,
     screenMode: "landing_lnk"
@@ -20,6 +22,8 @@ export default function (state = initState, action) {
             return {
                 ...state,
                 users: action.payload,
+                net: action.net,
+                bal: action.bal,
                 loadingUsers: false
             };
         case SET_SCREEN_MODE:

@@ -17,13 +17,21 @@ const RinkFACAddress = "";
 class Freezer extends Component {
 
     state = {
-        erc721TXs: []
+        NFT: null,
+        NFTID: 0,
+        FRXNAME: "",
+        FRXSYM: "",
+        ERCPEG: 0xc28e24cddb16b729a25baa21e9d670033897ba1f,
+        FRXSUPPLY: 0,
+        PEGPRICE: 0,
+        erc721TXs:[]
+
     }
 
     static propTypes = {
         getUsers: PropTypes.func,
         getWalletERC721: PropTypes.func,
-        getERC721s: PropTypes.array,
+        erc721s: PropTypes.array,
         loading: PropTypes.bool,
         users: PropTypes.array 
     }; 
@@ -55,7 +63,7 @@ class Freezer extends Component {
                 // Render Users Tokens
                 <Form>
                     <FormGroup>
-                        <h2> STEP 1 : Choose your ERC721 Assets</h2>
+                        <h3 style={{marginTop: "0"}}> STEP 1 : Choose your ERC721 Assets</h3>
                         
                         <Alert style={{width:"100%", height: "110px", overflow:"hidden", background: "ivory"}}>
                         {
@@ -76,14 +84,30 @@ class Freezer extends Component {
                             </div>
                         }
                         </Alert>
-                        <h2> STEP 2 : Choose Name &amp; Symbol for your Fractional Tokens</h2>
+                        <h3 style={{marginTop: "2em"}}> STEP 2 : Choose Name &amp; Symbol for your Fractional Tokens</h3>
                         <InputGroup>
-                            <Input type="text" placeholder="Fractional Token Name" />
-                            <Input type="text" placeholder="Fractional Token Symbol" />
+                            <Input type="text" placeholder="Fractional Token Name" style={{height: "3em"}}/>
+                            <Input type="text" placeholder="Fractional Token Symbol" style={{height: "3em"}}/>
                         </InputGroup>
-                        <h2> STEP 2 : Choose pegged Currency</h2>
+
+                        <h3 style={{marginTop: "2em"}}> STEP 2 : Choose Supply Cap &amp; Distribution Method</h3>
                         <InputGroup>
-                            <Input type="select" >
+                        <Input type="text" placeholder="Token Supply" style={{height: "3em"}}/>
+                            <Input type="select" style={{height: "3em"}}>
+                                <option id="default" >Choose Option</option>
+                                <option id="airdrop" >Self Mint</option>
+                                <option id="airdrop" >Airdrop</option>
+                                <option id="airdrop" >Device ID</option>
+                                <option id="airdrop" >Sale</option>
+                                <option id="airdrop" >Auction</option>
+                                <option id="airdrop" >Order Book</option>
+                                <option id="airdrop" >Pool</option>
+                            </Input>                            
+                        </InputGroup>
+                        <h3 style={{marginTop: "2em"}}> STEP 3 : Choose Price &amp; Currency</h3>
+                        <InputGroup>
+                        <Input type="text" placeholder="Price" style={{height: "3em"}}/>
+                            <Input type="select" style={{height: "3em", marginBottom: "3em"}}>
                                 <option id="MLQ" >MLQ</option>
                                 <option id="ETH" >ETH</option>
                                 <option id="DAI" >Dai</option>
@@ -96,27 +120,10 @@ class Freezer extends Component {
                                 <option id="custom">custom</option>
                             </Input> 
                         </InputGroup>
-                        <h2> STEP 2 : Choose Supply Cap &amp; Price for your Fractional Tokens</h2>
-                        <InputGroup>
-                            <Input type="text" placeholder="Fractio Token Total Supply" />
-                            <Input type="text" placeholder="Fractio Token Price" />
+                        <InputGroup >
+                        <Input type="button" id="violet" value="Approve" style={{height: "3em", fontSize: "2em"}}></Input>
+                        <Input type="button" id="grey" value="Submit" style={{height: "3em", fontSize: "2em"}}></Input>
                         </InputGroup>
-                        <h2> STEP 2 : Choose Distribution method for your Fractional Tokens</h2>
-                        <InputGroup>
-                            <Input type="select" >
-                                <option id="default" >Choose Option</option>
-                                <option id="airdrop" >Self Mint</option>
-                                <option id="airdrop" >Airdrop</option>
-                                <option id="airdrop" >Device ID</option>
-                                <option id="airdrop" >Sale</option>
-                                <option id="airdrop" >Auction</option>
-                                <option id="airdrop" >Order Book</option>
-                                <option id="airdrop" >Pool</option>
-                            </Input>                            
-                        </InputGroup>
-                        
-                        <Button>Approve</Button>
-                        <Button>Submit</Button>
                     </FormGroup>
                 </Form>
                 // Info Form 

@@ -5,10 +5,12 @@ import {
 } from "./types";
 
 
-export const getUsers = (feed) => {
-    console.log("ACTION // get users ", feed);
+export const getUsers = (feed, net, bal) => {
+    console.log("ACTION // get users ", feed, net, bal);
     return {
         type: LOAD_USERS,
+        net: net,
+        bal: bal,
         payload: feed
     }
 };

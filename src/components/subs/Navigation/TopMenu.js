@@ -15,7 +15,9 @@ class TopMenu extends Component {
         getUsers: PropTypes.func,
         setScreenMode: PropTypes.func,
         screenMode: PropTypes.string,
-        users: PropTypes.array
+        users: PropTypes.array,
+        net: PropTypes.string,
+        bal: PropTypes.string 
     };
     state = {
         screenMode: "about",
@@ -33,6 +35,7 @@ class TopMenu extends Component {
         const user = String(this.props.users[0]);
         const short = "0x"+user.charAt(2)+user.charAt(3)+user.charAt(4)+"..."+user.charAt(40)+user.charAt(41); 
         console.log(short);
+        const mlqBalance = this.props.bal;
         return (
             <header className="pb-3 mb-4 border-bottom">
                 <div className="row mb-2">
@@ -44,10 +47,10 @@ class TopMenu extends Component {
                     </div>
                     <div className="col" style={{ textAlign: "right" }}>
                         <div className="btn p-2 mr-1" onClick={this.onClick} style={{ background: sky, color: blue, borderRadius: "9px" }} id="mlk_lnk">
-                            0 MLK
+                            {`${mlqBalance / (10 ** 18)} MLQ`}
                         </div>
                         <div className="btn p-2 mr-1" style={{ background: grey, color: purple, borderRadius: "9px" }} id="net">
-                            network
+                            {this.props.net}
                         </div>
                         <div className="btn p-2 mr-1" onClick={this.onClick}
                             id="dashboard_lnk"
@@ -92,6 +95,8 @@ class TopMenu extends Component {
 }
 const mapStateToProps = state => ({
     screenMode: state.userState.screenMode,
-    users: state.userState.users
+    users: state.userState.users,
+    net: state.userState.net,
+    bal: state.userState.bal
 });
 export default connect(mapStateToProps, { getUsers, setScreenMode })(TopMenu);
