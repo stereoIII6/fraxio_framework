@@ -13,8 +13,6 @@ import Web3 from "web3";
 const RinkFRXAddress = "";
 const RinkFACAddress = "";
 
-const hardADR = "0x1Cd6F4D329D38043a6bDB3665c3a7b06F79B5242";
-const userTXList = `https://api-rinkeby.etherscan.io/api?module=account&action=tokennfttx&address=${hardADR}&startblock=0&endblock=999999999&sort=asc&apikey=G6QIM7PASIXPRDRV7KJVWQV196FU6T4KKT`;
 
 class Freezer extends Component {
 
@@ -26,13 +24,16 @@ class Freezer extends Component {
         getUsers: PropTypes.func,
         getWalletERC721: PropTypes.func,
         getERC721s: PropTypes.array,
-        loading: PropTypes.bool
+        loading: PropTypes.bool,
+        users: PropTypes.array 
     }; 
 
     
     
      
     componentDidMount(){
+        const hardADR = this.props.users[0];
+        const userTXList = `https://api-rinkeby.etherscan.io/api?module=account&action=tokennfttx&address=${hardADR}&startblock=0&endblock=999999999&sort=asc&apikey=G6QIM7PASIXPRDRV7KJVWQV196FU6T4KKT`;
         const ERC721s = fetch(userTXList)
         .then(response => response.json())
         .then(data => 
@@ -48,7 +49,7 @@ class Freezer extends Component {
     }
     render() { 
   
-
+        
         return ( <div>
             {
                 // Render Users Tokens
@@ -141,6 +142,7 @@ class Freezer extends Component {
 }
  
 const mapStateToProps = state => ({
-    erc721s: state.userState.erc721s
+    erc721s: state.userState.erc721s,
+    users: state.userState.users
 });
 export default connect(mapStateToProps, { getUsers, getWalletERC721 })(Freezer);

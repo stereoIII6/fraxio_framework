@@ -14,6 +14,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 // Import Actions
 import { getLayers, getPriceFeeds } from "./action/layerActions.js";
+import { getUsers } from "./action/userActions.js";
 
 
 // Import Components
@@ -73,6 +74,7 @@ class App extends Component {
   async componentWillMount() {
     await this.loadWeb3()
     await this.loadBlockChainData()
+
   }
 
   async loadWeb3() {
@@ -87,11 +89,15 @@ class App extends Component {
     }
     else window.alert("Use a Metamask");
   }
-
+  
   async loadBlockChainData() {
     const web3 = window.web3;
 
     const accounts = await web3.eth.getAccounts();
+    console.log("// AUTO init action",accounts[0]);
+    store.dispatch(getUsers(accounts));
+    //console.log(store);
+
     const network = await web3.eth.net.getNetworkType();
     const networkId = await web3.eth.net.getId()
     console.log("network", network, networkId);

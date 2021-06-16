@@ -16,6 +16,7 @@ const initState = {
 export default function (state = initState, action) {
     switch (action.type) {
         case LOAD_USERS:
+            console.log("RED // User", action.payload);
             return {
                 ...state,
                 users: action.payload,
