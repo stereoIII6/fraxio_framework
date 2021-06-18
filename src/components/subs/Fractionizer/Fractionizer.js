@@ -45,15 +45,12 @@ class Freezer extends Component {
         const ERC721s = fetch(userTXList)
         .then(response => response.json())
         .then(data => 
-        {
-            
+        {   
             const dataMin = data.result;
             console.log(dataMin);
             this.setState({erc721TXs: dataMin})
             this.props.getWalletERC721(dataMin);    
-        });
-        
-        
+        });       
     }
     render() { 
   
@@ -63,19 +60,19 @@ class Freezer extends Component {
                 // Render Users Tokens
                 <Form>
                     <FormGroup>
-                        <h3 style={{marginTop: "0"}}> STEP 1 : Choose your ERC721 Assets</h3>
                         
-                        <Alert style={{width:"100%", height: "110px", overflow:"hidden", background: "ivory"}}>
+                        
+                        <Alert style={{width:"100%", height: "520px", overflow:"hidden", background: "ivory"}}>
                         {
                         
                             // console.log(this.state.erc721TXs)
                             <div id="slideshow" style={{position: "relative", overflow: "hidden"}}>
-                                <div id="slider" style={{position: "relative", top: "0", left: "0", width: `${this.state.erc721TXs.length * 120}px`, height: "90px"}}>
+                                <div id="slider" style={{position: "relative", top: "0", left: "0", width: "auto" /* `${this.state.erc721TXs.length * 120}px` */, height: "500px"}}>
                                 {
                             
                                 this.state.erc721TXs.map(tx => 
                                 
-                                <div key={tx.contractAddress+"/"+tx.tokenID+""+tx.hash} style={{ width: "80px", height:"80px", overflow: "hidden", marginRight: "10px", float: "left", background:"lightgrey", padding:"5px",lineBreak: "anywhere", fontSize: "0.5em"}}>
+                                <div key={tx.contractAddress+"/"+tx.tokenID+""+tx.hash} style={{ width: "80px", height:"80px", overflow: "hidden", marginRight: "10px", marginBottom: "10px",float: "left", background:"lightgrey", padding:"5px",lineBreak: "anywhere", fontSize: "0.3em"}}>
                                     {tx.contractAddress+"/"+tx.tokenID}</div>
                                     
                                     )
@@ -84,16 +81,19 @@ class Freezer extends Component {
                             </div>
                         }
                         </Alert>
-                        <h3 style={{marginTop: "2em"}}> STEP 2 : Choose Name &amp; Symbol for your Fractional Tokens</h3>
-                        <InputGroup>
-                            <Input type="text" placeholder="Fractional Token Name" style={{height: "3em"}}/>
-                            <Input type="text" placeholder="Fractional Token Symbol" style={{height: "3em"}}/>
+<InputGroup>
+<Input type="button" value="USE THIS ERC721 TOKEN" style={{height: "3em", fontSize: "2em", color: "lightgrey",background:"#9f95c3", marginBottom: "2em"}}></Input>
+
+</InputGroup>
+                        
+                        <InputGroup style={{}}>
+                            <Input type="text" placeholder="Fractional Token Name" style={{height: "3em",fontSize:"2em", width:"70%"}}/>
+                            <Input type="text" placeholder="$YMBOL" style={{height: "3em",fontSize:"2em", width:"30%"}}/>
                         </InputGroup>
 
-                        <h3 style={{marginTop: "2em"}}> STEP 2 : Choose Supply Cap &amp; Distribution Method</h3>
                         <InputGroup>
-                        <Input type="text" placeholder="Token Supply" style={{height: "3em"}}/>
-                            <Input type="select" style={{height: "3em"}}>
+                        <Input type="text" placeholder="Token Supply" style={{height: "3em",fontSize:"2em",fontSize:"2em", width:"70%"}}/>
+                            <Input type="select" style={{height: "3em",fontSize:"2em",fontSize:"2em", width:"30%"}}>
                                 <option id="default" >Choose Option</option>
                                 <option id="airdrop" >Self Mint</option>
                                 <option id="airdrop" >Airdrop</option>
@@ -104,25 +104,25 @@ class Freezer extends Component {
                                 <option id="airdrop" >Pool</option>
                             </Input>                            
                         </InputGroup>
-                        <h3 style={{marginTop: "2em"}}> STEP 3 : Choose Price &amp; Currency</h3>
+
                         <InputGroup>
-                        <Input type="text" placeholder="Price" style={{height: "3em"}}/>
-                            <Input type="select" style={{height: "3em", marginBottom: "3em"}}>
+                        <Input type="text" placeholder="Token Price" style={{width:"85%",height: "3em",fontSize:"2em"}}/>
+                            <Input type="select" style={{height: "3em",fontSize:"2em",width:"15%", marginBottom: "3em", textAlign: "center"}}>
                                 <option id="MLQ" >MLQ</option>
                                 <option id="ETH" >ETH</option>
                                 <option id="DAI" >Dai</option>
                                 <option id="LINK" >Link</option>
                                 <option id="UNI" >Uni</option>
                                 <option id="USDC" >USDC</option>
-                                <option id="GRT" >TheGraph</option>
+                                <option id="GRT" >GRT</option>
                                 <option id="wFIL" >wFIL</option>
                                 <option id="wBTC" >wBTC</option>
                                 <option id="custom">custom</option>
                             </Input> 
                         </InputGroup>
                         <InputGroup >
-                        <Input type="button" id="violet" value="Approve" style={{height: "3em", fontSize: "2em"}}></Input>
-                        <Input type="button" id="grey" value="Submit" style={{height: "3em", fontSize: "2em"}}></Input>
+                        <Input type="button" value="Approve" style={{height: "3em", fontSize: "2em", color: "lightgrey",background:"#9f95c3"}}></Input>
+                        <Input type="button" value="Submit" style={{height: "3em", fontSize: "2em", color: "#9f95c3",background:"lightgrey"}}></Input>
                         </InputGroup>
                     </FormGroup>
                 </Form>
