@@ -35,7 +35,8 @@ class RoadMap extends Component {
     render() {
         return (<div style={{}} ><h1>Road Map</h1><hr></hr>
             <div style={{ position: "relative", top: 0, left: 0, width: "100%", height: "auto" }}>
-                <div style={{ position: "absolute", top: 10, left: 0, width: "100%", height: "auto" }} > <img src="../../../Roadmap.png" style={{ width: "100%" }} /></div>
+                <div style={{ position: "absolute", top: 10, left: 0, width: "100%", height: "auto" }} > 
+                </div>
                 {/*
                <div style={{ position: "absolute", top: 10, left: 0, width: "100%" }} > <img src="../../../bg.png" style={{ width: "100%" }} /></div>
                 
@@ -61,7 +62,7 @@ class RoadMap extends Component {
             </div>
             <div className="" style={{ float: "right" }}>
                 <ListGroup style={{ fontSize: "0.6em", padding: "3px", textAlign: "center", width: "300px" }}>
-                    <ListGroup style={{ padding: "0px", textAlign: "left", marginTop: "5px", color: "black" }}><h3>Q2 2021</h3>
+                    <ListGroup style={{ padding: "0px", textAlign: "left", marginTop: "5px", color: "black" }}>
                     <ListGroupItem>PYE Editor</ListGroupItem>
                         <ListGroupItem>IPFS Integration</ListGroupItem>
                         <ListGroupItem>The Graph Integration</ListGroupItem>
@@ -70,22 +71,14 @@ class RoadMap extends Component {
                         <ListGroupItem>3rd Party Viewer</ListGroupItem>
                         <ListGroupItem>Testnet Launch (Rinkeby)</ListGroupItem>
                     </ListGroup>
-                    <ListGroup style={{ padding: "0px", textAlign: "left", marginTop: "5px", color: "black"}}><h3>Q3 2021</h3>
+                    <ListGroup style={{ padding: "0px", textAlign: "left", marginTop: "5px", color: "black"}}>
                     <ListGroupItem>MLK Token</ListGroupItem>
                         <ListGroupItem>Creator Workshops</ListGroupItem>
                         <ListGroupItem>The Fractionizer</ListGroupItem>
                         <ListGroupItem>Pool Contract</ListGroupItem>
-                        <ListGroupItem>Governance</ListGroupItem>
                         <ListGroupItem>Marketplace</ListGroupItem>
                         <ListGroupItem>Operationa Security Tests</ListGroupItem>
                         <ListGroupItem>Mainnet Launch</ListGroupItem>
-                    </ListGroup>
-                    <ListGroup style={{ padding: "0px", textAlign: "left", marginTop: "5px", color: "black"}}><h3>Q4 2021</h3>
-                    <ListGroupItem>Initial PYE Voting</ListGroupItem>
-                        <ListGroupItem>Crosschain Verification</ListGroupItem>
-                        <ListGroupItem>xDai Bridge</ListGroupItem>
-                        <ListGroupItem>Operationa Security Tests</ListGroupItem>
-                        <ListGroupItem>xDai Launch</ListGroupItem>
                     </ListGroup>
                 </ListGroup>
             </div>
