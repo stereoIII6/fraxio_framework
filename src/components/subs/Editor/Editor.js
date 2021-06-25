@@ -3,28 +3,17 @@ import MaskOne from './MaskOne';
 import MaskTwo from './MaskTwo';
 import MaskThree from './MaskThree';
 class Editor extends Component {
-    state = {
-        page: 0,
-        data:{
-            name: "",
-            dimension: {
-                x: 900,
-                y: 900
-            },
-            artist: 0x0,
-            minted: 0,
-            id: ""
-        }
-      }
+    onNext = (e) => {
+        e.preventDefault();
+
+    }
     render() { 
         return ( 
-            this.state.page === 0 ? <div>
+        <div>
             <MaskOne />
-                <MaskTwo />
-                <MaskThree />
-            </div> :
-                this.state.page === 1 ? <div>PYE Layer Editor</div> :
-                    this.state.page === 2 ? <div>PYE Keyframe Editor</div> : null
+            <MaskTwo/>
+            <MaskThree/>
+        </div>
          );
     }
 }

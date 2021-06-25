@@ -31,6 +31,9 @@ export const SET_SCREEN_MODE = "SET_SCREEN_MODE";
 export const LOAD_PYES = "LOAD_PYES";
 export const PYES_LOADED = "PYES_LOADED";
 export const CREATE_PYE = "CREATE_PYE";
+export const DISCARD_PYE = "DISCARD_PYE";
+export const DRAFT_PYE = "DRAFT_PYE";
+export const MINT_PYE = "MINT_PYE";
 
 export const GET_FRAMES = "GET_FRAMES";
 

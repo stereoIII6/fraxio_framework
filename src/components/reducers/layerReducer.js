@@ -16,6 +16,7 @@ import {
 } from "../action/types";
 const initState = {
     layers: [],
+    workingLayer: {},
     priceFeed: {},
     loadingLayers: true,
     activeLayer: null,

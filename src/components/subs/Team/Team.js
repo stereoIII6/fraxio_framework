@@ -1,5 +1,6 @@
 import { findDangerousChanges } from 'graphql';
 import React, { Component } from 'react';
+const publicIp = require('public-ip');
 const fresh = "#9fe6c3ff";
 const sky = "#aad9d8ff";
 const purple = "#9f95c3ff";
@@ -14,7 +15,7 @@ class Team extends Component {
         document.getElementById("name").innerHTML = "<p>Aron Ayuk<br/>'stere0'</p>";
         document.getElementById("title").innerHTML = "<p>Chief Digital Architect<br/><i>'Chief Executive Officer'</i></p>";
         document.getElementById("motto").innerHTML = "talk less say more… read less think more… demand less be more…";
-        document.getElementById("about").innerHTML = "stere0 was born in Berlin Germany he started coding in 2000 and never stopped developing eversince ...";
+        document.getElementById("about").innerHTML = "stere0 was born in Berlin, Germany - he started coding in 2000 and never stopped developing ever since...";
         /* */   
     }
     danielHover = (e) => {
@@ -34,7 +35,7 @@ class Team extends Component {
         document.getElementById("name").innerHTML = "<p>Irvin Chen<br/><i>'1rvin'</i></p>";
         document.getElementById("title").innerHTML = "<p>Business &amp; Marketing Strategist<br/><i>'Treasury Master'</i></p>";
         document.getElementById("motto").innerHTML = "<h2>Stay curious ...</h2>";
-        document.getElementById("about").innerHTML = "Irvin is a systems coordinator and entrepreneur";
+        document.getElementById("about").innerHTML = "Irvin is a systems coordinator and entrepreneur.";
         /* */   
     }
     louellHover = (e) => {
@@ -42,9 +43,9 @@ class Team extends Component {
         console.log(e.target.id);
         document.getElementById("email").innerHTML = "louell_sala@fractio.xyz"; 
         document.getElementById("name").innerHTML = "<p>Louell Sala<br/><i>'Alchemist21'</i></p>";
-        document.getElementById("title").innerHTML = "<p>Technical Community Managert<br/><i>'Vice President'</i></p>";
-        document.getElementById("motto").innerHTML = "Never let anyone tell you that you don't deserve what you want";
-        document.getElementById("about").innerHTML = "Louell is a physician and web developer who enjoys long walks on the beach and fried chicken";
+        document.getElementById("title").innerHTML = "<p>Technical Community Manager<br/><i>'Vice President'</i></p>";
+        document.getElementById("motto").innerHTML = "Never let anyone tell you that you don't deserve what you want.";
+        document.getElementById("about").innerHTML = "Louell is a physician and web developer who enjoys long walks on the beach and fried chicken.";
         /* */   
     }
     nodeHover = (e) => {
@@ -54,7 +55,7 @@ class Team extends Component {
         document.getElementById("name").innerHTML = "<p>Nathan Misner<br/><i>'xnode'</i></p>" ;
         document.getElementById("title").innerHTML = "<p>Chief Information Security Officer<br/><i>'Technical Infrastructure'</i></p>";
         document.getElementById("motto").innerHTML = "<h2>Be Yourself.</h2>";
-        document.getElementById("about").innerHTML = "Whats up IP Enjoying Fractio Framework?";
+        document.getElementById("about").innerHTML = "<p>Whats up... Enjoying Fractio Framework?</p>";
         /* */   
     }
     leave = (e) => {

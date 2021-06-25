@@ -46,10 +46,10 @@ class TopMenu extends Component {
                         </div>
                     </div>
                     <div className="col" style={{ textAlign: "right" }}>
-                        <div className="btn p-2 mr-1" onClick={this.onClick} style={{ background: sky, color: blue, borderRadius: "9px" }} id="mlk_lnk">
+                        <div className="btn p-2 mr-1" onClick={this.onClick} style={{ background: sky, color: blue, borderRadius: "9px" }} id="wallet_lnk">
                             {`${mlqBalance / (10 ** 18)} MLQ`}
                         </div>
-                        <div className="btn p-2 mr-1" style={{ background: grey, color: purple, borderRadius: "9px" }} id="net">
+                        <div className="btn p-2 mr-1" onClick={this.onClick} style={{ background: grey, color: purple, borderRadius: "9px" }} id="settings_lnk">
                             {this.props.net}
                         </div>
                         <div className="btn p-2 mr-1" onClick={this.onClick}
@@ -73,12 +73,11 @@ class TopMenu extends Component {
                     </div></div>
                 <div className="row">
                     <div className="col-8 pb-0 mb-0">
-                        <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="about_lnk" >About</div>
-                        <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="team_lnk" >Team</div>
-                        <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="roadmap_lnk" >RoadMap</div>
                         <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="pyeditor_lnk" >PYEditor</div>
                         <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="frx_lnk" >Fractionize</div>
                         <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="swap_lnk" >Swap</div>
+                        <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="team_lnk" >Team</div>
+                        <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="roadmap_lnk" >Docs</div>
                         <div className="btn mr-1" style={{ color: grey, background: purple, fontWeight: 900, borderRadius: "9px" }} onClick={this.onClick} id="contact_lnk" >Contact</div>
                     </div>
 

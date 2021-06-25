@@ -30,7 +30,7 @@ class Landing extends Component {
                     </h3>
                 </div>
                 <div className="col-8">
-                    <YoutubeEmbed embedId="1717zs_e9zw" />
+                    <YoutubeEmbed embedId="EmZr0L0uris" />
                 </div>
             </div>
         </div> );
