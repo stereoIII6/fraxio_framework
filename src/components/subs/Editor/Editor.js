@@ -11,8 +11,8 @@ class Editor extends Component {
         return ( 
         <div>
             <MaskOne />
-            <MaskTwo/>
-            <MaskThree/>
+            <MaskTwo />
+            <MaskThree />
         </div>
          );
     }

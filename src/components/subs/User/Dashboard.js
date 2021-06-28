@@ -7,6 +7,13 @@ class Dashboard extends Component {
             <div className="col-5"><h3>Plattform Stats</h3></div>
             <div className="col-7">
                 <div><h3>Community</h3>
+
+                <p className="alert alert-info">
+                    <b>
+                    Testnet@ComingSoon</b><br/>
+                    Full.Xperimental.Fractio.Env<br/>
+                    COMING.SOON
+                </p>
                 
                 </div>
                 <div><h3>History</h3>

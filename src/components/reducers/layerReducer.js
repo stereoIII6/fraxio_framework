@@ -1,103 +1,54 @@
 import {
     LOAD_LAYERS,
-    LAYERS_LOADED,
-    ADD_LAYER,
-    DEL_LAYER,
-    BAKE_ALPHA,
-    BAKE_ORACLE,
-    MOVE_LAYER,
-    GET_FEED,
-    EDIT_LAYER,
-    TOGGLE_MODAL,
-    SET_LAYER_ACTIVE,
-    SET_LAYER_INACTIVE,
-    SET_KEY_ACTIVE
+    BAKE_FS ,   
+    BAKE_ORACLE ,
+    BAKE_EXT ,  
+    ADD_LAYER ,
+    DEL_LAYER ,
+    EDIT_LAYER ,
+    MOVE_LAYER 
 
 } from "../action/types";
 const initState = {
-    layers: [],
-    workingLayer: {},
-    priceFeed: {},
+    layers: [{layerID:0}],
+    workingLayer: {
+        booly: false,
+        layerID: 0,
+        layerType: "",
+        layerOracle: {
+            type: "",
+            name: "",
+            stamp: 0,
+        },
+        layerFS: {
+            user:"",
+            pye:"",
+            file:"",
+            url:""
+        },
+        layerName: "",
+        layerExternal: {
+            abi: {},
+            adr: 0x0,
+            function: "",
+            data: {}
+        },
+        keys:[]
+    },
     loadingLayers: true,
-    activeLayer: null,
-    activeKey: 2,
-    isOpen: false
 };
 
 export default function (state = initState, action) {
     switch (action.type) {
-        case TOGGLE_MODAL:
-            return {
-                ...state,
-                isOpen: action.payload,
-                layers: [...state.layers]
-            };
-        case SET_LAYER_ACTIVE:
-            return {
-                ...state,
-                activeLayer: action.payload,
-                // layers: [...state.layers]
-            };
-        case SET_LAYER_INACTIVE:
-            return {
-                ...state,
-                activeLayer: null,
-                layers: [...state.layers]
-            };
-        case SET_KEY_ACTIVE:
-            return {
-                ...state,
-                activeKey: action.payload,
 
-            };
-        case LOAD_LAYERS:
-            return {
-                ...state,
-                loadingLayers: true
-            };
-        case LAYERS_LOADED:
-            return {
-                ...state,
-                loadingLayers: false,
-                layers: [...state.layers]
-            };
         case ADD_LAYER:
-            console.log("reduced add layer", action.payload);
+            console.log("add RED // " + action.payload);
             return {
-                ...state,
-                layers: [...state.layers, action.payload]
-            };
-        case DEL_LAYER:
-            console.log("reduced delete layer", action.payload);
-            return {
-                ...state,
-                layers: action.payload
-            };
-        case EDIT_LAYER:
-            console.log("reduced edit layer", action.payload);
-            return {
-                ...state,
-                layers: action.payload
-            };
-        case BAKE_ALPHA:
-            console.log("reduced bakeAlpha layer", action.payload);
-            return {
-                ...state,
-                layers: action.payload
-            };
+                state,
+                layers: [...state.layers, action.payload],
+                workingLayer: action.payload
+            }
 
-        case BAKE_ORACLE:
-            console.log("reduced bakeAlpha layer", action.payload);
-            return {
-                ...state,
-                layers: action.payload
-            };
-        case GET_FEED:
-            console.log("reduced price feed // ", action.payload);
-            return {
-                ...state,
-                priceFeed: action.payload
-            };
         default:
             return state;
     }
