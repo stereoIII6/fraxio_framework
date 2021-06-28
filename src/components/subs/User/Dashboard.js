@@ -40,7 +40,6 @@ class Dashboard extends Component {
                 <br />
                 Hello@World
               </p>
-              >>>>>>> 4dbc7dd977655bef6f7fb6c460e81fbc259564e1
               <p className="alert alert-info">
                 <b>Testnet@ComingSoon ...</b>
                 <br />
