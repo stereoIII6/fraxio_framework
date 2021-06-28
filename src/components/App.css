@@ -6,6 +6,8 @@ svg, path, img {
   user-select: none;
 }
 body {font-family: "Comfortaa";}
+h1,h2,h3 {font-family: "Kanit"}
+#code {font-family: "Cutive Mono"}
 a{color: "white"; text-decoration: none;}
 .list-group-item{padding-top:4px; padding-bottom:5px ;color:#aad9d8ff; background: #7c9cb6ff; border-radius: 9px; border:0; margin:1px}
 #screen{min-height: 800px;}

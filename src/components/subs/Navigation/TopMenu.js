@@ -42,7 +42,7 @@ class TopMenu extends Component {
                     <div className="col">
                         <div className="d-flex align-items-center text-dark text-decoration-none" >
                             <img src="../../../logo.png" alt="" style={{ width: "46px" }} onClick={this.onClick} id="landing_lnk" />
-                            <h1 style={{ margin: "8px 0em 3px 20px" }} onClick={this.onClick} id="landing_lnk">Fractio.xyz</h1>
+                            <div style={{ margin: "8px 0em 3px 20px", fontSize: "3em"}} onClick={this.onClick} id="landing_lnk">Fractio.xyz</div>
                         </div>
                     </div>
                     <div className="col" style={{ textAlign: "right" }}>

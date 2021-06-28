@@ -56,16 +56,6 @@ const purple = "#d1cfd5ff";
 const grey = "#e2e3dbbf";
 const blue = "#7c9cb6ff";
 
-const IpfsHttpClient = require("ipfs-http-client");
-
-const ipfs = IpfsHttpClient({
-  host: "ipfs.infura.io",
-  port: "5001",
-  protocol: "https",
-});
-// const ipfs = IpfsHttpClient('localhost', '5001', { protocol: 'http' });
-// console.log(ipfs);
-
 class App extends Component {
   async componentWillMount() {
     await this.loadWeb3();
@@ -133,10 +123,11 @@ class App extends Component {
 
     if (networkId === 4) {
       console.log(network);
-      Oracle = new web3.eth.Contract(PriceConsumerV3.abi, RinkPCAddress);
-      PYEFreezer = new web3.eth.Contract(OracleNFT.abi, RinkPYEAddress);
-      FRXionizer = new web3.eth.Contract(PriceConsumerV3.abi, RinkFRXAddress);
-      PYEnftCreator = new web3.eth.Contract(nftCreator.abi, RinkFRXAddress);
+
+      // Oracle = new web3.eth.Contract(PriceConsumerV3.abi, RinkPCAddress);
+      // PYEFreezer = new web3.eth.Contract(OracleNFT.abi, RinkPYEAddress);
+      // Fractionizer = new web3.eth.Contract(PriceConsumerV3.abi, RinkFRXAddress);
+      // PYE = new web3.eth.Contract(PYE.abi, RinkPYEAddress);
       // Factory = new web3.eth.Contract(Factory.abi, RinkFRXAddress);
       // Fractionizer = new web3.eth.Contract(Fractionizer.abi, RinkFRXAddress);
     }
