@@ -10,7 +10,7 @@ import {
   discardPye,
 } from "../../action/pyeActions";
 import { addLayer } from "../../action/layerActions";
-
+/* 
 const IpfsHttpClient = require("ipfs-http-client");
 
 const ipfs = IpfsHttpClient({
@@ -18,7 +18,7 @@ const ipfs = IpfsHttpClient({
   port: "5001",
   protocol: "https",
 });
-
+/* */
 class LayerInput extends Component {
   state = {
     layerType: "empty",
@@ -37,7 +37,7 @@ class LayerInput extends Component {
     addLayer: PropTypes.func,
     layers: PropTypes.array,
   };
-
+  /*
   captureFile = (e) => {
     e.preventDefault();
     // console.log("file captured");
@@ -125,7 +125,7 @@ class LayerInput extends Component {
       this.props.addLayer(newLayer);
     }
   };
-
+/* */
   handleClick = (e) => {
     document.getElementById("upload").click();
     document.getElementById("upload").onchange = () => {
@@ -162,7 +162,7 @@ class LayerInput extends Component {
 
     return (
       <div>
-        <Form onSubmit={this.submitFile}>
+        <Form onSubmit={console.log("wow") /*this.submitFile*/}>
           <InputGroup bssize="normal">
             <Input
               type="select"
