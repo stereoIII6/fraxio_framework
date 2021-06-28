@@ -1,37 +1,44 @@
 import React, { Component } from 'react';
+import Slideshow from './SlideShow';
+import { Button } from 'reactstrap';
 import "./styles.css";
 import YoutubeEmbed from "./YoutubeEmbed";
 class Landing extends Component {
-    state = {  }
+
+
+
     render() { 
         return ( <div>
-            <div className="slideshow" style={{ position: "relative", top: "0", background: "tomato", height: "220px", marginBottom:"2em", overflow: "hidden" }}>
-                <div className="slider" style={{ position: "relative", top: "0" , left: "0", width: "400%", height: "220px", background: "lime"}}>
-                    <div className="slide" id="slide1" style={{ textAlign: "center", paddingTop: "3em", float: "left", width:"25%", height: "220px", overflow: "hidden", background: "url('./one.png')" }}>
-                        <h2 style={{ background: "none", color: "#9fe6c3", width: "auto"}} >GROWING INTO THE FUTURE ...</h2>
-                    </div>
-                    <div className="slide" id="slide2" style={{ float: "left", width: "25%", height: "220px", overflow: "hidden", background: "lightblue" }}>
-                        <img src="./two.png" alt="" style={{ height: "220px" }} />
-                    </div>
-                    <div className="slide" id="slide3" style={{ float: "left", width: "25%", height: "220px", overflow: "hidden", background: "orange" }}>
-                        <img src="./three.png" alt="" style={{ height: "220px" }} />
-                    </div>
-                    <div className="slide" id="slide3" style={{ float: "left", width: "25%", height: "220px", overflow: "hidden", background: "lightblue" }}>
-                        <img src="./four.png" alt="" style={{ height: "220px" }} />
-                    </div>
-                </div>
-            </div>
-            <h1 style={{ fontSize: "5em", fontWeight: "900", marginBottom: "1em", background: "#9f95c3", color: "#e2e3db", textAlign: "center", borderRadius : "9px"}}>GIVE ME SOME MILQ</h1>
-            <div className="row">
-                <div className="col-4" style={{ opacity:"1"}}>
-                    <h1>Welcome to the Fractio Framework </h1>
-                    <h3>
+            <div style={{ position: "relative" }}><Slideshow /></div>
+            
 
-                    </h3>
-                </div>
+            <h1 style={{ fontSize: "5em", fontWeight: "900", marginTop: "250px", marginBottom: "1em", background: "#9f95c3", color: "#e2e3db", textAlign: "center", borderRadius : "9px"}}>GIVE ME SOME MLQ</h1>
+            <div className="row">
+                
                 <div className="col-8">
                     <YoutubeEmbed embedId="1717zs_e9zw" />
                 </div>
+
+                <div className="col-4" style={{ opacity: "1" }}>
+                    <p>Welcome to the Fractio Framework </p>
+                    <p>
+
+                    </p>
+                </div>
+            </div>
+            <div className="row">
+                <div style={{ textAlign: "center", padding: "2em" , marginTop: "2em"}} className="col alert">
+                    <h1>PYEditor</h1><img style={{marginTop: "4em", marginBottom: "2em"}} src="./PYE_Logo.png" alt="" />
+                    <Button>Create PYE</Button>
+                    </div>
+                    <div style={{ textAlign: "center", padding: "2em", marginTop: "2em"}} className="col alert">
+                        <h1>FRXionizer</h1><img style={{marginTop: "4em", marginBottom: "2em"}} src="./FRX_Logo.png" alt="" />
+                        <Button>FRXionize</Button>
+                        </div>
+                        <div style={{ textAlign: "center", padding: "2em", marginTop: "2em"}} className="col alert">
+                            <h1>MLQuidity</h1><img style={{marginTop: "2em", marginBottom: "2em"}} src="./MLQ_Logo.png" alt="" />
+                            <Button>Provide MLQ</Button>
+                            </div>
             </div>
         </div> );
     }
