@@ -16,7 +16,7 @@ class Landing extends Component {
             <div className="row">
                 
                 <div className="col-8">
-                    <YoutubeEmbed embedId="1717zs_e9zw" />
+                    <YoutubeEmbed embedId="EmZr0L0uris" />
                 </div>
 
                 <div className="col-4" style={{ opacity: "1" }}>

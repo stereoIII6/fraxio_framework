@@ -7,7 +7,7 @@ import Team from './subs/Team/Team';
 import About from './subs/About/About';
 import Contact from './subs/Contact/Contact.js';
 import RoadMap from './subs/RoadMap/RoadMap.js';
-import Freezer from './subs/Freezer/Freezer.js';
+import Fractionizer from './subs/Fractionizer/Fractionizer.js';
 import Swap from './subs/Swap/Swap.js';
 import Landing from './subs/Landing/Landing.js';
 import Account from './subs/User/Account.js';
@@ -29,7 +29,7 @@ class Screen extends Component {
                 this.props.screenMode === "contact_lnk" ? <Contact /> :
                 this.props.screenMode === "roadmap_lnk" ? <RoadMap /> :
                 this.props.screenMode === "swap_lnk" ? <Swap />:
-                this.props.screenMode === "freezer_lnk" ? <Freezer /> :
+                this.props.screenMode === "frx_lnk" ? <Fractionizer /> :
                 this.props.screenMode === "team_lnk" ? <Team /> :
                 this.props.screenMode === "account_lnk" ? <Account /> :
                 this.props.screenMode === "wallet_lnk" ? <Wallet /> :
