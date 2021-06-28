@@ -19,6 +19,7 @@ class Layer extends Component {
     layers: PropTypes.array,
   };
   onEditLayer = (e) => {};
+  onDeleteLayer = (e) => {};
   render() {
     console.log(this.props.layerid);
     const id = this.props.layerid;
