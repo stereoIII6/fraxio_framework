@@ -18,7 +18,7 @@ class Layer extends Component {
     workingLayer: PropTypes.object,
     layers: PropTypes.array,
   };
-
+  onEditLayer = (e) => {};
   render() {
     console.log(this.props.layerid);
     const id = this.props.layerid;
@@ -105,6 +105,7 @@ class Layer extends Component {
                 height: "28px",
                 paddingTop: "0px",
               }}
+              onClick={this.onEditLayer}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -130,6 +131,7 @@ class Layer extends Component {
                 height: "28px",
                 paddingTop: "0px",
               }}
+              onClick={this.onDeleteLayer}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
