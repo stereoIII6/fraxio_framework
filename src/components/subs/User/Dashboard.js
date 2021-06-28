@@ -15,6 +15,33 @@ class Dashboard extends Component {
               <h3>Community</h3>
 
               <p className="alert alert-info">
+                <b>Testnet@ComingSoon</b>
+                <br />
+                Full.Xperimental.Fractio.Env
+                <br />
+                COMING.SOON
+              </p>
+            </div>
+            <div>
+              <h3>History</h3>
+              <p className="alert alert-info">
+                <b>Fractio@Tachyon</b>
+                <br />
+                Filecoin.Launchpad.Accellerator.Program
+                <br />
+                CohortII.2021.YEAH
+              </p>
+              <p className="alert alert-info">
+                <b>Fractio@Delaware</b>
+                <br />
+                Founded.CCorp.062021.FractioXYZ
+                <br />
+                Feet@Ground.Mind@Moon
+                <br />
+                Hello@World
+              </p>
+              >>>>>>> 4dbc7dd977655bef6f7fb6c460e81fbc259564e1
+              <p className="alert alert-info">
                 <b>Testnet@ComingSoon ...</b>
                 <br />
                 Full.Xperimental.Fractio.Env
