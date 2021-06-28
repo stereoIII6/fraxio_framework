@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { connect, dispatch } from "react-redux";
 import {getPyeAssets, getPyeData, createPye, discardPye} from "../../action/pyeActions";
+import {} from "../../action/layerActions";
 import { Button, InputGroup, Input, Form } from 'reactstrap';
 import Layers from './Layers';
 class MaskTwo extends Component {
     static propTypes = {
-        workingPYE: PropTypes.object
+        workingPYE: PropTypes.object,
+        workingLayer: PropTypes.object
     };
     state = {}
     onDiscard = (e) => {
@@ -37,7 +39,8 @@ class MaskTwo extends Component {
 }
 
 const mapStateToProps = state => ({
-    workingPYE: state.pyeState.workingPYE
+    workingPYE: state.pyeState.workingPYE,
+    workingLayer: state.layerState.workingLayer
 });
  
 export default connect(mapStateToProps, { getPyeAssets,getPyeData,createPye, discardPye })(MaskTwo);

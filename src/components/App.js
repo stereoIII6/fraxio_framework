@@ -13,7 +13,6 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 
 // Import Actions
-import { getLayers, getPriceFeeds } from "./action/layerActions.js";
 import { getUsers } from "./action/userActions.js";
 
 
@@ -176,11 +175,12 @@ class App extends Component {
 
 
     if (networkId !== 1) {
-      const result = await Oracle.methods.getLatestPrices().call();
-      console.log(result, Date());
-      store.dispatch(getPriceFeeds(result));
+      //const result = await Oracle.methods.getLatestPrices().call();
+      //console.log(result, Date());
+      //store.dispatch(getPriceFeeds(result));
     }
     else {
+      /*
       const result = [];
       const ethCall = await Oracle.methods.requestpriceFeed("0x34195E3eD889BBe21a532A48Ec90A845f65b9dFA", "b5070ea61b2f4405a833c25ac5b4812e").send({ from: accounts[0] });
       result[0] = await Oracle.methods.priceFeed().call();
@@ -196,108 +196,18 @@ class App extends Component {
       }
       console.log(results, Date());
       store.dispatch(getPriceFeeds(results));
+      /* */
     }
 
 
 
   }
   componentDidMount() {
-    store.dispatch(getLayers());
+    // store.dispatch(getLayers());
   }
 
-  state = {
-    imageURL: null,
-    buffer: null,
-    check: "orange",
-    urlList: []
-  }
 
-  captureFile = (e) => {
-    e.preventDefault();
-    // console.log("file captured");
-    const file = e.target.files[0];
-    const reader = new window.FileReader();
-    reader.readAsArrayBuffer(file);
-    reader.onloadend = () => {
-      // console.log("Buffer :", Buffer(reader.result));
-      this.setState({ buffer: Buffer(reader.result) })
-    }
-  }
-
-  submitFile = (e) => {
-    e.preventDefault();
-    // console.log("file submitted");
-    // console.log(this.state.buffer);
-
-    if (this.state.buffer) {
-      ipfs.add(this.state.buffer).then((result, err) => {
-
-        console.log('Ipfs Result', result);
-
-        if (err) {
-          // console.error(err);
-          return
-        }
-        this.setState({ imageURL: result.path, check: "orange", urlList: [...this.state.urlList, result.path] })
-        // console.log(this.state.imageURL);
-      });
-
-    }
-  }
-
-  copy = (e) => {
-    e.preventDefault();
-    console.log("copied");
-    this.setState({ check: "mediumseagreen" })
-  }
-
-  fixLayer = (e) => {
-    e.preventDefault();
-    console.log("layercount ", this.state.layers.length);
-    if (this.state.layers.length === 0) {
-      console.log("empty");
-      this.setState({
-        layers: [
-          {
-            path: document.getElementById('path').value,
-            key: this.state.layerCount,
-            edit: null
-          }
-        ], layerCount: 1
-      });
-    }
-    else {
-      this.setState({
-        layers: [
-          ...this.state.layers, // SPREAD PREVIOUS LAYERS
-          {
-            path: document.getElementById('path').value,
-            key: this.state.layerCount,
-            edit: null
-          }
-        ], layerCount: this.state.layerCount + 1
-      });
-    }
-    console.log(this.state.layerCount, this.state.layers)
-  }
-  animateLayer = (e) => {
-    e.preventDefault();
-  }
-  setEdit = (e) => {
-    e.preventDefault();
-    console.log(this.state.layers[e.target.id]);
-  }
-  deleteLayer = (e) => {
-    e.preventDefault();
-    console.log(this.state.layers.length);
-    if (this.state.layers.length === 1) {
-      console.log("last one");
-      this.setState({ layers: [], layerCount: 0 })
-    }
-    else {
-      console.log("rearrange", e.target.id);
-    }
-  }
+  
 
   render() {
 
@@ -362,7 +272,7 @@ class App extends Component {
                     : null}
 
 
-                </main> */ }
+                </main> /* */ }
           </div>
 
 

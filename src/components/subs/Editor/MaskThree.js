@@ -14,7 +14,7 @@ class MaskThree extends Component {
     state = {}
     render() {
         return (
-            this.props.workingPYE.booly && this.props.workingLayer.booly ? 
+            this.props.workingPYE.booly /* && this.props.workingLayer.booly */ ? 
             <div>
                 <h1 className="m-0 p-0">PYE Keyframe Editor</h1>
                 <hr></hr>
