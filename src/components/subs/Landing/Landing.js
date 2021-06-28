@@ -40,6 +40,7 @@ class Landing extends Component {
             style={{
               textAlign: "center",
               padding: "2em",
+              paddingLeft: "1em",
               marginTop: "2em",
               background: "white",
             }}
@@ -47,7 +48,7 @@ class Landing extends Component {
           >
             <h1>PYEditor</h1>
             <img
-              style={{ marginTop: "4em", margin: "2em" }}
+              style={{ marginTop: "4em", margin: "2em", marginLeft: "1em" }}
               src="./PYE_Logo.png"
               alt=""
             />
