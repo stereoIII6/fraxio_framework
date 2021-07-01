@@ -40,25 +40,6 @@ class Landing extends Component {
             style={{
               textAlign: "center",
               padding: "2em",
-              paddingLeft: "1em",
-              marginTop: "2em",
-              background: "white",
-            }}
-            className="col-3 alert"
-          >
-            <h1>PYEditor</h1>
-            <img
-              style={{ marginTop: "4em", margin: "2em", marginLeft: "1em" }}
-              src="./PYE_Logo.png"
-              alt=""
-            />
-            <Button>Create PYE</Button>
-          </div>
-          <div className="col-1"></div>
-          <div
-            style={{
-              textAlign: "center",
-              padding: "2em",
               marginTop: "2em",
               background: "white",
             }}
@@ -72,6 +53,26 @@ class Landing extends Component {
             />
             <Button>FRXionize</Button>
           </div>
+          <div className="col-1"></div>
+          <div
+            style={{
+              textAlign: "center",
+              padding: "2em",
+              paddingLeft: "1em",
+              marginTop: "2em",
+              background: "white",
+            }}
+            className="col-4 alert"
+          >
+            <h1>PYEditor</h1>
+            <img
+              style={{ marginTop: "4em", margin: "2em", marginLeft: "1em" }}
+              src="./PYE_Logo.png"
+              alt=""
+            />
+            <Button>Create PYE</Button>
+          </div>
+
           <div className="col-1"></div>
           <div
             style={{

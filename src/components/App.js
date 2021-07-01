@@ -16,25 +16,23 @@ import { getUsers } from "./action/userActions.js";
 
 // Import Components
 import Screen from "./Screen";
-import MaskTwo from "./subs/Editor/MaskTwo";
-import MaskThree from "./subs/Editor/MaskThree";
+import Won from "./subs/Surveys/Won.js";
 import TopMenu from "./subs/Navigation/TopMenu";
 
 // Contract ABIs
 import PriceConsumerV3 from "../abis/PriceConsumerV3.json";
 import FujiConsumer from "../abis/FujiConsumer.json";
 import OracleNFT from "../abis/OracleNFT.json";
-import nftCreator from "../abis/PYE.json";
+import PYEBaker from "../abis/PYE.json";
 import Factory from "../abis/Factory.json";
 import Fractionizer from "../abis/Fractionizer.json";
+import PriceFeed from "../abis/PriceFeed.json";
 
 // SMART CONTRACTS TEST NET
-const RinkPCAddress = "0x8Ba6488144d2430EC82301A42B7Dcf073211aB8b";
+const RinkPCAddress = "0xE9285b705B9A2cCD2ec91c8502D9B4c4518d8685";
+const RinkPFAddress = "0xc8Ff1b455E16B8Fb58aB3EAB9a539a14605068B0";
 const RinkPYEAddress = "0x99c6Cc73E23AFE69E3304A7715330047935776eB"; // UPDATED BUT KILL is Buggy
 const RinkFRXAddress = "";
-const RinkPYEnftCreatorAddress = "";
-const RinkFactoryAddress = "";
-const RinkFractionizerAddress = "";
 const RinkMLQAddress = "0xc28e24cddb16b729a25baa21e9d670033897ba1f";
 
 const AVAXPCAddress = "0x0fc02Fd016c4EA6EDCA7b6a3f06B8819DaF0a5E8";
@@ -50,11 +48,11 @@ const xDaiPCAddress = "0x7503508AC329901F9f99390BAc069BC78Df81A66";
 const xDaiPYEAddress = "0xA8A5F4AC446C2a348fC6e7850F6BC4FC0a651920";
 const xDaiFRXAddress = "";
 
-const fresh = "#9fe6c3ff";
-const sky = "#aad9d8ff";
-const purple = "#d1cfd5ff";
-const grey = "#e2e3dbbf";
-const blue = "#7c9cb6ff";
+const fresh = "#9fe6c3";
+const sky = "#aad9d8";
+const purple = "#d1cfd5";
+const grey = "#e2e3db";
+const blue = "#7c9cb6";
 
 class App extends Component {
   async componentWillMount() {
@@ -116,20 +114,19 @@ class App extends Component {
 
     let Oracle;
     let PYEFreezer;
+    let PYECreator;
+    let FRX;
     let FRXionizer;
-    let PYEnftCreator;
-    let Factory;
-    // let Fractionizer;
+    let PriceFeeds;
 
     if (networkId === 4) {
       console.log(network);
-
-      // Oracle = new web3.eth.Contract(PriceConsumerV3.abi, RinkPCAddress);
-      // PYEFreezer = new web3.eth.Contract(OracleNFT.abi, RinkPYEAddress);
-      // Fractionizer = new web3.eth.Contract(PriceConsumerV3.abi, RinkFRXAddress);
-      // PYE = new web3.eth.Contract(PYE.abi, RinkPYEAddress);
-      // Factory = new web3.eth.Contract(Factory.abi, RinkFRXAddress);
-      // Fractionizer = new web3.eth.Contract(Fractionizer.abi, RinkFRXAddress);
+      PriceFeeds = new web3.eth.Contract(PriceFeed.abi, RinkPFAddress);
+      Oracle = new web3.eth.Contract(PriceConsumerV3.abi, RinkPCAddress);
+      PYEFreezer = new web3.eth.Contract(OracleNFT.abi, RinkPYEAddress);
+      PYECreator = new web3.eth.Contract(PYEBaker.abi, RinkPYEAddress);
+      FRX = new web3.eth.Contract(Factory.abi, RinkFRXAddress);
+      FRXionizer = new web3.eth.Contract(Fractionizer.abi, RinkFRXAddress);
     }
     if (networkId === 80001) {
       console.log(network);
@@ -154,9 +151,10 @@ class App extends Component {
     console.log(web3.eth);
 
     if (networkId !== 1) {
-      //const result = await Oracle.methods.getLatestPrices().call();
-      //console.log(result, Date());
-      //store.dispatch(getPriceFeeds(result));
+      // const result1 = await Oracle.methods.getLatestPrices().call();
+      // const result2 = await PriceFeeds.methods.daiFeed().call();
+      // console.log(result1, result2, Date());
+      // store.dispatch(getPriceFeeds(result));
     } else {
       /*
       const result = [];

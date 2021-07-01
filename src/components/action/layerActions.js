@@ -7,23 +7,22 @@ import {
   BAKE_FS,
   BAKE_ORACLE,
   BAKE_EXT,
+  UPDATE_LAYER,
+  LOAD_WORK_LAYER,
 } from "./types";
-/* 
-export const getLayers = () => (dispatch) => {
-    console.log("action get layers");
-    dispatch(setLoadLayer());
+
+export const loadLayer2work = (layer) => {
+  return {
+    type: LOAD_WORK_LAYER,
+    payload: layer,
+  };
 };
 
-export const getPriceFeeds = (feed) => {
-    console.log("action get prices // ", feed);
-    return {
-        type: GET_FEED,
-        payload: feed
-    }
+export const updateLayer = () => {
+  return {
+    type: UPDATE_LAYER,
+  };
 };
-
-/* */
-
 export const addLayer = (newLayer) => {
   console.log("add ACT //", newLayer);
   return {
@@ -42,6 +41,7 @@ export const deleteLayer = (newLayers) => {
 
 export const editLayer = (edited) => {
   console.log("action edit layer", edited);
+
   return {
     type: EDIT_LAYER,
     payload: edited,

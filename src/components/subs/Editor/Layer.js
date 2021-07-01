@@ -2,43 +2,105 @@ import React, { Component } from "react";
 import { Button } from "reactstrap";
 import PropTypes from "prop-types";
 import { connect, dispatch } from "react-redux";
+import {
+  deleteLayer,
+  editLayer,
+  loadLayer2work,
+} from "../../action/layerActions";
+import { setWork } from "../../action/keyActions";
+import PriceFeeder from "./PriceFeeder";
+
 class Layer extends Component {
-  state = {
-    mint: "#9fe6c3",
-    sky: "#aad9d8",
-    pur: "#9f95c3",
-    grey: "#e2e3db",
-    palm: "#7c9cb6",
-    dgrey: "#darkgrey",
-    white: "#ivory",
-    tomato: "tomato",
-  };
   static propTypes = {
     workingPYE: PropTypes.object,
     workingLayer: PropTypes.object,
+    workingKey: PropTypes.object,
+    coloris: PropTypes.object,
     layers: PropTypes.array,
+    keys: PropTypes.array,
+    deleteLayer: PropTypes.func,
+    editLayer: PropTypes.func,
+    loadLayer2work: PropTypes.func,
+    setWork: PropTypes.func,
   };
-  onEditLayer = (e) => {};
-  onDeleteLayer = (e) => {};
+  onGoEditLayer = (e) => {
+    e.preventDefault();
+    console.log(e.target.id);
+  };
+  onGoKeyEditor = (e) => {
+    e.preventDefault();
+    // load workingLayer By layerID
+    console.log(this.props.layers[e.target.id]);
+    this.props.loadLayer2work(this.props.layers[e.target.id]);
+    // set working keyFrame booly true
+    const key = {
+      booly: true,
+      layerID: e.target.id,
+      keyID: 0,
+    };
+    this.props.setWork(key);
+  };
+  onDeleteLayer = (e) => {
+    e.preventDefault();
+    console.log(this.props.layers, e.target.id);
+    let newLayers = this.props.layers.filter(
+      (layer) => layer.layerID !== parseInt(e.target.id)
+    );
+    const len = newLayers.length;
+    let x = 0;
+    console.log("delete Layer ACT //" + newLayers, len);
+    while (x < len) {
+      newLayers[x].layerID = x;
+      x++;
+    }
+    console.log("deleted Layer ACT //" + newLayers, len);
+    this.props.deleteLayer(newLayers);
+  };
+
+  moveLayerUp = (e) => {
+    e.preventDefault();
+    // console.log(e.target.id);
+    if (e.target.id !== "1") {
+      let newLayers = this.props.layers;
+      console.log(newLayers);
+      let high = parseInt(e.target.id);
+      let low = high--;
+
+      newLayers[high].layerID = low;
+      newLayers[low].layerID = high;
+      console.log(newLayers);
+      this.props.editLayer(newLayers);
+    }
+  };
   render() {
-    console.log(this.props.layerid);
+    // console.log(this.props);
     const id = this.props.layerid;
     const layer = this.props.layers[id];
-    const { mint, sky, pur, grey, palm, dgrey, white, tomato } = this.state;
-    console.log(layer.layerOracle.name);
+    const {
+      mint,
+      sky,
+      pur,
+      grey,
+      palm,
+      dgrey,
+      white,
+      tomato,
+    } = this.props.coloris;
+
+    // console.log(layer.layerOracle.name);
     return (
       <div
         className="alert"
         style={{
           background: grey,
           marginBottom: "5px",
-          padding: "0px",
+          padding: "10px",
         }}
       >
         <div
           className="row"
           style={{
-            height: "33px",
+            height: "44px",
             padding: "0",
             marginBottom: "3px",
             width: "100%",
@@ -49,38 +111,62 @@ class Layer extends Component {
             className="col-1"
             style={{ color: pur, margin: "0", padding: "0" }}
           >
-            {layer.layerID}
-          </div>
-          <div
-            className="col-2"
-            style={{
-              color: pur,
-
-              margin: "0",
-              padding: "0",
-            }}
-          >
             <Button
               style={{
                 width: "100%",
                 color: palm,
                 background: sky,
-                height: "28px",
+                height: "44px",
                 paddingTop: "0px",
+                paddingLeft: "7px",
+                textAlign: "center",
               }}
             >
+              {layer.layerID}
+            </Button>
+          </div>
+          <div
+            className="col-2"
+            style={{
+              color: pur,
+              position: "relative",
+              margin: "0",
+              padding: "0",
+            }}
+          >
+            <div
+              style={{
+                width: "100%",
+                color: sky,
+                background: palm,
+                height: "22px",
+                textAlign: "center",
+                position: "relative",
+                padding: "0",
+                margin: "0",
+                top: "0",
+                left: "0",
+                opacity: layer.layerID === 1 ? 0 : 1,
+              }}
+              onClick={this.moveLayerUp}
+              id={layer.layerID}
+            >
               <svg
+                id={layer.layerID}
                 xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
+                width="12"
+                height="12"
                 fill="currentColor"
                 className="bi bi-layer-forward"
-                viewBox="0 0 16 16"
+                viewBox="0 0 12 12"
               >
-                <path d="M8.354.146a.5.5 0 0 0-.708 0l-3 3a.5.5 0 0 0 0 .708l1 1a.5.5 0 0 0 .708 0L7 4.207V12H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H9V4.207l.646.647a.5.5 0 0 0 .708 0l1-1a.5.5 0 0 0 0-.708l-3-3z" />
-                <path d="M1 7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h4.5a.5.5 0 0 0 0-1H1V8h4.5a.5.5 0 0 0 0-1H1zm9.5 0a.5.5 0 0 0 0 1H15v2h-4.5a.5.5 0 0 0 0 1H15a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-4.5z" />
+                <path
+                  fillRule="evenodd"
+                  id={layer.layerID}
+                  d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5zm-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"
+                />
               </svg>
-            </Button>
+            </div>
           </div>
 
           <div
@@ -103,10 +189,11 @@ class Layer extends Component {
                 width: "100%",
                 color: mint,
                 background: palm,
-                height: "28px",
+                height: "44px",
                 paddingTop: "0px",
               }}
-              onClick={this.onEditLayer}
+              onClick={this.onGoEditLayer}
+              id={layer.layerID}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -115,26 +202,33 @@ class Layer extends Component {
                 fill="currentColor"
                 className="bi bi-gear-fill"
                 viewBox="0 0 16 16"
+                id={layer.layerID}
               >
-                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+                <path
+                  id={layer.layerID}
+                  d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"
+                />
               </svg>
             </Button>
           </div>
           <div
             className="col-2"
+            id={layer.layerID}
             style={{ color: white, margin: "0", padding: "0" }}
           >
             <Button
+              id={layer.layerID}
               style={{
                 width: "100%",
                 color: white,
                 background: tomato,
-                height: "28px",
+                height: "44px",
                 paddingTop: "0px",
               }}
               onClick={this.onDeleteLayer}
             >
               <svg
+                id={layer.layerID}
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
@@ -142,7 +236,10 @@ class Layer extends Component {
                 className="bi bi-x-circle-fill"
                 viewBox="0 0 16 16"
               >
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                <path
+                  id={layer.layerID}
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+                />
               </svg>
             </Button>
           </div>
@@ -162,93 +259,101 @@ class Layer extends Component {
             style={{ color: white, margin: "0", padding: "0" }}
           >
             <Button style={{ width: "100%", background: sky, color: pur }}>
-              {layer.layerOracle.name === "empty" ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-vr"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M3 12V4a1 1 0 0 1 1-1h2.5V2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5v-1H4a1 1 0 0 1-1-1zm6.5 1v1H12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.5v1H12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H9.5zM8 16a.5.5 0 0 1-.5-.5V.5a.5.5 0 0 1 1 0v15a.5.5 0 0 1-.5.5z" />
-                </svg>
-              ) : layer.layerOracle.name === "pfeed" ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-graph-up"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M0 0h1v15h15v1H0V0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5z"
-                  />
-                </svg>
-              ) : layer.layerOracle.name === "count" ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-list-ol"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"
-                  />
-                  <path d="M1.713 11.865v-.474H2c.217 0 .363-.137.363-.317 0-.185-.158-.31-.361-.31-.223 0-.367.152-.373.31h-.59c.016-.467.373-.787.986-.787.588-.002.954.291.957.703a.595.595 0 0 1-.492.594v.033a.615.615 0 0 1 .569.631c.003.533-.502.8-1.051.8-.656 0-1-.37-1.008-.794h.582c.008.178.186.306.422.309.254 0 .424-.145.422-.35-.002-.195-.155-.348-.414-.348h-.3zm-.004-4.699h-.604v-.035c0-.408.295-.844.958-.844.583 0 .96.326.96.756 0 .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33 0 0 0-.342.338v.041zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635V5z" />
-                </svg>
-              ) : layer.layerOracle.name === "api" ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-newspaper"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5v-11zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5H12z" />
-                  <path d="M2 3h10v2H2V3zm0 3h4v3H2V6zm0 4h4v1H2v-1zm0 2h4v1H2v-1zm5-6h2v1H7V6zm3 0h2v1h-2V6zM7 8h2v1H7V8zm3 0h2v1h-2V8zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1z" />
-                </svg>
-              ) : layer.layerOracle.name === "time" ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-alarm"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
-                  <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
-                </svg>
-              ) : layer.layerOracle.name === "sports" ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-trophy-fill"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5c0 .538-.012 1.05-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33.076 33.076 0 0 1 2.5.5zm.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935zm10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935z" />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-vr"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M3 12V4a1 1 0 0 1 1-1h2.5V2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5v-1H4a1 1 0 0 1-1-1zm6.5 1v1H12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.5v1H12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H9.5zM8 16a.5.5 0 0 1-.5-.5V.5a.5.5 0 0 1 1 0v15a.5.5 0 0 1-.5.5z" />
-                </svg>
-              )}
+              {
+                (console.log(layer),
+                layer.layerOracle.name === "empty" ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-vr"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M3 12V4a1 1 0 0 1 1-1h2.5V2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5v-1H4a1 1 0 0 1-1-1zm6.5 1v1H12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.5v1H12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H9.5zM8 16a.5.5 0 0 1-.5-.5V.5a.5.5 0 0 1 1 0v15a.5.5 0 0 1-.5.5z" />
+                  </svg>
+                ) : layer.layerOracle.name === "pfeed" ? (
+                  // integrate selection of price feeds
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-graph-up"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M0 0h1v15h15v1H0V0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5z"
+                    />
+                  </svg>
+                ) : layer.layerOracle.name === "count" ? (
+                  // integrate single param data feed
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-list-ol"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"
+                    />
+                    <path d="M1.713 11.865v-.474H2c.217 0 .363-.137.363-.317 0-.185-.158-.31-.361-.31-.223 0-.367.152-.373.31h-.59c.016-.467.373-.787.986-.787.588-.002.954.291.957.703a.595.595 0 0 1-.492.594v.033a.615.615 0 0 1 .569.631c.003.533-.502.8-1.051.8-.656 0-1-.37-1.008-.794h.582c.008.178.186.306.422.309.254 0 .424-.145.422-.35-.002-.195-.155-.348-.414-.348h-.3zm-.004-4.699h-.604v-.035c0-.408.295-.844.958-.844.583 0 .96.326.96.756 0 .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33 0 0 0-.342.338v.041zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635V5z" />
+                  </svg>
+                ) : layer.layerOracle.name === "api" ? (
+                  // integrate multi param data feed
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-newspaper"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5v-11zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5H12z" />
+                    <path d="M2 3h10v2H2V3zm0 3h4v3H2V6zm0 4h4v1H2v-1zm0 2h4v1H2v-1zm5-6h2v1H7V6zm3 0h2v1h-2V6zM7 8h2v1H7V8zm3 0h2v1h-2V8zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1z" />
+                  </svg>
+                ) : layer.layerOracle.name === "time" ? (
+                  // integrate time data feed
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-alarm"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
+                    <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
+                  </svg>
+                ) : layer.layerOracle.name === "sports" ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-trophy-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5c0 .538-.012 1.05-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33.076 33.076 0 0 1 2.5.5zm.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935zm10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935z" />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-vr"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M3 12V4a1 1 0 0 1 1-1h2.5V2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5v-1H4a1 1 0 0 1-1-1zm6.5 1v1H12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.5v1H12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H9.5zM8 16a.5.5 0 0 1-.5-.5V.5a.5.5 0 0 1 1 0v15a.5.5 0 0 1-.5.5z" />
+                  </svg>
+                ))
+              }
             </Button>
           </div>
           <div
@@ -377,8 +482,13 @@ class Layer extends Component {
           <div
             className="col"
             style={{ color: white, margin: "0", padding: "0" }}
+            id={layer.layerID}
           >
-            <Button style={{ width: "100%", background: grey, color: pur }}>
+            <Button
+              style={{ width: "100%", background: grey, color: pur }}
+              id={layer.layerID}
+              onClick={this.onGoKeyEditor}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -386,12 +496,17 @@ class Layer extends Component {
                 fill="currentColor"
                 className="bi bi-lightbulb"
                 viewBox="0 0 16 16"
+                id={layer.layerID}
               >
-                <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z" />
+                <path
+                  id={layer.layerID}
+                  d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"
+                />
               </svg>
             </Button>
           </div>
         </div>
+        <PriceFeeder oracle={layer.layerOracle.name} />
       </div>
     );
   }
@@ -400,6 +515,12 @@ const mapStateToProps = (state) => ({
   workingPYE: state.pyeState.workingPYE,
   workingLayer: state.layerState.workingLayer,
   layers: state.layerState.layers,
+  coloris: state.layerState.coloris,
 });
 
-export default connect(mapStateToProps, {})(Layer);
+export default connect(mapStateToProps, {
+  deleteLayer,
+  loadLayer2work,
+  editLayer,
+  setWork,
+})(Layer);

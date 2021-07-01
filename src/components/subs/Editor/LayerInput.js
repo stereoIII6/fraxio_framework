@@ -10,7 +10,7 @@ import {
   discardPye,
 } from "../../action/pyeActions";
 import { addLayer } from "../../action/layerActions";
-/* 
+
 const IpfsHttpClient = require("ipfs-http-client");
 
 const ipfs = IpfsHttpClient({
@@ -36,8 +36,9 @@ class LayerInput extends Component {
     workingLayer: PropTypes.object,
     addLayer: PropTypes.func,
     layers: PropTypes.array,
+    coloris: PropTypes.object,
   };
-  /*
+
   captureFile = (e) => {
     e.preventDefault();
     // console.log("file captured");
@@ -45,19 +46,19 @@ class LayerInput extends Component {
     const reader = new window.FileReader();
     reader.readAsArrayBuffer(file);
     reader.onloadend = () => {
-      // console.log("Buffer :", Buffer(reader.result));
+      console.log("Buffer :", Buffer(reader.result));
       this.setState({ buffer: Buffer(reader.result) });
     };
   };
 
   submitFile = (e) => {
     e.preventDefault();
-    // console.log("file submitted");
-    // console.log(this.state.buffer);
+    console.log("file submitted");
+    console.log(this.state.buffer);
 
-    if (this.state.buffer && this.state.layerType === "empty") {
+    if (this.state.buffer && this.state.layerType !== "empty") {
       ipfs.add(this.state.buffer).then((result, err) => {
-        // console.log('Ipfs Result', result);
+        console.log("Ipfs Result", result);
 
         if (err) {
           // console.error(err);
@@ -84,7 +85,7 @@ class LayerInput extends Component {
             user: "",
             pye: "ipfs/",
             file: result.path,
-            url: `https://ipfs.io/ipfs/{result.path}`,
+            url: `https://ipfs.io/ipfs/${result.path}`,
           },
           layerName: this.state.layerName,
           layerExternal: {
@@ -109,9 +110,9 @@ class LayerInput extends Component {
         },
         layerFS: {
           user: "",
-          pye: "",
+          pye: "ipfs/",
           file: "",
-          url: "",
+          url: `https://ipfs.io/ipfs/`,
         },
         layerName: this.state.layerName,
         layerExternal: {
@@ -125,7 +126,7 @@ class LayerInput extends Component {
       this.props.addLayer(newLayer);
     }
   };
-/* */
+  /* */
   handleClick = (e) => {
     document.getElementById("upload").click();
     document.getElementById("upload").onchange = () => {
@@ -162,7 +163,7 @@ class LayerInput extends Component {
 
     return (
       <div>
-        <Form onSubmit={console.log("wow") /*this.submitFile*/}>
+        <Form onSubmit={this.submitFile}>
           <InputGroup bssize="normal">
             <Input
               type="select"
@@ -244,26 +245,26 @@ class LayerInput extends Component {
               id="LayerFeed"
               onChange={this.onChangeFeed}
             >
-              <option name="default" value="empty">
-                Choose Oracle Feed
-              </option>
-              <option name="static" value="empty">
+              <option name="static" value="static">
                 No Feed
-              </option>
-              <option name="pfeed" value="pfeed">
-                Price Feed
               </option>
               <option name="count" value="count">
                 Count Feed
               </option>
-              <option name="api" value="api">
-                API Feed
+              <option name="cryptoPrices" value="crypto">
+                Crypto Feeds
+              </option>
+              <option name="currencyPrices" value="currency">
+                Currency Feeds
+              </option>
+              <option name="commodPrices" value="commodity">
+                Commodity Feeds
               </option>
               <option name="time" value="time">
                 Timeline Feed
               </option>
-              <option name="sports" value="sports">
-                Sport Results Feed
+              <option name="api" value="api">
+                External API Feed
               </option>
             </Input>
 
@@ -300,6 +301,7 @@ const mapStateToProps = (state) => ({
   workingPYE: state.pyeState.workingPYE,
   workingLayer: state.layerState.workingLayer,
   layers: state.layerState.layers,
+  coloris: state.layerState.coloris,
 });
 
 export default connect(mapStateToProps, { addLayer })(LayerInput);

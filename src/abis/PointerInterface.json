@@ -22,19 +22,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.6.0;\n\ninterface PointerInterface {\n  function getAddress() external view returns (address);\n}\n",
-  "sourcePath": "@chainlink\\contracts\\src\\v0.6\\interfaces\\PointerInterface.sol",
+  "sourcePath": "@chainlink/contracts/src/v0.6/interfaces/PointerInterface.sol",
   "ast": {
     "absolutePath": "@chainlink/contracts/src/v0.6/interfaces/PointerInterface.sol",
     "exportedSymbols": {
       "PointerInterface": [
-        3975
+        3451
       ]
     },
-    "id": 3976,
+    "id": 3452,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3969,
+        "id": 3445,
         "literals": [
           "solidity",
           "^",
@@ -42,7 +42,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "32:23:17"
+        "src": "32:23:14"
       },
       {
         "abstract": false,
@@ -51,9 +51,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 3975,
+        "id": 3451,
         "linearizedBaseContracts": [
-          3975
+          3451
         ],
         "name": "PointerInterface",
         "nodeType": "ContractDefinition",
@@ -62,7 +62,7 @@
             "body": null,
             "documentation": null,
             "functionSelector": "38cc4831",
-            "id": 3974,
+            "id": 3450,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -70,24 +70,24 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 3970,
+              "id": 3446,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "107:2:17"
+              "src": "107:2:14"
             },
             "returnParameters": {
-              "id": 3973,
+              "id": 3449,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3972,
+                  "id": 3448,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 3974,
-                  "src": "133:7:17",
+                  "scope": 3450,
+                  "src": "133:7:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -95,10 +95,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3971,
+                    "id": 3447,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "133:7:17",
+                    "src": "133:7:14",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -109,27 +109,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "132:9:17"
+              "src": "132:9:14"
             },
-            "scope": 3975,
-            "src": "88:54:17",
+            "scope": 3451,
+            "src": "88:54:14",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 3976,
-        "src": "57:87:17"
+        "scope": 3452,
+        "src": "57:87:14"
       }
     ],
-    "src": "32:113:17"
+    "src": "32:113:14"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "@chainlink/contracts/src/v0.6/interfaces/PointerInterface.sol",
       "exportedSymbols": {
         "PointerInterface": [
-          3975
+          3451
         ]
       }
     },
@@ -143,9 +143,9 @@
             ".0"
           ]
         },
-        "id": 3969,
+        "id": 3445,
         "name": "PragmaDirective",
-        "src": "32:23:17"
+        "src": "32:23:14"
       },
       {
         "attributes": {
@@ -160,10 +160,10 @@
           "documentation": null,
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            3975
+            3451
           ],
           "name": "PointerInterface",
-          "scope": 3976
+          "scope": 3452
         },
         "children": [
           {
@@ -179,7 +179,7 @@
               ],
               "name": "getAddress",
               "overrides": null,
-              "scope": 3975,
+              "scope": 3451,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -192,9 +192,9 @@
                   ]
                 },
                 "children": [],
-                "id": 3970,
+                "id": 3446,
                 "name": "ParameterList",
-                "src": "107:2:17"
+                "src": "107:2:14"
               },
               {
                 "children": [
@@ -204,7 +204,7 @@
                       "mutability": "mutable",
                       "name": "",
                       "overrides": null,
-                      "scope": 3974,
+                      "scope": 3450,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -218,42 +218,42 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 3971,
+                        "id": 3447,
                         "name": "ElementaryTypeName",
-                        "src": "133:7:17"
+                        "src": "133:7:14"
                       }
                     ],
-                    "id": 3972,
+                    "id": 3448,
                     "name": "VariableDeclaration",
-                    "src": "133:7:17"
+                    "src": "133:7:14"
                   }
                 ],
-                "id": 3973,
+                "id": 3449,
                 "name": "ParameterList",
-                "src": "132:9:17"
+                "src": "132:9:14"
               }
             ],
-            "id": 3974,
+            "id": 3450,
             "name": "FunctionDefinition",
-            "src": "88:54:17"
+            "src": "88:54:14"
           }
         ],
-        "id": 3975,
+        "id": 3451,
         "name": "ContractDefinition",
-        "src": "57:87:17"
+        "src": "57:87:14"
       }
     ],
-    "id": 3976,
+    "id": 3452,
     "name": "SourceUnit",
-    "src": "32:113:17"
+    "src": "32:113:14"
   },
   "compiler": {
     "name": "solc",
     "version": "0.6.6+commit.6c089d02.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.3.4",
-  "updatedAt": "2021-06-01T01:57:09.657Z",
+  "schemaVersion": "3.4.1",
+  "updatedAt": "2021-06-30T21:53:37.737Z",
   "devdoc": {
     "methods": {}
   },

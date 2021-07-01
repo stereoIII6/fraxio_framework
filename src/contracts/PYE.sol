@@ -8,27 +8,34 @@ contract PYE is ERC721 {
     address private admin;
     string public creator;
     string public title;
-    string private PYE;
+    string private Pye;
     address private mlqAdr;
     IERC20 public MLQ;
     mapping(uint256 => address) private owner;
     mapping(address => uint256) private amountOf;
     mapping(address => mapping(uint256 => uint256)) private tokenById; // tokenByIdOfOwner[msg.sender][x<<amountOfowner[msg.sender]] = tokId;
-    string[] private PYEs; 
+    string[] private PYEs;
 
-    constructor(string memory name,string memory symbol, address _mlqAdr) 
-    ERC721(name,symbol) public {
-    mlqAdr = _mlqAdr;
-    MLQ = IERC20(mlqAdr);    
+    constructor(
+        string memory name,
+        string memory symbol,
+        address _mlqAdr
+    ) public ERC721(name, symbol) {
+        mlqAdr = _mlqAdr;
+        MLQ = IERC20(mlqAdr);
     }
-    function bake(uint tokenId, string calldata _PYE, uint256 mlqAmnt) external {
+
+    function bake(
+        uint256 tokenId,
+        string calldata _PYE,
+        uint256 mlqAmnt
+    ) external {
         require(MLQ.balanceOf(msg.sender) >= mlqAmnt);
-        // VRF 
+        // VRF
         owner[tokenId] = msg.sender;
         amountOf[msg.sender] = amountOf[msg.sender] + 1;
         tokenById[msg.sender][amountOf[msg.sender]] = tokenId;
         PYEs.push(_PYE);
-        _safeMint(msg.sender,tokenId);
-        
+        _safeMint(msg.sender, tokenId);
     }
 }
