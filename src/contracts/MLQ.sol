@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.6.6;
+
 /*
 //////////////////////////////////////////////////////////////////////////////////////
 //                                                                                  //
@@ -14,12 +17,12 @@
 //                                                                                  //
 //                                                                                  //
 //                                                                                  //
-//          @title :: Fractio Framework React App                                   // 
-//          @id :: FR-90900                                                         //
+//          @title :: Factory Contract                                              // 
+//          @id :: FR-81972                                                         //
 //          @versiom :: 1.0.0                                                       //
 //                                                                                  //
 //          @description ::                                                         //
-//          The Factory FR-90900 is Editor for the React Frontend.                  //
+//          The Factory FR-81972 creates Fractionizer Contracts.                    //
 //                                                                                  //
 //                                                                                  //
 //          @author :: fractio.xyz                                                  //
@@ -33,22 +36,27 @@
 //                                                                                  //
 //////////////////////////////////////////////////////////////////////////////////////
 */
-// Imports
-import React, { Component } from "react";
-import MaskOne from "./MaskOne";
-import MaskTwo from "./MaskTwo";
-import MaskThree from "./MaskThree";
-// class definition
-class Editor extends Component {
-  render() {
-    return (
-      <div>
-        <MaskOne />
-        <MaskTwo />
-        <MaskThree />
-      </div>
-    );
-  }
-}
 
-export default Editor;
+// TRUFFLE /*
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+// */
+// REMIX
+/*
+import "https://raw.githubusercontent.com/OpenZeppelin/openzeppelin-contracts/release-v3.0.0/contracts/token/ERC20/ERC20.sol";
+
+// */
+
+contract MLQ is ERC20 {
+    constructor() public ERC20("MLQ Token", "MLQ") {
+        _mint(0x1Cd6F4D329D38043a6bDB3665c3a7b06F79B5242, 100000008 * 10**18);
+        _mint(0x6E505A3312fdc84215C93701F4a03AF74f98147a, 100000008 * 10**18);
+        _mint(0xD88FFd4e072708C6Bb14fF2aC6C8E4eBFFC55238, 100000008 * 10**18);
+        _mint(0x703a8596b8c2Cf56c23258FA2468470CB40E839f, 100000008 * 10**18);
+        _mint(0xA46A7B2A856c15E6A6F6C89C77Bd6B4017b2Fe89, 100000008 * 10**18);
+    }
+
+    function gimmeSomeMLQ(uint256 ml) public {
+        _mint(msg.sender, ml * 10**18);
+    }
+}

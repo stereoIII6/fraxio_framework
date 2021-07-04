@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { connect, dispatch } from "react-redux";
+import { connect } from "react-redux";
 import { getUsers } from "./action/userActions.js";
 import Editor from "./subs/Editor/Editor";
 import Team from "./subs/Team/Team";

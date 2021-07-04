@@ -1,5 +1,42 @@
+/*
+//////////////////////////////////////////////////////////////////////////////////////
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//            _____               _   _                                             //
+//           |  ___| __ __ _  ___| |_(_) ___                                        //
+//           | |_ | '__/ _` |/ __| __| |/ _ \                                       //
+//           |  _|| | | (_| | (__| |_| | (_) |                                      //
+//           |_|  |_|  \__,_|\___|\__|_|\___/                                       //                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              . you done something right . now you know where to look @.
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//          @title :: Fractio Framework React App                                   // 
+//          @id :: FR-90981                                                         //
+//          @versiom :: 1.0.0                                                       //
+//                                                                                  //
+//          @description ::                                                         //
+//          The Factory FR-90981 is Review Section for the React Frontend.          //
+//                                                                                  //
+//                                                                                  //
+//          @author :: fractio.xyz                                                  //
+//          @b2bContact :: irvin@fractio.xyz                                        //
+//          @OpSecContact :: nmisner@fractio.xyz                                    //
+//          @DigitalArchitecture :: aron@fractio.xyz                                //
+//          @SocialMediaContact :: poblano.daniel@fractio.xyz                       //
+//          @CommunityManagement :: louell_sala@fractio.xyz                         //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////
+*/
+// Imports
+
 import React, { Component } from "react";
-import { Button, InputGroup, Input, Form } from "reactstrap";
+import { Input, Form } from "reactstrap";
 class Won extends Component {
   state = {
     step: 0,
@@ -20,7 +57,6 @@ class Won extends Component {
   };
 
   render() {
-    const { step } = this.state;
     return (
       <div>
         <Form className="container">

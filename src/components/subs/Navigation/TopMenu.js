@@ -1,18 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { connect, dispatch } from "react-redux";
-import {
-  getUsers,
-  setScreenMode,
-  getWalletERC721,
-} from "../../action/userActions";
+import { connect } from "react-redux";
+import { getUsers, setScreenMode } from "../../action/userActions";
 import Blockies from "react-blockies";
-import { Button } from "reactstrap";
-const fresh = "#9fe6c3ff";
-const sky = "#aad9d8ff";
-const purple = "#9f95c3ff";
-const grey = "#e2e3dbff";
-const blue = "#7c9cb6ff";
+
+const fresh = "#9fe6c3";
+const sky = "#aad9d8";
+const purple = "#9f95c3";
+const grey = "#e2e3db";
+const blue = "#7c9cb6";
+const dgrey = "#888888";
 
 class TopMenu extends Component {
   static propTypes = {
@@ -154,11 +151,11 @@ class TopMenu extends Component {
               className="btn mr-1"
               style={{
                 color: grey,
-                background: purple,
+                background: dgrey,
                 fontWeight: 900,
                 borderRadius: "9px",
               }}
-              onClick={this.onClick}
+              // onClick={this.onClick}
               id="frx_lnk"
             >
               Fractionize
@@ -167,11 +164,11 @@ class TopMenu extends Component {
               className="btn mr-1"
               style={{
                 color: grey,
-                background: purple,
+                background: dgrey,
                 fontWeight: 900,
                 borderRadius: "9px",
               }}
-              onClick={this.onClick}
+              // onClick={this.onClick}
               id="swap_lnk"
             >
               Swap

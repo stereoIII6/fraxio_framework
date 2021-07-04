@@ -8,6 +8,8 @@ export const ADD_LAYER = "ADD_LAYER";
 export const DEL_LAYER = "DEL_LAYER";
 export const EDIT_LAYER = "EDIT_LAYER";
 export const MOVE_LAYER = "MOVE_LAYER";
+export const SAVE_LAYER = "SAVE_LAYER";
+export const DISC_LAYERS = "DISC_LAYERS";
 export const UPDATE_LAYER = "UPDATE_LAYER";
 
 export const SET_KEY_ACTIVE = "SET_KEY_ACTIVE";
@@ -32,5 +34,10 @@ export const CREATE_PYE = "CREATE_PYE";
 export const DISCARD_PYE = "DISCARD_PYE";
 export const DRAFT_PYE = "DRAFT_PYE";
 export const MINT_PYE = "MINT_PYE";
+export const UPD_PYE_NAME = "UPD_PYE_NAME";
+export const UPD_PYE_DESC = "UPD_PYE_DESC";
+export const UPD_PYE_SYM = "UPD_PYE_SYM";
+export const UPD_PYE_X = "UPD_PYE_X";
+export const UPD_PYE_Y = "UPD_PYE_Y";
 
 export const GET_FRAMES = "GET_FRAMES";

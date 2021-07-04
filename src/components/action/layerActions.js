@@ -4,6 +4,8 @@ import {
   DEL_LAYER,
   EDIT_LAYER,
   MOVE_LAYER,
+  DISC_LAYERS,
+  SAVE_LAYER,
   BAKE_FS,
   BAKE_ORACLE,
   BAKE_EXT,
@@ -51,5 +53,10 @@ export const editLayer = (edited) => {
 export const moveLayer = () => {
   return {
     type: MOVE_LAYER,
+  };
+};
+export const discardLayers = () => {
+  return {
+    type: DISC_LAYERS,
   };
 };

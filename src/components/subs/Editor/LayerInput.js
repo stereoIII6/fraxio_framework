@@ -1,14 +1,45 @@
+/*
+//////////////////////////////////////////////////////////////////////////////////////
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//            _____               _   _                                             //
+//           |  ___| __ __ _  ___| |_(_) ___                                        //
+//           | |_ | '__/ _` |/ __| __| |/ _ \                                       //
+//           |  _|| | | (_| | (__| |_| | (_) |                                      //
+//           |_|  |_|  \__,_|\___|\__|_|\___/                                       //                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              . you done something right . now you know where to look @.
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//          @title :: Fractio Framework React App                                   // 
+//          @id :: FR-94527                                                         //
+//          @versiom :: 1.0.0                                                       //
+//                                                                                  //
+//          @description ::                                                         //
+//          The Factory FR-94527 is Layer Input for the React Frontend.             //
+//          It is the initial connection to IPFS for every File on Fractio          //
+//                                                                                  //
+//                                                                                  //
+//          @author :: fractio.xyz                                                  //
+//          @b2bContact :: irvin@fractio.xyz                                        //
+//          @OpSecContact :: nmisner@fractio.xyz                                    //
+//          @DigitalArchitecture :: aron@fractio.xyz                                //
+//          @SocialMediaContact :: poblano.daniel@fractio.xyz                       //
+//          @CommunityManagement :: louell_sala@fractio.xyz                         //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////
+*/
+// Imports
 import React, { Component } from "react";
-import { Button, InputGroup, Input, CustomInput, Form } from "reactstrap";
-import styled from "styled-components";
+import { Button, InputGroup, Input, Form } from "reactstrap";
 import PropTypes from "prop-types";
-import { connect, dispatch } from "react-redux";
-import {
-  getPyeAssets,
-  getPyeData,
-  createPye,
-  discardPye,
-} from "../../action/pyeActions";
+import { connect } from "react-redux";
+
 import { addLayer } from "../../action/layerActions";
 
 const IpfsHttpClient = require("ipfs-http-client");
@@ -73,9 +104,9 @@ class LayerInput extends Component {
         });
         // console.log(this.state);
         const newLayer = {
-          booly: true,
-          layerID: this.props.layers.length,
-          layerType: this.state.layerType,
+          booly: true, // activity status
+          layerID: this.props.layers.length, // layerID number 1-36
+          layerType: this.state.layerType, // layer media type IMAGE SVG FONT
           layerOracle: {
             type: this.state.layerFeed,
             name: this.state.layerFeed,
@@ -187,10 +218,10 @@ class LayerInput extends Component {
               <option name="img" value="img" bssize="normal">
                 Images
               </option>
-              <option name="audio" value="audio" bssize="normal">
+              <option name="audio" value="audio" bssize="normal" disabled>
                 Audio
               </option>
-              <option name="video" value="video" bssize="normal">
+              <option name="video" value="video" bssize="normal" disabled>
                 Video
               </option>
             </Input>

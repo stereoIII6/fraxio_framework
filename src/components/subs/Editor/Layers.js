@@ -1,12 +1,46 @@
+/*
+//////////////////////////////////////////////////////////////////////////////////////
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//            _____               _   _                                             //
+//           |  ___| __ __ _  ___| |_(_) ___                                        //
+//           | |_ | '__/ _` |/ __| __| |/ _ \                                       //
+//           |  _|| | | (_| | (__| |_| | (_) |                                      //
+//           |_|  |_|  \__,_|\___|\__|_|\___/                                       //                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              . you done something right . now you know where to look @.
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//          @title :: Fractio Framework React App                                   // 
+//          @id :: FR-92727                                                         //
+//          @versiom :: 1.0.0                                                       //
+//                                                                                  //
+//          @description ::                                                         //
+//          The Factory FR-92727 is Layers Editor for the React Frontend.           //
+//                                                                                  //
+//                                                                                  //
+//          @author :: fractio.xyz                                                  //
+//          @b2bContact :: irvin@fractio.xyz                                        //
+//          @OpSecContact :: nmisner@fractio.xyz                                    //
+//          @DigitalArchitecture :: aron@fractio.xyz                                //
+//          @SocialMediaContact :: poblano.daniel@fractio.xyz                       //
+//          @CommunityManagement :: louell_sala@fractio.xyz                         //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////
+*/
+// Imports
 import React, { Component } from "react";
-import { Button, InputGroup, Input, Form } from "reactstrap";
 import PropTypes from "prop-types";
-import { connect, dispatch } from "react-redux";
-import { deleteLayer, editLayer, updateLayer } from "../../action/layerActions";
+import { connect } from "react-redux";
+import { updateLayer } from "../../action/layerActions";
 import LayerInput from "./LayerInput";
 import MediaPreview from "./MediaPreview";
 import Layer from "./Layer";
-import { a } from "@react-spring/web";
 class Layers extends Component {
   static propTypes = {
     workingPYE: PropTypes.object,

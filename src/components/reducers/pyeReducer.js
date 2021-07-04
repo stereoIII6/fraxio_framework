@@ -4,10 +4,18 @@ import {
   CREATE_PYE,
   DISCARD_PYE,
   DRAFT_PYE,
+  UPD_PYE_NAME,
+  UPD_PYE_SYM,
+  UPD_PYE_DESC,
+  UPD_PYE_X,
+  UPD_PYE_Y,
 } from "../action/types";
 const initState = {
   pyes: [],
-  workingPYE: {},
+  workingPYE: {
+    formatX: 900,
+    formatY: 900,
+  },
   loadingPyes: false,
 };
 
@@ -25,12 +33,33 @@ export default function(state = initState, action) {
         ...state,
         workingPYE: action.payload,
       };
-    case DISCARD_PYE:
-      console.log("RED // empty PYE");
+    case UPD_PYE_NAME:
+      console.log("RED update PYE name // ", action.payload);
       return {
         ...state,
-        workingPYE: {},
+        workingPYE: {
+          name: action.payload,
+        },
       };
+    case UPD_PYE_DESC:
+      console.log("RED update PYE description // ", action.payload);
+      return {
+        ...state,
+        workingPYE: {
+          desc: action.payload,
+        },
+      };
+    case UPD_PYE_SYM:
+      console.log("RED update PYE symbol // ", action.payload);
+      return {
+        ...state,
+        workingPYE: {
+          symbol: action.payload,
+        },
+      };
+    case DISCARD_PYE:
+      console.log("RED // empty PYE");
+      return state;
     default:
       return state;
   }

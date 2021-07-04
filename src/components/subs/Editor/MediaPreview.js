@@ -1,12 +1,48 @@
+/*
+//////////////////////////////////////////////////////////////////////////////////////
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//            _____               _   _                                             //
+//           |  ___| __ __ _  ___| |_(_) ___                                        //
+//           | |_ | '__/ _` |/ __| __| |/ _ \                                       //
+//           |  _|| | | (_| | (__| |_| | (_) |                                      //
+//           |_|  |_|  \__,_|\___|\__|_|\___/                                       //                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              . you done something right . now you know where to look @.
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//          @title :: Fractio Framework React App                                   // 
+//          @id :: FR-90405                                                         //
+//          @versiom :: 1.0.0                                                       //
+//                                                                                  //
+//          @description ::                                                         //
+//          The Factory FR-90405 is Media Preview for the React Frontend.           //
+//                                                                                  //
+//                                                                                  //
+//          @author :: fractio.xyz                                                  //
+//          @b2bContact :: irvin@fractio.xyz                                        //
+//          @OpSecContact :: nmisner@fractio.xyz                                    //
+//          @DigitalArchitecture :: aron@fractio.xyz                                //
+//          @SocialMediaContact :: poblano.daniel@fractio.xyz                       //
+//          @CommunityManagement :: louell_sala@fractio.xyz                         //
+//                                                                                  //
+//                                                                                  //
+//                                                                                  //
+//////////////////////////////////////////////////////////////////////////////////////
+*/
+// Imports
 import React, { Component } from "react";
-import { Button } from "reactstrap";
 import PropTypes from "prop-types";
-import { connect, dispatch } from "react-redux";
+import { connect } from "react-redux";
 import { deleteLayer, editLayer, updateLayer } from "../../action/layerActions";
 class MediaPreview extends Component {
   static propTypes = {
     workingPYE: PropTypes.object,
     workingLayer: PropTypes.object,
+    workingKey: PropTypes.object,
     coloris: PropTypes.object,
     layers: PropTypes.array,
     deleteLayer: PropTypes.func,
@@ -34,8 +70,12 @@ class MediaPreview extends Component {
         style={{
           background: "white",
           backgroundImage: `url("https://ipfs.io/ipfs/QmTNbkJ5x3iY4VEiEUARfrCreqBZ3tXHU3oFnsUK7QnDie")`,
-          width: "100%",
-          height: "430px",
+          width: this.props.workingKey.booly
+            ? this.props.workingPYE.formatX / 1.5
+            : this.props.workingPYE.formatX / 2,
+          height: this.props.workingKey.booly
+            ? this.props.workingPYE.formatY / 1.5
+            : this.props.workingPYE.formatY / 2,
           overflow: "hidden",
           position: "relative",
           top: "10px",
@@ -46,8 +86,43 @@ class MediaPreview extends Component {
         {/*display.sort((a, b) => b.layerID - a.layerID),*/
         display.map((layer) =>
           layer.layerType === "img" ? (
-            <img key={layer.layerID} src={layer.layerFS.url} style={keyZero} />
-          ) : null
+            <img
+              key={layer.layerID}
+              src={layer.layerFS.url}
+              style={keyZero}
+              alt=""
+            />
+          ) : layer.layerType === "form" ? (
+            <img
+              key={layer.layerID}
+              src={layer.layerFS.url}
+              style={keyZero}
+              alt=""
+            />
+          ) : layer.layerType === "typo" ? (
+            <p
+              key={layer.layerID}
+              src={layer.layerFS.url}
+              style={keyZero}
+              alt=""
+            >
+              {layer.layerName}
+            </p>
+          ) : layer.layerType === "audio" ? (
+            <img
+              key={layer.layerID}
+              src={layer.layerFS.url}
+              style={keyZero}
+              alt=""
+            />
+          ) : layer.layerType === "video" ? (
+            <img
+              key={layer.layerID}
+              src={layer.layerFS.url}
+              style={keyZero}
+              alt=""
+            />
+          ) : layer.layerType === "empty" ? null : null
         )}
       </div>
     );
@@ -56,6 +131,7 @@ class MediaPreview extends Component {
 const mapStateToProps = (state) => ({
   workingPYE: state.pyeState.workingPYE,
   workingLayer: state.layerState.workingLayer,
+  workingKey: state.keyState.workingKey,
   layers: state.layerState.layers,
   coloris: state.layerState.coloris,
 });

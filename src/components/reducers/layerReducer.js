@@ -7,12 +7,18 @@ import {
   DEL_LAYER,
   EDIT_LAYER,
   MOVE_LAYER,
+  DISC_LAYERS,
   UPDATE_LAYER,
   LOAD_WORK_LAYER,
 } from "../action/types";
 const initState = {
   layers: [
-    { layerID: 0, layerOracle: { name: "empty" }, layerFS: { url: "" } },
+    {
+      layerID: 0,
+      layerOracle: { name: "empty" },
+      layerFS: { url: "" },
+      keys: [],
+    },
   ],
   coloris: {
     mint: "#9fe6c3",
@@ -77,6 +83,9 @@ export default function(state = initState, action) {
       return {
         ...state,
       };
+    case DISC_LAYERS:
+      console.log("update RED //");
+      return initState;
     case LOAD_WORK_LAYER:
       console.log("update RED //" + action.payload);
       return {
