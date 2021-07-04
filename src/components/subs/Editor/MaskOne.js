@@ -56,8 +56,8 @@ class MaskOne extends Component {
     updateWPdesc: PropTypes.func,
   };
   state = {
-    formatX: 900,
-    formatY: 900,
+    formatX: 800,
+    formatY: 800,
     name: "",
     desc: "",
     symbol: "",
@@ -206,40 +206,40 @@ class MaskOne extends Component {
               style={{ fontSize: "2em", height: "2em" }}
               defaultValue={`{"x":"${this.state.formatX}", "y":"${this.state.formatY}"}`}
             >
-              <option name="100x900" value='{"x":"100", "y":"900"}'>
-                1:9 Portrait
+              <option name="100x800" value='{"x":"100", "y":"800"}'>
+                1:8 Portrait
               </option>
 
-              <option name="300x900" value='{"x":"300", "y":"900"}'>
-                3:9 Portrait
+              <option name="300x800" value='{"x":"300", "y":"800"}'>
+                3:8 Portrait
               </option>
 
-              <option name="500x900" value='{"x":"500", "y":"900"}'>
-                5:9 Portrait
+              <option name="500x800" value='{"x":"500", "y":"800"}'>
+                5:8 Portrait
               </option>
 
-              <option name="700x900" value='{"x":"700", "y":"900"}'>
-                7:9 Portrait
+              <option name="700x800" value='{"x":"700", "y":"800"}'>
+                7:8 Portrait
               </option>
 
-              <option name="900x900" value='{"x":"900", "y":"900"}'>
-                9:9 Square
+              <option name="800x800" value='{"x":"800", "y":"800"}'>
+                8:8 Square
               </option>
 
-              <option name="900x700" value='{"x":"900", "y":"700"}'>
-                9:7 Landscape
+              <option name="800x700" value='{"x":"800", "y":"700"}'>
+                8:7 Landscape
               </option>
 
-              <option name="900x500" value='{"x":"900", "y":"500"}'>
-                9:5 Landscape
+              <option name="800x500" value='{"x":"800", "y":"500"}'>
+                8:5 Landscape
               </option>
 
-              <option name="900x300" value='{"x":"900", "y":"300"}'>
-                9:3 Landscape
+              <option name="800x300" value='{"x":"800", "y":"300"}'>
+                8:3 Landscape
               </option>
 
-              <option name="900x100" value='{"x":"900", "y":"100"}'>
-                9:1 Landscape
+              <option name="800x100" value='{"x":"800", "y":"100"}'>
+                8:1 Landscape
               </option>
             </Input>
             <Input
@@ -249,7 +249,7 @@ class MaskOne extends Component {
               disabled
               type="text"
               name="fwidth"
-              placeholder="900px"
+              placeholder="800px"
               bssize="lg"
               style={{ fontSize: "2em", height: "2em" }}
             />
@@ -260,7 +260,7 @@ class MaskOne extends Component {
               disabled
               type="text"
               name="fheight"
-              placeholder="900px"
+              placeholder="800px"
               bssize="lg"
               style={{ fontSize: "2em", height: "2em" }}
             />

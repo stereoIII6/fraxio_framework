@@ -55,12 +55,13 @@ class MediaPreview extends Component {
   render() {
     const keyZero = {
       opacity: 1,
-      height: "100%",
-      width: "auto",
+      height: this.props.workingPYE.formatX !== 900 ? "100%" : "auto",
+      width: this.props.workingPYE.formatX === 900 ? "100%" : "auto",
       transform: `"rotate(${0}deg)"`,
       position: "absolute",
       top: 0,
       left: 0,
+      fill: this.props.coloris.mint,
     };
     const display = this.props.layers.filter(
       (layer) => parseInt(layer.layerID) !== 0
@@ -71,15 +72,17 @@ class MediaPreview extends Component {
           background: "white",
           backgroundImage: `url("https://ipfs.io/ipfs/QmTNbkJ5x3iY4VEiEUARfrCreqBZ3tXHU3oFnsUK7QnDie")`,
           width: this.props.workingKey.booly
-            ? this.props.workingPYE.formatX / 1.5
+            ? this.props.workingPYE.formatX / 1
             : this.props.workingPYE.formatX / 2,
           height: this.props.workingKey.booly
-            ? this.props.workingPYE.formatY / 1.5
+            ? this.props.workingPYE.formatY / 1
             : this.props.workingPYE.formatY / 2,
           overflow: "hidden",
           position: "relative",
           top: "10px",
-          left: "0px",
+          left: this.props.workingKey.booly
+            ? `${20 + (800 - this.props.workingPYE.formatX) / 2}px`
+            : `${70 + (800 - this.props.workingPYE.formatX) / 4}px`,
           marginBottom: "20px",
         }}
       >
@@ -94,8 +97,8 @@ class MediaPreview extends Component {
             />
           ) : layer.layerType === "form" ? (
             <img
-              key={layer.layerID}
               src={layer.layerFS.url}
+              key={layer.layerID}
               style={keyZero}
               alt=""
             />
