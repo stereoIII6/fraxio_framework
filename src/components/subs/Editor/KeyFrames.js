@@ -46,6 +46,7 @@ import {
   loadLayer2work,
 } from "../../action/layerActions";
 import { setWork } from "../../action/keyActions";
+import Toolbox from "./Toolbox";
 
 // Class Keyframes Definition
 class KeyFrames extends Component {
@@ -63,6 +64,7 @@ class KeyFrames extends Component {
     setWork: PropTypes.func,
   };
   state = {
+    actKey: null,
     zero: {
       kid: 0,
       layerID: this.props.workingLayer.layerID,
@@ -109,6 +111,14 @@ class KeyFrames extends Component {
       display: [...this.state.display, newKey],
     });
   };
+  activateKey = (e) => {
+    console.log(e.target.id);
+    this.setState({ actKey: parseInt(e.target.id) });
+  };
+  saveKey = (e) => {
+    console.log(e.target.id);
+    this.setState({ actKey: null });
+  };
   render() {
     return (
       <div style={{ textAlign: "center", marginBottom: "2em" }}>
@@ -122,13 +132,24 @@ class KeyFrames extends Component {
           </Button>
         ) : null}
         {this.state.display.length === 1 ? (
-          <Button className="btn btn-success m-2" key={0} id={0}>
-            Key 0
+          <Button
+            className="btn btn-success m-2"
+            key={0}
+            id={0}
+            onClick={this.activateKey}
+          >
+            Key 0{this.state.actKey === 0 ? <Toolbox /> : null}
           </Button>
         ) : (
           this.state.display.map((key) => (
-            <Button className="btn btn-success m-2" key={key.kid} id={0}>
+            <Button
+              className="btn btn-success m-2"
+              key={key.kid}
+              id={key.kid}
+              onClick={this.activateKey}
+            >
               {`Key ${key.kid}`}
+              {this.state.actKey === key.kid ? <Toolbox /> : null}
             </Button>
           ))
         )}

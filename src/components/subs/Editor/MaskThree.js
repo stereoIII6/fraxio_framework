@@ -79,7 +79,6 @@ class MaskThree extends Component {
         <hr></hr>
         <MediaPreview />
         <KeyFrames />
-        <ToolBox />
       </div>
     ) : null;
   }

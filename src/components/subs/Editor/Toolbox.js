@@ -40,6 +40,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { addLayer } from "../../action/layerActions";
+import { Button } from "reactstrap";
 class ToolBox extends Component {
   state = {};
   static propTypes = {
@@ -51,36 +52,83 @@ class ToolBox extends Component {
   };
   render() {
     return (
-      <div className="alert alert-success">
+      <div className="alert alert-success" style={{ width: "150px" }}>
         {this.props.workingLayer.layerType !== "audio" ||
+        this.props.workingLayer.layerType !== "empty" ||
         this.props.workingLayer.layerType !== "video" ? (
-          <div className="row">
-            <div className="col btn">Position</div>
-            <div className="col btn">Scale</div>
-            <div className="col btn">Rotation</div>
-            <div className="col btn">Opacity</div>
-            <div className="col btn">Color</div>
-            <div className="col btn">Border</div>
-            <div className="col btn">BorderColor</div>
+          <div>
+            <div className="btn" style={{ float: "left" }}>
+              {`x ${this.props.workingLayer.layerParams.x} y ${this.props.workingLayer.layerParams.y}
+              Position`}
+            </div>
+            <div className="btn" style={{ float: "left" }}>
+              Scale
+            </div>
+            <div className="btn" style={{ float: "left" }}>
+              Rotation
+            </div>
+            <div className="btn" style={{ float: "left" }}>
+              Opacity
+            </div>
+            {this.props.workingLayer.layerType === "typo" ||
+            this.props.workingLayer.layerType === "svg" ? (
+              <div className="btn" style={{ float: "left" }}>
+                Color
+              </div>
+            ) : null}
+            {this.props.workingLayer.layerType === "typo" ||
+            this.props.workingLayer.layerType === "svg" ? (
+              <div className="btn" style={{ float: "left" }}>
+                Border
+              </div>
+            ) : null}
+            {this.props.workingLayer.layerType === "typo" ||
+            this.props.workingLayer.layerType === "svg" ? (
+              <div className="btn" style={{ float: "left" }}>
+                BorderColor
+              </div>
+            ) : null}
           </div>
         ) : null}
         {this.props.workingLayer.layerType === "audio" ||
         this.props.workingLayer.layerType === "video" ? (
-          <div className="row">
-            <div className="col btn">lCut</div>
-            <div className="col btn">rCut</div>
-            <div className="col btn">Play</div>
-            <div className="col btn">Pause</div>
-            <div className="col btn">Stop</div>
-            <div className="col btn">Loop</div>
-            <div className="col btn">Go2Play</div>
-            <div className="col btn">Go2Pause</div>
-            <div className="col btn">Volume</div>
-            <div className="col btn">Pan</div>
+          <div>
+            <div className="btn" style={{ float: "left" }}>
+              lCut
+            </div>
+            <div className="btn" style={{ float: "left" }}>
+              rCut
+            </div>
+            <div className="btn" style={{ float: "left" }}>
+              Play
+            </div>
+            <div className="btn" style={{ float: "left" }}>
+              Pause
+            </div>
+            <div className="btn" style={{ float: "left" }}>
+              Stop
+            </div>
+            <div className="btn" style={{ float: "left" }}>
+              Loop
+            </div>
+            <div className="btn" style={{ float: "left" }}>
+              Go2Play
+            </div>
+            <div className="btn" style={{ float: "left" }}>
+              Go2Pause
+            </div>
+            <div className="btn" style={{ float: "left" }}>
+              Volume
+            </div>
+            <div className="btn" style={{ float: "left" }}>
+              Pan
+            </div>
           </div>
         ) : null}
-        <hr></hr>
-        <div>Keyframe Toolkit</div>
+
+        <div>
+          <Button>Save</Button>
+        </div>
       </div>
     );
   }

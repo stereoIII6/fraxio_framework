@@ -172,6 +172,7 @@ class MaskOne extends Component {
             placeholder="Token Name"
             onChange={this.onChangeName}
           />
+
           <Input
             type="text"
             name="pye_name"
