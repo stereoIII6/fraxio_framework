@@ -35,7 +35,7 @@
 */
 // Imports
 import React, { Component } from "react";
-import { Button } from "reactstrap";
+import { Button, Input, InputGroup } from "reactstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -138,7 +138,25 @@ class KeyFrames extends Component {
             id={0}
             onClick={this.activateKey}
           >
-            Key 0{this.state.actKey === 0 ? <Toolbox /> : null}
+            Key 0
+            {this.state.actKey === 0 ? (
+              <InputGroup style={{ width: "120px" }} id={0}>
+                <Input
+                  type="text"
+                  placeholder={this.props.workingLayer.layerOracle.param}
+                  disabled
+                  style={{ width: "40px", fontSize: "0.5em" }}
+                  id={0}
+                />
+                <Input
+                  type="text"
+                  defaultValue={this.props.workingLayer.layerOracle.initValue}
+                  style={{ width: "80px", fontSize: "0.5em" }}
+                  id={0}
+                />
+                <Toolbox id={0} />
+              </InputGroup>
+            ) : null}
           </Button>
         ) : (
           this.state.display.map((key) => (
@@ -149,7 +167,23 @@ class KeyFrames extends Component {
               onClick={this.activateKey}
             >
               {`Key ${key.kid}`}
-              {this.state.actKey === key.kid ? <Toolbox /> : null}
+              {this.state.actKey === key.kid ? (
+                <InputGroup style={{ width: "120px" }} id={key.kid}>
+                  <Input
+                    type="text"
+                    placeholder={this.props.workingLayer.layerOracle.param}
+                    disabled
+                    style={{ width: "40px", fontSize: "0.7em" }}
+                    key={key.kid}
+                  />
+                  <Input
+                    type="text"
+                    defaultValue={this.props.workingLayer.layerOracle.initValue}
+                    style={{ width: "80px", fontSize: "0.7em" }}
+                    id={key.kid}
+                  />
+                </InputGroup>
+              ) : null}
             </Button>
           ))
         )}
@@ -162,6 +196,7 @@ class KeyFrames extends Component {
             +
           </Button>
         ) : null}
+        <Toolbox style={{ width: "120px" }} />
       </div>
     );
   }

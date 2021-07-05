@@ -25,6 +25,9 @@ class PriceFeeder extends Component {
       console.log("web3", window.web3);
     } else window.alert("Use a Metamask");
   }
+  setOracle = (e) => {
+    this.props.setOracle(e);
+  };
   countProperties(obj) {
     var count = 0;
 
@@ -71,12 +74,16 @@ class PriceFeeder extends Component {
     return (
       <div>
         {this.props.oracle !== "static" ? (
-          <Input type="select">
-            <option key="null" value="default">
+          <Input type="select" onChange={this.setOracle}>
+            <option key="null" value="default" var="null">
               ---
             </option>
             {this.state.selectData.map((data) => (
-              <option key={label[labelNum]} value={label[labelNum]}>
+              <option
+                key={label[labelNum]}
+                value={[data, label[labelNum]]}
+                var={label[labelNum]}
+              >
                 {label[labelNum] + " " + data}
                 {labelNum++}
               </option>

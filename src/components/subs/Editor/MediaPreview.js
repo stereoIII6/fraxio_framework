@@ -103,14 +103,14 @@ class MediaPreview extends Component {
               alt=""
             />
           ) : layer.layerType === "typo" ? (
-            <p
+            <h1
               key={layer.layerID}
               src={layer.layerFS.url}
               style={keyZero}
               alt=""
             >
               {layer.layerName}
-            </p>
+            </h1>
           ) : layer.layerType === "audio" ? (
             <img
               key={layer.layerID}

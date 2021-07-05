@@ -70,7 +70,7 @@ export default function(state = initState, action) {
       console.log("edit RED //" + action.payload);
       return {
         ...state,
-        layers: [...action.payload],
+        workingLayer: action.payload,
       };
     case DEL_LAYER:
       console.log("delete RED //" + action.payload);

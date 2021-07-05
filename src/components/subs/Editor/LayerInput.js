@@ -117,6 +117,8 @@ class LayerInput extends Component {
             type: this.state.layerFeed,
             name: this.state.layerFeed,
             stamp: new Date(),
+            initValue: 0,
+            param: "",
           },
           layerFS: {
             user: "",
@@ -150,6 +152,8 @@ class LayerInput extends Component {
           type: this.state.layerFeed,
           name: this.state.layerFeed,
           stamp: new Date(),
+          initValue: 0,
+          param: "",
         },
         layerFS: {
           user: "",
@@ -294,7 +298,7 @@ class LayerInput extends Component {
               <option name="static" value="static">
                 No Feed
               </option>
-              <option name="count" value="count">
+              <option name="count" value="count" disabled>
                 Count Feed
               </option>
               <option name="cryptoPrices" value="crypto">
@@ -306,10 +310,13 @@ class LayerInput extends Component {
               <option name="commodPrices" value="commodity">
                 Commodity Feeds
               </option>
-              <option name="time" value="time">
+              <option name="weatherFeeds" value="weather" disabled>
+                Weather Feeds
+              </option>
+              <option name="time" value="time" disabled>
                 Timeline Feed
               </option>
-              <option name="api" value="api">
+              <option name="api" value="api" disabled>
                 External API Feed
               </option>
             </Input>

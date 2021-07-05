@@ -108,6 +108,14 @@ class Layer extends Component {
       this.props.editLayer(newLayers);
     }
   };
+  setOracle = (e) => {
+    console.log(e.target.value);
+    let wLayer = this.props.workingLayer;
+    const split = e.target.value.split(",");
+    wLayer.layerOracle.initValue = split[0];
+    wLayer.layerOracle.param = split[1];
+    this.props.editLayer(wLayer);
+  };
   render() {
     // console.log(this.props);
     const id = this.props.layerid;
@@ -308,7 +316,7 @@ class Layer extends Component {
                   >
                     <path d="M3 12V4a1 1 0 0 1 1-1h2.5V2H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5v-1H4a1 1 0 0 1-1-1zm6.5 1v1H12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H9.5v1H12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H9.5zM8 16a.5.5 0 0 1-.5-.5V.5a.5.5 0 0 1 1 0v15a.5.5 0 0 1-.5.5z" />
                   </svg>
-                ) : layer.layerOracle.name === "pfeed" ? (
+                ) : layer.layerOracle.name === "crypto" ? (
                   // integrate selection of price feeds
 
                   <svg
@@ -340,7 +348,7 @@ class Layer extends Component {
                     />
                     <path d="M1.713 11.865v-.474H2c.217 0 .363-.137.363-.317 0-.185-.158-.31-.361-.31-.223 0-.367.152-.373.31h-.59c.016-.467.373-.787.986-.787.588-.002.954.291.957.703a.595.595 0 0 1-.492.594v.033a.615.615 0 0 1 .569.631c.003.533-.502.8-1.051.8-.656 0-1-.37-1.008-.794h.582c.008.178.186.306.422.309.254 0 .424-.145.422-.35-.002-.195-.155-.348-.414-.348h-.3zm-.004-4.699h-.604v-.035c0-.408.295-.844.958-.844.583 0 .96.326.96.756 0 .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33 0 0 0-.342.338v.041zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635V5z" />
                   </svg>
-                ) : layer.layerOracle.name === "api" ? (
+                ) : layer.layerOracle.name === "currency" ? (
                   // integrate multi param data feed
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -366,7 +374,7 @@ class Layer extends Component {
                     <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z" />
                     <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z" />
                   </svg>
-                ) : layer.layerOracle.name === "sports" ? (
+                ) : layer.layerOracle.name === "commodity" ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -542,7 +550,10 @@ class Layer extends Component {
             </Button>
           </div>
         </div>
-        <PriceFeeder oracle={layer.layerOracle.name} />
+        <PriceFeeder
+          oracle={layer.layerOracle.name}
+          setOracle={this.setOracle}
+        />
       </div>
     );
   }

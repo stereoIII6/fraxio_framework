@@ -40,51 +40,62 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { addLayer } from "../../action/layerActions";
-import { Button } from "reactstrap";
+import { Button, Input } from "reactstrap";
 class ToolBox extends Component {
   state = {};
   static propTypes = {
     workingPYE: PropTypes.object,
     workingLayer: PropTypes.object,
+    workingKey: PropTypes.object,
     addLayer: PropTypes.func,
     layers: PropTypes.array,
     coloris: PropTypes.object,
   };
   render() {
     return (
-      <div className="alert alert-success" style={{ width: "150px" }}>
+      <div
+        className="alert alert-success"
+        style={{
+          width: "160px",
+          padding: "10px",
+          position: "absolute",
+          top: "400px",
+          left: "20px",
+        }}
+      >
         {this.props.workingLayer.layerType !== "audio" ||
         this.props.workingLayer.layerType !== "empty" ||
         this.props.workingLayer.layerType !== "video" ? (
           <div>
-            <div className="btn" style={{ float: "left" }}>
-              {`x ${this.props.workingLayer.layerParams.x} y ${this.props.workingLayer.layerParams.y}
-              Position`}
+            <h3> Key {this.props.workingKey.kid}</h3>
+            <div className="btn btn-info" style={{ width: "100%" }}>
+              x<Input type="ruler" value={this.props.workingLayer.formatX} />
+              y<Input type="ruler" value={this.props.workingLayer.formatY} />
             </div>
-            <div className="btn" style={{ float: "left" }}>
+            <div className="btn btn-info" style={{ width: "100%" }}>
               Scale
             </div>
-            <div className="btn" style={{ float: "left" }}>
+            <div className="btn btn-info" style={{ width: "100%" }}>
               Rotation
             </div>
-            <div className="btn" style={{ float: "left" }}>
+            <div className="btn btn-info" style={{ width: "100%" }}>
               Opacity
             </div>
             {this.props.workingLayer.layerType === "typo" ||
             this.props.workingLayer.layerType === "svg" ? (
-              <div className="btn" style={{ float: "left" }}>
+              <div className="btn btn-info" style={{ width: "100%" }}>
                 Color
               </div>
             ) : null}
             {this.props.workingLayer.layerType === "typo" ||
             this.props.workingLayer.layerType === "svg" ? (
-              <div className="btn" style={{ float: "left" }}>
+              <div className="btn btn-info" style={{ width: "100%" }}>
                 Border
               </div>
             ) : null}
             {this.props.workingLayer.layerType === "typo" ||
             this.props.workingLayer.layerType === "svg" ? (
-              <div className="btn" style={{ float: "left" }}>
+              <div className="btn btn-info" style={{ width: "100%" }}>
                 BorderColor
               </div>
             ) : null}
@@ -93,41 +104,46 @@ class ToolBox extends Component {
         {this.props.workingLayer.layerType === "audio" ||
         this.props.workingLayer.layerType === "video" ? (
           <div>
-            <div className="btn" style={{ float: "left" }}>
+            <div className="btn btn-info" style={{ width: "100%" }}>
               lCut
             </div>
-            <div className="btn" style={{ float: "left" }}>
+            <div className="btn btn-info" style={{ width: "100%" }}>
               rCut
             </div>
-            <div className="btn" style={{ float: "left" }}>
+            <div className="btn btn-info" style={{ width: "100%" }}>
               Play
             </div>
-            <div className="btn" style={{ float: "left" }}>
+            <div className="btn btn-info" style={{ width: "100%" }}>
               Pause
             </div>
-            <div className="btn" style={{ float: "left" }}>
+            <div className="btn btn-info" style={{ width: "100%" }}>
               Stop
             </div>
-            <div className="btn" style={{ float: "left" }}>
+            <div className="btn btn-info" style={{ width: "100%" }}>
               Loop
             </div>
-            <div className="btn" style={{ float: "left" }}>
+            <div className="btn btn-info" style={{ width: "100%" }}>
               Go2Play
             </div>
-            <div className="btn" style={{ float: "left" }}>
+            <div className="btn btn-info" style={{ width: "100%" }}>
               Go2Pause
             </div>
-            <div className="btn" style={{ float: "left" }}>
+            <div className="btn btn-info" style={{ width: "100%" }}>
               Volume
             </div>
-            <div className="btn" style={{ float: "left" }}>
+            <div className="btn btn-info" style={{ width: "100%" }}>
               Pan
             </div>
           </div>
         ) : null}
 
-        <div>
-          <Button>Save</Button>
+        <div style={{ width: "100%" }}>
+          <div className="btn btn-success" style={{ width: "70%" }}>
+            Save
+          </div>
+          <div className="btn btn-danger" style={{ width: "30%" }}>
+            x
+          </div>
         </div>
       </div>
     );
@@ -136,6 +152,7 @@ class ToolBox extends Component {
 const mapStateToProps = (state) => ({
   workingPYE: state.pyeState.workingPYE,
   workingLayer: state.layerState.workingLayer,
+  workingKey: state.keyState.workingKey,
   layers: state.layerState.layers,
   coloris: state.layerState.coloris,
 });
