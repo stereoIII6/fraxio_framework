@@ -44,7 +44,15 @@ import { addLayer, editLayer } from "../../action/layerActions";
 import { editKey, saveKey, resetKey } from "../../action/keyActions";
 import { Button, Input, InputGroup } from "reactstrap";
 class ToolBox extends Component {
-  state = {};
+  state = {
+    layerParams: {
+      x: 0,
+      y: 0,
+      z: 90,
+      o: 1,
+      r: 0,
+    },
+  };
   static propTypes = {
     workingPYE: PropTypes.object,
     workingLayer: PropTypes.object,
@@ -60,18 +68,21 @@ class ToolBox extends Component {
     //console.log(e);
     let wKey = this.props.workingKey;
     wKey.layerParams.x = e.target.value;
+    this.setState(wKey);
     this.props.editKey(wKey);
   };
   slideY = (e) => {
     console.log(e);
     let wKey = this.props.workingKey;
     wKey.layerParams.y = e.target.value;
+    this.setState(wKey);
     this.props.editKey(wKey);
   };
   slideZ = (e) => {
     console.log(e);
     let wKey = this.props.workingKey;
-    wKey.layerParams.z = e.target.value;
+    wKey.layerParams.z = e;
+    this.setState(wKey);
     this.props.editKey(wKey);
   };
   saveKey = (e) => {
@@ -121,7 +132,7 @@ class ToolBox extends Component {
               <Input
                 type="text"
                 id="x"
-                value={this.props.workingKey.layerParams.x}
+                value={this.state.layerParams.x}
                 style={{
                   width: "50%",
 
@@ -132,7 +143,7 @@ class ToolBox extends Component {
               <Input
                 type="text"
                 id="y"
-                value={this.props.workingKey.layerParams.y}
+                value={this.state.layerParams.y}
                 style={{
                   width: "50%",
 
@@ -141,8 +152,13 @@ class ToolBox extends Component {
                 onChange={this.slideY}
               />
             </div>
-            <div className="btn btn-info" style={{ width: "100%" }}>
+            <div
+              className="btn btn-info"
+              style={{ width: "100%" }}
+              onChange={this.slideZ}
+            >
               Scale
+              <Slider value={this.state.layerParams.z} onChange={this.slideZ} />
             </div>
             <div className="btn btn-info" style={{ width: "100%" }}>
               Rotation
@@ -214,7 +230,11 @@ class ToolBox extends Component {
           >
             Save
           </div>
-          <div className="btn btn-danger" style={{ width: "30%" }}>
+          <div
+            className="btn btn-danger"
+            style={{ width: "30%" }}
+            onClick={this.resetKey}
+          >
             x
           </div>
         </div>

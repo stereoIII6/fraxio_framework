@@ -80,7 +80,7 @@ class MediaPreview extends Component {
       width: this.props.workingPYE.formatX === 900 ? "90%" : "auto",
       transform: `"rotate(${0}deg)"`,
       position: "absolute",
-      fontSize: this.props.workingKey.booly ? "4em" : "2em",
+      fontSize: this.props.workingKey.booly ? {`${4 / 100 * this.props.workingKey.layerParams.z}em`} : "2em",
       top: `5%`,
       left: `5%`,
       fill: this.props.coloris.mint,
