@@ -12,6 +12,9 @@ export const SAVE_LAYER = "SAVE_LAYER";
 export const DISC_LAYERS = "DISC_LAYERS";
 export const UPDATE_LAYER = "UPDATE_LAYER";
 
+export const EDIT_KEY = "EDIT_KEY";
+export const SAVE_KEY = "SAVE_KEY";
+export const RESET_KEY = "RESET_KEY";
 export const SET_KEY_ACTIVE = "SET_KEY_ACTIVE";
 export const SET_KEY_INACTIVE = "SET_KEY_INACTIVE";
 export const GET_FRAME = "GET_FRAME";

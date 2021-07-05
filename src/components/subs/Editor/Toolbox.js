@@ -41,6 +41,7 @@ import { connect } from "react-redux";
 import { Slider, RangeSlider } from "rsuite";
 
 import { addLayer, editLayer } from "../../action/layerActions";
+import { editKey, saveKey, resetKey } from "../../action/keyActions";
 import { Button, Input, InputGroup } from "reactstrap";
 class ToolBox extends Component {
   state = {};
@@ -51,24 +52,32 @@ class ToolBox extends Component {
     addLayer: PropTypes.func,
     layers: PropTypes.array,
     coloris: PropTypes.object,
+    editKey: PropTypes.func,
+    saveKey: PropTypes.func,
+    resetKey: PropTypes.func,
   };
   slideX = (e) => {
     //console.log(e);
     let wKey = this.props.workingKey;
-    wKey.layerParams.x = e;
-    this.props.editLayer(wKey);
+    wKey.layerParams.x = e.target.value;
+    this.props.editKey(wKey);
   };
   slideY = (e) => {
     console.log(e);
     let wKey = this.props.workingKey;
-    wKey.layerParams.y = e;
-    this.props.editLayer(wKey);
+    wKey.layerParams.y = e.target.value;
+    this.props.editKey(wKey);
   };
   slideZ = (e) => {
     console.log(e);
     let wKey = this.props.workingKey;
-    wKey.layerParams.z = e;
-    this.props.editLayer(wKey);
+    wKey.layerParams.z = e.target.value;
+    this.props.editKey(wKey);
+  };
+  saveKey = (e) => {
+    e.preventDefault();
+    const wKey = this.props.workingKey;
+    this.props.saveKey(wKey);
   };
   render() {
     return (
@@ -108,34 +117,25 @@ class ToolBox extends Component {
             </h3>
             <div className="btn btn-info" style={{ width: "100%" }}>
               Position<br></br>
+              {console.log(this.props.workingKey)}
               <Input
-                type="number"
-                value={this.props.workingKey.layerParams.x}
-                style={{ width: "56px", float: "left", fontSize: "0.5em" }}
-                onChange={this.slideX}
-              />
-              <Input
-                type="number"
-                value={this.props.workingKey.layerParams.y}
-                style={{ width: "56px", float: "left", fontSize: "0.5em" }}
-                onChange={this.slideY}
-              />
-              <Slider
+                type="text"
                 id="x"
-                defaultValue={this.props.workingKey.layerParams.x + 50}
+                value={this.props.workingKey.layerParams.x}
                 style={{
-                  width: "100%",
-                  background: this.props.coloris.grey,
+                  width: "50%",
+
                   float: "left",
                 }}
                 onChange={this.slideX}
               />
-              <Slider
+              <Input
+                type="text"
                 id="y"
-                defaultValue={this.props.workingKey.layerParams.y + 50}
+                value={this.props.workingKey.layerParams.y}
                 style={{
-                  width: "100%",
-                  background: this.props.coloris.grey,
+                  width: "50%",
+
                   float: "left",
                 }}
                 onChange={this.slideY}
@@ -207,7 +207,11 @@ class ToolBox extends Component {
         ) : null}
 
         <div style={{ width: "100%" }}>
-          <div className="btn btn-success" style={{ width: "70%" }}>
+          <div
+            className="btn btn-success"
+            style={{ width: "70%" }}
+            onClick={this.saveKey}
+          >
             Save
           </div>
           <div className="btn btn-danger" style={{ width: "30%" }}>
@@ -226,4 +230,10 @@ const mapStateToProps = (state) => ({
   coloris: state.layerState.coloris,
 });
 
-export default connect(mapStateToProps, { addLayer, editLayer })(ToolBox);
+export default connect(mapStateToProps, {
+  addLayer,
+  editLayer,
+  editKey,
+  saveKey,
+  resetKey,
+})(ToolBox);

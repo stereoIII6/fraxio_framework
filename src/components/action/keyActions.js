@@ -5,6 +5,7 @@ import {
   DELETE_KEY,
   EDIT_KEY,
   SAVE_KEY,
+  RESET_KEY,
 } from "./types";
 
 export const setWork = (feed) => {
@@ -12,6 +13,27 @@ export const setWork = (feed) => {
   return {
     type: SET_KEY_ACTIVE,
     payload: feed,
+  };
+};
+
+export const editKey = (feed) => {
+  console.log("ACT edit key // ", feed);
+  return {
+    type: EDIT_KEY,
+    payload: feed,
+  };
+};
+export const saveKey = (feed) => {
+  console.log("ACT save key to array// ", feed);
+  return {
+    type: SAVE_KEY,
+    payload: feed,
+  };
+};
+export const resetKey = () => {
+  console.log("ACT reset key // ");
+  return {
+    type: RESET_KEY,
   };
 };
 

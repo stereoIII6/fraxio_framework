@@ -35,11 +35,10 @@
 */
 // Imports
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import Draggable from "react-draggable";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
+import { editKey, saveKey, resetKey } from "../../action/keyActions";
 import { deleteLayer, editLayer, updateLayer } from "../../action/layerActions";
 class MediaPreview extends Component {
   static propTypes = {
@@ -51,18 +50,26 @@ class MediaPreview extends Component {
     deleteLayer: PropTypes.func,
     editLayer: PropTypes.func,
     updateLayer: PropTypes.func,
+    editKey: PropTypes.func,
+    saveKey: PropTypes.func,
+    resetKey: PropTypes.func,
   };
   componentDidMount() {
     this.props.updateLayer();
   }
-  handleStart = (e) => {
-    // console.log(e);
-  };
   handleStop = (e) => {
+    // GET drag X position relative to screen
     const newX =
       e.clientX -
-      (window.innerWidth - document.getElementById("screen").offsetWidth) / 2;
-    console.log(newX);
+      (window.innerWidth - document.getElementById("screen").offsetWidth) / 2 -
+      (e.layerX + 18);
+    // GET drag X position relative to screen
+    const newY = e.clientY - (e.layerY + 322 - window.pageYOffset);
+    let wKey = this.props.workingKey;
+    wKey.layerParams.x = newX;
+    wKey.layerParams.y = newY;
+    this.props.editKey(wKey);
+    console.log(wKey);
   };
   render() {
     const xVal = this.props.workingKey.layerParams.x;
@@ -73,6 +80,7 @@ class MediaPreview extends Component {
       width: this.props.workingPYE.formatX === 900 ? "90%" : "auto",
       transform: `"rotate(${0}deg)"`,
       position: "absolute",
+      fontSize: this.props.workingKey.booly ? "4em" : "2em",
       top: `5%`,
       left: `5%`,
       fill: this.props.coloris.mint,
@@ -82,8 +90,10 @@ class MediaPreview extends Component {
     );
     return (
       <div
+        id="md-screen"
         style={{
           background: "white",
+
           backgroundImage: `url("https://ipfs.io/ipfs/QmTNbkJ5x3iY4VEiEUARfrCreqBZ3tXHU3oFnsUK7QnDie")`,
           width: this.props.workingKey.booly
             ? this.props.workingPYE.formatX / 1
@@ -106,10 +116,8 @@ class MediaPreview extends Component {
             layer.layerID === this.props.workingLayer.layerID &&
             this.props.workingKey.booly ? (
               <Draggable
-                style={{ position: "relative" }}
                 key={layer.layerID}
                 id={layer.layerID}
-                className="draggable"
                 onStart={this.handleStart}
                 onDrag={this.handleDrag}
                 onStop={this.handleStop}
@@ -237,4 +245,7 @@ export default connect(mapStateToProps, {
   deleteLayer,
   editLayer,
   updateLayer,
+  editKey,
+  saveKey,
+  resetKey,
 })(MediaPreview);
