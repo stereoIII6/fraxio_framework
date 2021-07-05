@@ -35,8 +35,11 @@
 */
 // Imports
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import Draggable from "react-draggable";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+
 import { deleteLayer, editLayer, updateLayer } from "../../action/layerActions";
 class MediaPreview extends Component {
   static propTypes = {
@@ -52,15 +55,26 @@ class MediaPreview extends Component {
   componentDidMount() {
     this.props.updateLayer();
   }
+  handleStart = (e) => {
+    // console.log(e);
+  };
+  handleStop = (e) => {
+    const newX =
+      e.clientX -
+      (window.innerWidth - document.getElementById("screen").offsetWidth) / 2;
+    console.log(newX);
+  };
   render() {
+    const xVal = this.props.workingKey.layerParams.x;
+    const yVal = this.props.workingKey.layerParams.y;
     const keyZero = {
       opacity: 1,
-      height: this.props.workingPYE.formatX !== 900 ? "100%" : "auto",
-      width: this.props.workingPYE.formatX === 900 ? "100%" : "auto",
+      height: this.props.workingPYE.formatX !== 900 ? "90%" : "auto",
+      width: this.props.workingPYE.formatX === 900 ? "90%" : "auto",
       transform: `"rotate(${0}deg)"`,
       position: "absolute",
-      top: 0,
-      left: 0,
+      top: `5%`,
+      left: `5%`,
       fill: this.props.coloris.mint,
     };
     const display = this.props.layers.filter(
@@ -89,42 +103,122 @@ class MediaPreview extends Component {
         {/*display.sort((a, b) => b.layerID - a.layerID),*/
         display.map((layer) =>
           layer.layerType === "img" ? (
-            <img
-              key={layer.layerID}
-              src={layer.layerFS.url}
-              style={keyZero}
-              alt=""
-            />
+            layer.layerID === this.props.workingLayer.layerID &&
+            this.props.workingKey.booly ? (
+              <Draggable
+                style={{ position: "relative" }}
+                key={layer.layerID}
+                id={layer.layerID}
+                className="draggable"
+                onStart={this.handleStart}
+                onDrag={this.handleDrag}
+                onStop={this.handleStop}
+              >
+                <img
+                  key={layer.layerID}
+                  src={layer.layerFS.url}
+                  style={keyZero}
+                  alt=""
+                />
+              </Draggable>
+            ) : (
+              <img
+                key={layer.layerID}
+                src={layer.layerFS.url}
+                style={keyZero}
+                alt=""
+              />
+            )
           ) : layer.layerType === "form" ? (
-            <img
-              src={layer.layerFS.url}
-              key={layer.layerID}
-              style={keyZero}
-              alt=""
-            />
+            layer.layerID === this.props.workingLayer.layerID &&
+            this.props.workingKey.booly ? (
+              <Draggable
+                key={layer.layerID}
+                id={layer.layerID}
+                onStart={this.handleStart}
+                onDrag={this.handleDrag}
+                onStop={this.handleStop}
+              >
+                <img
+                  src={layer.layerFS.url}
+                  key={layer.layerID}
+                  style={keyZero}
+                  alt=""
+                />
+              </Draggable>
+            ) : (
+              <img
+                src={layer.layerFS.url}
+                key={layer.layerID}
+                style={keyZero}
+                alt=""
+              />
+            )
           ) : layer.layerType === "typo" ? (
-            <h1
-              key={layer.layerID}
-              src={layer.layerFS.url}
-              style={keyZero}
-              alt=""
-            >
-              {layer.layerName}
-            </h1>
+            layer.layerID === this.props.workingLayer.layerID &&
+            this.props.workingKey.booly ? (
+              <Draggable
+                key={layer.layerID}
+                id={layer.layerID}
+                onStart={this.handleStart}
+                onDrag={this.handleDrag}
+                onStop={this.handleStop}
+              >
+                <h1
+                  key={layer.layerID}
+                  src={layer.layerFS.url}
+                  style={keyZero}
+                  alt=""
+                >
+                  {layer.layerName}
+                </h1>
+              </Draggable>
+            ) : (
+              <h1
+                key={layer.layerID}
+                src={layer.layerFS.url}
+                style={keyZero}
+                alt=""
+              >
+                {layer.layerName}
+              </h1>
+            )
           ) : layer.layerType === "audio" ? (
-            <img
-              key={layer.layerID}
-              src={layer.layerFS.url}
-              style={keyZero}
-              alt=""
-            />
+            layer.layerID === this.props.workingLayer.layerID &&
+            this.props.workingKey.booly ? (
+              <Draggable
+                key={layer.layerID}
+                id={layer.layerID}
+                onStart={this.handleStart}
+                onDrag={this.handleDrag}
+                onStop={this.handleStop}
+              ></Draggable>
+            ) : (
+              <img
+                key={layer.layerID}
+                src={layer.layerFS.url}
+                style={keyZero}
+                alt=""
+              />
+            )
           ) : layer.layerType === "video" ? (
-            <img
-              key={layer.layerID}
-              src={layer.layerFS.url}
-              style={keyZero}
-              alt=""
-            />
+            layer.layerID === this.props.workingLayer.layerID &&
+            this.props.workingKey.booly ? (
+              <Draggable
+                key={layer.layerID}
+                id={layer.layerID}
+                onStart={this.handleStart}
+                onDrag={this.handleDrag}
+                onStop={this.handleStop}
+              ></Draggable>
+            ) : (
+              <img
+                key={layer.layerID}
+                src={layer.layerFS.url}
+                style={keyZero}
+                alt=""
+              />
+            )
           ) : layer.layerType === "empty" ? null : null
         )}
       </div>

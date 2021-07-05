@@ -70,6 +70,12 @@ class KeyFrames extends Component {
       layerID: this.props.workingLayer.layerID,
       oracle: this.props.workingLayer.layerOracle,
       oracleState: 100,
+      layerParams: {
+        x: 0,
+        y: 0,
+        o: 1,
+        r: 0,
+      },
     },
     ups: 1,
     downs: 1,
@@ -79,6 +85,12 @@ class KeyFrames extends Component {
         layerID: this.props.workingLayer.layerID,
         oracle: this.props.workingLayer.layerOracle,
         oracleState: 100,
+        layerParams: {
+          x: 0,
+          y: 0,
+          o: 1,
+          r: 0,
+        },
       },
     ],
   };
@@ -91,6 +103,12 @@ class KeyFrames extends Component {
       layerID: this.props.workingLayer.layerID,
       oracle: this.props.workingLayer.layerOracle,
       oracleState: 0,
+      layerParams: {
+        x: 0,
+        y: 0,
+        o: 1,
+        r: 0,
+      },
     };
     this.setState({
       downs: this.state.downs + 1,
@@ -105,6 +123,12 @@ class KeyFrames extends Component {
       layerID: this.props.workingLayer.layerID,
       oracle: this.props.workingLayer.layerOracle,
       oracleState: 0,
+      layerParams: {
+        x: 0,
+        y: 0,
+        o: 1,
+        r: 0,
+      },
     };
     this.setState({
       ups: this.state.ups + 1,
@@ -139,24 +163,6 @@ class KeyFrames extends Component {
             onClick={this.activateKey}
           >
             Key 0
-            {this.state.actKey === 0 ? (
-              <InputGroup style={{ width: "120px" }} id={0}>
-                <Input
-                  type="text"
-                  placeholder={this.props.workingLayer.layerOracle.param}
-                  disabled
-                  style={{ width: "40px", fontSize: "0.5em" }}
-                  id={0}
-                />
-                <Input
-                  type="text"
-                  defaultValue={this.props.workingLayer.layerOracle.initValue}
-                  style={{ width: "80px", fontSize: "0.5em" }}
-                  id={0}
-                />
-                <Toolbox id={0} />
-              </InputGroup>
-            ) : null}
           </Button>
         ) : (
           this.state.display.map((key) => (
@@ -167,23 +173,6 @@ class KeyFrames extends Component {
               onClick={this.activateKey}
             >
               {`Key ${key.kid}`}
-              {this.state.actKey === key.kid ? (
-                <InputGroup style={{ width: "120px" }} id={key.kid}>
-                  <Input
-                    type="text"
-                    placeholder={this.props.workingLayer.layerOracle.param}
-                    disabled
-                    style={{ width: "40px", fontSize: "0.7em" }}
-                    key={key.kid}
-                  />
-                  <Input
-                    type="text"
-                    defaultValue={this.props.workingLayer.layerOracle.initValue}
-                    style={{ width: "80px", fontSize: "0.7em" }}
-                    id={key.kid}
-                  />
-                </InputGroup>
-              ) : null}
             </Button>
           ))
         )}

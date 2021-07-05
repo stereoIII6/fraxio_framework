@@ -73,6 +73,14 @@ class Layer extends Component {
       booly: true,
       layerID: e.target.id,
       keyID: 0,
+      oracle: this.props.workingLayer.layerOracle.name,
+      oracleState: this.props.workingLayer.layerOracle.initValue,
+      layerParams: {
+        x: 0,
+        y: 0,
+        o: 1,
+        r: 0,
+      },
     };
     this.props.setWork(key);
   };

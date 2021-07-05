@@ -61,12 +61,6 @@ class LayerInput extends Component {
     buffer: null,
     check: "orange",
     urlList: [],
-    layerParams: {
-      x: 0,
-      y: 0,
-      o: 1,
-      r: 0,
-    },
   };
   static propTypes = {
     workingPYE: PropTypes.object,
@@ -133,12 +127,6 @@ class LayerInput extends Component {
             function: "",
             data: {},
           },
-          layerParams: {
-            x: 0,
-            y: 0,
-            o: 1,
-            r: 0,
-          },
         };
 
         this.props.addLayer(newLayer);
@@ -167,12 +155,6 @@ class LayerInput extends Component {
           adr: 0x0,
           function: "",
           data: {},
-        },
-        layerParams: {
-          x: 0,
-          y: 0,
-          o: 1,
-          r: 0,
         },
       };
 

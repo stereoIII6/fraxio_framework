@@ -54,6 +54,12 @@ const initState = {
     },
     keys: [],
   },
+  layerParams: {
+    x: 0,
+    y: 0,
+    o: 1,
+    r: 0,
+  },
   loadingLayers: true,
 };
 

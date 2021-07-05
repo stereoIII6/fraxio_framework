@@ -38,9 +38,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Slider, RangeSlider } from "rsuite";
 
-import { addLayer } from "../../action/layerActions";
-import { Button, Input } from "reactstrap";
+import { addLayer, editLayer } from "../../action/layerActions";
+import { Button, Input, InputGroup } from "reactstrap";
 class ToolBox extends Component {
   state = {};
   static propTypes = {
@@ -50,6 +51,24 @@ class ToolBox extends Component {
     addLayer: PropTypes.func,
     layers: PropTypes.array,
     coloris: PropTypes.object,
+  };
+  slideX = (e) => {
+    //console.log(e);
+    let wKey = this.props.workingKey;
+    wKey.layerParams.x = e;
+    this.props.editLayer(wKey);
+  };
+  slideY = (e) => {
+    console.log(e);
+    let wKey = this.props.workingKey;
+    wKey.layerParams.y = e;
+    this.props.editLayer(wKey);
+  };
+  slideZ = (e) => {
+    console.log(e);
+    let wKey = this.props.workingKey;
+    wKey.layerParams.z = e;
+    this.props.editLayer(wKey);
   };
   render() {
     return (
@@ -67,10 +86,60 @@ class ToolBox extends Component {
         this.props.workingLayer.layerType !== "empty" ||
         this.props.workingLayer.layerType !== "video" ? (
           <div>
-            <h3> Key {this.props.workingKey.kid}</h3>
+            <h3>
+              {" "}
+              Layer {this.props.workingLayer.layerID} Key{" "}
+              {this.props.workingKey.keyID}
+              {this.props.workingKey.oracle !== "static" ? (
+                <InputGroup style={{ width: "140px" }}>
+                  <Input
+                    type="text"
+                    placeholder={this.props.workingLayer.layerOracle.param}
+                    disabled
+                    style={{ width: "30px", fontSize: "0.5em" }}
+                  />
+                  <Input
+                    type="text"
+                    defaultValue={this.props.workingLayer.layerOracle.initValue}
+                    style={{ width: "80px", fontSize: "0.5em" }}
+                  />
+                </InputGroup>
+              ) : null}
+            </h3>
             <div className="btn btn-info" style={{ width: "100%" }}>
-              x<Input type="ruler" value={this.props.workingLayer.formatX} />
-              y<Input type="ruler" value={this.props.workingLayer.formatY} />
+              Position<br></br>
+              <Input
+                type="number"
+                value={this.props.workingKey.layerParams.x}
+                style={{ width: "56px", float: "left", fontSize: "0.5em" }}
+                onChange={this.slideX}
+              />
+              <Input
+                type="number"
+                value={this.props.workingKey.layerParams.y}
+                style={{ width: "56px", float: "left", fontSize: "0.5em" }}
+                onChange={this.slideY}
+              />
+              <Slider
+                id="x"
+                defaultValue={this.props.workingKey.layerParams.x + 50}
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  float: "left",
+                }}
+                onChange={this.slideX}
+              />
+              <Slider
+                id="y"
+                defaultValue={this.props.workingKey.layerParams.y + 50}
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  float: "left",
+                }}
+                onChange={this.slideY}
+              />
             </div>
             <div className="btn btn-info" style={{ width: "100%" }}>
               Scale
@@ -157,4 +226,4 @@ const mapStateToProps = (state) => ({
   coloris: state.layerState.coloris,
 });
 
-export default connect(mapStateToProps, { addLayer })(ToolBox);
+export default connect(mapStateToProps, { addLayer, editLayer })(ToolBox);
