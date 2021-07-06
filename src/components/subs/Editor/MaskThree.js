@@ -80,9 +80,6 @@ class MaskThree extends Component {
         <hr></hr>
         <MediaPreview />
         <KeyFrames />
-        {this.props.workingKey.booly ? (
-          <Toolbox style={{ width: "120px" }} />
-        ) : null}
       </div>
     ) : null;
   }

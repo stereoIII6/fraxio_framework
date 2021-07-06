@@ -38,6 +38,7 @@ import React, { Component } from "react";
 import Draggable from "react-draggable";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import Toolbox from "./Toolbox";
 import { editKey, saveKey, resetKey, updateKey } from "../../action/keyActions";
 import { deleteLayer, editLayer, updateLayer } from "../../action/layerActions";
 class MediaPreview extends Component {

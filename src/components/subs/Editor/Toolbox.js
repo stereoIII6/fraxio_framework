@@ -110,7 +110,6 @@ class ToolBox extends Component {
     const wKey = this.props.workingKey;
     wKey.edit = false;
     this.props.editKey(wKey);
-    this.render();
   };
   render() {
     return (

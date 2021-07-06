@@ -38,7 +38,7 @@ import React, { Component } from "react";
 import { Button, Input, InputGroup } from "reactstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
+import Toolbox from "./Toolbox";
 // Action Imports
 import {
   deleteLayer,
@@ -154,6 +154,9 @@ class KeyFrames extends Component {
   render() {
     return (
       <div style={{ textAlign: "center", marginBottom: "2em" }}>
+        {this.props.workingKey.edit ? (
+          <Toolbox style={{ width: "120px" }} />
+        ) : null}
         {this.state.display.length < 9 ? (
           <Button
             className="btn btn-info m-2"
