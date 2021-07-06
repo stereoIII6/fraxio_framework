@@ -88,11 +88,11 @@ class MediaPreview extends Component {
         this.props.workingPYE.formatX === 900
           ? `${this.props.workingKey.layerParams.z}%`
           : "auto",
-      transform: `"rotate(${this.props.workingKey.layerParams.r}deg)"`,
+      transform: `rotate(${this.props.workingKey.layerParams.r}deg)`,
       position: "absolute",
       fontSize: this.props.workingKey.booly ? z4 : z2,
-      top: yVal,
-      left: xVal,
+      top: this.props.workingKey.booly ? yVal : yVal / 2,
+      left: this.props.workingKey.booly ? xVal : xVal / 2,
       fill: this.props.coloris.mint,
     };
     return keyZero;

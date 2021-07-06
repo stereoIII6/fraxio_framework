@@ -103,6 +103,7 @@ class ToolBox extends Component {
     e.preventDefault();
     const wKey = this.props.workingKey;
     wKey.edit = false;
+    wKey.booly = false;
     this.props.saveKey(wKey);
   };
   resetKey = (e) => {

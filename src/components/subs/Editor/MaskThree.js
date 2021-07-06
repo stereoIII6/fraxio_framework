@@ -78,8 +78,8 @@ class MaskThree extends Component {
           </Button>
         </h1>
         <hr></hr>
-        <MediaPreview />
         <KeyFrames />
+        <MediaPreview />
       </div>
     ) : null;
   }
