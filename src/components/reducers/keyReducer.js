@@ -5,6 +5,7 @@ import {
   EDIT_KEY,
   SAVE_KEY,
   RESET_KEY,
+  UPDATE_KEY,
 } from "../action/types";
 const initState = {
   keys: [],
@@ -15,9 +16,11 @@ const initState = {
     layerParams: {
       x: 0,
       y: 0,
-      o: 1,
+      o: 100,
       r: 0,
+      z: 90,
     },
+    edit: false,
   },
   loadingFrames: false,
 };
@@ -41,6 +44,7 @@ export default function(state = initState, action) {
         workingKey: initState.workingKey,
       };
     case EDIT_KEY:
+      console.log("RED edit key //", action.payload);
       return {
         ...state,
         workingKey: action.payload,
@@ -54,6 +58,11 @@ export default function(state = initState, action) {
       return {
         ...state,
         workingKey: initState.workingKey,
+      };
+    case UPDATE_KEY:
+      console.log("update key RED //");
+      return {
+        ...state,
       };
     default:
       return state;

@@ -49,7 +49,7 @@ class ToolBox extends Component {
       x: 0,
       y: 0,
       z: 90,
-      o: 1,
+      o: 100,
       r: 0,
     },
   };
@@ -85,10 +85,32 @@ class ToolBox extends Component {
     this.setState(wKey);
     this.props.editKey(wKey);
   };
+  slideR = (e) => {
+    console.log(e);
+    let wKey = this.props.workingKey;
+    wKey.layerParams.r = e;
+    this.setState(wKey);
+    this.props.editKey(wKey);
+  };
+  slideO = (e) => {
+    console.log(e);
+    let wKey = this.props.workingKey;
+    wKey.layerParams.o = e;
+    this.setState(wKey);
+    this.props.editKey(wKey);
+  };
   saveKey = (e) => {
     e.preventDefault();
     const wKey = this.props.workingKey;
+    wKey.edit = false;
     this.props.saveKey(wKey);
+  };
+  resetKey = (e) => {
+    e.preventDefault();
+    const wKey = this.props.workingKey;
+    wKey.edit = false;
+    this.props.editKey(wKey);
+    this.render();
   };
   render() {
     return (
@@ -152,19 +174,32 @@ class ToolBox extends Component {
                 onChange={this.slideY}
               />
             </div>
-            <div
-              className="btn btn-info"
-              style={{ width: "100%" }}
-              onChange={this.slideZ}
-            >
+            <div className="btn btn-info" style={{ width: "100%" }}>
               Scale
-              <Slider value={this.state.layerParams.z} onChange={this.slideZ} />
+              <Slider
+                value={this.state.layerParams.z}
+                onChange={this.slideZ}
+                max={200}
+                min={1}
+              />
             </div>
             <div className="btn btn-info" style={{ width: "100%" }}>
               Rotation
+              <Slider
+                value={this.state.layerParams.r}
+                onChange={this.slideR}
+                max={360}
+                min={-360}
+              />
             </div>
             <div className="btn btn-info" style={{ width: "100%" }}>
               Opacity
+              <Slider
+                value={this.state.layerParams.o}
+                onChange={this.slideO}
+                max={100}
+                min={0}
+              />
             </div>
             {this.props.workingLayer.layerType === "typo" ||
             this.props.workingLayer.layerType === "svg" ? (

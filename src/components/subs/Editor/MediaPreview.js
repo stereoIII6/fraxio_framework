@@ -38,7 +38,7 @@ import React, { Component } from "react";
 import Draggable from "react-draggable";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { editKey, saveKey, resetKey } from "../../action/keyActions";
+import { editKey, saveKey, resetKey, updateKey } from "../../action/keyActions";
 import { deleteLayer, editLayer, updateLayer } from "../../action/layerActions";
 class MediaPreview extends Component {
   static propTypes = {
@@ -52,11 +52,10 @@ class MediaPreview extends Component {
     updateLayer: PropTypes.func,
     editKey: PropTypes.func,
     saveKey: PropTypes.func,
+    updateKey: PropTypes.func,
     resetKey: PropTypes.func,
   };
-  componentDidMount() {
-    this.props.updateLayer();
-  }
+
   handleStop = (e) => {
     // GET drag X position relative to screen
     const newX =
@@ -71,20 +70,34 @@ class MediaPreview extends Component {
     this.props.editKey(wKey);
     console.log(wKey);
   };
-  render() {
-    const xVal = this.props.workingKey.layerParams.x;
-    const yVal = this.props.workingKey.layerParams.y;
-    const keyZero = {
-      opacity: 1,
-      height: this.props.workingPYE.formatX !== 900 ? "90%" : "auto",
-      width: this.props.workingPYE.formatX === 900 ? "90%" : "auto",
-      transform: `"rotate(${0}deg)"`,
+  update() {
+    let xVal = this.props.workingKey.layerParams.x;
+    let yVal = this.props.workingKey.layerParams.y;
+    console.log("Media // ", this.props.workingKey);
+    let z4 = `${(4 / 100) * parseInt(this.props.workingKey.layerParams.z)}em`;
+    let z2 = `${(2 / 100) * this.props.workingKey.layerParams.z}em`;
+    console.log(z2, z4);
+    let keyZero = {
+      opacity: this.props.workingKey.layerParams.o / 100,
+      height:
+        this.props.workingPYE.formatX !== 900
+          ? `${this.props.workingKey.layerParams.z}%`
+          : "auto",
+      width:
+        this.props.workingPYE.formatX === 900
+          ? `${this.props.workingKey.layerParams.z}%`
+          : "auto",
+      transform: `"rotate(${this.props.workingKey.layerParams.r}deg)"`,
       position: "absolute",
-      fontSize: this.props.workingKey.booly ? {`${4 / 100 * this.props.workingKey.layerParams.z}em`} : "2em",
-      top: `5%`,
-      left: `5%`,
+      fontSize: this.props.workingKey.booly ? z4 : z2,
+      top: yVal,
+      left: xVal,
       fill: this.props.coloris.mint,
     };
+    return keyZero;
+  }
+  render() {
+    const keyZero = this.update();
     const display = this.props.layers.filter(
       (layer) => parseInt(layer.layerID) !== 0
     );
@@ -248,4 +261,5 @@ export default connect(mapStateToProps, {
   editKey,
   saveKey,
   resetKey,
+  updateKey,
 })(MediaPreview);

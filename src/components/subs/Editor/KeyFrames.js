@@ -45,8 +45,7 @@ import {
   editLayer,
   loadLayer2work,
 } from "../../action/layerActions";
-import { setWork } from "../../action/keyActions";
-import Toolbox from "./Toolbox";
+import { setWork, editKey } from "../../action/keyActions";
 
 // Class Keyframes Definition
 class KeyFrames extends Component {
@@ -62,6 +61,7 @@ class KeyFrames extends Component {
     editLayer: PropTypes.func,
     loadLayer2work: PropTypes.func,
     setWork: PropTypes.func,
+    editKey: PropTypes.func,
   };
   state = {
     actKey: null,
@@ -73,8 +73,9 @@ class KeyFrames extends Component {
       layerParams: {
         x: 0,
         y: 0,
-        o: 1,
+        o: 100,
         r: 0,
+        z: 90,
       },
     },
     ups: 1,
@@ -88,8 +89,9 @@ class KeyFrames extends Component {
         layerParams: {
           x: 0,
           y: 0,
-          o: 1,
+          o: 100,
           r: 0,
+          z: 90,
         },
       },
     ],
@@ -106,8 +108,9 @@ class KeyFrames extends Component {
       layerParams: {
         x: 0,
         y: 0,
-        o: 1,
+        o: 100,
         r: 0,
+        z: 90,
       },
     };
     this.setState({
@@ -126,8 +129,9 @@ class KeyFrames extends Component {
       layerParams: {
         x: 0,
         y: 0,
-        o: 1,
+        o: 100,
         r: 0,
+        z: 90,
       },
     };
     this.setState({
@@ -136,8 +140,12 @@ class KeyFrames extends Component {
     });
   };
   activateKey = (e) => {
-    console.log(e.target.id);
+    console.log(e.target.id, this.props.workingKey);
     this.setState({ actKey: parseInt(e.target.id) });
+    let wKey = this.props.workingKey;
+    wKey.keyID = e.target.id;
+    wKey.edit = true;
+    this.props.editKey(wKey);
   };
   saveKey = (e) => {
     console.log(e.target.id);
@@ -185,7 +193,6 @@ class KeyFrames extends Component {
             +
           </Button>
         ) : null}
-        <Toolbox style={{ width: "120px" }} />
       </div>
     );
   }
@@ -193,6 +200,7 @@ class KeyFrames extends Component {
 const mapStateToProps = (state) => ({
   workingPYE: state.pyeState.workingPYE,
   workingLayer: state.layerState.workingLayer,
+  workingKey: state.keyState.workingKey,
   layers: state.layerState.layers,
   coloris: state.layerState.coloris,
 });
@@ -202,4 +210,5 @@ export default connect(mapStateToProps, {
   loadLayer2work,
   editLayer,
   setWork,
+  editKey,
 })(KeyFrames);

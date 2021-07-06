@@ -78,8 +78,9 @@ class Layer extends Component {
       layerParams: {
         x: 0,
         y: 0,
-        o: 1,
+        o: 100,
         r: 0,
+        z: 90,
       },
     };
     this.props.setWork(key);

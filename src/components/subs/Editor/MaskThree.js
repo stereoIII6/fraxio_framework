@@ -41,9 +41,10 @@ import { connect } from "react-redux";
 import { getPyeAssets, getPyeData, createPye } from "../../action/pyeActions";
 import { quitWork } from "../../action/keyActions";
 import { Button } from "reactstrap";
+import Toolbox from "./Toolbox";
 import KeyFrames from "./KeyFrames";
 import MediaPreview from "./MediaPreview";
-import ToolBox from "./Toolbox";
+
 class MaskThree extends Component {
   static propTypes = {
     workingPYE: PropTypes.object,
@@ -79,6 +80,9 @@ class MaskThree extends Component {
         <hr></hr>
         <MediaPreview />
         <KeyFrames />
+        {this.props.workingKey.booly ? (
+          <Toolbox style={{ width: "120px" }} />
+        ) : null}
       </div>
     ) : null;
   }

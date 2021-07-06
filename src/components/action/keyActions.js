@@ -6,6 +6,7 @@ import {
   EDIT_KEY,
   SAVE_KEY,
   RESET_KEY,
+  UPDATE_KEY,
 } from "./types";
 
 export const setWork = (feed) => {
@@ -15,7 +16,13 @@ export const setWork = (feed) => {
     payload: feed,
   };
 };
-
+export const edit = (feed) => {
+  console.log("ACT edit // ");
+  return {
+    type: EDIT_KEY,
+    payload: feed,
+  };
+};
 export const editKey = (feed) => {
   console.log("ACT edit key // ", feed);
   return {
@@ -34,6 +41,12 @@ export const resetKey = () => {
   console.log("ACT reset key // ");
   return {
     type: RESET_KEY,
+  };
+};
+export const updateKey = () => {
+  console.log("ACT reset key // ");
+  return {
+    type: UPDATE_KEY,
   };
 };
 
