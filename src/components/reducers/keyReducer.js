@@ -3,6 +3,7 @@ import {
   SET_KEY_ACTIVE,
   SET_KEY_INACTIVE,
   EDIT_KEY,
+  SAVE_KEYS,
   SAVE_KEY,
   RESET_KEY,
   UPDATE_KEY,
@@ -12,7 +13,7 @@ const initState = {
   workingKey: {
     booly: false,
     layerID: 0,
-    kid: 0,
+    keyID: 0,
     layerParams: {
       x: 0,
       y: 0,
@@ -53,6 +54,12 @@ export default function(state = initState, action) {
       return {
         ...state,
         keys: [action.payload, ...state.keys],
+      };
+    case SAVE_KEYS:
+      return {
+        ...state,
+        keys: action.payload,
+        workingKey: initState.workingKey,
       };
     case RESET_KEY:
       return {

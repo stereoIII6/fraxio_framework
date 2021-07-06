@@ -47,7 +47,9 @@ import {
 import { discardLayers } from "../../action/layerActions";
 import { Button } from "reactstrap";
 import Layers from "./Layers";
+// class definition
 class MaskTwo extends Component {
+  // redux state import
   static propTypes = {
     workingPYE: PropTypes.object,
     workingLayer: PropTypes.object,
@@ -60,12 +62,16 @@ class MaskTwo extends Component {
     layers: PropTypes.array,
     keys: PropTypes.array,
   };
+  // local state setup
   state = {};
+
+  // handler on discard all layers
   onDiscard = (e) => {
     e.preventDefault();
     this.props.discardPye();
     this.props.discardLayers();
   };
+  // handler on save
   onSave = (e) => {
     e.preventDefault();
     console.log(e.target);
@@ -85,16 +91,23 @@ class MaskTwo extends Component {
             style={{ color: "lime", float: "right", marginRight: "1em" }}
             onClick={this.onSave}
           >
-            SAVE [1 MLQ]
+            SAVE DRAFT [3 MLQ]
+          </Button>
+          <Button
+            style={{ color: "lime", float: "right", marginRight: "1em" }}
+            onClick={this.onMint}
+          >
+            MINT [15 MLQ]
           </Button>
         </h1>
         <hr></hr>
+        {/* IMPORT LAYERS MODULE */}
         <Layers />
       </div>
     ) : null;
   }
 }
-
+// mapping redux state to local props
 const mapStateToProps = (state) => ({
   workingPYE: state.pyeState.workingPYE,
   workingLayer: state.layerState.workingLayer,

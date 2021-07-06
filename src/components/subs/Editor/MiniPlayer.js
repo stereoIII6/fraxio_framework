@@ -15,11 +15,11 @@
 //                                                                                  //
 //                                                                                  //
 //          @title :: Fractio Framework React App                                   // 
-//          @id :: FR-90972                                                         //
+//          @id :: FR-90405                                                         //
 //          @versiom :: 1.0.0                                                       //
 //                                                                                  //
 //          @description ::                                                         //
-//          The Factory FR-90972 is KeyFrame Editor for the React Frontend.         //
+//          The Factory FR-90405 is Media Preview for the React Frontend.           //
 //                                                                                  //
 //                                                                                  //
 //          @author :: fractio.xyz                                                  //
@@ -35,167 +35,136 @@
 */
 // Imports
 import React, { Component } from "react";
-import { Button, Input, InputGroup } from "reactstrap";
+import Draggable from "react-draggable";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Toolbox from "./Toolbox";
-// Action Imports
-import {
-  deleteLayer,
-  editLayer,
-  loadLayer2work,
-} from "../../action/layerActions";
-import { setWork, editKey } from "../../action/keyActions";
-
-// Class Keyframes Definition
-class KeyFrames extends Component {
-  // Importing Proptypes from Redux store
+import { editKey, saveKey, resetKey, updateKey } from "../../action/keyActions";
+import { deleteLayer, editLayer, updateLayer } from "../../action/layerActions";
+class MiniPlayer extends Component {
   static propTypes = {
     workingPYE: PropTypes.object,
     workingLayer: PropTypes.object,
     workingKey: PropTypes.object,
     coloris: PropTypes.object,
     layers: PropTypes.array,
-    keys: PropTypes.array,
     deleteLayer: PropTypes.func,
     editLayer: PropTypes.func,
-    loadLayer2work: PropTypes.func,
-    setWork: PropTypes.func,
+    updateLayer: PropTypes.func,
     editKey: PropTypes.func,
+    saveKey: PropTypes.func,
+    updateKey: PropTypes.func,
+    resetKey: PropTypes.func,
   };
-  state = {
-    actKey: null,
-    zero: {
-      keyID: 0,
-      layerID: this.props.workingLayer.layerID,
-      oracle: this.props.workingLayer.layerOracle,
-      oracleState: 100,
-      layerParams: {
-        x: 0,
-        y: 0,
-        o: 100,
-        r: 0,
-        z: 90,
-      },
-    },
-    ups: 1,
-    downs: 1,
-    display: [
-      {
-        keyID: 0,
-        layerID: this.props.workingLayer.layerID,
-        oracle: this.props.workingLayer.layerOracle,
-        oracleState: 100,
-        layerParams: {
-          x: 0,
-          y: 0,
-          o: 100,
-          r: 0,
-          z: 90,
-        },
-      },
-    ],
-  };
-  loadKeys() {}
-  addKeyDown = (e) => {
-    e.preventDefault();
-    console.log("down");
-    const newKey = {
-      keyID: parseInt(e.target.id) * -1,
-      layerID: this.props.workingLayer.layerID,
-      oracle: this.props.workingLayer.layerOracle,
-      oracleState: 0,
-      layerParams: {
-        x: 0,
-        y: 0,
-        o: 100,
-        r: 0,
-        z: 90,
-      },
-    };
-    this.setState({
-      downs: this.state.downs + 1,
-      display: [newKey, ...this.state.display],
-    });
-  };
-  addKeyUp = (e) => {
-    e.preventDefault();
-    console.log("up");
-    const newKey = {
-      keyID: parseInt(e.target.id),
-      layerID: this.props.workingLayer.layerID,
-      oracle: this.props.workingLayer.layerOracle,
-      oracleState: 0,
-      layerParams: {
-        x: 0,
-        y: 0,
-        o: 100,
-        r: 0,
-        z: 90,
-      },
-    };
-    this.setState({
-      ups: this.state.ups + 1,
-      display: [...this.state.display, newKey],
-    });
-  };
-  activateKey = (e) => {
-    console.log(e.target.id, this.props.workingKey);
-    this.setState({ actKey: parseInt(e.target.id) });
+
+  handleStop = (e) => {
+    // GET drag X position relative to screen
+    const newX =
+      e.clientX -
+      (window.innerWidth - document.getElementById("screen").offsetWidth) / 2 -
+      (e.layerX + 18);
+    // GET drag X position relative to screen
+    const newY = e.clientY - (e.layerY + 322 - window.pageYOffset);
     let wKey = this.props.workingKey;
-    wKey.keyID = e.target.id;
-    wKey.edit = true;
+    wKey.layerParams.x = newX;
+    wKey.layerParams.y = newY;
     this.props.editKey(wKey);
+    console.log(wKey);
   };
-  saveKey = (e) => {
-    console.log(e.target.id);
-    this.setState({ actKey: null });
-  };
+  update() {
+    let xVal = this.props.workingKey.layerParams.x;
+    let yVal = this.props.workingKey.layerParams.y;
+    console.log("Media // ", this.props.workingKey);
+    let z4 = `${(4 / 100) * parseInt(this.props.workingKey.layerParams.z)}em`;
+    let z2 = `${(2 / 100) * this.props.workingKey.layerParams.z}em`;
+    console.log(z2, z4);
+    let keyZero = {
+      opacity: this.props.workingKey.layerParams.o / 100,
+      height:
+        this.props.workingPYE.formatX !== 900
+          ? `${this.props.workingKey.layerParams.z}%`
+          : "auto",
+      width:
+        this.props.workingPYE.formatX === 900
+          ? `${this.props.workingKey.layerParams.z}%`
+          : "auto",
+      transform: `rotate(${this.props.workingKey.layerParams.r}deg)`,
+      position: "absolute",
+      fontSize: this.props.workingKey.booly ? z4 : z2,
+      top: this.props.workingKey.booly ? yVal : yVal / 2,
+      left: this.props.workingKey.booly ? xVal : xVal / 2,
+      fill: this.props.coloris.mint,
+    };
+    return keyZero;
+  }
   render() {
+    const keyZero = this.update();
+    const layers = this.props.layers.filter(
+      (layer) => parseInt(layer.layerID) !== 0
+    );
     return (
-      <div style={{ textAlign: "center", marginBottom: "2em" }}>
-        {this.props.workingKey.edit ? (
-          <Toolbox style={{ width: "120px" }} />
-        ) : null}
-        {this.state.display.length < 9 ? (
-          <Button
-            className="btn btn-info m-2"
-            onClick={this.addKeyDown}
-            id={this.state.downs}
-          >
-            +
-          </Button>
-        ) : null}
-        {this.state.display.length === 1 ? (
-          <Button
-            className="btn btn-success m-2"
-            key={0}
-            id={0}
-            onClick={this.activateKey}
-          >
-            Key 0
-          </Button>
-        ) : (
-          this.state.display.map((key) => (
-            <Button
-              className="btn btn-success m-2"
-              key={key.keyID}
-              id={key.keyID}
-              onClick={this.activateKey}
+      <div
+        id="md-screen"
+        style={{
+          background: "darkgrey",
+
+          backgroundImage: `url("https://ipfs.io/ipfs/QmTNbkJ5x3iY4VEiEUARfrCreqBZ3tXHU3oFnsUK7QnDie")`,
+          width: this.props.workingKey.booly
+            ? this.props.workingPYE.formatX / 1
+            : this.props.workingPYE.formatX / 2,
+          height: this.props.workingKey.booly
+            ? this.props.workingPYE.formatY / 1
+            : this.props.workingPYE.formatY / 2,
+          overflow: "hidden",
+          position: "relative",
+          top: "10px",
+          left: this.props.workingKey.booly
+            ? `${20 + (800 - this.props.workingPYE.formatX) / 2}px`
+            : `${70 + (800 - this.props.workingPYE.formatX) / 4}px`,
+          marginBottom: "20px",
+        }}
+      >
+        {/*display.sort((a, b) => b.layerID - a.layerID),*/
+        layers.map((layer) =>
+          layer.layerType === "img" ? (
+            <img
+              key={layer.layerID}
+              src={layer.layerFS.url}
+              style={keyZero}
+              alt=""
+            />
+          ) : layer.layerType === "form" ? (
+            <img
+              src={layer.layerFS.url}
+              key={layer.layerID}
+              style={keyZero}
+              alt=""
+            />
+          ) : layer.layerType === "typo" ? (
+            <h1
+              key={layer.layerID}
+              src={layer.layerFS.url}
+              style={keyZero}
+              alt=""
             >
-              {`Key ${key.keyID}`}
-            </Button>
-          ))
+              {layer.layerName}
+            </h1>
+          ) : layer.layerType === "audio" ? (
+            <img
+              key={layer.layerID}
+              src={layer.layerFS.url}
+              style={keyZero}
+              alt=""
+            />
+          ) : layer.layerType === "video" ? (
+            <img
+              key={layer.layerID}
+              src={layer.layerFS.url}
+              style={keyZero}
+              alt=""
+            />
+          ) : layer.layerType === "empty" ? null : null
         )}
-        {this.state.display.length < 9 ? (
-          <Button
-            className="btn btn-info m-2"
-            onClick={this.addKeyUp}
-            id={this.state.ups}
-          >
-            +
-          </Button>
-        ) : null}
       </div>
     );
   }
@@ -210,8 +179,10 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   deleteLayer,
-  loadLayer2work,
   editLayer,
-  setWork,
+  updateLayer,
   editKey,
-})(KeyFrames);
+  saveKey,
+  resetKey,
+  updateKey,
+})(MiniPlayer);

@@ -5,6 +5,7 @@ import {
   DELETE_KEY,
   EDIT_KEY,
   SAVE_KEY,
+  SAVE_KEYS,
   RESET_KEY,
   UPDATE_KEY,
 } from "./types";
@@ -34,6 +35,13 @@ export const saveKey = (feed) => {
   console.log("ACT save key to array// ", feed);
   return {
     type: SAVE_KEY,
+    payload: feed,
+  };
+};
+export const saveKeys = (feed) => {
+  console.log("ACT save key to array// ", feed);
+  return {
+    type: SAVE_KEYS,
     payload: feed,
   };
 };

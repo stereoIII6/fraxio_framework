@@ -39,9 +39,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { updateLayer } from "../../action/layerActions";
 import LayerInput from "./LayerInput";
-import MediaPreview from "./MediaPreview";
+import MiniPlayer from "./MiniPlayer";
 import Layer from "./Layer";
+// class definition
 class Layers extends Component {
+  // redux state prop declaration
   static propTypes = {
     workingPYE: PropTypes.object,
     workingLayer: PropTypes.object,
@@ -52,12 +54,14 @@ class Layers extends Component {
 
   render() {
     this.props.updateLayer();
+    // exclude layer 0
     const display = this.props.layers.filter(
       (layer) => parseInt(layer.layerID) !== 0
     );
 
     return (
       <div>
+        {/* CREATE NEW LAYER FORM*/}
         <LayerInput />
         <div className="row">
           <div className="col-4 alert alert-info">
@@ -73,7 +77,8 @@ class Layers extends Component {
           </div>
           <div className="col-8 alert alert-warning">
             Layer Preview
-            <MediaPreview />
+            {/* MINI PREVIEW OF TOKEN */}
+            <MiniPlayer />
           </div>
         </div>
       </div>

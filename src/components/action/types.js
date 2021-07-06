@@ -14,6 +14,7 @@ export const UPDATE_LAYER = "UPDATE_LAYER";
 
 export const EDIT = "EDIT";
 export const EDIT_KEY = "EDIT_KEY";
+export const SAVE_KEYS = "SAVE_KEYS";
 export const SAVE_KEY = "SAVE_KEY";
 export const RESET_KEY = "RESET_KEY";
 export const UPDATE_KEY = "UPDATE_KEY";

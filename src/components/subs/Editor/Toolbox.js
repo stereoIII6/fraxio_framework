@@ -41,7 +41,7 @@ import { connect } from "react-redux";
 import { Slider, RangeSlider } from "rsuite";
 
 import { addLayer, editLayer } from "../../action/layerActions";
-import { editKey, saveKey, resetKey } from "../../action/keyActions";
+import { editKey, saveKey, saveKeys, resetKey } from "../../action/keyActions";
 import { Button, Input, InputGroup } from "reactstrap";
 class ToolBox extends Component {
   state = {
@@ -61,8 +61,10 @@ class ToolBox extends Component {
     layers: PropTypes.array,
     coloris: PropTypes.object,
     editKey: PropTypes.func,
+    saveKeys: PropTypes.func,
     saveKey: PropTypes.func,
     resetKey: PropTypes.func,
+    keys: PropTypes.array,
   };
   slideX = (e) => {
     //console.log(e);
@@ -104,12 +106,30 @@ class ToolBox extends Component {
     const wKey = this.props.workingKey;
     wKey.edit = false;
     wKey.booly = false;
-    this.props.saveKey(wKey);
+    console.log(parseInt(wKey.keyID));
+    if (
+      this.props.keys.find(
+        (key) => parseInt(key.keyID) !== parseInt(wKey.keyID)
+      )
+    ) {
+      console.log("not same keys");
+      this.props.saveKey(wKey);
+    } else {
+      console.log("same keys");
+      let layerKeys = this.props.keys;
+      let x = 0;
+      let h = 0;
+      layerKeys.filter((key) => key.keyID === wKey.keyID);
+      layerKeys.push(wKey);
+      console.log(layerKeys);
+      this.props.saveKeys(layerKeys);
+    }
   };
   resetKey = (e) => {
     e.preventDefault();
     const wKey = this.props.workingKey;
     wKey.edit = false;
+    wKey.booly = false;
     this.props.editKey(wKey);
   };
   render() {
@@ -281,6 +301,7 @@ const mapStateToProps = (state) => ({
   workingPYE: state.pyeState.workingPYE,
   workingLayer: state.layerState.workingLayer,
   workingKey: state.keyState.workingKey,
+  keys: state.keyState.keys,
   layers: state.layerState.layers,
   coloris: state.layerState.coloris,
 });
@@ -289,6 +310,7 @@ export default connect(mapStateToProps, {
   addLayer,
   editLayer,
   editKey,
+  saveKeys,
   saveKey,
   resetKey,
 })(ToolBox);
