@@ -6,6 +6,7 @@ import {
   ADD_LAYER,
   DEL_LAYER,
   EDIT_LAYER,
+  EDIT_LAYERS,
   MOVE_LAYER,
   DISC_LAYERS,
   UPDATE_LAYER,
@@ -44,6 +45,8 @@ const initState = {
       pye: "",
       file: "",
       url: "",
+      auth: false,
+      secret: "",
     },
     layerName: "",
     layerExternal: {
@@ -53,12 +56,6 @@ const initState = {
       data: {},
     },
     keys: [],
-  },
-  layerParams: {
-    x: 0,
-    y: 0,
-    o: 1,
-    r: 0,
   },
   loadingLayers: true,
 };
@@ -78,6 +75,12 @@ export default function(state = initState, action) {
         ...state,
         workingLayer: action.payload,
       };
+    case EDIT_LAYERS:
+      console.log("edit RED //" + action.payload);
+      return {
+        ...state,
+        layers: [...action.payload],
+      };
     case DEL_LAYER:
       console.log("delete RED //" + action.payload);
       return {
@@ -86,9 +89,7 @@ export default function(state = initState, action) {
       };
     case UPDATE_LAYER:
       console.log("update RED //" + action.payload);
-      return {
-        ...state,
-      };
+      return state;
     case DISC_LAYERS:
       console.log("update RED //");
       return initState;

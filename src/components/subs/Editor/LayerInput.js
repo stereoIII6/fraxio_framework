@@ -52,9 +52,13 @@ const ipfs = IpfsHttpClient({
 /* */
 class LayerInput extends Component {
   state = {
-    layerType: "empty",
-    layerFeed: "static",
+    layerType: "no",
+    layerFeed: "no",
+    layerFeed: "no",
+    layerText: "",
     file: null,
+    layerName: "",
+    layerName: "",
     layerName: "",
     layerID: 0,
     fileURL: null,
@@ -87,7 +91,10 @@ class LayerInput extends Component {
     console.log("file submitted");
     console.log(this.state.buffer);
 
-    if (this.state.buffer && this.state.layerType !== "empty") {
+    if (
+      this.state.buffer &&
+      (this.state.layerType !== "empty" || this.state.layerType !== "no")
+    ) {
       ipfs.add(this.state.buffer).then((result, err) => {
         console.log("Ipfs Result", result);
 
@@ -119,6 +126,8 @@ class LayerInput extends Component {
             pye: "ipfs/",
             file: result.path,
             url: `https://ipfs.io/ipfs/${result.path}`,
+            text: "",
+            font: "",
           },
           layerName: this.state.layerName,
           layerExternal: {
@@ -131,6 +140,35 @@ class LayerInput extends Component {
 
         this.props.addLayer(newLayer);
       });
+    } else if (this.state.layerType !== "typo") {
+      const newLayer = {
+        booly: true,
+        layerID: this.props.layers.length,
+        layerType: this.state.layerType,
+        layerOracle: {
+          type: this.state.layerFeed,
+          name: this.state.layerFeed,
+          stamp: new Date(),
+          initValue: 0,
+          param: "",
+        },
+        layerFS: {
+          user: "",
+          pye: "ipfs/",
+          file: "",
+          url: `https://ipfs.io/ipfs/`,
+          text: this.state.layerText,
+          font: this.state.layerFont,
+        },
+        layerName: this.state.layerName,
+        layerExternal: {
+          abi: {},
+          adr: 0x0,
+          function: "",
+          data: {},
+        },
+      };
+      this.props.addLayer(newLayer);
     } else {
       const newLayer = {
         booly: true,
@@ -148,6 +186,8 @@ class LayerInput extends Component {
           pye: "ipfs/",
           file: "",
           url: `https://ipfs.io/ipfs/`,
+          text: "",
+          font: "",
         },
         layerName: this.state.layerName,
         layerExternal: {
@@ -186,8 +226,19 @@ class LayerInput extends Component {
     console.log(e.target.value);
     this.setState({ layerName: e.target.value });
   };
+  onChangeText = (e) => {
+    // e.preventDefault();
+    console.log(e.target.value);
+    this.setState({ layerFS: { text: e.target.value } });
+  };
+  onChangeFont = (e) => {
+    // e.preventDefault();
+    console.log(e.target.value);
+    this.setState({ layerFS: { font: e.target.value } });
+  };
   render() {
     let empty = false;
+    let ready = true;
     let allowed = [];
     if (this.state.layerType === "form") allowed = [".svg"];
     if (this.state.layerType === "typo") allowed = [".ttf"];
@@ -195,7 +246,14 @@ class LayerInput extends Component {
     if (this.state.layerType === "audio")
       allowed = [".mp3", ".wav", ".aiff", ".midi"];
     if (this.state.layerType === "video") allowed = [".f4v", ".mp4"];
-
+    if (
+      this.state.layerFeed !== "no" &&
+      this.state.layerType !== "no" &&
+      this.state.layerName.length > 2
+    ) {
+      ready = false;
+      console.log(ready);
+    }
     return (
       <div>
         <Form onSubmit={this.submitFile}>
@@ -207,14 +265,17 @@ class LayerInput extends Component {
               id="LayerData"
               onChange={this.onChangeData}
             >
+              <option name="no" value="no" bssize="normal">
+                Choose a Layer Type
+              </option>
               <option name="empty" value="empty" bssize="normal">
-                Empty
+                Empty Trigger
               </option>
               <option name="form" value="form" bssize="normal">
                 SVG Form
               </option>
               <option name="typo" value="typo" bssize="normal">
-                Typography
+                Text
               </option>
               <option name="img" value="img" bssize="normal">
                 Images
@@ -228,37 +289,73 @@ class LayerInput extends Component {
             </Input>
 
             <>
-              {this.state.layerType === "empty"
+              {this.state.layerType === "no" ||
+              this.state.layerType === "empty" ||
+              this.state.layerType === "typo"
                 ? (empty = true)
                 : (empty = false)}
-
-              <Button
-                onClick={this.handleClick}
-                id="upbtn"
-                className="btn btn-info"
-                disabled={empty}
-              >
-                {this.state.file !== null ? (
-                  this.state.file
-                ) : (
-                  <div>
-                    Upload
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      className="bi bi-arrow-bar-up"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5zm-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"
-                      />
-                    </svg>
-                  </div>
-                )}
-              </Button>
+              {!empty ? (
+                <Button
+                  onClick={this.handleClick}
+                  id="upbtn"
+                  className="btn btn-info"
+                  disabled={empty}
+                >
+                  {this.state.file !== null ? (
+                    this.state.file
+                  ) : (
+                    <div>
+                      Upload
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        className="bi bi-arrow-bar-up"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5zm-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"
+                        />
+                      </svg>
+                    </div>
+                  )}
+                </Button>
+              ) : this.state.layerType === "typo" ? (
+                <div>
+                  <Input
+                    type="text"
+                    bssize="normal"
+                    placeholder="Your Text Here "
+                    name="layerText"
+                    id="layerText"
+                    style={{ display: "d-inline", width: "60%", float: "left" }}
+                    onChange={this.onChangeText}
+                  />
+                  <Input
+                    type="select"
+                    bssize="normal"
+                    name="layerFont"
+                    id="layerFont"
+                    style={{ display: "d-inline", width: "40%", float: "left" }}
+                    onChange={this.onChangeFont}
+                  >
+                    <option name="no" value="no">
+                      Choose a Font
+                    </option>
+                    <option name="arial" value="arial">
+                      Arial
+                    </option>
+                    <option name="courier" value="courier">
+                      Courier
+                    </option>
+                    <option name="comfortaa" value="comfortaa">
+                      Comfortaa
+                    </option>
+                  </Input>
+                </div>
+              ) : null}
               <input
                 type="file"
                 id="upload"
@@ -277,6 +374,9 @@ class LayerInput extends Component {
               id="LayerFeed"
               onChange={this.onChangeFeed}
             >
+              <option name="no" value="no">
+                Choose a Feed
+              </option>
               <option name="static" value="static">
                 No Feed
               </option>
@@ -311,7 +411,7 @@ class LayerInput extends Component {
               id="LayerName"
               onChange={this.onChangeName}
             />
-            <Button type="submit" className="btn btn-success">
+            <Button type="submit" className="btn btn-success" disabled={ready}>
               +{" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"

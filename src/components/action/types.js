@@ -7,6 +7,7 @@ export const BAKE_EXT = "BAKE_EXT";
 export const ADD_LAYER = "ADD_LAYER";
 export const DEL_LAYER = "DEL_LAYER";
 export const EDIT_LAYER = "EDIT_LAYER";
+export const EDIT_LAYERS = "EDIT_LAYERS";
 export const MOVE_LAYER = "MOVE_LAYER";
 export const SAVE_LAYER = "SAVE_LAYER";
 export const DISC_LAYERS = "DISC_LAYERS";

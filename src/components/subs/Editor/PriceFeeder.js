@@ -43,6 +43,7 @@ class PriceFeeder extends Component {
     let result;
     console.log(this.props.oracle);
     PriceFeeds = new web3.eth.Contract(PriceFeed.abi, RinkPFAddress);
+    if (this.props.oracle === "no") result = null;
     if (this.props.oracle === "static") result = null;
     if (this.props.oracle === "crypto")
       result = await PriceFeeds.methods.cryptoFeeds().call();
@@ -73,7 +74,7 @@ class PriceFeeder extends Component {
     if (this.props.oracle === "commodity") label = commodity;
     return (
       <div>
-        {this.props.oracle !== "static" ? (
+        {this.props.oracle !== "static" && this.props.oracle !== "no" ? (
           <Input type="select" onChange={this.setOracle}>
             <option key="null" value="default" var="null">
               ---

@@ -37,10 +37,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import Draggable from "react-draggable";
 import { updateLayer } from "../../action/layerActions";
 import LayerInput from "./LayerInput";
 import MiniPlayer from "./MiniPlayer";
 import Layer from "./Layer";
+import { Button } from "reactstrap";
+
 // class definition
 class Layers extends Component {
   // redux state prop declaration
@@ -52,6 +55,14 @@ class Layers extends Component {
     updateLayer: PropTypes.func,
   };
 
+  // set local state
+  state = {
+    layerSize: true,
+  };
+  onSizeLayers = (e) => {
+    e.preventDefault();
+    this.setState({ layerSize: !this.state.layerSize });
+  };
   render() {
     this.props.updateLayer();
     // exclude layer 0
@@ -63,19 +74,48 @@ class Layers extends Component {
       <div>
         {/* CREATE NEW LAYER FORM*/}
         <LayerInput />
-        <div className="row">
-          <div className="col-4 alert alert-info">
-            {display.map((layer) =>
-              layer.layerID !== 0 ? (
-                <Layer key={layer.layerID} layerid={layer.layerID} />
-              ) : (
-                <div key={0} layerid={0}>
-                  Layers
+        <div>
+          {display.length < 1 ? (
+            console.log("no layer")
+          ) : (
+            <Draggable>
+              <div
+                className="alert alert-info"
+                style={{
+                  position: "absolute",
+                  top: "400px",
+                  left: "20px",
+                  width: "280px",
+                  minHeight: this.state.layerSize ? "200px" : "70px",
+                  maxHeight: this.state.layerSize ? "900px" : "70px",
+                  zIndex: 100,
+                  overflow: "scroll",
+                }}
+              >
+                <div style={{ height: "70px" }}>
+                  Layers{" "}
+                  <Button
+                    className="btn sm-btn"
+                    onClick={this.onSizeLayers}
+                    style={{ float: "right" }}
+                  >
+                    {this.state.layerSize ? " - " : " + "}
+                  </Button>
                 </div>
-              )
-            )}
-          </div>
-          <div className="col-8 alert alert-warning">
+                {display.map((layer) =>
+                  layer.layerID !== 0 ? (
+                    <Layer key={layer.layerID} layerid={layer.layerID} />
+                  ) : (
+                    <div key={0} layerid={0}>
+                      Layers
+                    </div>
+                  )
+                )}
+              </div>
+            </Draggable>
+          )}
+
+          <div className="alert alert-warning">
             Layer Preview
             {/* MINI PREVIEW OF TOKEN */}
             <MiniPlayer />

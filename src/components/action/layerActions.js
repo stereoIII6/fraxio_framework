@@ -3,6 +3,7 @@ import {
   ADD_LAYER,
   DEL_LAYER,
   EDIT_LAYER,
+  EDIT_LAYERS,
   MOVE_LAYER,
   DISC_LAYERS,
   SAVE_LAYER,
@@ -41,6 +42,14 @@ export const deleteLayer = (newLayers) => {
   };
 };
 
+export const editLayers = (edited) => {
+  console.log("action edit layer", edited);
+
+  return {
+    type: EDIT_LAYERS,
+    payload: edited,
+  };
+};
 export const editLayer = (edited) => {
   console.log("action edit layer", edited);
 

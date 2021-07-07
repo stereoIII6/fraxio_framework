@@ -19,7 +19,7 @@
 //          @versiom :: 1.0.0                                                       //
 //                                                                                  //
 //          @description ::                                                         //
-//          The Factory FR-90405 is Media Preview for the React Frontend.           //
+//          The Factory FR-90405 is Mini Player for the React Frontend.           //
 //                                                                                  //
 //                                                                                  //
 //          @author :: fractio.xyz                                                  //
@@ -103,68 +103,64 @@ class MiniPlayer extends Component {
       (layer) => parseInt(layer.layerID) !== 0
     );
     return (
-      <div
-        id="md-screen"
-        style={{
-          background: "darkgrey",
+      <div style={{ width: "820px", height: "820px", margin: "0px auto" }}>
+        <div
+          id="md-screen"
+          style={{
+            background: "darkgrey",
 
-          backgroundImage: `url("https://ipfs.io/ipfs/QmTNbkJ5x3iY4VEiEUARfrCreqBZ3tXHU3oFnsUK7QnDie")`,
-          width: this.props.workingKey.booly
-            ? this.props.workingPYE.formatX / 1
-            : this.props.workingPYE.formatX / 2,
-          height: this.props.workingKey.booly
-            ? this.props.workingPYE.formatY / 1
-            : this.props.workingPYE.formatY / 2,
-          overflow: "hidden",
-          position: "relative",
-          top: "10px",
-          left: this.props.workingKey.booly
-            ? `${20 + (800 - this.props.workingPYE.formatX) / 2}px`
-            : `${70 + (800 - this.props.workingPYE.formatX) / 4}px`,
-          marginBottom: "20px",
-        }}
-      >
-        {/*display.sort((a, b) => b.layerID - a.layerID),*/
-        layers.map((layer) =>
-          layer.layerType === "img" ? (
-            <img
-              key={layer.layerID}
-              src={layer.layerFS.url}
-              style={keyZero}
-              alt=""
-            />
-          ) : layer.layerType === "form" ? (
-            <img
-              src={layer.layerFS.url}
-              key={layer.layerID}
-              style={keyZero}
-              alt=""
-            />
-          ) : layer.layerType === "typo" ? (
-            <h1
-              key={layer.layerID}
-              src={layer.layerFS.url}
-              style={keyZero}
-              alt=""
-            >
-              {layer.layerName}
-            </h1>
-          ) : layer.layerType === "audio" ? (
-            <img
-              key={layer.layerID}
-              src={layer.layerFS.url}
-              style={keyZero}
-              alt=""
-            />
-          ) : layer.layerType === "video" ? (
-            <img
-              key={layer.layerID}
-              src={layer.layerFS.url}
-              style={keyZero}
-              alt=""
-            />
-          ) : layer.layerType === "empty" ? null : null
-        )}
+            backgroundImage: `url("https://ipfs.io/ipfs/QmTNbkJ5x3iY4VEiEUARfrCreqBZ3tXHU3oFnsUK7QnDie")`,
+            width: this.props.workingPYE.formatX / 1,
+            height: this.props.workingPYE.formatY / 1,
+            overflow: "hidden",
+            position: "relative",
+            top: "10px",
+            left: "10px",
+            marginBottom: "20px",
+          }}
+        >
+          {/*display.sort((a, b) => b.layerID - a.layerID),*/
+          layers.map((layer) =>
+            layer.layerType === "img" ? (
+              <img
+                key={layer.layerID}
+                src={layer.layerFS.url}
+                style={keyZero}
+                alt=""
+              />
+            ) : layer.layerType === "form" ? (
+              <img
+                src={layer.layerFS.url}
+                key={layer.layerID}
+                style={keyZero}
+                alt=""
+              />
+            ) : layer.layerType === "typo" ? (
+              <h1
+                key={layer.layerID}
+                src={layer.layerFS.url}
+                style={keyZero}
+                alt=""
+              >
+                {layer.layerName}
+              </h1>
+            ) : layer.layerType === "audio" ? (
+              <img
+                key={layer.layerID}
+                src={layer.layerFS.url}
+                style={keyZero}
+                alt=""
+              />
+            ) : layer.layerType === "video" ? (
+              <img
+                key={layer.layerID}
+                src={layer.layerFS.url}
+                style={keyZero}
+                alt=""
+              />
+            ) : layer.layerType === "empty" ? null : null
+          )}
+        </div>
       </div>
     );
   }

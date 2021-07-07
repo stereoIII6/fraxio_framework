@@ -44,14 +44,16 @@ import { Button } from "reactstrap";
 import Toolbox from "./Toolbox";
 import KeyFrames from "./KeyFrames";
 import MediaPreview from "./MediaPreview";
-
+// class definition
 class MaskThree extends Component {
+  // import redux state to local props
   static propTypes = {
     workingPYE: PropTypes.object,
     workingLayer: PropTypes.object,
     workingKey: PropTypes.object,
     keys: PropTypes.array,
   };
+  // set local state
   state = {};
   goQuit = (e) => {
     e.preventDefault();
@@ -78,6 +80,7 @@ class MaskThree extends Component {
           </Button>
         </h1>
         <hr></hr>
+        {/* IMPORT KEYFRAMES */}
         <KeyFrames />
         <MediaPreview />
       </div>
