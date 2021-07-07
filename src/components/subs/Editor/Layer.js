@@ -617,6 +617,9 @@ class Layer extends Component {
         />
         {this.state.ext ? (
           <InputGroup id="extrigger" disabled>
+            <b style={{ fontSize: "0.8em" }}>
+              External Trigger (optional) <Button>?</Button>
+            </b>
             <Input
               type="text"
               style={{ width: "100%" }}

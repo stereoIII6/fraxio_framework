@@ -266,13 +266,13 @@ class LayerInput extends Component {
               onChange={this.onChangeData}
             >
               <option name="no" value="no" bssize="normal">
-                Choose a Layer Type
+                Choose a Layer Media Type
               </option>
               <option name="empty" value="empty" bssize="normal">
-                Empty Trigger
+                Empty Layer
               </option>
               <option name="form" value="form" bssize="normal">
-                SVG Form
+                Polygon
               </option>
               <option name="typo" value="typo" bssize="normal">
                 Text
@@ -375,31 +375,31 @@ class LayerInput extends Component {
               onChange={this.onChangeFeed}
             >
               <option name="no" value="no">
-                Choose a Feed
+                Choose Real World Data
               </option>
               <option name="static" value="static">
-                No Feed
+                No Data Feed
               </option>
               <option name="count" value="count" disabled>
-                Count Feed
+                Count Data Feed
               </option>
               <option name="cryptoPrices" value="crypto">
-                Crypto Feeds
+                Crypto Price Feeds
               </option>
               <option name="currencyPrices" value="currency">
-                Currency Feeds
+                Currency Price Feeds
               </option>
               <option name="commodPrices" value="commodity">
-                Commodity Feeds
+                Commodity Price Feeds
               </option>
               <option name="weatherFeeds" value="weather" disabled>
-                Weather Feeds
+                Weather Data Feeds
               </option>
               <option name="time" value="time" disabled>
-                Timeline Feed
+                Timeline Data Feed
               </option>
               <option name="api" value="api" disabled>
-                External API Feed
+                External API Data Feed
               </option>
             </Input>
 

@@ -46,7 +46,7 @@ import {
   updateWPsym,
   updateWPdesc,
 } from "../../action/pyeActions";
-import { Button, InputGroup, Input, Form } from "reactstrap";
+import { Button, InputGroup, Input, Form, CustomInput } from "reactstrap";
 // Class Definition
 class MaskOne extends Component {
   // redux imports
@@ -59,8 +59,9 @@ class MaskOne extends Component {
   };
   // set mask one initial state
   state = {
-    formatX: 800,
-    formatY: 800,
+    formatX: 8,
+    formatY: 8,
+    formatShow: "8x8.png",
     name: "",
     desc: "",
     symbol: "",
@@ -112,12 +113,22 @@ class MaskOne extends Component {
   // change PYE Format width input handler
   onChangeFY = (e) => {
     e.preventDefault();
-    this.setState({ formatY: document.getElementsByName(e.target.name).value });
+    const show = `8x${e.target.value}.png`;
+    this.setState({
+      formatY: document.getElementsByName(e.target.name).value,
+      formatX: 8,
+      formatShow: show,
+    });
   };
   // change PYE format height input handler
   onChangeFX = (e) => {
     e.preventDefault();
-    this.setState({ formatX: document.getElementsByName(e.target.name).value });
+    const show = `${e.target.value}x8.png`;
+    this.setState({
+      formatX: document.getElementsByName(e.target.name).value,
+      formatY: 8,
+      formatShow: show,
+    });
   };
   // VRF HELP ALERT
   onHelp = (e) => {
@@ -162,7 +173,7 @@ class MaskOne extends Component {
   render() {
     return !this.props.workingPYE.booly ? (
       <div>
-        <h1 className="m-0 p-0">Create a PYE Token !</h1>
+        <h1 className="m-0 p-0">Create a digital asset !</h1>
         <Form>
           <hr></hr>
           {/* NAME INPUT */}
@@ -177,7 +188,7 @@ class MaskOne extends Component {
             }}
             value={this.props.workingPYE.name}
             id="name"
-            placeholder="Token Name"
+            placeholder="Name your digital asset"
             onChange={this.onChangeName}
           />
           {/* SYMBOL INPUT */}
@@ -202,79 +213,41 @@ class MaskOne extends Component {
             type="text"
             name="pye_desc"
             id="desc"
-            placeholder="Description"
+            placeholder="Describe your digital asset"
             bssize="lg"
             style={{ fontSize: "2em", height: "2em" }}
           />
           {/* FORMAT INPUT */}
-          <InputGroup>
-            <Input
-              onChange={this.onSelect}
-              type="select"
-              name="pye_format_select"
-              bssize="lg"
-              style={{ fontSize: "2em", height: "2em" }}
-              defaultValue={`{"x":"${this.state.formatX}", "y":"${this.state.formatY}"}`}
-            >
-              <option name="100x800" value='{"x":"100", "y":"800"}'>
-                1:8 Portrait
-              </option>
+          <div className="row" style={{ height: "450px" }}>
+            <h2 className="ml-5 mt-2 mb-0 p-0">Choose a Format !</h2>
+            <div className="col-4 p-5" style={{ height: "420px" }}>
+              <img src={this.state.formatShow} />
+            </div>
+            <div className="col-8 p-5" style={{ height: "420px" }}>
+              <b>width</b>
+              <CustomInput
+                type="range"
+                id="xIn"
+                min={3}
+                max={8}
+                style={{ marginBottom: "2em" }}
+                value={this.state.formatX}
+                onChange={this.onChangeFX}
+              />
 
-              <option name="300x800" value='{"x":"300", "y":"800"}'>
-                3:8 Portrait
-              </option>
+              <b>height</b>
+              <CustomInput
+                type="range"
+                id="yIn"
+                min={3}
+                max={8}
+                style={{ marginTop: "2em" }}
+                value={this.state.formatY}
+                onChange={this.onChangeFY}
+              />
+            </div>
+          </div>
 
-              <option name="500x800" value='{"x":"500", "y":"800"}'>
-                5:8 Portrait
-              </option>
-
-              <option name="700x800" value='{"x":"700", "y":"800"}'>
-                7:8 Portrait
-              </option>
-
-              <option name="800x800" value='{"x":"800", "y":"800"}'>
-                8:8 Square
-              </option>
-
-              <option name="800x700" value='{"x":"800", "y":"700"}'>
-                8:7 Landscape
-              </option>
-
-              <option name="800x500" value='{"x":"800", "y":"500"}'>
-                8:5 Landscape
-              </option>
-
-              <option name="800x300" value='{"x":"800", "y":"300"}'>
-                8:3 Landscape
-              </option>
-
-              <option name="800x100" value='{"x":"800", "y":"100"}'>
-                8:1 Landscape
-              </option>
-            </Input>
-            <Input
-              onChange={this.onChangeFX}
-              value={this.state.formatX}
-              id="formatX"
-              disabled
-              type="text"
-              name="fwidth"
-              placeholder="800px"
-              bssize="lg"
-              style={{ fontSize: "2em", height: "2em" }}
-            />
-            <Input
-              onChange={this.onChangeFY}
-              value={this.state.formatY}
-              id="formatY"
-              disabled
-              type="text"
-              name="fheight"
-              placeholder="800px"
-              bssize="lg"
-              style={{ fontSize: "2em", height: "2em" }}
-            />
-          </InputGroup>
           {/* RANDOMNESS INPUT */}
           <InputGroup>
             <Input
