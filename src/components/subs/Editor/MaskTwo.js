@@ -47,6 +47,7 @@ import {
 import { discardLayers } from "../../action/layerActions";
 import { Button } from "reactstrap";
 import Layers from "./Layers";
+import { stat } from "fs";
 // class definition
 class MaskTwo extends Component {
   // redux state import
@@ -59,6 +60,7 @@ class MaskTwo extends Component {
     createPye: PropTypes.func,
     discardPye: PropTypes.func,
     discardLayers: PropTypes.func,
+    coloris: PropTypes.object,
     layers: PropTypes.array,
     keys: PropTypes.array,
   };
@@ -82,19 +84,35 @@ class MaskTwo extends Component {
         <h1 className="m-0 p-0">
           {this.props.workingPYE.name} Layer Editor
           <Button
-            style={{ color: "tomato", float: "right" }}
+            style={{
+              background: this.props.coloris.purple,
+              color: this.props.coloris.mint,
+              float: "right",
+            }}
             onClick={this.onDiscard}
           >
-            DISCARD
+            X
           </Button>
           <Button
-            style={{ color: "lime", float: "right", marginRight: "1em" }}
+            style={{
+              background: this.props.coloris.palm,
+              color: this.props.coloris.sky,
+              float: "right",
+              marginRight: "1em",
+            }}
+            disabled
             onClick={this.onSave}
           >
             SAVE DRAFT [3 MLQ]
           </Button>
           <Button
-            style={{ color: "lime", float: "right", marginRight: "1em" }}
+            style={{
+              background: this.props.coloris.palm,
+              color: this.props.coloris.sky,
+              float: "right",
+              marginRight: "1em",
+            }}
+            disabled
             onClick={this.onMint}
           >
             MINT [15 MLQ]
@@ -114,6 +132,7 @@ const mapStateToProps = (state) => ({
   workingKey: state.keyState.workingKey,
   layers: state.layerState.layers,
   keys: state.keyState.keys,
+  coloris: state.layerState.coloris,
 });
 
 export default connect(mapStateToProps, {

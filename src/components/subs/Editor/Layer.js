@@ -599,10 +599,26 @@ class Layer extends Component {
         />
         {this.state.ext ? (
           <InputGroup id="extrigger" disabled>
-            <Input type="text" placeholder="CONTRACT ADDRESS" />
-            <Input type="text" placeholder="CONTRACT ABI" />
-            <Input type="text" placeholder="FUNCTION NAME" />
-            <Input type="text" placeholder="PARAMS OBJECT" />
+            <Input
+              type="text"
+              style={{ width: "100%" }}
+              placeholder="CONTRACT ADDRESS"
+            />
+            <Input
+              type="text"
+              style={{ width: "100%" }}
+              placeholder="CONTRACT ABI"
+            />
+            <Input
+              type="text"
+              style={{ width: "100%" }}
+              placeholder="FUNCTION NAME"
+            />
+            <Input
+              type="text"
+              style={{ width: "100%" }}
+              placeholder="PARAMS OBJECT"
+            />
           </InputGroup>
         ) : null}
       </div>
