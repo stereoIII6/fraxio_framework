@@ -79,16 +79,34 @@ class Layer extends Component {
     // set working keyFrame booly true
     const key = {
       booly: true,
-      layerID: e.target.id,
-      keyID: 0,
-      oracle: this.props.workingLayer.layerOracle.name,
-      oracleState: this.props.workingLayer.layerOracle.initValue,
-      layerParams: {
-        x: 0,
-        y: 0,
-        o: 100,
-        r: 0,
-        z: 90,
+      edit: true,
+      keys: [
+        {
+          layerID: e.target.id,
+          keyID: 0,
+          oracle: this.props.workingLayer.layerOracle.name,
+          oracleState: this.props.workingLayer.layerOracle.initValue,
+          layerParams: {
+            x: 0,
+            y: 0,
+            o: 100,
+            r: 0,
+            z: 90,
+          },
+        },
+      ],
+      initKey: {
+        layerID: e.target.id,
+        keyID: 0,
+        oracle: this.props.workingLayer.layerOracle.name,
+        oracleState: this.props.workingLayer.layerOracle.initValue,
+        layerParams: {
+          x: 0,
+          y: 0,
+          o: 100,
+          r: 0,
+          z: 90,
+        },
       },
     };
     this.props.setWork(key);

@@ -42,18 +42,9 @@ import { Slider, RangeSlider } from "rsuite";
 import Draggable from "react-draggable";
 import { addLayer, editLayer } from "../../action/layerActions";
 import { editKey, saveKey, saveKeys, resetKey } from "../../action/keyActions";
-import { Button, Input, InputGroup } from "reactstrap";
+import { Button, Input, InputGroup, CustomInput } from "reactstrap";
 // class definition
 class ToolBox extends Component {
-  state = {
-    layerParams: {
-      x: 0,
-      y: 0,
-      z: 90,
-      o: 100,
-      r: 0,
-    },
-  };
   // proptype definition
   static propTypes = {
     workingPYE: PropTypes.object,
@@ -68,50 +59,51 @@ class ToolBox extends Component {
     resetKey: PropTypes.func,
     keys: PropTypes.array,
   };
+  state = this.props.workingKey.initKey;
   // move layer x position
   slideX = (e) => {
     //console.log(e);
-    let wKey = this.props.workingKey;
+    let wKey = this.props.workingKey.initKey;
     wKey.layerParams.x = e.target.value;
     this.setState(wKey);
-    this.props.editKey(wKey);
+    // this.props.editKey(wKey);
   };
   // move layer y position
   slideY = (e) => {
     console.log(e);
-    let wKey = this.props.workingKey;
+    let wKey = this.props.workingKey.initKey;
     wKey.layerParams.y = e.target.value;
     this.setState(wKey);
-    this.props.editKey(wKey);
+    // this.props.editKey(wKey);
   };
   // scale layer
   slideZ = (e) => {
     console.log(e);
-    let wKey = this.props.workingKey;
+    let wKey = this.props.workingKey.initKey;
     wKey.layerParams.z = e;
     this.setState(wKey);
-    this.props.editKey(wKey);
+    // this.props.editKey(wKey);
   };
   // rotate layer
   slideR = (e) => {
     console.log(e);
-    let wKey = this.props.workingKey;
+    let wKey = this.props.workingKey.initKey;
     wKey.layerParams.r = e;
     this.setState(wKey);
-    this.props.editKey(wKey);
+    // this.props.editKey(wKey);
   };
   // opacity layer
   slideO = (e) => {
     console.log(e);
-    let wKey = this.props.workingKey;
+    let wKey = this.props.workingKey.initKey;
     wKey.layerParams.o = e;
     this.setState(wKey);
-    this.props.editKey(wKey);
+    // this.props.editKey(wKey);
   };
   // save workingkey
   saveKey = (e) => {
     e.preventDefault();
-    const wKey = this.props.workingKey;
+    const wKey = this.props.workingKey.initKey;
     wKey.edit = false;
     wKey.booly = false;
     console.log(parseInt(wKey.keyID));
@@ -136,20 +128,24 @@ class ToolBox extends Component {
   //
   resetKey = (e) => {
     e.preventDefault();
-    const wKey = this.props.workingKey;
+    const wKey = this.props.workingKey.initKey;
     wKey.edit = false;
     wKey.booly = false;
     this.props.editKey(wKey);
   };
   render() {
+    console.log(this.state);
     return (
-      <Draggable>
+      <Draggable disabled>
         <div
           className="alert alert-success"
           style={{
-            width: "160px",
+            width: "260px",
             padding: "10px",
             position: "absolute",
+            zIndex: 100,
+            background: this.props.coloris.sky,
+            color: this.props.coloris.palm,
             top: "400px",
             left: "20px",
           }}
@@ -162,25 +158,45 @@ class ToolBox extends Component {
                 {" "}
                 Layer {this.props.workingLayer.layerID} Key{" "}
                 {this.props.workingKey.keyID}
-                {this.props.workingKey.oracle !== "static" ? (
-                  <InputGroup style={{ width: "140px" }}>
+                {this.props.workingKey.oracle !== "no" &&
+                this.props.workingKey.oracle !== "static" ? (
+                  <InputGroup
+                    style={{
+                      width: "240px",
+                      background: this.props.coloris.grey,
+                      color: this.props.coloris.palm,
+                    }}
+                  >
                     <Input
                       type="text"
                       placeholder={this.props.workingLayer.layerOracle.param}
                       disabled
-                      style={{ width: "30px", fontSize: "0.5em" }}
+                      style={{
+                        width: "30px",
+                        fontSize: "0.5em",
+                      }}
                     />
                     <Input
                       type="text"
                       defaultValue={
                         this.props.workingLayer.layerOracle.initValue
                       }
-                      style={{ width: "80px", fontSize: "0.5em" }}
+                      style={{
+                        width: "80px",
+                        fontSize: "0.5em",
+                      }}
                     />
                   </InputGroup>
                 ) : null}
               </h3>
-              <div className="btn btn-info" style={{ width: "100%" }}>
+              <div
+                className="btn"
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  color: this.props.coloris.palm,
+                }}
+              >
                 Position<br></br>
                 {console.log(this.props.workingKey)}
                 <Input
@@ -206,27 +222,54 @@ class ToolBox extends Component {
                   onChange={this.slideY}
                 />
               </div>
-              <div className="btn btn-info" style={{ width: "100%" }}>
+              <div
+                className="btn"
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  color: this.props.coloris.palm,
+                }}
+              >
                 Scale
-                <Slider
+                <CustomInput
+                  id="zR"
+                  type="range"
                   value={this.state.layerParams.z}
                   onChange={this.slideZ}
                   max={200}
                   min={1}
                 />
               </div>
-              <div className="btn btn-info" style={{ width: "100%" }}>
+              <div
+                className="btn"
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  color: this.props.coloris.palm,
+                }}
+              >
                 Rotation
-                <Slider
+                <CustomInput
+                  id="rR"
+                  type="range"
                   value={this.state.layerParams.r}
                   onChange={this.slideR}
                   max={360}
                   min={-360}
                 />
               </div>
-              <div className="btn btn-info" style={{ width: "100%" }}>
+              <div
+                className="btn"
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  color: this.props.coloris.palm,
+                }}
+              >
                 Opacity
-                <Slider
+                <CustomInput
+                  id="oR"
+                  type="range"
                   value={this.state.layerParams.o}
                   onChange={this.slideO}
                   max={100}
@@ -235,19 +278,33 @@ class ToolBox extends Component {
               </div>
               {this.props.workingLayer.layerType === "typo" ||
               this.props.workingLayer.layerType === "svg" ? (
-                <div className="btn btn-info" style={{ width: "100%" }}>
+                <div
+                  className="btn"
+                  style={{
+                    width: "100%",
+                    background: this.props.coloris.grey,
+                    color: this.props.coloris.palm,
+                  }}
+                >
                   Color
                 </div>
               ) : null}
               {this.props.workingLayer.layerType === "typo" ||
               this.props.workingLayer.layerType === "svg" ? (
-                <div className="btn btn-info" style={{ width: "100%" }}>
+                <div
+                  className="btn"
+                  style={{
+                    width: "100%",
+                    background: this.props.coloris.grey,
+                    color: this.props.coloris.palm,
+                  }}
+                >
                   Border
                 </div>
               ) : null}
               {this.props.workingLayer.layerType === "typo" ||
               this.props.workingLayer.layerType === "svg" ? (
-                <div className="btn btn-info" style={{ width: "100%" }}>
+                <div className="btn" style={{ width: "100%" }}>
                   BorderColor
                 </div>
               ) : null}
@@ -256,50 +313,135 @@ class ToolBox extends Component {
           {this.props.workingLayer.layerType === "audio" ||
           this.props.workingLayer.layerType === "video" ? (
             <div>
-              <div className="btn btn-info" style={{ width: "100%" }}>
+              <div
+                className="btn"
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  color: this.props.coloris.palm,
+                }}
+              >
                 lCut
               </div>
-              <div className="btn btn-info" style={{ width: "100%" }}>
+              <div
+                className="btn"
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  color: this.props.coloris.palm,
+                }}
+              >
                 rCut
               </div>
-              <div className="btn btn-info" style={{ width: "100%" }}>
+              <div
+                className="btn"
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  color: this.props.coloris.palm,
+                }}
+              >
                 Play
               </div>
-              <div className="btn btn-info" style={{ width: "100%" }}>
+              <div
+                className="btn"
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  color: this.props.coloris.palm,
+                }}
+              >
                 Pause
               </div>
-              <div className="btn btn-info" style={{ width: "100%" }}>
+              <div
+                className="btn"
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  color: this.props.coloris.palm,
+                }}
+              >
                 Stop
               </div>
-              <div className="btn btn-info" style={{ width: "100%" }}>
+              <div
+                className="btn"
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  color: this.props.coloris.palm,
+                }}
+              >
                 Loop
               </div>
-              <div className="btn btn-info" style={{ width: "100%" }}>
+              <div
+                className="btn"
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  color: this.props.coloris.palm,
+                }}
+              >
                 Go2Play
               </div>
-              <div className="btn btn-info" style={{ width: "100%" }}>
+              <div
+                className="btn"
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  color: this.props.coloris.palm,
+                }}
+              >
                 Go2Pause
               </div>
-              <div className="btn btn-info" style={{ width: "100%" }}>
+              <div
+                className="btn"
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  color: this.props.coloris.palm,
+                }}
+              >
                 Volume
               </div>
-              <div className="btn btn-info" style={{ width: "100%" }}>
+              <div
+                className="btn"
+                style={{
+                  width: "100%",
+                  background: this.props.coloris.grey,
+                  color: this.props.coloris.palm,
+                }}
+              >
                 Pan
               </div>
             </div>
           ) : null}
 
-          <div style={{ width: "100%" }}>
+          <div
+            style={{
+              width: "100%",
+              marginTop: "1em",
+              background: this.props.coloris.grey,
+              color: this.props.coloris.palm,
+            }}
+          >
             <div
-              className="btn btn-success"
-              style={{ width: "70%" }}
+              className="btn"
+              style={{
+                width: "70%",
+                background: this.props.coloris.mint,
+                color: this.props.coloris.purple,
+              }}
               onClick={this.saveKey}
             >
               Save
             </div>
             <div
-              className="btn btn-danger"
-              style={{ width: "30%" }}
+              className="btn"
+              style={{
+                width: "30%",
+                background: this.props.coloris.purple,
+                color: this.props.coloris.mint,
+              }}
               onClick={this.resetKey}
             >
               x

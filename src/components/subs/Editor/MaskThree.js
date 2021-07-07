@@ -52,6 +52,7 @@ class MaskThree extends Component {
     workingLayer: PropTypes.object,
     workingKey: PropTypes.object,
     keys: PropTypes.array,
+    coloris: PropTypes.object,
   };
   // set local state
   state = {};
@@ -67,16 +68,25 @@ class MaskThree extends Component {
         <h1 className="m-0 p-0">
           PYE Keyframe Editor
           <Button
-            style={{ color: "tomato", float: "right" }}
+            style={{
+              background: this.props.coloris.purple,
+              color: this.props.coloris.mint,
+              float: "right",
+            }}
             onClick={this.goQuit}
           >
             X
           </Button>
           <Button
-            style={{ color: "lime", float: "right", marginRight: "1em" }}
+            style={{
+              background: this.props.coloris.palm,
+              color: this.props.coloris.sky,
+              float: "right",
+              marginRight: "1em",
+            }}
             onClick={this.goQuit}
           >
-            RESET
+            SAVE TO LAYER
           </Button>
         </h1>
         <hr></hr>
@@ -92,6 +102,7 @@ const mapStateToProps = (state) => ({
   workingLayer: state.layerState.workingLayer,
   workingKey: state.keyState.workingKey,
   keys: state.keyState.keys,
+  coloris: state.layerState.coloris,
 });
 
 export default connect(mapStateToProps, {

@@ -63,40 +63,16 @@ class KeyFrames extends Component {
     setWork: PropTypes.func,
     editKey: PropTypes.func,
   };
+  // set local state
   state = {
     actKey: null,
-    zero: {
-      keyID: 0,
-      layerID: this.props.workingLayer.layerID,
-      oracle: this.props.workingLayer.layerOracle,
-      oracleState: 100,
-      layerParams: {
-        x: 0,
-        y: 0,
-        o: 100,
-        r: 0,
-        z: 90,
-      },
-    },
+    keys: [],
     ups: 1,
     downs: 1,
-    display: [
-      {
-        keyID: 0,
-        layerID: this.props.workingLayer.layerID,
-        oracle: this.props.workingLayer.layerOracle,
-        oracleState: 100,
-        layerParams: {
-          x: 0,
-          y: 0,
-          o: 100,
-          r: 0,
-          z: 90,
-        },
-      },
-    ],
   };
+
   loadKeys() {}
+  // additional key frame to layer negative feedline
   addKeyDown = (e) => {
     e.preventDefault();
     console.log("down");
@@ -115,13 +91,15 @@ class KeyFrames extends Component {
     };
     this.setState({
       downs: this.state.downs + 1,
-      display: [newKey, ...this.state.display],
+      keys: [newKey, ...this.state.keys],
     });
   };
+  // additional key frame to layer positive feedline
   addKeyUp = (e) => {
     e.preventDefault();
     console.log("up");
     const newKey = {
+      keys: this.props.workingLayer.keys,
       keyID: parseInt(e.target.id),
       layerID: this.props.workingLayer.layerID,
       oracle: this.props.workingLayer.layerOracle,
@@ -136,9 +114,10 @@ class KeyFrames extends Component {
     };
     this.setState({
       ups: this.state.ups + 1,
-      display: [...this.state.display, newKey],
+      keys: [...this.state.keys, newKey],
     });
   };
+  // set key ready to edit
   activateKey = (e) => {
     console.log(e.target.id, this.props.workingKey);
     this.setState({ actKey: parseInt(e.target.id) });
@@ -147,49 +126,43 @@ class KeyFrames extends Component {
     wKey.edit = true;
     this.props.editKey(wKey);
   };
-  saveKey = (e) => {
-    console.log(e.target.id);
-    this.setState({ actKey: null });
-  };
   render() {
     return (
       <div style={{ textAlign: "center", marginBottom: "2em" }}>
-        {this.props.workingKey.edit ? (
-          <Toolbox style={{ width: "120px" }} />
-        ) : null}
-        {this.state.display.length < 9 ? (
+        {this.props.workingKey.keys.length < 9 ? (
           <Button
-            className="btn btn-info m-2"
+            className="m-2"
+            style={{
+              background: this.props.coloris.palm,
+              color: this.props.coloris.mint,
+            }}
             onClick={this.addKeyDown}
             id={this.state.downs}
           >
             +
           </Button>
         ) : null}
-        {this.state.display.length === 1 ? (
+        {this.props.workingKey.keys.map((key) => (
           <Button
-            className="btn btn-success m-2"
-            key={0}
-            id={0}
+            className="m-2"
+            style={{
+              background: this.props.coloris.purple,
+              color: this.props.coloris.mint,
+            }}
+            key={key.keyID}
+            id={key.keyID}
             onClick={this.activateKey}
           >
-            Key 0
+            {`Key ${key.keyID}`}
           </Button>
-        ) : (
-          this.state.display.map((key) => (
-            <Button
-              className="btn btn-success m-2"
-              key={key.keyID}
-              id={key.keyID}
-              onClick={this.activateKey}
-            >
-              {`Key ${key.keyID}`}
-            </Button>
-          ))
-        )}
-        {this.state.display.length < 9 ? (
+        ))}
+        {this.props.workingKey.keys.length < 9 ? (
           <Button
-            className="btn btn-info m-2"
+            className="m-2"
+            style={{
+              background: this.props.coloris.palm,
+              color: this.props.coloris.sky,
+            }}
             onClick={this.addKeyUp}
             id={this.state.ups}
           >

@@ -72,23 +72,24 @@ class MediaPreview extends Component {
     console.log(wKey);
   };
   update() {
-    let xVal = this.props.workingKey.layerParams.x;
-    let yVal = this.props.workingKey.layerParams.y;
+    let xVal = this.props.workingKey.initKey.layerParams.x;
+    let yVal = this.props.workingKey.initKey.layerParams.y;
     console.log("Media // ", this.props.workingKey);
-    let z4 = `${(4 / 100) * parseInt(this.props.workingKey.layerParams.z)}em`;
-    let z2 = `${(2 / 100) * this.props.workingKey.layerParams.z}em`;
+    let z4 = `${(4 / 100) *
+      parseInt(this.props.workingKey.initKey.layerParams.z)}em`;
+    let z2 = `${(2 / 100) * this.props.workingKey.initKey.layerParams.z}em`;
     console.log(z2, z4);
     let keyZero = {
-      opacity: this.props.workingKey.layerParams.o / 100,
+      opacity: this.props.workingKey.initKey.layerParams.o / 100,
       height:
         this.props.workingPYE.formatX !== 900
-          ? `${this.props.workingKey.layerParams.z}%`
+          ? `${this.props.workingKey.initKey.layerParams.z}%`
           : "auto",
       width:
         this.props.workingPYE.formatX === 900
-          ? `${this.props.workingKey.layerParams.z}%`
+          ? `${this.props.workingKey.initKey.layerParams.z}%`
           : "auto",
-      transform: `rotate(${this.props.workingKey.layerParams.r}deg)`,
+      transform: `rotate(${this.props.workingKey.initKey.layerParams.r}deg)`,
       position: "absolute",
       fontSize: this.props.workingKey.booly ? z4 : z2,
       top: this.props.workingKey.booly ? yVal : yVal / 2,
@@ -104,6 +105,9 @@ class MediaPreview extends Component {
     );
     return (
       <div style={{ width: "820px", height: "820px", margin: "0px auto" }}>
+        {this.props.workingKey.edit ? (
+          <Toolbox style={{ width: "260px" }} />
+        ) : null}
         <div
           id="md-screen"
           style={{

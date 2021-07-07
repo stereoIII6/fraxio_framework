@@ -10,8 +10,9 @@ import {
 } from "../action/types";
 const initState = {
   keys: [],
+  edit: false,
+  booly: false,
   workingKey: {
-    booly: false,
     layerID: 0,
     keyID: 0,
     layerParams: {
@@ -21,7 +22,6 @@ const initState = {
       r: 0,
       z: 90,
     },
-    edit: false,
   },
   loadingFrames: false,
 };
@@ -35,9 +35,11 @@ export default function(state = initState, action) {
         loadingFrames: false,
       };
     case SET_KEY_ACTIVE:
+      console.log("RED initKey // ", action.payload.initKey);
       return {
         ...state,
         workingKey: action.payload,
+        keys: [action.payload.initKey],
       };
     case SET_KEY_INACTIVE:
       return {
