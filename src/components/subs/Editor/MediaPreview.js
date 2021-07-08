@@ -35,12 +35,12 @@
 */
 // Imports
 import React, { Component } from "react";
-import Draggable from "react-draggable";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Toolbox from "./Toolbox";
 import { editKey, saveKey, resetKey, updateKey } from "../../action/keyActions";
 import { deleteLayer, editLayer, updateLayer } from "../../action/layerActions";
+
 class MediaPreview extends Component {
   static propTypes = {
     workingPYE: PropTypes.object,
@@ -103,6 +103,8 @@ class MediaPreview extends Component {
     const display = this.props.layers.filter(
       (layer) => parseInt(layer.layerID) !== 0
     );
+    this.MediaLayer();
+
     return (
       <div style={{ width: "820px", height: "820px", margin: "0px auto" }}>
         {this.props.workingKey.edit ? (
