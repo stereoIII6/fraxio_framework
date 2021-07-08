@@ -103,7 +103,6 @@ class MediaPreview extends Component {
     const display = this.props.layers.filter(
       (layer) => parseInt(layer.layerID) !== 0
     );
-    this.MediaLayer();
 
     return (
       <div style={{ width: "820px", height: "820px", margin: "0px auto" }}>
