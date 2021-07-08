@@ -3,6 +3,8 @@ import {
   SET_KEY_ACTIVE,
   SET_KEY_INACTIVE,
   EDIT_KEY,
+  ADD_KEY_DOWN,
+  ADD_KEY_UP,
   SAVE_KEYS,
   SAVE_KEY,
   RESET_KEY,
@@ -12,6 +14,7 @@ const initState = {
   keys: [],
   edit: false,
   booly: false,
+  active: 0,
   workingKey: {
     layerID: 0,
     keyID: 0,
@@ -35,6 +38,20 @@ export default function(state = initState, action) {
         loadingFrames: false,
       };
     case SET_KEY_ACTIVE:
+      console.log("RED initKey // ", action.payload.initKey);
+      return {
+        ...state,
+        workingKey: action.payload,
+        keys: [action.payload.initKey],
+      };
+    case ADD_KEY_UP:
+      console.log("RED initKey // ", action.payload.initKey);
+      return {
+        ...state,
+        workingKey: action.payload,
+        keys: [action.payload.initKey],
+      };
+    case ADD_KEY_DOWN:
       console.log("RED initKey // ", action.payload.initKey);
       return {
         ...state,

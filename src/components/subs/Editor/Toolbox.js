@@ -136,7 +136,7 @@ class ToolBox extends Component {
   render() {
     console.log(this.state);
     return (
-      <Draggable disabled>
+      <Draggable>
         <div
           className="alert alert-success"
           style={{

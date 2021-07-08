@@ -3,6 +3,8 @@ import {
   SET_KEY_INACTIVE,
   ADD_KEY,
   DELETE_KEY,
+  ADD_KEY_DOWN,
+  ADD_KEY_UP,
   EDIT_KEY,
   SAVE_KEY,
   SAVE_KEYS,
@@ -35,6 +37,20 @@ export const saveKey = (feed) => {
   console.log("ACT save key to array// ", feed);
   return {
     type: SAVE_KEY,
+    payload: feed,
+  };
+};
+export const addKeyUp = (feed) => {
+  console.log("ACT save key to array// ", feed);
+  return {
+    type: ADD_KEY_UP,
+    payload: feed,
+  };
+};
+export const addKeyDown = (feed) => {
+  console.log("ACT save key to array// ", feed);
+  return {
+    type: ADD_KEY_DOWN,
     payload: feed,
   };
 };

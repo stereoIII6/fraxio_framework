@@ -98,24 +98,35 @@ class MiniPlayer extends Component {
     return keyZero;
   }
   render() {
+    console.log(
+      this.props.workingPYE.formatX * 100,
+      (820 - this.props.workingPYE.formatX * 100) / 2
+    );
     const keyZero = this.update();
     const layers = this.props.layers.filter(
       (layer) => parseInt(layer.layerID) !== 0
     );
     return (
-      <div style={{ width: "820px", height: "820px", margin: "0px auto" }}>
+      <div
+        style={{
+          width: "820px",
+          height: "auto",
+
+          margin: "0px auto",
+        }}
+      >
         <div
           id="md-screen"
           style={{
             background: "darkgrey",
 
             backgroundImage: `url("https://ipfs.io/ipfs/QmTNbkJ5x3iY4VEiEUARfrCreqBZ3tXHU3oFnsUK7QnDie")`,
-            width: this.props.workingPYE.formatX / 1,
-            height: this.props.workingPYE.formatY / 1,
+            width: this.props.workingPYE.formatX * 100,
+            height: this.props.workingPYE.formatY * 100,
             overflow: "hidden",
             position: "relative",
             top: "10px",
-            left: "10px",
+            left: (820 - this.props.workingPYE.formatX * 100) / 2,
             marginBottom: "20px",
           }}
         >

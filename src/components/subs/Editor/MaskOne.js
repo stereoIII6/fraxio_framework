@@ -113,20 +113,18 @@ class MaskOne extends Component {
   // change PYE Format width input handler
   onChangeFY = (e) => {
     e.preventDefault();
-    const show = `8x${e.target.value}.png`;
+    const show = `${this.state.formatX}x${e.target.value}.png`;
     this.setState({
-      formatY: document.getElementsByName(e.target.name).value,
-      formatX: 8,
+      formatY: e.target.value,
       formatShow: show,
     });
   };
   // change PYE format height input handler
   onChangeFX = (e) => {
     e.preventDefault();
-    const show = `${e.target.value}x8.png`;
+    const show = `${e.target.value}x${this.state.formatY}.png`;
     this.setState({
-      formatX: document.getElementsByName(e.target.name).value,
-      formatY: 8,
+      formatX: e.target.value,
       formatShow: show,
     });
   };
@@ -224,7 +222,7 @@ class MaskOne extends Component {
               <img src={this.state.formatShow} />
             </div>
             <div className="col-8 p-5" style={{ height: "420px" }}>
-              <b>width</b>
+              <b>width: {this.state.formatX}</b>
               <CustomInput
                 type="range"
                 id="xIn"
@@ -235,7 +233,7 @@ class MaskOne extends Component {
                 onChange={this.onChangeFX}
               />
 
-              <b>height</b>
+              <b>height: {this.state.formatY}</b>
               <CustomInput
                 type="range"
                 id="yIn"

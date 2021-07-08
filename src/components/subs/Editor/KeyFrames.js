@@ -45,7 +45,12 @@ import {
   editLayer,
   loadLayer2work,
 } from "../../action/layerActions";
-import { setWork, editKey } from "../../action/keyActions";
+import {
+  setWork,
+  editKey,
+  addKeyUp,
+  addKeyDown,
+} from "../../action/keyActions";
 
 // Class Keyframes Definition
 class KeyFrames extends Component {
@@ -62,6 +67,8 @@ class KeyFrames extends Component {
     loadLayer2work: PropTypes.func,
     setWork: PropTypes.func,
     editKey: PropTypes.func,
+    addKeyUp: PropTypes.func,
+    addKeyDown: PropTypes.func,
   };
   // set local state
   state = {
@@ -77,18 +84,23 @@ class KeyFrames extends Component {
     e.preventDefault();
     console.log("down");
     const newKey = {
+      booly: true,
+      edit: true,
       keyID: parseInt(e.target.id) * -1,
       layerID: this.props.workingLayer.layerID,
-      oracle: this.props.workingLayer.layerOracle,
-      oracleState: 0,
+      oracle: this.props.workingLayer.layerOracle.name,
+      oracleState: this.props.workingLayer.layerOracle.oracleState,
       layerParams: {
-        x: 0,
-        y: 0,
-        o: 100,
-        r: 0,
-        z: 90,
+        x: this.props.workingKey.initKey.layerParams.x,
+        y: this.props.workingKey.initKey.layerParams.y,
+        o: this.props.workingKey.initKey.layerParams.o,
+        r: this.props.workingKey.initKey.layerParams.r,
+        z: this.props.workingKey.initKey.layerParams.z,
       },
     };
+    let oldWKey = this.props.workingKey;
+    oldWKey.keys = [newKey, ...oldWKey.keys];
+    this.props.addKeyUp(oldWKey);
     this.setState({
       downs: this.state.downs + 1,
       keys: [newKey, ...this.state.keys],
@@ -102,16 +114,19 @@ class KeyFrames extends Component {
       keys: this.props.workingLayer.keys,
       keyID: parseInt(e.target.id),
       layerID: this.props.workingLayer.layerID,
-      oracle: this.props.workingLayer.layerOracle,
-      oracleState: 0,
+      oracle: this.props.workingLayer.layerOracle.name,
+      oracleState: this.props.workingLayer.layerOracle.oracleState,
       layerParams: {
-        x: 0,
-        y: 0,
-        o: 100,
-        r: 0,
-        z: 90,
+        x: this.props.workingKey.initKey.layerParams.x,
+        y: this.props.workingKey.initKey.layerParams.y,
+        o: this.props.workingKey.initKey.layerParams.o,
+        r: this.props.workingKey.initKey.layerParams.r,
+        z: this.props.workingKey.initKey.layerParams.z,
       },
     };
+    let oldWKey = this.props.workingKey;
+    oldWKey.keys = [...oldWKey.keys, newKey];
+    this.props.addKeyUp(oldWKey);
     this.setState({
       ups: this.state.ups + 1,
       keys: [...this.state.keys, newKey],
@@ -187,4 +202,6 @@ export default connect(mapStateToProps, {
   editLayer,
   setWork,
   editKey,
+  addKeyDown,
+  addKeyUp,
 })(KeyFrames);

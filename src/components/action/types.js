@@ -14,9 +14,11 @@ export const DISC_LAYERS = "DISC_LAYERS";
 export const UPDATE_LAYER = "UPDATE_LAYER";
 
 export const EDIT = "EDIT";
-export const EDIT_KEY = "EDIT_KEY";
 export const SAVE_KEYS = "SAVE_KEYS";
 export const SAVE_KEY = "SAVE_KEY";
+export const EDIT_KEY = "EDIT_KEY";
+export const ADD_KEY_DOWN = "ADD_KEY_DOWN";
+export const ADD_KEY_UP = "ADD_KEY_UP";
 export const RESET_KEY = "RESET_KEY";
 export const UPDATE_KEY = "UPDATE_KEY";
 

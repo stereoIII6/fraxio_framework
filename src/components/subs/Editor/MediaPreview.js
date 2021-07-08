@@ -114,18 +114,13 @@ class MediaPreview extends Component {
             background: "white",
 
             backgroundImage: `url("https://ipfs.io/ipfs/QmTNbkJ5x3iY4VEiEUARfrCreqBZ3tXHU3oFnsUK7QnDie")`,
-            width: this.props.workingKey.booly
-              ? this.props.workingPYE.formatX / 1
-              : this.props.workingPYE.formatX / 2,
-            height: this.props.workingKey.booly
-              ? this.props.workingPYE.formatY / 1
-              : this.props.workingPYE.formatY / 2,
+            width: this.props.workingPYE.formatX * 100,
+
+            height: this.props.workingPYE.formatY * 100,
             overflow: "hidden",
             position: "relative",
             top: "10px",
-            left: this.props.workingKey.booly
-              ? `${20 + (800 - this.props.workingPYE.formatX) / 2}px`
-              : `${70 + (800 - this.props.workingPYE.formatX) / 4}px`,
+            left: (820 - this.props.workingPYE.formatX * 100) / 2,
             marginBottom: "20px",
           }}
         >

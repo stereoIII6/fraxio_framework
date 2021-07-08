@@ -13,8 +13,8 @@ import {
 const initState = {
   pyes: [],
   workingPYE: {
-    formatX: 900,
-    formatY: 900,
+    formatX: 8,
+    formatY: 8,
   },
   loadingPyes: false,
 };
