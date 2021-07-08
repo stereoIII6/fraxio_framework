@@ -41,7 +41,13 @@ import { connect } from "react-redux";
 import { Slider, RangeSlider } from "rsuite";
 import Draggable from "react-draggable";
 import { addLayer, editLayer } from "../../action/layerActions";
-import { editKey, saveKey, saveKeys, resetKey } from "../../action/keyActions";
+import {
+  editKey,
+  editKeys,
+  saveKey,
+  saveKeys,
+  resetKey,
+} from "../../action/keyActions";
 import { Button, Input, InputGroup, CustomInput } from "reactstrap";
 // class definition
 class ToolBox extends Component {
@@ -54,89 +60,71 @@ class ToolBox extends Component {
     layers: PropTypes.array,
     coloris: PropTypes.object,
     editKey: PropTypes.func,
+    editKeys: PropTypes.func,
     saveKeys: PropTypes.func,
     saveKey: PropTypes.func,
     resetKey: PropTypes.func,
     keys: PropTypes.array,
+    active: PropTypes.number,
   };
-  state = this.props.workingKey.initKey;
+  state = { drg: false, key: this.props.workingKey.initKey };
+
   // move layer x position
   slideX = (e) => {
-    //console.log(e);
-    let wKey = this.props.workingKey.initKey;
-    wKey.layerParams.x = e.target.value;
-    this.setState(wKey);
-    // this.props.editKey(wKey);
+    console.log(e.target.value);
+    let wKeys = this.props.keys;
+    wKeys[this.props.active].layerParams.x = parseInt(e.target.value);
+    this.props.editKeys(wKeys);
+    this.setState(wKeys[e.target.value]);
   };
   // move layer y position
   slideY = (e) => {
-    console.log(e);
-    let wKey = this.props.workingKey.initKey;
-    wKey.layerParams.y = e.target.value;
-    this.setState(wKey);
-    // this.props.editKey(wKey);
+    console.log(e.target.value);
+    let wKeys = this.props.keys;
+    wKeys[this.props.active].layerParams.y = parseInt(e.target.value);
+    this.props.editKeys(wKeys);
+    this.setState(wKeys[e.target.value]);
   };
   // scale layer
   slideZ = (e) => {
-    console.log(e);
-    let wKey = this.props.workingKey.initKey;
-    wKey.layerParams.z = e;
-    this.setState(wKey);
-    // this.props.editKey(wKey);
+    console.log(e.target.value);
+    let wKeys = this.props.keys;
+    wKeys[this.props.active].layerParams.z = parseInt(e.target.value);
+    this.props.editKeys(wKeys);
+    this.setState(wKeys[e.target.value]);
   };
   // rotate layer
   slideR = (e) => {
-    console.log(e);
-    let wKey = this.props.workingKey.initKey;
-    wKey.layerParams.r = e;
-    this.setState(wKey);
-    // this.props.editKey(wKey);
+    console.log(e.target.value);
+    let wKeys = this.props.keys;
+    wKeys[this.props.active].layerParams.r = parseInt(e.target.value);
+    this.props.editKeys(wKeys);
+    this.setState(wKeys[e.target.value]);
   };
   // opacity layer
   slideO = (e) => {
-    console.log(e);
-    let wKey = this.props.workingKey.initKey;
-    wKey.layerParams.o = e;
-    this.setState(wKey);
-    // this.props.editKey(wKey);
+    console.log(e.target.value);
+    let wKeys = this.props.keys;
+    wKeys[this.props.active].layerParams.o = parseInt(e.target.value);
+    this.props.editKeys(wKeys);
+    this.setState(wKeys[e.target.value]);
   };
   // save workingkey
   saveKey = (e) => {
     e.preventDefault();
-    const wKey = this.props.workingKey.initKey;
-    wKey.edit = false;
-    wKey.booly = false;
-    console.log(parseInt(wKey.keyID));
-    if (
-      this.props.keys.find(
-        (key) => parseInt(key.keyID) !== parseInt(wKey.keyID)
-      )
-    ) {
-      console.log("not same keys");
-      this.props.saveKey(wKey);
-    } else {
-      console.log("same keys");
-      let layerKeys = this.props.keys;
-      let x = 0;
-      let h = 0;
-      layerKeys.filter((key) => key.keyID === wKey.keyID);
-      layerKeys.push(wKey);
-      console.log(layerKeys);
-      this.props.saveKeys(layerKeys);
-    }
   };
   //
   resetKey = (e) => {
     e.preventDefault();
-    const wKey = this.props.workingKey.initKey;
-    wKey.edit = false;
-    wKey.booly = false;
-    this.props.editKey(wKey);
   };
+  mouser = (e) => {
+    this.setState({ drg: !this.state.drg });
+  };
+
   render() {
-    console.log(this.state);
+    console.log(this.props);
     return (
-      <Draggable>
+      <Draggable id="drg" disabled={this.state.drg}>
         <div
           className="alert alert-success"
           style={{
@@ -156,10 +144,9 @@ class ToolBox extends Component {
             <div>
               <h3>
                 {" "}
-                Layer {this.props.workingLayer.layerID} Key{" "}
-                {this.props.workingKey.keyID}
-                {this.props.workingKey.oracle !== "no" &&
-                this.props.workingKey.oracle !== "static" ? (
+                Layer {this.props.workingLayer.layerID} Key {this.props.active}
+                {this.props.workingKey.oracle === "no" ||
+                this.props.workingKey.oracle === "static" ? (
                   <InputGroup
                     style={{
                       width: "240px",
@@ -197,12 +184,12 @@ class ToolBox extends Component {
                   color: this.props.coloris.palm,
                 }}
               >
-                Position<br></br>
-                {console.log(this.props.workingKey)}
+                Position
+                <br></br>
                 <Input
                   type="text"
                   id="x"
-                  value={this.state.layerParams.x}
+                  value={parseInt(this.state.key.layerParams.x)}
                   style={{
                     width: "50%",
 
@@ -213,7 +200,7 @@ class ToolBox extends Component {
                 <Input
                   type="text"
                   id="y"
-                  value={this.state.layerParams.y}
+                  value={parseInt(this.state.key.layerParams.y)}
                   style={{
                     width: "50%",
 
@@ -230,12 +217,14 @@ class ToolBox extends Component {
                   color: this.props.coloris.palm,
                 }}
               >
-                Scale
+                Scale {this.state.key.layerParams.z}
                 <CustomInput
                   id="zR"
                   type="range"
-                  value={this.state.layerParams.z}
+                  value={parseInt(this.state.key.layerParams.z)}
                   onChange={this.slideZ}
+                  onMouseOver={this.mouser}
+                  onMouseLeave={this.mouser}
                   max={200}
                   min={1}
                 />
@@ -248,12 +237,14 @@ class ToolBox extends Component {
                   color: this.props.coloris.palm,
                 }}
               >
-                Rotation
+                Rotation {this.state.key.layerParams.r}
                 <CustomInput
                   id="rR"
                   type="range"
-                  value={this.state.layerParams.r}
+                  value={parseInt(this.state.key.layerParams.r)}
                   onChange={this.slideR}
+                  onMouseOver={this.mouser}
+                  onMouseLeave={this.mouser}
                   max={360}
                   min={-360}
                 />
@@ -266,12 +257,14 @@ class ToolBox extends Component {
                   color: this.props.coloris.palm,
                 }}
               >
-                Opacity
+                Opacity {this.state.key.layerParams.o}
                 <CustomInput
                   id="oR"
                   type="range"
-                  value={this.state.layerParams.o}
+                  value={parseInt(this.state.key.layerParams.o)}
                   onChange={this.slideO}
+                  onMouseOver={this.mouser}
+                  onMouseLeave={this.mouser}
                   max={100}
                   min={0}
                 />
@@ -459,12 +452,14 @@ const mapStateToProps = (state) => ({
   keys: state.keyState.keys,
   layers: state.layerState.layers,
   coloris: state.layerState.coloris,
+  active: state.keyState.active,
 });
 
 export default connect(mapStateToProps, {
   addLayer,
   editLayer,
   editKey,
+  editKeys,
   saveKeys,
   saveKey,
   resetKey,

@@ -39,6 +39,7 @@ import { Button, Input, InputGroup } from "reactstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Toolbox from "./Toolbox";
+
 // Action Imports
 import {
   deleteLayer,
@@ -48,8 +49,10 @@ import {
 import {
   setWork,
   editKey,
+  editKeys,
   addKeyUp,
   addKeyDown,
+  activeKey,
 } from "../../action/keyActions";
 
 // Class Keyframes Definition
@@ -67,8 +70,11 @@ class KeyFrames extends Component {
     loadLayer2work: PropTypes.func,
     setWork: PropTypes.func,
     editKey: PropTypes.func,
+    editKeys: PropTypes.func,
     addKeyUp: PropTypes.func,
     addKeyDown: PropTypes.func,
+    active: PropTypes.number,
+    activeKey: PropTypes.func,
   };
   // set local state
   state = {
@@ -100,6 +106,7 @@ class KeyFrames extends Component {
     };
     let oldWKey = this.props.workingKey;
     oldWKey.keys = [newKey, ...oldWKey.keys];
+    oldWKey.initKey = newKey;
     this.props.addKeyUp(oldWKey);
     this.setState({
       downs: this.state.downs + 1,
@@ -126,6 +133,7 @@ class KeyFrames extends Component {
     };
     let oldWKey = this.props.workingKey;
     oldWKey.keys = [...oldWKey.keys, newKey];
+    oldWKey.initKey = newKey;
     this.props.addKeyUp(oldWKey);
     this.setState({
       ups: this.state.ups + 1,
@@ -136,10 +144,7 @@ class KeyFrames extends Component {
   activateKey = (e) => {
     console.log(e.target.id, this.props.workingKey);
     this.setState({ actKey: parseInt(e.target.id) });
-    let wKey = this.props.workingKey;
-    wKey.keyID = e.target.id;
-    wKey.edit = true;
-    this.props.editKey(wKey);
+    this.props.activeKey(parseInt(e.target.id));
   };
   render() {
     return (
@@ -194,6 +199,7 @@ const mapStateToProps = (state) => ({
   workingKey: state.keyState.workingKey,
   layers: state.layerState.layers,
   coloris: state.layerState.coloris,
+  active: state.keyState.active,
 });
 
 export default connect(mapStateToProps, {
@@ -202,6 +208,8 @@ export default connect(mapStateToProps, {
   editLayer,
   setWork,
   editKey,
+  editKeys,
   addKeyDown,
   addKeyUp,
+  activeKey,
 })(KeyFrames);

@@ -6,10 +6,12 @@ import {
   ADD_KEY_DOWN,
   ADD_KEY_UP,
   EDIT_KEY,
+  EDIT_KEYS,
   SAVE_KEY,
   SAVE_KEYS,
   RESET_KEY,
   UPDATE_KEY,
+  ACTIVE_KEY,
 } from "./types";
 
 export const setWork = (feed) => {
@@ -33,6 +35,13 @@ export const editKey = (feed) => {
     payload: feed,
   };
 };
+export const editKeys = (feed) => {
+  console.log("ACT edit key // ", feed);
+  return {
+    type: EDIT_KEYS,
+    payload: feed,
+  };
+};
 export const saveKey = (feed) => {
   console.log("ACT save key to array// ", feed);
   return {
@@ -51,6 +60,13 @@ export const addKeyDown = (feed) => {
   console.log("ACT save key to array// ", feed);
   return {
     type: ADD_KEY_DOWN,
+    payload: feed,
+  };
+};
+export const activeKey = (feed) => {
+  console.log("ACT save key to array// ", feed);
+  return {
+    type: ACTIVE_KEY,
     payload: feed,
   };
 };

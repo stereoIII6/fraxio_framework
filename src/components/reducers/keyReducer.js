@@ -3,12 +3,14 @@ import {
   SET_KEY_ACTIVE,
   SET_KEY_INACTIVE,
   EDIT_KEY,
+  EDIT_KEYS,
   ADD_KEY_DOWN,
   ADD_KEY_UP,
   SAVE_KEYS,
   SAVE_KEY,
   RESET_KEY,
   UPDATE_KEY,
+  ACTIVE_KEY,
 } from "../action/types";
 const initState = {
   keys: [],
@@ -49,19 +51,34 @@ export default function(state = initState, action) {
       return {
         ...state,
         workingKey: action.payload,
-        keys: [action.payload.initKey],
+        keys: [...state.keys, action.payload.initKey],
       };
     case ADD_KEY_DOWN:
       console.log("RED initKey // ", action.payload.initKey);
       return {
         ...state,
         workingKey: action.payload,
-        keys: [action.payload.initKey],
+        keys: [action.payload.initKey, ...state.keys],
+      };
+    case ACTIVE_KEY:
+      console.log("RED initKey // ", action.payload.initKey);
+      return {
+        ...state,
+        active: action.payload,
       };
     case SET_KEY_INACTIVE:
       return {
         ...state,
         workingKey: initState.workingKey,
+      };
+    case EDIT_KEYS:
+      console.log("RED edit key //", action.payload);
+      return {
+        ...state,
+        workingKey: {
+          ...state.workingKey,
+          keys: action.payload,
+        },
       };
     case EDIT_KEY:
       console.log("RED edit key //", action.payload);

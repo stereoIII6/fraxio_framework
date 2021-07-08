@@ -17,10 +17,12 @@ export const EDIT = "EDIT";
 export const SAVE_KEYS = "SAVE_KEYS";
 export const SAVE_KEY = "SAVE_KEY";
 export const EDIT_KEY = "EDIT_KEY";
+export const EDIT_KEYS = "EDIT_KEYS";
 export const ADD_KEY_DOWN = "ADD_KEY_DOWN";
 export const ADD_KEY_UP = "ADD_KEY_UP";
 export const RESET_KEY = "RESET_KEY";
 export const UPDATE_KEY = "UPDATE_KEY";
+export const ACTIVE_KEY = "ACTIVE_KEY";
 
 export const SET_KEY_ACTIVE = "SET_KEY_ACTIVE";
 export const SET_KEY_INACTIVE = "SET_KEY_INACTIVE";
