@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import Slideshow from "./SlideShow";
-import { Button } from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import "./styles.css";
 import YoutubeEmbed from "./YoutubeEmbed";
 class Landing extends Component {
+  state = {
+    modal: true,
+    url: "hsDv2pzY7xQ",
+  };
+  toggle = (e) => {
+    this.setState({ modal: !this.state.modal });
+  };
   render() {
     return (
       <div>
@@ -23,17 +30,53 @@ class Landing extends Component {
             borderRadius: "9px",
           }}
         >
-          GIVE ME SOME MLQ
+          Digital Assets Toolbox v1
         </h1>
-        <div className="row">
-          <div className="col-8">
-            <YoutubeEmbed embedId="EmZr0L0uris" />
-          </div>
-
-          <div className="col-4" style={{ opacity: "1" }}>
-            <p>Welcome to the Fractio Framework </p>
-            <p></p>
-          </div>
+        <div
+          toggle={this.toggle}
+          url={this.state.url}
+          style={{
+            position: "absolute",
+            left: "0%",
+            top: "0%",
+            height: "1400px",
+            width: "100%",
+            paddingTop: "5em",
+            background: "rgba(0,0,0,0.75)",
+            display: this.state.modal ? "d-inline-block" : "none",
+            zIndex: 100,
+          }}
+        >
+          <ModalBody
+            style={{
+              width: "900px",
+              margin: "0px auto",
+            }}
+            onClick={this.toggle}
+          >
+            <div className="jumbotron">
+              <h3 style={{ marginBottom: "2em" }}>
+                Welcome to the Fractio Framework
+              </h3>
+              <YoutubeEmbed embedId={this.state.url} />
+              <p style={{ marginTop: "2em" }}>
+                Fractio allows users to easily create multilayer, interactive
+                multimedia assets that react to off-chain data using oracles. We
+                provide access to all the tools you need to produce and
+                fractionize any type digital goods. All without ever having the
+                need to code.
+              </p>
+              <Button color="primary" onClick={this.goLike}>
+                Twitch
+              </Button>{" "}
+              <Button color="primary" onClick={this.goLike}>
+                Disord
+              </Button>{" "}
+              <Button color="primary" onClick={this.goLike}>
+                Twitter
+              </Button>{" "}
+            </div>
+          </ModalBody>
         </div>
         <div className="row">
           <div
@@ -45,13 +88,13 @@ class Landing extends Component {
             }}
             className="col-3 alert"
           >
-            <h1>FRXionizer</h1>
+            <h1>Fractionize Your Assets</h1>
             <img
               style={{ marginTop: "4em", marginBottom: "2em" }}
               src="./FRX_Logo.png"
               alt=""
             />
-            <Button>FRXionize</Button>
+            <Button>Break Assets</Button>
           </div>
           <div className="col-1"></div>
           <div
@@ -64,13 +107,13 @@ class Landing extends Component {
             }}
             className="col-4 alert"
           >
-            <h1>PYEditor</h1>
+            <h1>Create Digital Assets without code</h1>
             <img
               style={{ marginTop: "4em", margin: "2em", marginLeft: "1em" }}
               src="./PYE_Logo.png"
               alt=""
             />
-            <Button>Create PYE</Button>
+            <Button>Create Assets</Button>
           </div>
 
           <div className="col-1"></div>
@@ -83,13 +126,13 @@ class Landing extends Component {
             }}
             className="col-3 alert"
           >
-            <h1>MLQuidity</h1>
+            <h1>Create Token Pairs</h1>
             <img
               style={{ marginTop: "2em", marginBottom: "2em" }}
               src="./MLQ_Logo.png"
               alt=""
             />
-            <Button>Provide MLQ</Button>
+            <Button>Provide MLQuidity</Button>
           </div>
         </div>
       </div>
