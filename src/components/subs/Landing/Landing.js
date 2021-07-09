@@ -66,15 +66,17 @@ class Landing extends Component {
                 fractionize any type digital goods. All without ever having the
                 need to code.
               </p>
-              <Button color="primary" onClick={this.goLike}>
+              {/*
+              <Button color="primary" onClick={this.goLike} disabled>
                 Twitch
               </Button>{" "}
-              <Button color="primary" onClick={this.goLike}>
+              <Button color="primary" onClick={this.goLike} disabled>
                 Disord
               </Button>{" "}
-              <Button color="primary" onClick={this.goLike}>
+              <Button color="primary" onClick={this.goLike} disabled>
                 Twitter
-              </Button>{" "}
+              </Button>
+              /* */}
             </div>
           </ModalBody>
         </div>
