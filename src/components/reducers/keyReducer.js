@@ -11,13 +11,38 @@ import {
   RESET_KEY,
   UPDATE_KEY,
   ACTIVE_KEY,
+  SAVE_KEYS_2_KEYS,
+  RESET_ACTIVE,
 } from "../action/types";
 const initState = {
-  keys: [],
+  keys: [
+    {
+      layerID: 0,
+      keyID: 0,
+      layerParams: {
+        x: 0,
+        y: 0,
+        o: 100,
+        r: 0,
+        z: 90,
+      },
+    },
+  ],
   edit: false,
   booly: false,
   active: 0,
   workingKey: {
+    layerID: 0,
+    keyID: 0,
+    layerParams: {
+      x: 0,
+      y: 0,
+      o: 100,
+      r: 0,
+      z: 90,
+    },
+  },
+  initKey: {
     layerID: 0,
     keyID: 0,
     layerParams: {
@@ -69,7 +94,7 @@ export default function(state = initState, action) {
     case SET_KEY_INACTIVE:
       return {
         ...state,
-        workingKey: initState.workingKey,
+        workingKey: state.initKey,
       };
     case EDIT_KEYS:
       console.log("RED edit key //", action.payload);
@@ -84,7 +109,10 @@ export default function(state = initState, action) {
       console.log("RED edit key //", action.payload);
       return {
         ...state,
-        workingKey: action.payload,
+        workingKey: {
+          ...state.workingKey,
+        },
+        initKey: action.payload,
       };
     case SAVE_KEY:
       return {
@@ -97,10 +125,28 @@ export default function(state = initState, action) {
         keys: action.payload,
         workingKey: initState.workingKey,
       };
+    case SAVE_KEYS_2_KEYS:
+      return {
+        ...state,
+        edit: false,
+        booly: false,
+        active: 0,
+        keys: action.payload,
+        workingKey: {
+          edit: false,
+          booly: false,
+          active: 0,
+        },
+      };
     case RESET_KEY:
       return {
         ...state,
         workingKey: initState.workingKey,
+      };
+    case RESET_ACTIVE:
+      return {
+        ...state,
+        active: 0,
       };
     case UPDATE_KEY:
       console.log("update key RED //");

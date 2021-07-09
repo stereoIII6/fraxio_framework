@@ -38,9 +38,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Toolbox from "./Toolbox";
-import { editKey, saveKey, resetKey, updateKey } from "../../action/keyActions";
+import {
+  editKey,
+  saveKey,
+  resetKey,
+  updateKey,
+  activeKey,
+} from "../../action/keyActions";
 import { deleteLayer, editLayer, updateLayer } from "../../action/layerActions";
-
+// class definition
 class MediaPreview extends Component {
   static propTypes = {
     workingPYE: PropTypes.object,
@@ -55,7 +61,10 @@ class MediaPreview extends Component {
     saveKey: PropTypes.func,
     updateKey: PropTypes.func,
     resetKey: PropTypes.func,
+    active: PropTypes.number,
+    keys: PropTypes.array,
   };
+  state = this.props.keys[this.props.active];
 
   handleStop = (e) => {
     // GET drag X position relative to screen
@@ -71,35 +80,31 @@ class MediaPreview extends Component {
     this.props.editKey(wKey);
     console.log(wKey);
   };
-  update() {
-    let xVal = this.props.workingKey.initKey.layerParams.x;
-    let yVal = this.props.workingKey.initKey.layerParams.y;
-    console.log("Media // ", this.props.workingKey);
-    let z4 = `${(4 / 100) *
-      parseInt(this.props.workingKey.initKey.layerParams.z)}em`;
-    let z2 = `${(2 / 100) * this.props.workingKey.initKey.layerParams.z}em`;
-    console.log(z2, z4);
-    let keyZero = {
-      opacity: this.props.workingKey.initKey.layerParams.o / 100,
+  render() {
+    const keyZero = this.props.keys[this.props.active];
+    const keyActive = {
+      position: "absolute",
+      left: `${parseInt(keyZero.layerParams.x) + 5}%`,
+      top: `${parseInt(keyZero.layerParams.y) + 5}%`,
+      fontSize: `${keyZero.layerParams.z / 20}em`,
       height:
-        this.props.workingPYE.formatX !== 900
-          ? `${this.props.workingKey.initKey.layerParams.z}%`
+        this.props.workingPYE.formatX !== 8
+          ? `${keyZero.layerParams.z}%`
           : "auto",
       width:
-        this.props.workingPYE.formatX === 900
-          ? `${this.props.workingKey.initKey.layerParams.z}%`
+        this.props.workingPYE.formatX === 8 ||
+        this.props.workingLayer.layerType.name !== "typo"
+          ? `${keyZero.layerParams.z}%`
           : "auto",
-      transform: `rotate(${this.props.workingKey.initKey.layerParams.r}deg)`,
-      position: "absolute",
-      fontSize: this.props.workingKey.booly ? z4 : z2,
-      top: this.props.workingKey.booly ? yVal : yVal / 2,
-      left: this.props.workingKey.booly ? xVal : xVal / 2,
-      fill: this.props.coloris.mint,
+      transform: `rotate(${keyZero.layerParams.r}deg)`,
+      color: "none",
+      borderColor: "none",
+      border: `${0}px solid`,
+      opacity:
+        keyZero.keyID === this.props.active ? keyZero.layerParams.o / 100 : 0.3,
+      zIndex: keyZero.keyID === this.props.active ? 100 : keyZero.keyID,
     };
-    return keyZero;
-  }
-  render() {
-    const keyZero = this.update();
+    const nowKey = 0;
     const display = this.props.layers.filter(
       (layer) => parseInt(layer.layerID) !== 0
     );
@@ -125,46 +130,91 @@ class MediaPreview extends Component {
             marginBottom: "20px",
           }}
         >
-          {/*display.sort((a, b) => b.layerID - a.layerID),*/
-          display.map((layer) =>
-            layer.layerType === "img" ? (
+          {display.map((layer) =>
+            parseInt(layer.layerID) ===
+            parseInt(this.props.keys[this.props.active].layerID) ? (
+              // ACTIVE LAYER
+              layer.layerType === "no" ? null : layer.layerType ===
+                "empty" ? null : layer.layerType === "form" ? (
+                <img src={layer.layerFS.url} alt="" style={keyActive} />
+              ) : layer.layerType === "img" ? (
+                <img src={layer.layerFS.url} alt="" style={keyActive} />
+              ) : layer.layerType === "typo" ? (
+                <div style={keyActive}>{layer.layerFS.text}</div>
+              ) : layer.layerType === "audio" ? (
+                <audio src={layer.layerFS.url}></audio>
+              ) : layer.layerType === "video" ? (
+                <video src={layer.layerFS.url}></video>
+              ) : null
+            ) : // INACTIVE LAYER GRAB KEYS FROM LAYERSTATE
+            layer.layerType === "no" ? null : layer.layerType ===
+              "empty" ? null : layer.layerType === "form" ? (
               <img
-                key={layer.layerID}
                 src={layer.layerFS.url}
-                style={keyZero}
                 alt=""
+                style={{
+                  position: "absolute",
+                  left: `${parseInt(layer.keys[nowKey].layerParams.x) + 5}%`,
+                  top: `${parseInt(layer.keys[nowKey].layerParams.y) + 5}%`,
+                  height:
+                    this.props.workingPYE.formatX !== 900
+                      ? `${layer.keys[nowKey].layerParams.z}%`
+                      : "auto",
+                  width:
+                    this.props.workingPYE.formatX === 900
+                      ? `${layer.keys[nowKey].layerParams.z}%`
+                      : "auto",
+                  transform: `rotate(${layer.keys[nowKey].layerParams.r}deg)`,
+
+                  opacity: 0.3,
+                  zIndex: layer.keys[nowKey].keyID,
+                }}
               />
-            ) : layer.layerType === "form" ? (
+            ) : layer.layerType === "img" ? (
               <img
                 src={layer.layerFS.url}
-                key={layer.layerID}
-                style={keyZero}
                 alt=""
+                style={{
+                  position: "absolute",
+                  left: `${parseInt(layer.keys[nowKey].layerParams.x) + 5}%`,
+                  top: `${parseInt(layer.keys[nowKey].layerParams.y) + 5}%`,
+                  height:
+                    this.props.workingPYE.formatX !== 900
+                      ? `${layer.keys[nowKey].layerParams.z}%`
+                      : "auto",
+                  width:
+                    this.props.workingPYE.formatX === 900
+                      ? `${layer.keys[nowKey].layerParams.z}%`
+                      : "auto",
+                  transform: `rotate(${layer.keys[nowKey].layerParams.r}deg)`,
+                  opacity: 0.3,
+                  zIndex: layer.keys[nowKey].keyID,
+                }}
               />
             ) : layer.layerType === "typo" ? (
-              <h1
-                key={layer.layerID}
-                src={layer.layerFS.url}
-                style={keyZero}
-                alt=""
+              <b
+                style={{
+                  position: "absolute",
+                  left: `${parseInt(layer.keys[nowKey].layerParams.x) + 5}%`,
+                  top: `${parseInt(layer.keys[nowKey].layerParams.y) + 5}%`,
+                  height: "auto",
+                  width: "auto",
+                  fontSize: `${layer.keys[nowKey].layerParams.z / 20}em`,
+                  transform: `rotate(${layer.keys[nowKey].layerParams.r}deg)`,
+                  color: "none",
+                  borderColor: "none",
+                  border: `${0}px solid`,
+                  opacity: 0.3,
+                  zIndex: layer.keys[nowKey].keyID,
+                }}
               >
-                {layer.layerName}
-              </h1>
+                {layer.layerFS.text}
+              </b>
             ) : layer.layerType === "audio" ? (
-              <img
-                key={layer.layerID}
-                src={layer.layerFS.url}
-                style={keyZero}
-                alt=""
-              />
+              <audio src={layer.layerFS.url}></audio>
             ) : layer.layerType === "video" ? (
-              <img
-                key={layer.layerID}
-                src={layer.layerFS.url}
-                style={keyZero}
-                alt=""
-              />
-            ) : layer.layerType === "empty" ? null : null
+              <video src={layer.layerFS.url}></video>
+            ) : null
           )}
         </div>
       </div>
@@ -177,6 +227,8 @@ const mapStateToProps = (state) => ({
   workingKey: state.keyState.workingKey,
   layers: state.layerState.layers,
   coloris: state.layerState.coloris,
+  keys: state.keyState.keys,
+  active: state.keyState.active,
 });
 
 export default connect(mapStateToProps, {

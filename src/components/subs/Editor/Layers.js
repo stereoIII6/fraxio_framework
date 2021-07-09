@@ -40,6 +40,7 @@ import { connect } from "react-redux";
 import Draggable from "react-draggable";
 import { updateLayer } from "../../action/layerActions";
 import LayerInput from "./LayerInput";
+import MediaPreview from "./MediaPreview";
 import MiniPlayer from "./MiniPlayer";
 import Layer from "./Layer";
 import { Button } from "reactstrap";
@@ -118,7 +119,7 @@ class Layers extends Component {
           <div className="alert alert-warning">
             Layer Preview
             {/* MINI PREVIEW OF TOKEN */}
-            <MiniPlayer />
+            <MediaPreview />
           </div>
         </div>
       </div>

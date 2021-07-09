@@ -39,7 +39,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getPyeAssets, getPyeData, createPye } from "../../action/pyeActions";
-import { quitWork } from "../../action/keyActions";
+import { quitWork, saveKeys2Keys } from "../../action/keyActions";
+import { saveKeys2Layer } from "../../action/layerActions";
 import { Button } from "reactstrap";
 import Toolbox from "./Toolbox";
 import KeyFrames from "./KeyFrames";
@@ -53,13 +54,13 @@ class MaskThree extends Component {
     workingKey: PropTypes.object,
     keys: PropTypes.array,
     coloris: PropTypes.object,
+    quitWork: PropTypes.func,
+    saveKeys2Layer: PropTypes.func,
+    saveKeys2Keys: PropTypes.func,
   };
   // set local state
   state = {};
-  goQuit = (e) => {
-    e.preventDefault();
-    this.props.quitWork();
-  };
+
   render() {
     return this.props.workingPYE.booly &&
       this.props.workingLayer.booly &&
@@ -84,7 +85,7 @@ class MaskThree extends Component {
               float: "right",
               marginRight: "1em",
             }}
-            onClick={this.goQuit}
+            onClick={this.goSave2Layer}
           >
             SAVE TO LAYER
           </Button>
@@ -110,4 +111,6 @@ export default connect(mapStateToProps, {
   getPyeData,
   createPye,
   quitWork,
+  saveKeys2Layer,
+  saveKeys2Keys,
 })(MaskThree);

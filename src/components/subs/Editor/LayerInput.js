@@ -41,6 +41,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { addLayer } from "../../action/layerActions";
+import { resetActive } from "../../action/keyActions";
 
 const IpfsHttpClient = require("ipfs-http-client");
 
@@ -54,11 +55,9 @@ class LayerInput extends Component {
   state = {
     layerType: "no",
     layerFeed: "no",
-    layerFeed: "no",
     layerText: "",
+    layerFont: "",
     file: null,
-    layerName: "",
-    layerName: "",
     layerName: "",
     layerID: 0,
     fileURL: null,
@@ -70,6 +69,7 @@ class LayerInput extends Component {
     workingPYE: PropTypes.object,
     workingLayer: PropTypes.object,
     addLayer: PropTypes.func,
+    resetActive: PropTypes.func,
     layers: PropTypes.array,
     coloris: PropTypes.object,
   };
@@ -136,11 +136,24 @@ class LayerInput extends Component {
             function: "",
             data: {},
           },
+          keys: [
+            {
+              layerID: 0,
+              keyID: 0,
+              layerParams: {
+                x: 0,
+                y: 0,
+                o: 100,
+                r: 0,
+                z: 90,
+              },
+            },
+          ],
         };
 
         this.props.addLayer(newLayer);
       });
-    } else if (this.state.layerType !== "typo") {
+    } else if (this.state.layerType === "typo") {
       const newLayer = {
         booly: true,
         layerID: this.props.layers.length,
@@ -167,6 +180,19 @@ class LayerInput extends Component {
           function: "",
           data: {},
         },
+        keys: [
+          {
+            layerID: 0,
+            keyID: 0,
+            layerParams: {
+              x: 0,
+              y: 0,
+              o: 100,
+              r: 0,
+              z: 90,
+            },
+          },
+        ],
       };
       this.props.addLayer(newLayer);
     } else {
@@ -196,6 +222,19 @@ class LayerInput extends Component {
           function: "",
           data: {},
         },
+        keys: [
+          {
+            layerID: 0,
+            keyID: 0,
+            layerParams: {
+              x: 0,
+              y: 0,
+              o: 100,
+              r: 0,
+              z: 90,
+            },
+          },
+        ],
       };
 
       this.props.addLayer(newLayer);
@@ -229,12 +268,12 @@ class LayerInput extends Component {
   onChangeText = (e) => {
     // e.preventDefault();
     console.log(e.target.value);
-    this.setState({ layerFS: { text: e.target.value } });
+    this.setState({ layerText: e.target.value });
   };
   onChangeFont = (e) => {
     // e.preventDefault();
     console.log(e.target.value);
-    this.setState({ layerFS: { font: e.target.value } });
+    this.setState({ layerFont: e.target.value });
   };
   render() {
     let empty = false;
@@ -439,4 +478,4 @@ const mapStateToProps = (state) => ({
   coloris: state.layerState.coloris,
 });
 
-export default connect(mapStateToProps, { addLayer })(LayerInput);
+export default connect(mapStateToProps, { addLayer, resetActive })(LayerInput);

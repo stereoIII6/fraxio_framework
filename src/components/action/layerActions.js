@@ -10,6 +10,7 @@ import {
   BAKE_FS,
   BAKE_ORACLE,
   BAKE_EXT,
+  SAVE_KEYS_2_LAYER,
   UPDATE_LAYER,
   LOAD_WORK_LAYER,
 } from "./types";
@@ -18,6 +19,13 @@ export const loadLayer2work = (layer) => {
   return {
     type: LOAD_WORK_LAYER,
     payload: layer,
+  };
+};
+
+export const saveKeys2Layer = (keys) => {
+  return {
+    type: SAVE_KEYS_2_LAYER,
+    payload: keys,
   };
 };
 

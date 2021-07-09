@@ -80,6 +80,7 @@ class Layer extends Component {
     const key = {
       booly: true,
       edit: true,
+      active: 0,
       keys: [
         {
           layerID: e.target.id,

@@ -9,11 +9,18 @@ import {
   EDIT_KEYS,
   SAVE_KEY,
   SAVE_KEYS,
+  SAVE_KEYS_2_KEYS,
   RESET_KEY,
   UPDATE_KEY,
   ACTIVE_KEY,
+  RESET_ACTIVE,
 } from "./types";
-
+export const resetActive = () => {
+  console.log("ACT set key to work // ");
+  return {
+    type: RESET_ACTIVE,
+  };
+};
 export const setWork = (feed) => {
   console.log("ACT set key to work // ");
   return {
@@ -33,6 +40,13 @@ export const editKey = (feed) => {
   return {
     type: EDIT_KEY,
     payload: feed,
+  };
+};
+export const saveKeys2Keys = (keys) => {
+  console.log("ACT edit key // ", keys);
+  return {
+    type: SAVE_KEYS_2_KEYS,
+    payload: keys,
   };
 };
 export const editKeys = (feed) => {

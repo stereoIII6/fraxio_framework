@@ -38,15 +38,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Slider, RangeSlider } from "rsuite";
 import Draggable from "react-draggable";
-import { addLayer, editLayer } from "../../action/layerActions";
+import { addLayer, editLayer, saveKeys2Layer } from "../../action/layerActions";
 import {
   editKey,
   editKeys,
   saveKey,
   saveKeys,
   resetKey,
+  quitWork,
+  saveKeys2Keys,
 } from "../../action/keyActions";
 import { Button, Input, InputGroup, CustomInput } from "reactstrap";
 // class definition
@@ -66,56 +67,162 @@ class ToolBox extends Component {
     resetKey: PropTypes.func,
     keys: PropTypes.array,
     active: PropTypes.number,
+    saveKeys2Keys: PropTypes.func,
+    saveKeys2Layer: PropTypes.func,
   };
-  state = { drg: false, key: this.props.workingKey.initKey };
+  state = { drg: false, key: this.props.keys[this.props.active] };
 
   // move layer x position
   slideX = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     let wKeys = this.props.keys;
-    wKeys[this.props.active].layerParams.x = parseInt(e.target.value);
-    this.props.editKeys(wKeys);
-    this.setState(wKeys[e.target.value]);
+    console.log(
+      "before check wkeys // ",
+      wKeys,
+      "range value // ",
+      e.target.value
+    );
+    // find index for key ID
+    let y = 0;
+    let i = null;
+    for (y; y < wKeys.length; y++) {
+      console.log("at", y);
+      if (wKeys[y].keyID == this.props.active) i = y;
+    }
+    console.log("after", i);
+    wKeys[i].layerParams.x = parseInt(e.target.value);
+    console.log(
+      "after check wkeys // ",
+      wKeys,
+      "range value // ",
+      e.target.value
+    );
+    this.props.editKey(wKeys[i]);
+    this.setState({ key: wKeys[i] });
   };
   // move layer y position
   slideY = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     let wKeys = this.props.keys;
-    wKeys[this.props.active].layerParams.y = parseInt(e.target.value);
-    this.props.editKeys(wKeys);
-    this.setState(wKeys[e.target.value]);
+    console.log(
+      "before check wkeys // ",
+      wKeys,
+      "range value // ",
+      e.target.value
+    );
+    // find index for key ID
+    let y = 0;
+    let i = null;
+    for (y; y < wKeys.length; y++) {
+      console.log("at", y);
+      if (wKeys[y].keyID == this.props.active) i = y;
+    }
+    console.log("after", i);
+    wKeys[i].layerParams.y = parseInt(e.target.value);
+    console.log(
+      "after check wkeys // ",
+      wKeys,
+      "range value // ",
+      e.target.value
+    );
+    this.props.editKey(wKeys[i]);
+    this.setState({ key: wKeys[i] });
   };
   // scale layer
   slideZ = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     let wKeys = this.props.keys;
-    wKeys[this.props.active].layerParams.z = parseInt(e.target.value);
-    this.props.editKeys(wKeys);
-    this.setState(wKeys[e.target.value]);
+    console.log(
+      "before check wkeys // ",
+      wKeys,
+      "range value // ",
+      e.target.value
+    );
+    // find index for key ID
+    let y = 0;
+    let i = null;
+    for (y; y < wKeys.length; y++) {
+      console.log("at", y);
+      if (wKeys[y].keyID == this.props.active) i = y;
+    }
+    console.log("after", i);
+    wKeys[i].layerParams.z = parseInt(e.target.value);
+    console.log(
+      "after check wkeys // ",
+      wKeys,
+      "range value // ",
+      e.target.value
+    );
+    this.props.editKey(wKeys[i]);
+    this.setState({ key: wKeys[i] });
   };
   // rotate layer
   slideR = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     let wKeys = this.props.keys;
-    wKeys[this.props.active].layerParams.r = parseInt(e.target.value);
-    this.props.editKeys(wKeys);
-    this.setState(wKeys[e.target.value]);
+    console.log(
+      "before check wkeys // ",
+      wKeys,
+      "range value // ",
+      e.target.value
+    );
+    // find index for key ID
+    let y = 0;
+    let i = null;
+    for (y; y < wKeys.length; y++) {
+      console.log("at", y);
+      if (wKeys[y].keyID == this.props.active) i = y;
+    }
+    console.log("after", i);
+    wKeys[i].layerParams.r = parseInt(e.target.value);
+    console.log(
+      "after check wkeys // ",
+      wKeys,
+      "range value // ",
+      e.target.value
+    );
+    this.props.editKey(wKeys[i]);
+    this.setState({ key: wKeys[i] });
   };
   // opacity layer
   slideO = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     let wKeys = this.props.keys;
-    wKeys[this.props.active].layerParams.o = parseInt(e.target.value);
-    this.props.editKeys(wKeys);
-    this.setState(wKeys[e.target.value]);
+    console.log(
+      "before check wkeys // ",
+      wKeys,
+      "range value // ",
+      e.target.value
+    );
+    // find index for key ID
+    let y = 0;
+    let i = null;
+    for (y; y < wKeys.length; y++) {
+      console.log("at", y);
+      if (wKeys[y].keyID == this.props.active) i = y;
+    }
+    console.log("after", i);
+    wKeys[i].layerParams.o = parseInt(e.target.value);
+    console.log(
+      "after check wkeys // ",
+      wKeys,
+      "range value // ",
+      e.target.value
+    );
+    this.props.editKey(wKeys[i]);
+    this.setState({ key: wKeys[i] });
   };
+
   // save workingkey
-  saveKey = (e) => {
+  goQuit = (e) => {
     e.preventDefault();
+    this.props.quitWork();
   };
-  //
-  resetKey = (e) => {
+  goSave2Layer = (e) => {
     e.preventDefault();
+    console.log(this.props.keys);
+    this.props.saveKeys2Layer(this.props.keys);
+    this.props.saveKeys2Keys(this.props.keys);
   };
   mouser = (e) => {
     this.setState({ drg: !this.state.drg });
@@ -184,29 +291,28 @@ class ToolBox extends Component {
                   color: this.props.coloris.palm,
                 }}
               >
-                Position
+                Position - x: {parseInt(this.state.key.layerParams.x)} y:{" "}
+                {parseInt(this.state.key.layerParams.y)}
                 <br></br>
-                <Input
-                  type="text"
-                  id="x"
+                <CustomInput
+                  id="xR"
+                  type="range"
                   value={parseInt(this.state.key.layerParams.x)}
-                  style={{
-                    width: "50%",
-
-                    float: "left",
-                  }}
                   onChange={this.slideX}
+                  onMouseOver={this.mouser}
+                  onMouseLeave={this.mouser}
+                  max={100}
+                  min={-100}
                 />
-                <Input
-                  type="text"
-                  id="y"
+                <CustomInput
+                  id="yR"
+                  type="range"
                   value={parseInt(this.state.key.layerParams.y)}
-                  style={{
-                    width: "50%",
-
-                    float: "left",
-                  }}
                   onChange={this.slideY}
+                  onMouseOver={this.mouser}
+                  onMouseLeave={this.mouser}
+                  max={100}
+                  min={-100}
                 />
               </div>
               <div
@@ -419,21 +525,24 @@ class ToolBox extends Component {
           >
             <div
               className="btn"
+              id={this.props.active}
               style={{
                 width: "70%",
                 background: this.props.coloris.mint,
                 color: this.props.coloris.purple,
               }}
-              onClick={this.saveKey}
+              onClick={this.goSave2Layer}
             >
               Save
             </div>
             <div
               className="btn"
+              id={this.props.active}
               style={{
                 width: "30%",
                 background: this.props.coloris.purple,
                 color: this.props.coloris.mint,
+                display: "none",
               }}
               onClick={this.resetKey}
             >
@@ -463,4 +572,6 @@ export default connect(mapStateToProps, {
   saveKeys,
   saveKey,
   resetKey,
+  saveKeys2Keys,
+  saveKeys2Layer,
 })(ToolBox);

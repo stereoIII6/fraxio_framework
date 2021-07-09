@@ -11,6 +11,7 @@ import {
   DISC_LAYERS,
   UPDATE_LAYER,
   LOAD_WORK_LAYER,
+  SAVE_KEYS_2_LAYER,
 } from "../action/types";
 const initState = {
   layers: [
@@ -80,6 +81,17 @@ export default function(state = initState, action) {
       return {
         ...state,
         layers: [...action.payload],
+      };
+    case SAVE_KEYS_2_LAYER:
+      console.log("save keys RED //" + action.payload);
+      return {
+        ...state,
+        keys: action.payload,
+        workingLayer: {
+          ...state.workingLayer,
+          booly: false,
+          keys: action.payload,
+        },
       };
     case DEL_LAYER:
       console.log("delete RED //" + action.payload);

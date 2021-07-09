@@ -12,6 +12,7 @@ export const MOVE_LAYER = "MOVE_LAYER";
 export const SAVE_LAYER = "SAVE_LAYER";
 export const DISC_LAYERS = "DISC_LAYERS";
 export const UPDATE_LAYER = "UPDATE_LAYER";
+export const SAVE_KEYS_2_LAYER = "SAVE_KEYS_2_LAYER";
 
 export const EDIT = "EDIT";
 export const SAVE_KEYS = "SAVE_KEYS";
@@ -23,6 +24,8 @@ export const ADD_KEY_UP = "ADD_KEY_UP";
 export const RESET_KEY = "RESET_KEY";
 export const UPDATE_KEY = "UPDATE_KEY";
 export const ACTIVE_KEY = "ACTIVE_KEY";
+export const SAVE_KEYS_2_KEYS = "SAVE_KEYS_2_KEYS";
+export const RESET_ACTIVE = "RESET_ACTIVE";
 
 export const SET_KEY_ACTIVE = "SET_KEY_ACTIVE";
 export const SET_KEY_INACTIVE = "SET_KEY_INACTIVE";

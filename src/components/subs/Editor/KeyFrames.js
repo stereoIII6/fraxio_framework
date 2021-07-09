@@ -96,17 +96,10 @@ class KeyFrames extends Component {
       layerID: this.props.workingLayer.layerID,
       oracle: this.props.workingLayer.layerOracle.name,
       oracleState: this.props.workingLayer.layerOracle.oracleState,
-      layerParams: {
-        x: this.props.workingKey.initKey.layerParams.x,
-        y: this.props.workingKey.initKey.layerParams.y,
-        o: this.props.workingKey.initKey.layerParams.o,
-        r: this.props.workingKey.initKey.layerParams.r,
-        z: this.props.workingKey.initKey.layerParams.z,
-      },
+      layerParams: this.props.workingLayer.layerParams,
     };
-    let oldWKey = this.props.workingKey;
-    oldWKey.keys = [newKey, ...oldWKey.keys];
-    oldWKey.initKey = newKey;
+    let oldWKey = this.props.keys;
+    oldWKey = [newKey, ...oldWKey.keys];
     this.props.addKeyUp(oldWKey);
     this.setState({
       downs: this.state.downs + 1,
@@ -118,22 +111,21 @@ class KeyFrames extends Component {
     e.preventDefault();
     console.log("up");
     const newKey = {
-      keys: this.props.workingLayer.keys,
+      keys: this.props.keys,
       keyID: parseInt(e.target.id),
       layerID: this.props.workingLayer.layerID,
       oracle: this.props.workingLayer.layerOracle.name,
       oracleState: this.props.workingLayer.layerOracle.oracleState,
       layerParams: {
-        x: this.props.workingKey.initKey.layerParams.x,
-        y: this.props.workingKey.initKey.layerParams.y,
-        o: this.props.workingKey.initKey.layerParams.o,
-        r: this.props.workingKey.initKey.layerParams.r,
-        z: this.props.workingKey.initKey.layerParams.z,
+        x: this.props.workingKey.layerParams.x,
+        y: this.props.workingKey.layerParams.y,
+        o: this.props.workingKey.layerParams.o,
+        r: this.props.workingKey.layerParams.r,
+        z: this.props.workingKey.layerParams.z,
       },
     };
     let oldWKey = this.props.workingKey;
     oldWKey.keys = [...oldWKey.keys, newKey];
-    oldWKey.initKey = newKey;
     this.props.addKeyUp(oldWKey);
     this.setState({
       ups: this.state.ups + 1,
