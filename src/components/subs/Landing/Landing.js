@@ -33,7 +33,7 @@ class Landing extends Component {
           Digital Assets Toolbox v1
         </h1>
         <div
-          toggle={this.toggle}
+          onClick={this.toggle}
           url={this.state.url}
           style={{
             position: "absolute",
