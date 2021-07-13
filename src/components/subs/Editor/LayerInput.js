@@ -40,8 +40,7 @@ import { Button, InputGroup, Input, Form } from "reactstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { addLayer } from "../../action/layerActions";
-import { resetActive } from "../../action/keyActions";
+import { startSlicing } from "../../action/pyeActions";
 
 const IpfsHttpClient = require("ipfs-http-client");
 
@@ -50,8 +49,25 @@ const ipfs = IpfsHttpClient({
   port: "5001",
   protocol: "https",
 });
+
 /* */
 class LayerInput extends Component {
+  static propTypes = {
+    bake: PropTypes.bool,
+    slice: PropTypes.bool,
+    activeL: PropTypes.number,
+    frame: PropTypes.bool,
+    activeK: PropTypes.number,
+    stateK: PropTypes.object,
+    pyes: PropTypes.array,
+    pyeDrafts: PropTypes.array,
+    pyeSamples: PropTypes.array,
+    users: PropTypes.array,
+    cols: PropTypes.object,
+    PYE: PropTypes.object,
+    INIT: PropTypes.object,
+    startSlicing: PropTypes.func,
+  };
   state = {
     layerType: "no",
     layerFeed: "no",
@@ -64,16 +80,17 @@ class LayerInput extends Component {
     buffer: null,
     check: "orange",
     urlList: [],
+    cols:
+      this.props.lighting === "light"
+        ? this.props.cols.light
+        : this.props.lighting === "dark"
+        ? this.props.cols.light
+        : this.props.lighting === "irie"
+        ? this.props.cols.light
+        : this.props.cols.light,
+    PYE: this.props.PYE,
+    INIT: this.props.INIT,
   };
-  static propTypes = {
-    workingPYE: PropTypes.object,
-    workingLayer: PropTypes.object,
-    addLayer: PropTypes.func,
-    resetActive: PropTypes.func,
-    layers: PropTypes.array,
-    coloris: PropTypes.object,
-  };
-
   captureFile = (e) => {
     e.preventDefault();
     // console.log("file captured");
@@ -85,15 +102,76 @@ class LayerInput extends Component {
       this.setState({ buffer: Buffer(reader.result) });
     };
   };
-
+  newSlice = () => {
+    return this.props.INIT.layers[0];
+  };
   submitFile = (e) => {
     e.preventDefault();
     console.log("file submitted");
     console.log(this.state.buffer);
-
+    const newLayer = {
+      layerID: this.props.PYE.layers.length, // layerID
+      layerName: this.state.layerName, // layerName
+      layerType: this.state.layerType, // Type of Layer // empty / image / text / form / audio / video
+      layerData: {
+        access: {
+          private: false,
+          limitedTo: [],
+        }, // access object
+        file: null, // IPFS hash
+        text: null, // text to display in text layer
+        font: null, // font to display in text layer
+      },
+      layerOracle: {
+        // oracle object
+        name: this.state.layerFeed, // Oracle Feed Name
+        stamps: [Date()], // THE GRAPH IMPORT timestamps of Oracle
+        starter: Date(), // Initial Custom Start Price at Mint // Default Real Time Value NOW
+      },
+      exTrigger: {
+        // External Trigger Object
+        abi: null, // contract ABI
+        contractAdr: null, // contract address
+        funcName: null, // function to call
+        funcParams: null, // params to call in function (optional)
+      },
+      keys: [
+        {
+          keyID: 0,
+          keyParams: {
+            v: 0, // oracle value TRIGGER
+            e: false, // external triggered by thhis key boolean
+            x: 0, // x position in % (-100 - 100)
+            y: 0, // y position in % (-100 - 100)
+            z: 90, // fixed scale (10 - 500)
+            p: 0, // x/y ratio // default 0(1:1) // min -1(10:1) max 1(1:10)
+            o: 100, // opacity (0 - 100)
+            r: 0, // rotation (-360 - 360)
+            b: 0, // border thickness (1 - 5)
+            c: null, // font and border color in #HEX // (#000000 - #ffffff)
+            h: null, // bgcolor in #HEX // (#000000 - #ffffff)
+            lc: 0, // left cut in timeline from start // video and audio only
+            rc: 0, // right cut in timeline from end // video and audio only
+            pl: false, // play timeline // video and audio only
+            re: false, // restart play timeline // video and audio only
+            ps: 0, // pause in timeline // video and audio only
+            gp: 0,
+            gs: 0,
+            st: false, // stop and reset// video and audio only
+            lp: false, // loop // video and audio only
+            vl: 63, // audio volume // video and audio only
+            pn: 63, // l r pan //
+          },
+        },
+      ],
+    };
+    console.log(this.state.layerType);
     if (
       this.state.buffer &&
-      (this.state.layerType !== "empty" || this.state.layerType !== "no")
+      (this.state.layerType === "img" ||
+        this.state.layerType === "form" ||
+        this.state.layerType === "audio" ||
+        this.state.layerType === "video")
     ) {
       ipfs.add(this.state.buffer).then((result, err) => {
         console.log("Ipfs Result", result);
@@ -109,138 +187,33 @@ class LayerInput extends Component {
           check: "orange",
           urlList: [...this.state.urlList, result.path],
         });
-        // console.log(this.state);
-        const newLayer = {
-          booly: true, // activity status
-          layerID: this.props.layers.length, // layerID number 1-36
-          layerType: this.state.layerType, // layer media type IMAGE SVG FONT
-          layerOracle: {
-            type: this.state.layerFeed,
-            name: this.state.layerFeed,
-            stamp: new Date(),
-            initValue: 0,
-            param: "",
-          },
-          layerFS: {
-            user: "",
-            pye: "ipfs/",
-            file: result.path,
-            url: `https://ipfs.io/ipfs/${result.path}`,
-            text: "",
-            font: "",
-          },
-          layerName: this.state.layerName,
-          layerExternal: {
-            abi: {},
-            adr: 0x0,
-            function: "",
-            data: {},
-          },
-          keys: [
-            {
-              layerID: 0,
-              keyID: 0,
-              layerParams: {
-                x: 0,
-                y: 0,
-                o: 100,
-                r: 0,
-                z: 90,
-              },
-            },
-          ],
-        };
-
-        this.props.addLayer(newLayer);
+        let layers = this.props.PYE.layers;
+        newLayer.layerData.file = result.path;
+        newLayer.layerData.text = "";
+        newLayer.layerData.font = "comfortaa";
+        layers.push(newLayer);
+        const lc = this.props.PYE.layers.length - 1;
+        this.props.startSlicing(layers, lc);
       });
     } else if (this.state.layerType === "typo") {
-      const newLayer = {
-        booly: true,
-        layerID: this.props.layers.length,
-        layerType: this.state.layerType,
-        layerOracle: {
-          type: this.state.layerFeed,
-          name: this.state.layerFeed,
-          stamp: new Date(),
-          initValue: 0,
-          param: "",
-        },
-        layerFS: {
-          user: "",
-          pye: "ipfs/",
-          file: "",
-          url: `https://ipfs.io/ipfs/`,
-          text: this.state.layerText,
-          font: this.state.layerFont,
-        },
-        layerName: this.state.layerName,
-        layerExternal: {
-          abi: {},
-          adr: 0x0,
-          function: "",
-          data: {},
-        },
-        keys: [
-          {
-            layerID: 0,
-            keyID: 0,
-            layerParams: {
-              x: 0,
-              y: 0,
-              o: 100,
-              r: 0,
-              z: 90,
-            },
-          },
-        ],
-      };
-      this.props.addLayer(newLayer);
+      let layers = this.props.PYE.layers;
+      newLayer.layerData.file = "";
+      newLayer.layerData.text = this.state.layerText;
+      newLayer.layerData.font = this.state.layerFont;
+      layers.push(newLayer);
+      const lc = this.props.PYE.layers.length - 1;
+      this.props.startSlicing(layers, lc);
     } else {
-      const newLayer = {
-        booly: true,
-        layerID: this.props.layers.length,
-        layerType: this.state.layerType,
-        layerOracle: {
-          type: this.state.layerFeed,
-          name: this.state.layerFeed,
-          stamp: new Date(),
-          initValue: 0,
-          param: "",
-        },
-        layerFS: {
-          user: "",
-          pye: "ipfs/",
-          file: "",
-          url: `https://ipfs.io/ipfs/`,
-          text: "",
-          font: "",
-        },
-        layerName: this.state.layerName,
-        layerExternal: {
-          abi: {},
-          adr: 0x0,
-          function: "",
-          data: {},
-        },
-        keys: [
-          {
-            layerID: 0,
-            keyID: 0,
-            layerParams: {
-              x: 0,
-              y: 0,
-              o: 100,
-              r: 0,
-              z: 90,
-            },
-          },
-        ],
-      };
-
-      this.props.addLayer(newLayer);
+      let layers = this.props.PYE.layers;
+      newLayer.layerData.file = "";
+      newLayer.layerData.text = this.state.layerText;
+      newLayer.layerData.font = this.state.layerFont;
+      layers.push(newLayer);
+      const lc = this.props.PYE.layers.length - 1;
+      this.props.startSlicing(layers, lc);
     }
   };
-  /* */
+
   handleClick = (e) => {
     document.getElementById("upload").click();
     document.getElementById("upload").onchange = () => {
@@ -276,6 +249,7 @@ class LayerInput extends Component {
     this.setState({ layerFont: e.target.value });
   };
   render() {
+    const { bg1, bg2, bg3, c1, c2, c3, w, b, r } = this.state.cols;
     let empty = false;
     let ready = true;
     let allowed = [];
@@ -472,10 +446,19 @@ class LayerInput extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  workingPYE: state.pyeState.workingPYE,
-  workingLayer: state.layerState.workingLayer,
-  layers: state.layerState.layers,
-  coloris: state.layerState.coloris,
+  pyes: state.pyeState.pyes,
+  bake: state.pyeState.bake,
+  slice: state.pyeState.slice,
+  activeL: state.pyeState.activeL,
+  frame: state.pyeState.frame,
+  activeK: state.pyeState.activeK,
+  stateK: state.pyeState.stateK,
+  pyeDrafts: state.pyeState.pyeDrafts,
+  pyeSamples: state.pyeState.pyeSamples,
+  PYE: state.pyeState.PYE,
+  INIT: state.pyeState.INIT,
+  users: state.userState.users,
+  cols: state.userState.cols,
 });
 
-export default connect(mapStateToProps, { addLayer, resetActive })(LayerInput);
+export default connect(mapStateToProps, { startSlicing })(LayerInput);

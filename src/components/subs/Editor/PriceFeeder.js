@@ -75,16 +75,17 @@ class PriceFeeder extends Component {
     return (
       <div>
         {this.props.oracle !== "static" && this.props.oracle !== "no" ? (
-          <Input type="select" onChange={this.setOracle}>
-            <option key="null" value="no" var="no">
+          <Input
+            type="select"
+            onChange={this.setOracle}
+            value={this.props.sel !== null ? this.props.sel : "no"}
+            id={label[labelNum]}
+          >
+            <option key="no" value="no">
               Choose an Oracle
             </option>
             {this.state.selectData.map((data) => (
-              <option
-                key={label[labelNum]}
-                value={[data, label[labelNum]]}
-                var={label[labelNum]}
-              >
+              <option key={labelNum} id={label[labelNum]} value={data}>
                 {label[labelNum] + " " + data}
                 {labelNum++}
               </option>

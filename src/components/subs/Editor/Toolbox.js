@@ -39,43 +39,37 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Draggable from "react-draggable";
-import { addLayer, editLayer, saveKeys2Layer } from "../../action/layerActions";
-import {
-  editKey,
-  editKeys,
-  saveKey,
-  saveKeys,
-  resetKey,
-  quitWork,
-  saveKeys2Keys,
-} from "../../action/keyActions";
 import { Button, Input, InputGroup, CustomInput } from "reactstrap";
+import { editFrame } from "../../action/pyeActions";
 // class definition
 class ToolBox extends Component {
   // proptype definition
   static propTypes = {
-    workingPYE: PropTypes.object,
-    workingLayer: PropTypes.object,
-    workingKey: PropTypes.object,
-    addLayer: PropTypes.func,
-    layers: PropTypes.array,
-    coloris: PropTypes.object,
-    editKey: PropTypes.func,
-    editKeys: PropTypes.func,
-    saveKeys: PropTypes.func,
-    saveKey: PropTypes.func,
-    resetKey: PropTypes.func,
-    keys: PropTypes.array,
-    active: PropTypes.number,
-    saveKeys2Keys: PropTypes.func,
-    saveKeys2Layer: PropTypes.func,
+    bake: PropTypes.bool,
+    slice: PropTypes.bool,
+    activeL: PropTypes.number,
+    frame: PropTypes.bool,
+    activeK: PropTypes.number,
+    stateK: PropTypes.object,
+    pyes: PropTypes.array,
+    pyeDrafts: PropTypes.array,
+    pyeSamples: PropTypes.array,
+    users: PropTypes.array,
+    cols: PropTypes.object,
+    PYE: PropTypes.object,
+    INIT: PropTypes.object,
+    editFrame: PropTypes.func,
   };
-  state = { drg: false, key: this.props.keys[this.props.active] };
+  state = {
+    drg: false,
+    key: this.props.PYE.layers[this.props.activeL].keys[this.props.activeK],
+    cols: this.props.cols,
+  };
 
   // move layer x position
   slideX = (e) => {
     // console.log(e.target.value);
-    let wKeys = this.props.keys;
+    let wKeys = this.props.PYE.layers[this.props.activeL].keys;
     console.log(
       "before check wkeys // ",
       wKeys,
@@ -87,23 +81,25 @@ class ToolBox extends Component {
     let i = null;
     for (y; y < wKeys.length; y++) {
       console.log("at", y);
-      if (wKeys[y].keyID == this.props.active) i = y;
+      if (wKeys[y].keyID === this.props.activeK) i = y;
     }
     console.log("after", i);
-    wKeys[i].layerParams.x = parseInt(e.target.value);
+    wKeys[i].keyParams.x = parseInt(e.target.value);
     console.log(
       "after check wkeys // ",
       wKeys,
       "range value // ",
       e.target.value
     );
-    this.props.editKey(wKeys[i]);
+    let layers = this.props.PYE.layers;
+    layers[this.props.activeL].keys = wKeys;
+    this.props.editFrame(layers);
     this.setState({ key: wKeys[i] });
   };
   // move layer y position
   slideY = (e) => {
     // console.log(e.target.value);
-    let wKeys = this.props.keys;
+    let wKeys = this.props.PYE.layers[this.props.activeL].keys;
     console.log(
       "before check wkeys // ",
       wKeys,
@@ -115,23 +111,25 @@ class ToolBox extends Component {
     let i = null;
     for (y; y < wKeys.length; y++) {
       console.log("at", y);
-      if (wKeys[y].keyID == this.props.active) i = y;
+      if (wKeys[y].keyID === this.props.activeK) i = y;
     }
     console.log("after", i);
-    wKeys[i].layerParams.y = parseInt(e.target.value);
+    wKeys[i].keyParams.y = parseInt(e.target.value);
     console.log(
       "after check wkeys // ",
       wKeys,
       "range value // ",
       e.target.value
     );
-    this.props.editKey(wKeys[i]);
+    let layers = this.props.PYE.layers;
+    layers[this.props.activeL].keys = wKeys;
+    this.props.editFrame(layers);
     this.setState({ key: wKeys[i] });
   };
   // scale layer
   slideZ = (e) => {
     // console.log(e.target.value);
-    let wKeys = this.props.keys;
+    let wKeys = this.props.PYE.layers[this.props.activeL].keys;
     console.log(
       "before check wkeys // ",
       wKeys,
@@ -143,23 +141,25 @@ class ToolBox extends Component {
     let i = null;
     for (y; y < wKeys.length; y++) {
       console.log("at", y);
-      if (wKeys[y].keyID == this.props.active) i = y;
+      if (wKeys[y].keyID === this.props.activeK) i = y;
     }
     console.log("after", i);
-    wKeys[i].layerParams.z = parseInt(e.target.value);
+    wKeys[i].keyParams.z = parseInt(e.target.value);
     console.log(
       "after check wkeys // ",
       wKeys,
       "range value // ",
       e.target.value
     );
-    this.props.editKey(wKeys[i]);
+    let layers = this.props.PYE.layers;
+    layers[this.props.activeL].keys = wKeys;
+    this.props.editFrame(layers);
     this.setState({ key: wKeys[i] });
   };
   // rotate layer
   slideR = (e) => {
     // console.log(e.target.value);
-    let wKeys = this.props.keys;
+    let wKeys = this.props.PYE.layers[this.props.activeL].keys;
     console.log(
       "before check wkeys // ",
       wKeys,
@@ -171,23 +171,25 @@ class ToolBox extends Component {
     let i = null;
     for (y; y < wKeys.length; y++) {
       console.log("at", y);
-      if (wKeys[y].keyID == this.props.active) i = y;
+      if (wKeys[y].keyID === this.props.activeK) i = y;
     }
     console.log("after", i);
-    wKeys[i].layerParams.r = parseInt(e.target.value);
+    wKeys[i].keyParams.r = parseInt(e.target.value);
     console.log(
       "after check wkeys // ",
       wKeys,
       "range value // ",
       e.target.value
     );
-    this.props.editKey(wKeys[i]);
+    let layers = this.props.PYE.layers;
+    layers[this.props.activeL].keys = wKeys;
+    this.props.editFrame(layers);
     this.setState({ key: wKeys[i] });
   };
   // opacity layer
   slideO = (e) => {
     // console.log(e.target.value);
-    let wKeys = this.props.keys;
+    let wKeys = this.props.PYE.layers[this.props.activeL].keys;
     console.log(
       "before check wkeys // ",
       wKeys,
@@ -199,37 +201,51 @@ class ToolBox extends Component {
     let i = null;
     for (y; y < wKeys.length; y++) {
       console.log("at", y);
-      if (wKeys[y].keyID == this.props.active) i = y;
+      if (wKeys[y].keyID === this.props.activeK) i = y;
     }
     console.log("after", i);
-    wKeys[i].layerParams.o = parseInt(e.target.value);
+    wKeys[i].keyParams.o = parseInt(e.target.value);
     console.log(
       "after check wkeys // ",
       wKeys,
       "range value // ",
       e.target.value
     );
-    this.props.editKey(wKeys[i]);
+    let layers = this.props.PYE.layers;
+    layers[this.props.activeL].keys = wKeys;
+    this.props.editFrame(layers);
     this.setState({ key: wKeys[i] });
   };
 
   // save workingkey
   goQuit = (e) => {
     e.preventDefault();
-    this.props.quitWork();
   };
   goSave2Layer = (e) => {
     e.preventDefault();
-    console.log(this.props.keys);
-    this.props.saveKeys2Layer(this.props.keys);
-    this.props.saveKeys2Keys(this.props.keys);
   };
   mouser = (e) => {
     this.setState({ drg: !this.state.drg });
   };
-
+  kIndex = () => {
+    let x = null;
+    for (
+      let i = 0;
+      i < this.props.PYE.layers[this.props.activeL].keys.length;
+      i++
+    ) {
+      if (
+        this.props.PYE.layers[this.props.activeL].keys[i].keyID ===
+        this.props.activeK
+      )
+        x = i;
+    }
+    return x;
+  };
   render() {
     console.log(this.props);
+    const kIndx = this.kIndex();
+    const { bg1, bg2, bg3, c1, c2, c3, w, b, r } = this.state.cols;
     return (
       <Draggable id="drg" disabled={this.state.drg}>
         <div
@@ -239,31 +255,36 @@ class ToolBox extends Component {
             padding: "10px",
             position: "absolute",
             zIndex: 100,
-            background: this.props.coloris.sky,
-            color: this.props.coloris.palm,
+            background: c3,
+            color: bg3,
             top: "400px",
             left: "20px",
           }}
         >
-          {this.props.workingLayer.layerType !== "audio" ||
-          this.props.workingLayer.layerType !== "empty" ||
-          this.props.workingLayer.layerType !== "video" ? (
+          {this.props.PYE.layers[this.props.activeL].layerType !== "audio" ||
+          this.props.PYE.layers[this.props.activeL].layerType !== "empty" ||
+          this.props.PYE.layers[this.props.activeL].layerType !== "video" ? (
             <div>
               <h3>
                 {" "}
-                Layer {this.props.workingLayer.layerID} Key {this.props.active}
-                {this.props.workingKey.oracle === "no" ||
-                this.props.workingKey.oracle === "static" ? (
+                Layer {this.props.activeL} Key {this.props.activeK} Spot {kIndx}
+                {this.props.PYE.layers[this.props.activeL].layerOracle.name !==
+                  "no" ||
+                this.props.PYE.layers[this.props.activeL].layerOracle.name !==
+                  "static" ? (
                   <InputGroup
                     style={{
                       width: "240px",
-                      background: this.props.coloris.grey,
-                      color: this.props.coloris.palm,
+                      background: bg1,
+                      color: bg3,
                     }}
                   >
                     <Input
                       type="text"
-                      placeholder={this.props.workingLayer.layerOracle.param}
+                      placeholder={
+                        this.props.PYE.layers[this.props.activeL].layerOracle
+                          .name
+                      }
                       disabled
                       style={{
                         width: "30px",
@@ -273,7 +294,8 @@ class ToolBox extends Component {
                     <Input
                       type="text"
                       defaultValue={
-                        this.props.workingLayer.layerOracle.initValue
+                        this.props.PYE.layers[this.props.activeL].layerOracle
+                          .starter
                       }
                       style={{
                         width: "80px",
@@ -287,17 +309,28 @@ class ToolBox extends Component {
                 className="btn"
                 style={{
                   width: "100%",
-                  background: this.props.coloris.grey,
-                  color: this.props.coloris.palm,
+                  background: bg1,
+                  color: bg3,
                 }}
               >
-                Position - x: {parseInt(this.state.key.layerParams.x)} y:{" "}
-                {parseInt(this.state.key.layerParams.y)}
+                Position - x:{" "}
+                {parseInt(
+                  this.props.PYE.layers[this.props.activeL].keys[kIndx]
+                    .keyParams.x
+                )}{" "}
+                y:{" "}
+                {parseInt(
+                  this.props.PYE.layers[this.props.activeL].keys[kIndx]
+                    .keyParams.y
+                )}
                 <br></br>
                 <CustomInput
                   id="xR"
                   type="range"
-                  value={parseInt(this.state.key.layerParams.x)}
+                  value={parseInt(
+                    this.props.PYE.layers[this.props.activeL].keys[kIndx]
+                      .keyParams.x
+                  )}
                   onChange={this.slideX}
                   onMouseOver={this.mouser}
                   onMouseLeave={this.mouser}
@@ -307,7 +340,10 @@ class ToolBox extends Component {
                 <CustomInput
                   id="yR"
                   type="range"
-                  value={parseInt(this.state.key.layerParams.y)}
+                  value={parseInt(
+                    this.props.PYE.layers[this.props.activeL].keys[kIndx]
+                      .keyParams.y
+                  )}
                   onChange={this.slideY}
                   onMouseOver={this.mouser}
                   onMouseLeave={this.mouser}
@@ -319,15 +355,22 @@ class ToolBox extends Component {
                 className="btn"
                 style={{
                   width: "100%",
-                  background: this.props.coloris.grey,
-                  color: this.props.coloris.palm,
+                  background: bg1,
+                  color: bg3,
                 }}
               >
-                Scale {this.state.key.layerParams.z}
+                Scale{" "}
+                {
+                  this.props.PYE.layers[this.props.activeL].keys[kIndx]
+                    .keyParams.z
+                }
                 <CustomInput
                   id="zR"
                   type="range"
-                  value={parseInt(this.state.key.layerParams.z)}
+                  value={parseInt(
+                    this.props.PYE.layers[this.props.activeL].keys[kIndx]
+                      .keyParams.z
+                  )}
                   onChange={this.slideZ}
                   onMouseOver={this.mouser}
                   onMouseLeave={this.mouser}
@@ -339,15 +382,22 @@ class ToolBox extends Component {
                 className="btn"
                 style={{
                   width: "100%",
-                  background: this.props.coloris.grey,
-                  color: this.props.coloris.palm,
+                  background: bg1,
+                  color: bg3,
                 }}
               >
-                Rotation {this.state.key.layerParams.r}
+                Rotation{" "}
+                {
+                  this.props.PYE.layers[this.props.activeL].keys[kIndx]
+                    .keyParams.r
+                }
                 <CustomInput
                   id="rR"
                   type="range"
-                  value={parseInt(this.state.key.layerParams.r)}
+                  value={parseInt(
+                    this.props.PYE.layers[this.props.activeL].keys[kIndx]
+                      .keyParams.r
+                  )}
                   onChange={this.slideR}
                   onMouseOver={this.mouser}
                   onMouseLeave={this.mouser}
@@ -359,15 +409,22 @@ class ToolBox extends Component {
                 className="btn"
                 style={{
                   width: "100%",
-                  background: this.props.coloris.grey,
-                  color: this.props.coloris.palm,
+                  background: bg1,
+                  color: bg3,
                 }}
               >
-                Opacity {this.state.key.layerParams.o}
+                Opacity{" "}
+                {
+                  this.props.PYE.layers[this.props.activeL].keys[kIndx]
+                    .keyParams.o
+                }
                 <CustomInput
                   id="oR"
                   type="range"
-                  value={parseInt(this.state.key.layerParams.o)}
+                  value={parseInt(
+                    this.props.PYE.layers[this.props.activeL].keys[kIndx]
+                      .keyParams.o
+                  )}
                   onChange={this.slideO}
                   onMouseOver={this.mouser}
                   onMouseLeave={this.mouser}
@@ -375,49 +432,49 @@ class ToolBox extends Component {
                   min={0}
                 />
               </div>
-              {this.props.workingLayer.layerType === "typo" ||
-              this.props.workingLayer.layerType === "svg" ? (
+              {this.props.PYE.layers[this.props.activeL].layerType === "typo" ||
+              this.props.PYE.layers[this.props.activeL].layerType === "svg" ? (
                 <div
                   className="btn"
                   style={{
                     width: "100%",
-                    background: this.props.coloris.grey,
-                    color: this.props.coloris.palm,
+                    background: bg1,
+                    color: bg3,
                   }}
                 >
                   Color
                 </div>
               ) : null}
-              {this.props.workingLayer.layerType === "typo" ||
-              this.props.workingLayer.layerType === "svg" ? (
+              {this.props.PYE.layers[this.props.activeL].layerType === "typo" ||
+              this.props.PYE.layers[this.props.activeL].layerType === "svg" ? (
                 <div
                   className="btn"
                   style={{
                     width: "100%",
-                    background: this.props.coloris.grey,
-                    color: this.props.coloris.palm,
+                    background: bg1,
+                    color: bg3,
                   }}
                 >
                   Border
                 </div>
               ) : null}
-              {this.props.workingLayer.layerType === "typo" ||
-              this.props.workingLayer.layerType === "svg" ? (
+              {this.props.PYE.layers[this.props.activeL].layerType === "typo" ||
+              this.props.PYE.layers[this.props.activeL].layerType === "svg" ? (
                 <div className="btn" style={{ width: "100%" }}>
                   BorderColor
                 </div>
               ) : null}
             </div>
           ) : null}
-          {this.props.workingLayer.layerType === "audio" ||
-          this.props.workingLayer.layerType === "video" ? (
+          {this.props.PYE.layers[this.props.activeL].layerType === "audio" ||
+          this.props.PYE.layers[this.props.activeL].layerType === "video" ? (
             <div>
               <div
                 className="btn"
                 style={{
                   width: "100%",
-                  background: this.props.coloris.grey,
-                  color: this.props.coloris.palm,
+                  background: bg1,
+                  color: bg3,
                 }}
               >
                 lCut
@@ -426,8 +483,8 @@ class ToolBox extends Component {
                 className="btn"
                 style={{
                   width: "100%",
-                  background: this.props.coloris.grey,
-                  color: this.props.coloris.palm,
+                  background: bg1,
+                  color: bg3,
                 }}
               >
                 rCut
@@ -436,8 +493,8 @@ class ToolBox extends Component {
                 className="btn"
                 style={{
                   width: "100%",
-                  background: this.props.coloris.grey,
-                  color: this.props.coloris.palm,
+                  background: bg1,
+                  color: bg3,
                 }}
               >
                 Play
@@ -446,8 +503,8 @@ class ToolBox extends Component {
                 className="btn"
                 style={{
                   width: "100%",
-                  background: this.props.coloris.grey,
-                  color: this.props.coloris.palm,
+                  background: bg1,
+                  color: bg3,
                 }}
               >
                 Pause
@@ -456,8 +513,8 @@ class ToolBox extends Component {
                 className="btn"
                 style={{
                   width: "100%",
-                  background: this.props.coloris.grey,
-                  color: this.props.coloris.palm,
+                  background: bg1,
+                  color: bg3,
                 }}
               >
                 Stop
@@ -466,8 +523,8 @@ class ToolBox extends Component {
                 className="btn"
                 style={{
                   width: "100%",
-                  background: this.props.coloris.grey,
-                  color: this.props.coloris.palm,
+                  background: bg1,
+                  color: bg3,
                 }}
               >
                 Loop
@@ -476,8 +533,8 @@ class ToolBox extends Component {
                 className="btn"
                 style={{
                   width: "100%",
-                  background: this.props.coloris.grey,
-                  color: this.props.coloris.palm,
+                  background: bg1,
+                  color: bg3,
                 }}
               >
                 Go2Play
@@ -486,8 +543,8 @@ class ToolBox extends Component {
                 className="btn"
                 style={{
                   width: "100%",
-                  background: this.props.coloris.grey,
-                  color: this.props.coloris.palm,
+                  background: bg1,
+                  color: bg3,
                 }}
               >
                 Go2Pause
@@ -496,8 +553,8 @@ class ToolBox extends Component {
                 className="btn"
                 style={{
                   width: "100%",
-                  background: this.props.coloris.grey,
-                  color: this.props.coloris.palm,
+                  background: bg1,
+                  color: bg3,
                 }}
               >
                 Volume
@@ -506,8 +563,8 @@ class ToolBox extends Component {
                 className="btn"
                 style={{
                   width: "100%",
-                  background: this.props.coloris.grey,
-                  color: this.props.coloris.palm,
+                  background: bg1,
+                  color: bg3,
                 }}
               >
                 Pan
@@ -519,8 +576,8 @@ class ToolBox extends Component {
             style={{
               width: "100%",
               marginTop: "1em",
-              background: this.props.coloris.grey,
-              color: this.props.coloris.palm,
+              background: bg1,
+              color: bg3,
             }}
           >
             <div
@@ -528,8 +585,8 @@ class ToolBox extends Component {
               id={this.props.active}
               style={{
                 width: "70%",
-                background: this.props.coloris.mint,
-                color: this.props.coloris.purple,
+                background: c1,
+                color: bg2,
               }}
               onClick={this.goSave2Layer}
             >
@@ -540,8 +597,8 @@ class ToolBox extends Component {
               id={this.props.active}
               style={{
                 width: "30%",
-                background: this.props.coloris.purple,
-                color: this.props.coloris.mint,
+                background: bg2,
+                color: c1,
                 display: "none",
               }}
               onClick={this.resetKey}
@@ -555,23 +612,19 @@ class ToolBox extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  workingPYE: state.pyeState.workingPYE,
-  workingLayer: state.layerState.workingLayer,
-  workingKey: state.keyState.workingKey,
-  keys: state.keyState.keys,
-  layers: state.layerState.layers,
-  coloris: state.layerState.coloris,
-  active: state.keyState.active,
+  pyes: state.pyeState.pyes,
+  bake: state.pyeState.bake,
+  slice: state.pyeState.slice,
+  activeL: state.pyeState.activeL,
+  frame: state.pyeState.frame,
+  activeK: state.pyeState.activeK,
+  stateK: state.pyeState.stateK,
+  pyeDrafts: state.pyeState.pyeDrafts,
+  pyeSamples: state.pyeState.pyeSamples,
+  PYE: state.pyeState.PYE,
+  INIT: state.pyeState.INIT,
+  users: state.userState.users,
+  cols: state.userState.cols,
 });
 
-export default connect(mapStateToProps, {
-  addLayer,
-  editLayer,
-  editKey,
-  editKeys,
-  saveKeys,
-  saveKey,
-  resetKey,
-  saveKeys2Keys,
-  saveKeys2Layer,
-})(ToolBox);
+export default connect(mapStateToProps, { editFrame })(ToolBox);

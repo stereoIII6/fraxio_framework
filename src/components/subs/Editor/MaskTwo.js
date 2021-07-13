@@ -39,30 +39,34 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
-  getPyeAssets,
-  getPyeData,
-  createPye,
-  discardPye,
+  resetPYE,
+  discardPYE,
+  saveDraft,
+  mintPYE,
 } from "../../action/pyeActions";
-import { discardLayers } from "../../action/layerActions";
 import { Button } from "reactstrap";
 import Layers from "./Layers";
-import { stat } from "fs";
 // class definition
 class MaskTwo extends Component {
   // redux state import
   static propTypes = {
-    workingPYE: PropTypes.object,
-    workingLayer: PropTypes.object,
-    workingKey: PropTypes.object,
-    getPyeAssets: PropTypes.func,
-    getPyeData: PropTypes.func,
-    createPye: PropTypes.func,
-    discardPye: PropTypes.func,
-    discardLayers: PropTypes.func,
-    coloris: PropTypes.object,
-    layers: PropTypes.array,
-    keys: PropTypes.array,
+    bake: PropTypes.bool,
+    slice: PropTypes.bool,
+    activeL: PropTypes.number,
+    frame: PropTypes.bool,
+    activeK: PropTypes.number,
+    stateK: PropTypes.object,
+    pyes: PropTypes.array,
+    pyeDrafts: PropTypes.array,
+    pyeSamples: PropTypes.array,
+    users: PropTypes.array,
+    cols: PropTypes.object,
+    PYE: PropTypes.object,
+    INIT: PropTypes.object,
+    mintPYE: PropTypes.func,
+    saveDraft: PropTypes.func,
+    resetPYE: PropTypes.func,
+    discardPYE: PropTypes.func,
   };
   // local state setup
   state = {};
@@ -70,23 +74,46 @@ class MaskTwo extends Component {
   // handler on discard all layers
   onDiscard = (e) => {
     e.preventDefault();
-    this.props.discardPye();
-    this.props.discardLayers();
+    this.props.discardPYE();
+  };
+  onReset = (e) => {
+    e.preventDefault();
+    this.props.discardPYE();
   };
   // handler on save
   onSave = (e) => {
     e.preventDefault();
     console.log(e.target);
+    this.props.saveDraft(this.props.PYE);
+  };
+  onMint = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    this.props.mintPYE(this.props.PYE);
   };
   render() {
-    return this.props.workingPYE.booly && !this.props.workingKey.booly ? (
+    return (
       <div>
         <h1 className="m-0 p-0">
-          {this.props.workingPYE.name} Layer Editor
+          {this.props.PYE.name} Layer Editor
           <Button
             style={{
-              background: this.props.coloris.purple,
-              color: this.props.coloris.mint,
+              background:
+                this.props.lighting === "light"
+                  ? this.props.cols.light.bg2
+                  : this.props.lighting === "dark"
+                  ? this.props.cols.dark.bg2
+                  : this.props.lighting === "irie"
+                  ? this.props.cols.irie.bg2
+                  : null,
+              color:
+                this.props.lighting === "light"
+                  ? this.props.cols.light.c1
+                  : this.props.lighting === "dark"
+                  ? this.props.cols.dark.c1
+                  : this.props.lighting === "irie"
+                  ? this.props.cols.irie.c1
+                  : null,
               float: "right",
             }}
             onClick={this.onDiscard}
@@ -95,8 +122,22 @@ class MaskTwo extends Component {
           </Button>
           <Button
             style={{
-              background: this.props.coloris.palm,
-              color: this.props.coloris.sky,
+              background:
+                this.props.lighting === "light"
+                  ? this.props.cols.light.bg2
+                  : this.props.lighting === "dark"
+                  ? this.props.cols.dark.bg2
+                  : this.props.lighting === "irie"
+                  ? this.props.cols.irie.bg2
+                  : null,
+              color:
+                this.props.lighting === "light"
+                  ? this.props.cols.light.c1
+                  : this.props.lighting === "dark"
+                  ? this.props.cols.dark.c1
+                  : this.props.lighting === "irie"
+                  ? this.props.cols.irie.c1
+                  : null,
               float: "right",
               marginRight: "1em",
             }}
@@ -107,8 +148,22 @@ class MaskTwo extends Component {
           </Button>
           <Button
             style={{
-              background: this.props.coloris.palm,
-              color: this.props.coloris.sky,
+              background:
+                this.props.lighting === "light"
+                  ? this.props.cols.light.bg2
+                  : this.props.lighting === "dark"
+                  ? this.props.cols.dark.bg2
+                  : this.props.lighting === "irie"
+                  ? this.props.cols.irie.bg2
+                  : null,
+              color:
+                this.props.lighting === "light"
+                  ? this.props.cols.light.c1
+                  : this.props.lighting === "dark"
+                  ? this.props.cols.dark.c1
+                  : this.props.lighting === "irie"
+                  ? this.props.cols.irie.c1
+                  : null,
               float: "right",
               marginRight: "1em",
             }}
@@ -122,23 +177,24 @@ class MaskTwo extends Component {
         {/* IMPORT LAYERS MODULE */}
         <Layers />
       </div>
-    ) : null;
+    );
   }
 }
 // mapping redux state to local props
 const mapStateToProps = (state) => ({
-  workingPYE: state.pyeState.workingPYE,
-  workingLayer: state.layerState.workingLayer,
-  workingKey: state.keyState.workingKey,
-  layers: state.layerState.layers,
-  keys: state.keyState.keys,
-  coloris: state.layerState.coloris,
+  pyes: state.pyeState.pyes,
+  bake: state.pyeState.bake,
+  pyeDrafts: state.pyeState.pyeDrafts,
+  pyeSamples: state.pyeState.pyeSamples,
+  PYE: state.pyeState.PYE,
+  INIT: state.pyeState.INIT,
+  users: state.userState.users,
+  cols: state.userState.cols,
 });
 
 export default connect(mapStateToProps, {
-  getPyeAssets,
-  getPyeData,
-  createPye,
-  discardPye,
-  discardLayers,
+  resetPYE,
+  discardPYE,
+  saveDraft,
+  mintPYE,
 })(MaskTwo);

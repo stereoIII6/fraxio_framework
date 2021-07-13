@@ -38,48 +38,42 @@ import React, { Component } from "react";
 import { Button, Input, InputGroup } from "reactstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Toolbox from "./Toolbox";
 
 // Action Imports
-import {
-  deleteLayer,
-  editLayer,
-  loadLayer2work,
-} from "../../action/layerActions";
-import {
-  setWork,
-  editKey,
-  editKeys,
-  addKeyUp,
-  addKeyDown,
-  activeKey,
-} from "../../action/keyActions";
+import { activateFrame, addFrame } from "../../action/pyeActions";
 
 // Class Keyframes Definition
 class KeyFrames extends Component {
   // Importing Proptypes from Redux store
   static propTypes = {
-    workingPYE: PropTypes.object,
-    workingLayer: PropTypes.object,
-    workingKey: PropTypes.object,
-    coloris: PropTypes.object,
-    layers: PropTypes.array,
-    keys: PropTypes.array,
-    deleteLayer: PropTypes.func,
-    editLayer: PropTypes.func,
-    loadLayer2work: PropTypes.func,
-    setWork: PropTypes.func,
-    editKey: PropTypes.func,
-    editKeys: PropTypes.func,
-    addKeyUp: PropTypes.func,
-    addKeyDown: PropTypes.func,
-    active: PropTypes.number,
-    activeKey: PropTypes.func,
+    bake: PropTypes.bool,
+    slice: PropTypes.bool,
+    activeL: PropTypes.number,
+    frame: PropTypes.bool,
+    kopn: PropTypes.bool,
+    activeK: PropTypes.number,
+    stateK: PropTypes.object,
+    pyes: PropTypes.array,
+    pyeDrafts: PropTypes.array,
+    pyeSamples: PropTypes.array,
+    users: PropTypes.array,
+    cols: PropTypes.object,
+    PYE: PropTypes.object,
+    INIT: PropTypes.object,
+    activateFrame: PropTypes.func,
+    addFrame: PropTypes.func,
   };
   // set local state
   state = {
-    actKey: null,
-    keys: [],
+    cols:
+      this.props.lighting === "light"
+        ? this.props.cols.light
+        : this.props.lighting === "dark"
+        ? this.props.cols.light
+        : this.props.lighting === "irie"
+        ? this.props.cols.light
+        : this.props.cols.light,
+    keys: this.props.PYE.layers[this.props.activeL].keys,
     ups: 1,
     downs: 1,
   };
@@ -88,65 +82,59 @@ class KeyFrames extends Component {
   // additional key frame to layer negative feedline
   addKeyDown = (e) => {
     e.preventDefault();
-    console.log("down");
-    const newKey = {
-      booly: true,
-      edit: true,
+    console.log("down", this.state.downs);
+    let newKey = {
       keyID: parseInt(e.target.id) * -1,
-      layerID: this.props.workingLayer.layerID,
-      oracle: this.props.workingLayer.layerOracle.name,
-      oracleState: this.props.workingLayer.layerOracle.oracleState,
-      layerParams: this.props.workingLayer.layerParams,
+      keyParams: this.props.INIT.layers[0].keys[0].keyParams,
     };
-    let oldWKey = this.props.keys;
-    oldWKey = [newKey, ...oldWKey.keys];
-    this.props.addKeyUp(oldWKey);
+    let oldWKey = this.state.keys;
+    oldWKey.push(newKey);
+    oldWKey.sort((a, b) => a.keyID - b.keyID);
+    console.log(oldWKey);
+    let layers = this.props.PYE.layers;
+    layers[this.props.activeL].keys = oldWKey;
+    this.props.addFrame(layers);
     this.setState({
       downs: this.state.downs + 1,
-      keys: [newKey, ...this.state.keys],
+      keys: oldWKey,
     });
   };
   // additional key frame to layer positive feedline
   addKeyUp = (e) => {
     e.preventDefault();
-    console.log("up");
-    const newKey = {
-      keys: this.props.keys,
+    console.log("up", this.state.ups);
+    let newKey = {
       keyID: parseInt(e.target.id),
-      layerID: this.props.workingLayer.layerID,
-      oracle: this.props.workingLayer.layerOracle.name,
-      oracleState: this.props.workingLayer.layerOracle.oracleState,
-      layerParams: {
-        x: this.props.workingKey.layerParams.x,
-        y: this.props.workingKey.layerParams.y,
-        o: this.props.workingKey.layerParams.o,
-        r: this.props.workingKey.layerParams.r,
-        z: this.props.workingKey.layerParams.z,
-      },
+      keyParams: this.props.INIT.layers[0].keys[0].keyParams,
     };
-    let oldWKey = this.props.workingKey;
-    oldWKey.keys = [...oldWKey.keys, newKey];
-    this.props.addKeyUp(oldWKey);
+    let oldWKey = this.state.keys;
+    oldWKey.push(newKey);
+    oldWKey.sort((a, b) => a.keyID - b.keyID);
+    console.log(oldWKey);
+    let layers = this.props.PYE.layers;
+    layers[this.props.activeL].keys = oldWKey;
+    this.props.addFrame(layers);
     this.setState({
       ups: this.state.ups + 1,
-      keys: [...this.state.keys, newKey],
+      keys: oldWKey,
     });
   };
   // set key ready to edit
   activateKey = (e) => {
-    console.log(e.target.id, this.props.workingKey);
-    this.setState({ actKey: parseInt(e.target.id) });
-    this.props.activeKey(parseInt(e.target.id));
+    console.log(e.target.id, this.state.key);
+    this.props.activateFrame(parseInt(e.target.id), this.state.key);
   };
   render() {
+    console.log(this.state);
+    const { bg1, bg2, bg3, c1, c2, c3, w, b, r } = this.state.cols;
     return (
       <div style={{ textAlign: "center", marginBottom: "2em" }}>
-        {this.props.workingKey.keys.length < 9 ? (
+        {this.state.keys.length < 9 ? (
           <Button
             className="m-2"
             style={{
-              background: this.props.coloris.palm,
-              color: this.props.coloris.mint,
+              background: bg3,
+              color: c3,
             }}
             onClick={this.addKeyDown}
             id={this.state.downs}
@@ -154,12 +142,12 @@ class KeyFrames extends Component {
             +
           </Button>
         ) : null}
-        {this.props.workingKey.keys.map((key) => (
+        {this.state.keys.map((key) => (
           <Button
             className="m-2"
             style={{
-              background: this.props.coloris.purple,
-              color: this.props.coloris.mint,
+              background: bg2,
+              color: c1,
             }}
             key={key.keyID}
             id={key.keyID}
@@ -168,12 +156,12 @@ class KeyFrames extends Component {
             {`Key ${key.keyID}`}
           </Button>
         ))}
-        {this.props.workingKey.keys.length < 9 ? (
+        {this.state.keys.length < 9 ? (
           <Button
             className="m-2"
             style={{
-              background: this.props.coloris.palm,
-              color: this.props.coloris.sky,
+              background: bg3,
+              color: c3,
             }}
             onClick={this.addKeyUp}
             id={this.state.ups}
@@ -186,22 +174,20 @@ class KeyFrames extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  workingPYE: state.pyeState.workingPYE,
-  workingLayer: state.layerState.workingLayer,
-  workingKey: state.keyState.workingKey,
-  layers: state.layerState.layers,
-  coloris: state.layerState.coloris,
-  active: state.keyState.active,
+  pyes: state.pyeState.pyes,
+  bake: state.pyeState.bake,
+  slice: state.pyeState.slice,
+  activeL: state.pyeState.activeL,
+  frame: state.pyeState.frame,
+  kopn: state.pyeState.key,
+  activeK: state.pyeState.activeK,
+  stateK: state.pyeState.stateK,
+  pyeDrafts: state.pyeState.pyeDrafts,
+  pyeSamples: state.pyeState.pyeSamples,
+  PYE: state.pyeState.PYE,
+  INIT: state.pyeState.INIT,
+  users: state.userState.users,
+  cols: state.userState.cols,
 });
 
-export default connect(mapStateToProps, {
-  deleteLayer,
-  loadLayer2work,
-  editLayer,
-  setWork,
-  editKey,
-  editKeys,
-  addKeyDown,
-  addKeyUp,
-  activeKey,
-})(KeyFrames);
+export default connect(mapStateToProps, { activateFrame, addFrame })(KeyFrames);

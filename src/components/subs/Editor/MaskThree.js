@@ -38,56 +38,80 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getPyeAssets, getPyeData, createPye } from "../../action/pyeActions";
-import { quitWork, saveKeys2Keys } from "../../action/keyActions";
-import { saveKeys2Layer } from "../../action/layerActions";
+import { discardFrame, resetFrame, saveDraft } from "../../action/pyeActions";
 import { Button } from "reactstrap";
-import Toolbox from "./Toolbox";
 import KeyFrames from "./KeyFrames";
 import MediaPreview from "./MediaPreview";
 // class definition
 class MaskThree extends Component {
   // import redux state to local props
   static propTypes = {
-    workingPYE: PropTypes.object,
-    workingLayer: PropTypes.object,
-    workingKey: PropTypes.object,
-    keys: PropTypes.array,
-    coloris: PropTypes.object,
-    quitWork: PropTypes.func,
-    saveKeys2Layer: PropTypes.func,
-    saveKeys2Keys: PropTypes.func,
+    bake: PropTypes.bool,
+    slice: PropTypes.bool,
+    activeL: PropTypes.number,
+    frame: PropTypes.bool,
+    activeK: PropTypes.number,
+    stateK: PropTypes.object,
+    pyes: PropTypes.array,
+    pyeDrafts: PropTypes.array,
+    pyeSamples: PropTypes.array,
+    users: PropTypes.array,
+    cols: PropTypes.object,
+    PYE: PropTypes.object,
+    INIT: PropTypes.object,
+    discardFrame: PropTypes.func,
+    resetFrame: PropTypes.func,
+    saveDraft: PropTypes.func,
   };
   // set local state
-  state = {};
-
+  state = {
+    cols:
+      this.props.lighting === "light"
+        ? this.props.cols.light
+        : this.props.lighting === "dark"
+        ? this.props.cols.dark
+        : this.props.lighting === "irie"
+        ? this.props.cols.irie
+        : this.props.cols.light,
+  };
+  goQuitKeys = (e) => {
+    e.preventDefault();
+    let layers = this.props.PYE.layers;
+    layers[this.props.activeL].keys = this.props.INIT.layers[0].keys;
+    this.props.discardFrame(layers);
+  };
+  goResetKeys = (e) => {
+    e.preventDefault();
+  };
+  goSaveDraft = (e) => {
+    e.preventDefault();
+  };
   render() {
-    return this.props.workingPYE.booly &&
-      this.props.workingLayer.booly &&
-      this.props.workingKey.booly ? (
+    const { bg1, bg2, bg3, c1, c2, c3, w, b, r } = this.state.cols;
+    return (
       <div>
         <h1 className="m-0 p-0">
           PYE Keyframe Editor
           <Button
             style={{
-              background: this.props.coloris.purple,
-              color: this.props.coloris.mint,
+              background: bg2,
+              color: c1,
               float: "right",
             }}
-            onClick={this.goQuit}
+            onClick={this.goQuitKeys}
           >
             X
           </Button>
           <Button
             style={{
-              background: this.props.coloris.palm,
-              color: this.props.coloris.sky,
+              background: bg3,
+              color: c3,
               float: "right",
               marginRight: "1em",
             }}
-            onClick={this.goSave2Layer}
+            onClick={this.goSaveKeys}
           >
-            SAVE TO LAYER
+            Save Draft
           </Button>
         </h1>
         <hr></hr>
@@ -95,22 +119,27 @@ class MaskThree extends Component {
         <KeyFrames />
         <MediaPreview />
       </div>
-    ) : null;
+    );
   }
 }
 const mapStateToProps = (state) => ({
-  workingPYE: state.pyeState.workingPYE,
-  workingLayer: state.layerState.workingLayer,
-  workingKey: state.keyState.workingKey,
-  keys: state.keyState.keys,
-  coloris: state.layerState.coloris,
+  pyes: state.pyeState.pyes,
+  bake: state.pyeState.bake,
+  slice: state.pyeState.slice,
+  activeL: state.pyeState.activeL,
+  frame: state.pyeState.frame,
+  activeK: state.pyeState.activeK,
+  stateK: state.pyeState.stateK,
+  pyeDrafts: state.pyeState.pyeDrafts,
+  pyeSamples: state.pyeState.pyeSamples,
+  PYE: state.pyeState.PYE,
+  INIT: state.pyeState.INIT,
+  users: state.userState.users,
+  cols: state.userState.cols,
 });
 
 export default connect(mapStateToProps, {
-  getPyeAssets,
-  getPyeData,
-  createPye,
-  quitWork,
-  saveKeys2Layer,
-  saveKeys2Keys,
+  discardFrame,
+  resetFrame,
+  saveDraft,
 })(MaskThree);

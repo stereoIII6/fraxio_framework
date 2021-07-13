@@ -38,7 +38,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Draggable from "react-draggable";
-import { updateLayer } from "../../action/layerActions";
+import { activateSlice } from "../../action/pyeActions";
 import LayerInput from "./LayerInput";
 import MediaPreview from "./MediaPreview";
 import MiniPlayer from "./MiniPlayer";
@@ -49,25 +49,39 @@ import { Button } from "reactstrap";
 class Layers extends Component {
   // redux state prop declaration
   static propTypes = {
-    workingPYE: PropTypes.object,
-    workingLayer: PropTypes.object,
-    layers: PropTypes.array,
-    coloris: PropTypes.object,
-    updateLayer: PropTypes.func,
+    bake: PropTypes.bool,
+    slice: PropTypes.bool,
+    activeL: PropTypes.number,
+    frame: PropTypes.bool,
+    activeK: PropTypes.number,
+    stateK: PropTypes.object,
+    pyes: PropTypes.array,
+    pyeDrafts: PropTypes.array,
+    pyeSamples: PropTypes.array,
+    users: PropTypes.array,
+    cols: PropTypes.object,
+    PYE: PropTypes.object,
+    INIT: PropTypes.object,
+    activateSlice: PropTypes.func,
   };
 
   // set local state
   state = {
     layerSize: true,
+    cols: this.props.cols,
   };
   onSizeLayers = (e) => {
     e.preventDefault();
     this.setState({ layerSize: !this.state.layerSize });
   };
+  onLayerActivate = (e) => {
+    e.preventDefault();
+    this.props.activateSlice(e.target.id);
+  };
   render() {
-    this.props.updateLayer();
+    const { bg1, bg2, bg3, c1, c2, c3, w, b, r } = this.state.cols;
     // exclude layer 0
-    const display = this.props.layers.filter(
+    const display = this.props.PYE.layers.filter(
       (layer) => parseInt(layer.layerID) !== 0
     );
 
@@ -103,15 +117,24 @@ class Layers extends Component {
                     {this.state.layerSize ? " - " : " + "}
                   </Button>
                 </div>
-                {display.map((layer) =>
-                  layer.layerID !== 0 ? (
-                    <Layer key={layer.layerID} layerid={layer.layerID} />
-                  ) : (
-                    <div key={0} layerid={0}>
-                      Layers
-                    </div>
-                  )
-                )}
+                {
+                  (console.log("LAYER // just a check up", display),
+                  display.map((layer) => (
+                    <Layer
+                      key={layer.layerID}
+                      id={layer.layerID}
+                      layerProps={layer.layerID}
+                      onMouseOver={this.onLayerActivate}
+                      style={{
+                        border: `5px ${
+                          this.props.activeL === layer.layerID ? bg1 : bg2
+                        } solid`,
+                        background:
+                          this.props.activeL === layer.layerID ? bg3 : c3,
+                      }}
+                    />
+                  )))
+                }
               </div>
             </Draggable>
           )}
@@ -127,10 +150,19 @@ class Layers extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  workingPYE: state.pyeState.workingPYE,
-  workingLayer: state.layerState.workingLayer,
-  layers: state.layerState.layers,
-  coloris: state.layerState.coloris,
+  pyes: state.pyeState.pyes,
+  bake: state.pyeState.bake,
+  slice: state.pyeState.slice,
+  activeL: state.pyeState.activeL,
+  frame: state.pyeState.frame,
+  activeK: state.pyeState.activeK,
+  stateK: state.pyeState.stateK,
+  pyeDrafts: state.pyeState.pyeDrafts,
+  pyeSamples: state.pyeState.pyeSamples,
+  PYE: state.pyeState.PYE,
+  INIT: state.pyeState.INIT,
+  users: state.userState.users,
+  cols: state.userState.cols,
 });
 
-export default connect(mapStateToProps, { updateLayer })(Layers);
+export default connect(mapStateToProps, { activateSlice })(Layers);

@@ -38,23 +38,22 @@ import React, { Component } from "react";
 import Draggable from "react-draggable";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Toolbox from "./Toolbox";
-import { editKey, saveKey, resetKey, updateKey } from "../../action/keyActions";
-import { deleteLayer, editLayer, updateLayer } from "../../action/layerActions";
+import {} from "../../action/pyeActions";
 class MiniPlayer extends Component {
   static propTypes = {
-    workingPYE: PropTypes.object,
-    workingLayer: PropTypes.object,
-    workingKey: PropTypes.object,
-    coloris: PropTypes.object,
-    layers: PropTypes.array,
-    deleteLayer: PropTypes.func,
-    editLayer: PropTypes.func,
-    updateLayer: PropTypes.func,
-    editKey: PropTypes.func,
-    saveKey: PropTypes.func,
-    updateKey: PropTypes.func,
-    resetKey: PropTypes.func,
+    bake: PropTypes.bool,
+    slice: PropTypes.bool,
+    activeL: PropTypes.number,
+    frame: PropTypes.bool,
+    activeK: PropTypes.number,
+    stateK: PropTypes.object,
+    pyes: PropTypes.array,
+    pyeDrafts: PropTypes.array,
+    pyeSamples: PropTypes.array,
+    users: PropTypes.array,
+    cols: PropTypes.object,
+    PYE: PropTypes.object,
+    INIT: PropTypes.object,
   };
 
   handleStop = (e) => {
@@ -66,29 +65,29 @@ class MiniPlayer extends Component {
     // GET drag X position relative to screen
     const newY = e.clientY - (e.layerY + 322 - window.pageYOffset);
     let wKey = this.props.workingKey;
-    wKey.layerParams.x = newX;
-    wKey.layerParams.y = newY;
+    wKey.keyParams.x = newX;
+    wKey.keyParams.y = newY;
     this.props.editKey(wKey);
     console.log(wKey);
   };
   update() {
-    let xVal = this.props.workingKey.layerParams.x;
-    let yVal = this.props.workingKey.layerParams.y;
+    let xVal = this.props.workingKey.keyParams.x;
+    let yVal = this.props.workingKey.keyParams.y;
     console.log("Media // ", this.props.workingKey);
-    let z4 = `${(4 / 100) * parseInt(this.props.workingKey.layerParams.z)}em`;
-    let z2 = `${(2 / 100) * this.props.workingKey.layerParams.z}em`;
+    let z4 = `${(4 / 100) * parseInt(this.props.workingKey.keyParams.z)}em`;
+    let z2 = `${(2 / 100) * this.props.workingKey.keyParams.z}em`;
     console.log(z2, z4);
     let keyZero = {
-      opacity: this.props.workingKey.layerParams.o / 100,
+      opacity: this.props.workingKey.keyParams.o / 100,
       height:
         this.props.workingPYE.formatX !== 900
-          ? `${this.props.workingKey.layerParams.z}%`
+          ? `${this.props.workingKey.keyParams.z}%`
           : "auto",
       width:
         this.props.workingPYE.formatX === 900
-          ? `${this.props.workingKey.layerParams.z}%`
+          ? `${this.props.workingKey.keyParams.z}%`
           : "auto",
-      transform: `rotate(${this.props.workingKey.layerParams.r}deg)`,
+      transform: `rotate(${this.props.workingKey.keyParams.r}deg)`,
       position: "absolute",
       fontSize: this.props.workingKey.booly ? z4 : z2,
       top: this.props.workingKey.booly ? yVal : yVal / 2,
@@ -177,19 +176,19 @@ class MiniPlayer extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  workingPYE: state.pyeState.workingPYE,
-  workingLayer: state.layerState.workingLayer,
-  workingKey: state.keyState.workingKey,
-  layers: state.layerState.layers,
-  coloris: state.layerState.coloris,
+  pyes: state.pyeState.pyes,
+  bake: state.pyeState.bake,
+  slice: state.pyeState.slice,
+  activeL: state.pyeState.activeL,
+  frame: state.pyeState.frame,
+  activeK: state.pyeState.activeK,
+  stateK: state.pyeState.stateK,
+  pyeDrafts: state.pyeState.pyeDrafts,
+  pyeSamples: state.pyeState.pyeSamples,
+  PYE: state.pyeState.PYE,
+  INIT: state.pyeState.INIT,
+  users: state.userState.users,
+  cols: state.userState.cols,
 });
 
-export default connect(mapStateToProps, {
-  deleteLayer,
-  editLayer,
-  updateLayer,
-  editKey,
-  saveKey,
-  resetKey,
-  updateKey,
-})(MiniPlayer);
+export default connect(mapStateToProps, {})(MiniPlayer);

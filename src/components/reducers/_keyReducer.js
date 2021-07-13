@@ -68,28 +68,33 @@ export default function(state = initState, action) {
       console.log("RED initKey // ", action.payload.initKey);
       return {
         ...state,
-        workingKey: action.payload,
-        keys: [action.payload.initKey],
+        edit: true,
+        booly: true,
+        active: 0,
+        workingKey: action.payload.initKey,
+        keys: action.payload.keys,
       };
     case ADD_KEY_UP:
       console.log("RED initKey // ", action.payload.initKey);
+      const l = action.payload.length;
       return {
         ...state,
-        workingKey: action.payload,
-        keys: [...state.keys, action.payload.initKey],
+        workingKey: action.payload.initKey,
+        keys: action.payload,
       };
     case ADD_KEY_DOWN:
       console.log("RED initKey // ", action.payload.initKey);
       return {
         ...state,
-        workingKey: action.payload,
-        keys: [action.payload.initKey, ...state.keys],
+        workingKey: action.payload.initKey,
+        keys: action.payload,
       };
     case ACTIVE_KEY:
-      console.log("RED initKey // ", action.payload.initKey);
+      console.log("RED active Key // ", action.payload);
       return {
         ...state,
         active: action.payload,
+        workingKey: action.key,
       };
     case SET_KEY_INACTIVE:
       return {
@@ -109,9 +114,7 @@ export default function(state = initState, action) {
       console.log("RED edit key //", action.payload);
       return {
         ...state,
-        workingKey: {
-          ...state.workingKey,
-        },
+        workingKey: action.payload,
         initKey: action.payload,
       };
     case SAVE_KEY:

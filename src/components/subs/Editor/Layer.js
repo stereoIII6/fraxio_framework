@@ -39,83 +39,57 @@ import { Button, InputGroup, Input } from "reactstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
-  deleteLayer,
-  editLayer,
-  editLayers,
-  loadLayer2work,
-} from "../../action/layerActions";
-import { setWork } from "../../action/keyActions";
+  activateSlice,
+  editSlice,
+  discardSlice,
+} from "../../action/pyeActions";
 import PriceFeeder from "./PriceFeeder";
 
 class Layer extends Component {
   static propTypes = {
-    workingPYE: PropTypes.object,
-    workingLayer: PropTypes.object,
-    workingKey: PropTypes.object,
-    coloris: PropTypes.object,
-    layers: PropTypes.array,
-    keys: PropTypes.array,
-    deleteLayer: PropTypes.func,
-    editLayer: PropTypes.func,
-    editLayers: PropTypes.func,
-    loadLayer2work: PropTypes.func,
-    setWork: PropTypes.func,
+    bake: PropTypes.bool,
+    slice: PropTypes.bool,
+    activeL: PropTypes.number,
+    frame: PropTypes.bool,
+    activeK: PropTypes.number,
+    stateK: PropTypes.object,
+    pyes: PropTypes.array,
+    pyeDrafts: PropTypes.array,
+    pyeSamples: PropTypes.array,
+    users: PropTypes.array,
+    cols: PropTypes.object,
+    PYE: PropTypes.object,
+    INIT: PropTypes.object,
+    activateSlice: PropTypes.func,
+    editSlice: PropTypes.func,
+    discardSlice: PropTypes.func,
   };
   state = {
-    colAuth: this.props.coloris.palm,
-    auth: false,
-    ext: false,
-    layers: [],
-  };
-  onGoEditLayer = (e) => {
-    e.preventDefault();
-    console.log(e.target.id);
+    cols:
+      this.props.lighting === "light"
+        ? this.props.cols.light
+        : this.props.lighting === "dark"
+        ? this.props.cols.light
+        : this.props.lighting === "irie"
+        ? this.props.cols.light
+        : this.props.cols.light,
+    layers: this.props.PYE.layers,
+    sel: null,
+    nom: null,
   };
   onGoKeyEditor = (e) => {
     e.preventDefault();
-    // load workingLayer By layerID
-    console.log(this.props.layers[e.target.id]);
-    this.props.loadLayer2work(this.props.layers[e.target.id]);
-    // set working keyFrame booly true
-    const key = {
-      booly: true,
-      edit: true,
-      active: 0,
-      keys: [
-        {
-          layerID: e.target.id,
-          keyID: 0,
-          oracle: this.props.workingLayer.layerOracle.name,
-          oracleState: this.props.workingLayer.layerOracle.initValue,
-          layerParams: {
-            x: 0,
-            y: 0,
-            o: 100,
-            r: 0,
-            z: 90,
-          },
-        },
-      ],
-      initKey: {
-        layerID: e.target.id,
-        keyID: 0,
-        oracle: this.props.workingLayer.layerOracle.name,
-        oracleState: this.props.workingLayer.layerOracle.initValue,
-        layerParams: {
-          x: 0,
-          y: 0,
-          o: 100,
-          r: 0,
-          z: 90,
-        },
-      },
-    };
-    this.props.setWork(key);
+    const key = this.props.layerProps;
+    this.props.activateSlice(key);
   };
   onDeleteLayer = (e) => {
     e.preventDefault();
-    console.log(this.props.layers, e.target.id);
-    let newLayers = this.props.layers.filter(
+    console.log(
+      "// delete layers and wich",
+      this.props.PYE.layers,
+      e.target.id
+    );
+    let newLayers = this.props.PYE.layers.filter(
       (layer) => layer.layerID !== parseInt(e.target.id)
     );
     const len = newLayers.length;
@@ -126,7 +100,7 @@ class Layer extends Component {
       x++;
     }
     console.log("deleted Layer ACT //" + newLayers, len);
-    this.props.deleteLayer(newLayers);
+    this.props.discardSlice(newLayers);
   };
 
   moveLayerUp = (e) => {
@@ -134,7 +108,7 @@ class Layer extends Component {
     const h = parseInt(e.target.id);
     const l = h - 1;
     if (e.target.id !== "1") {
-      let newLayers = this.props.layers;
+      let newLayers = this.props.PYE.layers;
       let highLayer = newLayers[h];
       let lowLayer = newLayers[l];
       highLayer.layerID = l;
@@ -143,17 +117,19 @@ class Layer extends Component {
       newLayers[l] = highLayer;
       const passLayers = newLayers.sort((a, b) => a.layerID - b.layerID);
       console.log(passLayers);
-      this.props.editLayers(passLayers);
+      this.props.editSlice(passLayers);
       // this.setState({ layers: passLayers });
     }
   };
   setOracle = (e) => {
     console.log(e.target.value);
-    let wLayer = this.props.workingLayer;
+    let wLayers = this.props.PYE.layers;
+    console.log(e.target.value, e.target.id);
     const split = e.target.value.split(",");
-    wLayer.layerOracle.initValue = split[0];
-    wLayer.layerOracle.param = split[1];
-    this.props.editLayer(wLayer);
+    wLayers[this.props.layerProps].layerOracle.starter = e.target.value;
+    wLayers[this.props.layerProps].layerOracle.name = e.target.id;
+    this.props.editSlice(wLayers);
+    this.setState({ sel: split[0], nom: split[1] });
   };
   onExternal = (e) => {
     e.preventDefault();
@@ -168,27 +144,29 @@ class Layer extends Component {
   };
   render() {
     // console.log(this.props);
-    const id = this.props.layerid;
-    const layer = this.props.layers[id];
-    const {
-      mint,
-      sky,
-      pur,
-      grey,
-      palm,
-      dgrey,
-      white,
-      tomato,
-    } = this.props.coloris;
+
+    const layers = this.props.PYE.layers;
+    const id = this.props.layerProps;
+    const layer = layers[id];
+    console.log(
+      "// this id // ",
+      layers,
+      "layerID=",
+      this.props.layerProps,
+      "THIS=",
+      this,
+      layer
+    );
+    const { bg1, bg2, bg3, c1, c2, c3, w, b, r } = this.state.cols;
 
     // console.log(layer.layerOracle.name);
     return (
       <div
         className="alert"
         style={{
-          background: grey,
+          background: "none",
           border: "2px solid",
-          borderColor: dgrey,
+          borderColor: b,
           marginBottom: "5px",
           padding: "10px",
         }}
@@ -205,12 +183,12 @@ class Layer extends Component {
         >
           <div
             className="col-1"
-            style={{ color: pur, margin: "0", padding: "0" }}
+            style={{ color: bg2, margin: "0", padding: "0" }}
           >
             <div
               style={{
                 width: "100%",
-                color: palm,
+                color: bg3,
 
                 height: "44px",
                 paddingTop: "0px",
@@ -224,7 +202,7 @@ class Layer extends Component {
           <div
             className="col-2"
             style={{
-              color: pur,
+              color: bg2,
               position: "relative",
               margin: "0",
               padding: "0",
@@ -233,7 +211,7 @@ class Layer extends Component {
             <div
               style={{
                 width: "100%",
-                color: pur,
+                color: bg2,
                 height: "22px",
                 textAlign: "center",
                 position: "relative",
@@ -267,7 +245,7 @@ class Layer extends Component {
           <div
             className="col-5"
             style={{
-              color: pur,
+              color: bg2,
               textAlign: "center",
               margin: "0",
               padding: "0",
@@ -277,13 +255,13 @@ class Layer extends Component {
           </div>
           <div
             className="col-2"
-            style={{ color: white, margin: "0", padding: "0" }}
+            style={{ color: w, margin: "0", padding: "0" }}
           >
             <Button
               style={{
                 width: "100%",
-                color: mint,
-                background: palm,
+                color: c1,
+                background: bg3,
                 height: "44px",
                 paddingTop: "0px",
               }}
@@ -309,14 +287,14 @@ class Layer extends Component {
           <div
             className="col-2"
             id={layer.layerID}
-            style={{ color: white, margin: "0", padding: "0" }}
+            style={{ color: w, margin: "0", padding: "0" }}
           >
             <Button
               id={layer.layerID}
               style={{
                 width: "100%",
-                color: white,
-                background: tomato,
+                color: w,
+                background: r,
                 height: "44px",
                 paddingTop: "0px",
               }}
@@ -349,11 +327,8 @@ class Layer extends Component {
             marginLeft: "0px",
           }}
         >
-          <div
-            className="col"
-            style={{ color: white, margin: "0", padding: "0" }}
-          >
-            <div style={{ width: "100%", color: palm }}>
+          <div className="col" style={{ color: w, margin: "0", padding: "0" }}>
+            <div style={{ width: "100%", color: bg3 }}>
               {
                 (console.log(layer),
                 layer.layerOracle.name === "empty" ? (
@@ -451,11 +426,8 @@ class Layer extends Component {
               }
             </div>
           </div>
-          <div
-            className="col"
-            style={{ color: white, margin: "0", padding: "0" }}
-          >
-            <div style={{ width: "100%", color: palm }}>
+          <div className="col" style={{ color: w, margin: "0", padding: "0" }}>
+            <div style={{ width: "100%", color: bg3 }}>
               {layer.layerType === "form" ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -542,7 +514,7 @@ class Layer extends Component {
             style={{ color: "ivory", margin: "0", padding: "0" }}
           >
             <Button
-              style={{ width: "100%", background: sky, color: palm }}
+              style={{ width: "100%", background: c3, color: bg3 }}
               onClick={this.onExternal}
             >
               <svg
@@ -564,7 +536,7 @@ class Layer extends Component {
             <Button
               style={{
                 width: "100%",
-                background: mint,
+                background: c1,
                 color: this.state.colAuth,
               }}
               onClick={this.onAuth}
@@ -586,11 +558,11 @@ class Layer extends Component {
           </div>
           <div
             className="col"
-            style={{ color: white, margin: "0", padding: "0" }}
+            style={{ color: w, margin: "0", padding: "0" }}
             id={layer.layerID}
           >
             <Button
-              style={{ width: "100%", background: grey, color: pur }}
+              style={{ width: "100%", background: bg1, color: bg2 }}
               id={layer.layerID}
               onClick={this.onGoKeyEditor}
             >
@@ -620,6 +592,7 @@ class Layer extends Component {
         <PriceFeeder
           oracle={layer.layerOracle.name}
           setOracle={this.setOracle}
+          sel={this.state.nom + "," + this.state.sel}
         />
         {this.state.ext ? (
           <InputGroup id="extrigger" disabled>
@@ -653,16 +626,23 @@ class Layer extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  workingPYE: state.pyeState.workingPYE,
-  workingLayer: state.layerState.workingLayer,
-  layers: state.layerState.layers,
-  coloris: state.layerState.coloris,
+  pyes: state.pyeState.pyes,
+  bake: state.pyeState.bake,
+  slice: state.pyeState.slice,
+  activeL: state.pyeState.activeL,
+  frame: state.pyeState.frame,
+  activeK: state.pyeState.activeK,
+  stateK: state.pyeState.stateK,
+  pyeDrafts: state.pyeState.pyeDrafts,
+  pyeSamples: state.pyeState.pyeSamples,
+  PYE: state.pyeState.PYE,
+  INIT: state.pyeState.INIT,
+  users: state.userState.users,
+  cols: state.userState.cols,
 });
 
 export default connect(mapStateToProps, {
-  deleteLayer,
-  loadLayer2work,
-  editLayers,
-  editLayer,
-  setWork,
+  activateSlice,
+  editSlice,
+  discardSlice,
 })(Layer);

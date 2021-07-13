@@ -77,11 +77,12 @@ export const addKeyDown = (feed) => {
     payload: feed,
   };
 };
-export const activeKey = (feed) => {
+export const activeKey = (feed, key) => {
   console.log("ACT save key to array// ", feed);
   return {
     type: ACTIVE_KEY,
     payload: feed,
+    key: key,
   };
 };
 export const saveKeys = (feed) => {
