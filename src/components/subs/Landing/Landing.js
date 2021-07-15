@@ -3,14 +3,41 @@ import Slideshow from "./SlideShow";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import "./styles.css";
 import YoutubeEmbed from "./YoutubeEmbed";
+import { getUsers, setScreenMode } from "../../action/userActions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+const fresh = "#9fe6c3";
+const sky = "#aad9d8";
+const purple = "#9f95c3";
+const grey = "#e2e3db";
+const blue = "#7c9cb6";
+const dgrey = "#888888";
+
 class Landing extends Component {
+  static propTypes = {
+    getUsers: PropTypes.func,
+    setScreenMode: PropTypes.func,
+    screenMode: PropTypes.string,
+    users: PropTypes.array,
+    net: PropTypes.string,
+    bal: PropTypes.string,
+  };
   state = {
     modal: true,
     url: "V0XJyczU_7M",
+    screenMode: "about",
   };
   toggle = (e) => {
     this.setState({ modal: !this.state.modal });
   };
+  onClick = (e) => {
+    e.preventDefault();
+    console.log(e.target.id);
+    this.setState({ screenMode: e.target.id });
+    this.props.setScreenMode(e.target.id);
+  };
+
   render() {
     return (
       <div>
@@ -96,7 +123,20 @@ class Landing extends Component {
               src="./FRX_Logo.png"
               alt=""
             />
-            <Button>Break Assets</Button>
+            <div
+              className="btn mr-1"
+              style={{
+                color: grey,
+                background: purple,
+                fontWeight: 900,
+                borderRadius: "9px",
+                opacity: 0.5,
+              }}
+              // onClick={this.onClick}
+              id="frx_lnk"
+            >
+              Fractionize
+            </div>
           </div>
           <div className="col-1"></div>
           <div
@@ -109,13 +149,24 @@ class Landing extends Component {
             }}
             className="col-4 alert"
           >
-            <h1>Create Digital Assets without code</h1>
             <img
               style={{ marginTop: "4em", margin: "2em", marginLeft: "1em" }}
               src="./PYE_Logo.png"
               alt=""
             />
-            <Button>Create Assets</Button>
+            <div
+              className="btn mr-1"
+              style={{
+                color: grey,
+                background: purple,
+                fontWeight: 900,
+                borderRadius: "9px",
+              }}
+              onClick={this.onClick}
+              id="pyeditor_lnk"
+            >
+              Create Assets
+            </div>
           </div>
 
           <div className="col-1"></div>
@@ -134,12 +185,30 @@ class Landing extends Component {
               src="./MLQ_Logo.png"
               alt=""
             />
-            <Button>Provide MLQuidity</Button>
+            <div
+              className="btn mr-1"
+              style={{
+                color: grey,
+                background: purple,
+                fontWeight: 900,
+                borderRadius: "9px",
+                opacity: 0.5,
+              }}
+              // onClick={this.onClick}
+              id="swap_lnk"
+            >
+              Start Pooling
+            </div>
           </div>
         </div>
       </div>
     );
   }
 }
-
-export default Landing;
+const mapStateToProps = (state) => ({
+  screenMode: state.userState.screenMode,
+  users: state.userState.users,
+  net: state.userState.net,
+  bal: state.userState.bal,
+});
+export default connect(mapStateToProps, { getUsers, setScreenMode })(Landing);
