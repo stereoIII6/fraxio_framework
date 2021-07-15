@@ -9,6 +9,7 @@ import {
   PYE_GO_OVEN, // LAYER RED
   START_SLICING,
   EDIT_SLICE,
+  SAVE_SLICE,
   ACTIVATE_SLICE,
   RESET_SLICE,
   DISCARD_SLICE,
@@ -18,6 +19,7 @@ import {
   ACTIVATE_FRAME,
   RESET_FRAME,
   EDIT_FRAME,
+  SAVE_FRAME,
   DISCARD_FRAME,
   GET_FEED,
 } from "../action/types";
@@ -224,8 +226,11 @@ export default function(state = initState, action) {
       return {
         ...state,
         bake: false,
+        slice: false,
+        frame: false,
+        kopn: false,
         activeL: 0,
-        PYE: initState.PYE,
+        PYE: state.INIT,
       };
     case SAVE_DRAFT:
       console.log(
@@ -289,6 +294,23 @@ export default function(state = initState, action) {
           layers: action.payload,
         },
       };
+    case SAVE_SLICE:
+      console.log(
+        "Fractio Framework :: RED// Save Layer of your Asset :: Layer"
+      );
+      return {
+        ...state,
+        frame: false,
+        kopn: false,
+      };
+    case SAVE_FRAME:
+      console.log(
+        "Fractio Framework :: RED// Save Layer of your Asset :: Layer"
+      );
+      return {
+        ...state,
+        kopn: false,
+      };
     case DISCARD_SLICE:
       console.log(
         "Fractio Framework :: RED// Editing Layer of your Asset :: Layer",
@@ -297,6 +319,7 @@ export default function(state = initState, action) {
       );
       return {
         ...state,
+        kopn: false,
         activeL: 0,
         PYE: {
           ...state.PYE,
@@ -314,6 +337,7 @@ export default function(state = initState, action) {
       return {
         ...state,
         frame: false,
+        kopn: false,
         PYE: {
           ...state.PYE,
           layers: action.payload,

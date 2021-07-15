@@ -8,6 +8,7 @@ import {
   PYE_GO_OVEN, // GRAPH PUSH
   START_SLICING,
   EDIT_SLICE,
+  SAVE_SLICE,
   ACTIVATE_SLICE,
   RESET_SLICE,
   DISCARD_SLICE,
@@ -18,6 +19,7 @@ import {
   ACTIVATE_FRAME,
   RESET_FRAME,
   EDIT_FRAME,
+  SAVE_FRAME,
   DISCARD_FRAME,
 } from "./types";
 
@@ -109,6 +111,13 @@ export const resetSlice = (LAYERS) => {
   };
 };
 // INPUT // array of LAYERS
+export const saveSlice = () => {
+  console.log("ACTION // save layer in your Asset ");
+  return {
+    type: SAVE_SLICE,
+  };
+};
+// INPUT // array of LAYERS
 export const discardSlice = (LAYERS) => {
   console.log("ACTION // discard layer in your Asset ", LAYERS);
   return {
@@ -165,6 +174,13 @@ export const resetFrame = (LAYERS) => {
     payload: LAYERS,
   };
 };
+//
+export const saveFrame = () => {
+  console.log("ACTION // create new Frame of Layer in your Asset ");
+  return {
+    type: SAVE_FRAME,
+  };
+};
 // INPUT // array of LAYERS
 export const editFrame = (LAYERS) => {
   console.log("ACTION // create new Frame of Layer in your Asset ", LAYERS);
@@ -178,6 +194,14 @@ export const discardFrame = (LAYERS) => {
   console.log("ACTION // create new Frame of Layer in your Asset ", LAYERS);
   return {
     type: DISCARD_FRAME,
+    payload: LAYERS,
+  };
+};
+// INPUT // array of LAYERS
+export const cloneFrame = (LAYERS) => {
+  console.log("ACTION // create new Frame of Layer in your Asset ", LAYERS);
+  return {
+    type: EDIT_FRAME,
     payload: LAYERS,
   };
 };

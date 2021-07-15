@@ -44,8 +44,9 @@ import {
   saveDraft,
   mintPYE,
 } from "../../action/pyeActions";
-import { Button } from "reactstrap";
+import { Button, Input, InputGroup } from "reactstrap";
 import Layers from "./Layers";
+const fs = require("fs");
 // class definition
 class MaskTwo extends Component {
   // redux state import
@@ -69,8 +70,17 @@ class MaskTwo extends Component {
     discardPYE: PropTypes.func,
   };
   // local state setup
-  state = {};
-
+  state = {
+    saveOpen: false,
+    fileName: "",
+  };
+  toggle = (e) => {
+    e.preventDefault();
+    this.setState({ saveOpen: true });
+  };
+  onChangeFileName = (e) => {
+    this.setState({ fileName: e.target.value });
+  };
   // handler on discard all layers
   onDiscard = (e) => {
     e.preventDefault();
@@ -83,14 +93,43 @@ class MaskTwo extends Component {
   // handler on save
   onSave = (e) => {
     e.preventDefault();
-    console.log(e.target);
-    this.props.saveDraft(this.props.PYE);
+    console.log(e.target.value);
+    const PYE = JSON.stringify(this.props.PYE);
+    const fName =
+      this.props.PYE.name +
+      "_" +
+      document.getElementById("fileName").value +
+      ".pye.json";
+    this.download(fName, PYE);
+    this.setState({ saveOpen: false });
+
+    // BLOCKchainpayment
+
+    // await success
+
+    // pass txt file to IPFS and give user DL Link
   };
   onMint = (e) => {
     e.preventDefault();
     console.log(e.target);
     this.props.mintPYE(this.props.PYE);
   };
+  download = (filename, text) => {
+    var element = document.createElement("a");
+    element.setAttribute(
+      "href",
+      "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+    );
+    element.setAttribute("download", filename);
+
+    element.style.display = "none";
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+  };
+
   render() {
     return (
       <div>
@@ -141,11 +180,52 @@ class MaskTwo extends Component {
               float: "right",
               marginRight: "1em",
             }}
-            disabled
-            onClick={this.onSave}
+            onClick={this.toggle}
           >
             SAVE DRAFT [3 MLQ]
           </Button>
+          {this.state.saveOpen ? (
+            <div
+              style={{
+                position: "absolute",
+                left: "0%",
+                top: "0%",
+                height: "1400px",
+                width: "100%",
+                paddingTop: "5em",
+                background: "rgba(0,0,0,0.1)",
+
+                zIndex: 100,
+              }}
+            >
+              <div
+                className="alert alert-info"
+                style={{
+                  width: "900px",
+                  margin: "0px auto",
+                  marginTop: "100px",
+                }}
+              >
+                <InputGroup id="saveMod">
+                  <Input
+                    type="text"
+                    id="fileName"
+                    placeholder="Name your file"
+                    value={this.state.fileName}
+                    onChange={this.onChangeFileName}
+                  />
+                  <p style={{ fontSize: "0.5em", overflow: "hidden" }}>
+                    {JSON.stringify(this.props.PYE)}
+                  </p>
+                  <Input
+                    type="button"
+                    value="SAVE DRAFT"
+                    onClick={this.onSave}
+                  />
+                </InputGroup>
+              </div>
+            </div>
+          ) : null}
           <Button
             style={{
               background:

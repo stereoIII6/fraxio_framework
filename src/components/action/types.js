@@ -10,6 +10,7 @@ export const PYE_GO_OVEN = "PYE_GO_OVEN"; // The Graph Output
 export const LOAD_LAYERS = "LOAD_LAYERS";
 export const START_SLICING = "START_SLICING"; // Oracle
 export const EDIT_SLICE = "EDIT_SLICE";
+export const SAVE_SLICE = "  SAVE_SLICE";
 export const ACTIVATE_SLICE = "ACTIVATE_SLICE";
 export const RESET_SLICE = "RESET_SLICE";
 export const DISCARD_SLICE = "DISCARD_SLICE";
@@ -21,6 +22,7 @@ export const ADD_FRAME = "ADD_FRAME";
 export const ACTIVATE_FRAME = "ACTIVATE_FRAME";
 export const RESET_FRAME = "RESET_FRAME";
 export const EDIT_FRAME = "EDIT_FRAME";
+export const SAVE_FRAME = "SAVE_FRAME";
 export const DISCARD_FRAME = "DISCARD_FRAME";
 // USER RED
 export const LOAD_USERS = "LOAD_USERS";

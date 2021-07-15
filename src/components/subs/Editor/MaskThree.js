@@ -38,7 +38,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { discardFrame, resetFrame, saveDraft } from "../../action/pyeActions";
+import {
+  discardFrame,
+  resetFrame,
+  saveDraft,
+  saveSlice,
+} from "../../action/pyeActions";
 import { Button } from "reactstrap";
 import KeyFrames from "./KeyFrames";
 import MediaPreview from "./MediaPreview";
@@ -62,6 +67,7 @@ class MaskThree extends Component {
     discardFrame: PropTypes.func,
     resetFrame: PropTypes.func,
     saveDraft: PropTypes.func,
+    saveSlice: PropTypes.func,
   };
   // set local state
   state = {
@@ -79,6 +85,10 @@ class MaskThree extends Component {
     let layers = this.props.PYE.layers;
     layers[this.props.activeL].keys = this.props.INIT.layers[0].keys;
     this.props.discardFrame(layers);
+  };
+  goSaveSlice = (e) => {
+    e.preventDefault();
+    this.props.saveSlice();
   };
   goResetKeys = (e) => {
     e.preventDefault();
@@ -101,6 +111,17 @@ class MaskThree extends Component {
             onClick={this.goQuitKeys}
           >
             X
+          </Button>
+          <Button
+            style={{
+              background: bg3,
+              color: c3,
+              float: "right",
+              marginRight: "1em",
+            }}
+            onClick={this.goSaveSlice}
+          >
+            Save Layer
           </Button>
           <Button
             style={{
@@ -142,4 +163,5 @@ export default connect(mapStateToProps, {
   discardFrame,
   resetFrame,
   saveDraft,
+  saveSlice,
 })(MaskThree);

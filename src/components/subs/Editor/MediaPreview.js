@@ -96,13 +96,19 @@ class MediaPreview extends Component {
         keyZero.keyID === this.props.activeK ? keyZero.keyParams.o / 100 : 0.3,
       zIndex: keyZero.keyID === this.props.activeK ? 100 : keyZero.keyID + 11,
     };
-    const nowKey = this.props.activeK;
+    const nowKey = this.props.activeK || 0;
     const display = this.props.PYE.layers.filter(
       (layer) => parseInt(layer.layerID) !== 0
     );
 
     return (
-      <div style={{ width: "820px", height: "820px", margin: "0px auto" }}>
+      <div
+        style={{
+          width: "820px",
+          height: `${this.props.PYE.format.y}20px`,
+          margin: "0px auto",
+        }}
+      >
         {this.props.kopn ? <Toolbox style={{ width: "260px" }} /> : null}
         <div
           id="md-screen"

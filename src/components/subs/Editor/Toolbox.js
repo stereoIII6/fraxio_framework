@@ -40,7 +40,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Draggable from "react-draggable";
 import { Button, Input, InputGroup, CustomInput } from "reactstrap";
-import { editFrame } from "../../action/pyeActions";
+import {
+  editFrame,
+  resetFrame,
+  discardFrame,
+  saveFrame,
+} from "../../action/pyeActions";
 // class definition
 class ToolBox extends Component {
   // proptype definition
@@ -59,6 +64,9 @@ class ToolBox extends Component {
     PYE: PropTypes.object,
     INIT: PropTypes.object,
     editFrame: PropTypes.func,
+    resetFrame: PropTypes.func,
+    saveFrame: PropTypes.func,
+    discardFrame: PropTypes.func,
   };
   state = {
     drg: false,
@@ -218,11 +226,19 @@ class ToolBox extends Component {
   };
 
   // save workingkey
-  goQuit = (e) => {
+  goreset = (e) => {
     e.preventDefault();
+
+    this.props.resetFrame();
   };
-  goSave2Layer = (e) => {
+  goSave = (e) => {
     e.preventDefault();
+    console.log(this.props.PYE.layers);
+    this.props.saveFrame();
+  };
+  goClone = (e) => {
+    e.preventDefault();
+    this.props.cloneFrame();
   };
   mouser = (e) => {
     this.setState({ drg: !this.state.drg });
@@ -582,28 +598,39 @@ class ToolBox extends Component {
           >
             <div
               className="btn"
-              id={this.props.active}
+              id={this.props.activeL}
               style={{
                 width: "70%",
-                background: c1,
+                background: c3,
                 color: bg2,
               }}
-              onClick={this.goSave2Layer}
+              onClick={this.goSave}
             >
               Save
             </div>
             <div
               className="btn"
-              id={this.props.active}
+              id={this.props.activeL}
               style={{
                 width: "30%",
                 background: bg2,
                 color: c1,
-                display: "none",
               }}
-              onClick={this.resetKey}
+              onClick={this.goReset}
             >
-              x
+              Reset
+            </div>
+            <div
+              className="btn col"
+              id={this.props.activeL}
+              style={{
+                width: "30%",
+                background: bg2,
+                color: c1,
+              }}
+              onClick={this.goClone}
+            >
+              Clone State
             </div>
           </div>
         </div>
@@ -627,4 +654,9 @@ const mapStateToProps = (state) => ({
   cols: state.userState.cols,
 });
 
-export default connect(mapStateToProps, { editFrame })(ToolBox);
+export default connect(mapStateToProps, {
+  editFrame,
+  resetFrame,
+  discardFrame,
+  saveFrame,
+})(ToolBox);
