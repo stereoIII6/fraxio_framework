@@ -109,11 +109,6 @@ class MaskTwo extends Component {
 
     // pass txt file to IPFS and give user DL Link
   };
-  onMint = (e) => {
-    e.preventDefault();
-    console.log(e.target);
-    this.props.mintPYE(this.props.PYE);
-  };
   download = (filename, text) => {
     var element = document.createElement("a");
     element.setAttribute(
@@ -128,6 +123,11 @@ class MaskTwo extends Component {
     element.click();
 
     document.body.removeChild(element);
+  };
+  onMint = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    this.props.mintPYE(this.props.PYE);
   };
 
   render() {

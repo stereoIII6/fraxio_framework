@@ -44,7 +44,7 @@ import {
   saveDraft,
   saveSlice,
 } from "../../action/pyeActions";
-import { Button } from "reactstrap";
+import { Button, InputGroup, Input } from "reactstrap";
 import KeyFrames from "./KeyFrames";
 import MediaPreview from "./MediaPreview";
 // class definition
@@ -79,6 +79,49 @@ class MaskThree extends Component {
         : this.props.lighting === "irie"
         ? this.props.cols.irie
         : this.props.cols.light,
+    saveOpen: false,
+    fileName: "",
+  };
+  toggle = (e) => {
+    e.preventDefault();
+    this.setState({ saveOpen: true });
+  };
+  onChangeFileName = (e) => {
+    this.setState({ fileName: e.target.value });
+  };
+  // handler on save
+  onSave = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    const PYE = JSON.stringify(this.props.PYE);
+    const fName =
+      this.props.PYE.name +
+      "_" +
+      document.getElementById("fileName").value +
+      ".pye.json";
+    this.download(fName, PYE);
+    this.setState({ saveOpen: false });
+
+    // BLOCKchainpayment
+
+    // await success
+
+    // pass txt file to IPFS and give user DL Link
+  };
+  download = (filename, text) => {
+    var element = document.createElement("a");
+    element.setAttribute(
+      "href",
+      "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+    );
+    element.setAttribute("download", filename);
+
+    element.style.display = "none";
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
   };
   goQuitKeys = (e) => {
     e.preventDefault();
@@ -130,12 +173,50 @@ class MaskThree extends Component {
               float: "right",
               marginRight: "1em",
             }}
-            onClick={this.goSaveKeys}
+            onClick={this.toggle}
           >
             Save Draft
           </Button>
         </h1>
         <hr></hr>
+        {this.state.saveOpen ? (
+          <div
+            style={{
+              position: "absolute",
+              left: "0%",
+              top: "0%",
+              height: "1400px",
+              width: "100%",
+              paddingTop: "5em",
+              background: "rgba(0,0,0,0.1)",
+
+              zIndex: 100,
+            }}
+          >
+            <div
+              className="alert alert-info"
+              style={{
+                width: "900px",
+                margin: "0px auto",
+                marginTop: "100px",
+              }}
+            >
+              <InputGroup id="saveMod">
+                <Input
+                  type="text"
+                  id="fileName"
+                  placeholder="Name your file"
+                  value={this.state.fileName}
+                  onChange={this.onChangeFileName}
+                />
+                <p style={{ fontSize: "0.5em", overflow: "hidden" }}>
+                  {JSON.stringify(this.props.PYE)}
+                </p>
+                <Input type="button" value="SAVE DRAFT" onClick={this.onSave} />
+              </InputGroup>
+            </div>
+          </div>
+        ) : null}
         {/* IMPORT KEYFRAMES */}
         <KeyFrames />
         <MediaPreview />
