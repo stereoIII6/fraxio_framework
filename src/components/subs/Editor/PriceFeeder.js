@@ -9,10 +9,14 @@ const RinkPFAddress = "0x7CAc519Ab2245938DDd087eD29A16794CC090EaD";
 class PriceFeeder extends Component {
   state = {
     selectData: [],
+    value: "no",
   };
   async componentWillMount() {
     await this.loadWeb3();
     await this.loadBlockChainData();
+    this.setState({
+      value: this.props.starter,
+    });
   }
 
   async loadWeb3() {
@@ -26,7 +30,12 @@ class PriceFeeder extends Component {
     } else window.alert("Use a Metamask");
   }
   setOracle = (e) => {
-    this.props.setOracle(e);
+    console.log("PRICE FEEDER FEEDBACK //", e.target.value);
+
+    const el = e.target.childNodes[e.target.selectedIndex];
+    console.log("SELECT FEEDBACK // ", el.id);
+    this.props.setOracle(e, el.id);
+    this.setState({ value: e.target.value });
   };
   countProperties(obj) {
     var count = 0;
@@ -78,8 +87,8 @@ class PriceFeeder extends Component {
           <Input
             type="select"
             onChange={this.setOracle}
-            value={this.props.sel !== null ? this.props.sel : "no"}
-            id={label[labelNum]}
+            value={this.state.value}
+            id={this.state.lNum}
           >
             <option key="no" value="no">
               Choose an Oracle

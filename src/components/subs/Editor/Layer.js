@@ -121,16 +121,17 @@ class Layer extends Component {
       // this.setState({ layers: passLayers });
     }
   };
-  setOracle = (e) => {
+  setOracle = (e, n) => {
+    let wLayers = this.props.PYE.layers;
     console.log(
       e.target.value,
-      wLayers[this.props.layerProps].layerOracle.name
+      wLayers[this.props.layerProps].layerOracle.type
     );
-    let wLayers = this.props.PYE.layers;
-    console.log(e.target.value, e.target.id);
+    console.log("echeck // ", e.target.value, n);
+
     const split = e.target.value.split(",");
     wLayers[this.props.layerProps].layerOracle.starter = e.target.value;
-    wLayers[this.props.layerProps].layerOracle.name = e.target.id;
+    wLayers[this.props.layerProps].layerOracle.name = n;
     this.props.editSlice(wLayers);
     this.setState({ sel: split[0], nom: split[1] });
   };
@@ -593,9 +594,9 @@ class Layer extends Component {
         </div>
 
         <PriceFeeder
-          oracle={layer.layerOracle.name}
+          oracle={layer.layerOracle.type}
+          starter={layer.layerOracle.starter}
           setOracle={this.setOracle}
-          sel={this.state.nom + "," + this.state.sel}
         />
         {this.state.ext ? (
           <InputGroup id="extrigger" disabled>

@@ -77,8 +77,20 @@ class KeyFrames extends Component {
     ups: 1,
     downs: 1,
   };
+  componentDidMount() {
+    this.loadKeys();
+  }
+  loadKeys() {
+    const keyCount = this.props.PYE.layers[this.props.activeL].keys.length;
+    let idDown = this.props.PYE.layers[this.props.activeL].keys[0].keyID - 1;
+    if (idDown < 0) idDown *= -1;
 
-  loadKeys() {}
+    let idUp =
+      this.props.PYE.layers[this.props.activeL].keys[keyCount - 1].keyID + 1;
+    console.log("down up //", idDown, idUp);
+    this.setState({ downs: idDown, ups: idUp });
+  }
+
   // additional key frame to layer negative feedline
   addKeyDown = (e) => {
     e.preventDefault();
@@ -125,7 +137,7 @@ class KeyFrames extends Component {
     this.props.activateFrame(parseInt(e.target.id), this.state.key);
   };
   render() {
-    console.log(this.state);
+    console.log("ups and downs //", this.state.ups, this.state.downs);
     const { bg1, bg2, bg3, c1, c2, c3, w, b, r } = this.state.cols;
     return (
       <div style={{ textAlign: "center", marginBottom: "2em" }}>

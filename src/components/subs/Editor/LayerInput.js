@@ -124,8 +124,8 @@ class LayerInput extends Component {
       },
       layerOracle: {
         // oracle object
-        type: "",
-        name: this.state.layerFeed, // Oracle Feed Name
+        type: this.state.layerFeed,
+        name: "", // Oracle Feed Name
         stamps: [Date()], // THE GRAPH IMPORT timestamps of Oracle
         starter: Date(), // Initial Custom Start Price at Mint // Default Real Time Value NOW
       },
