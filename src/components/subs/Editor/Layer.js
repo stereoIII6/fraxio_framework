@@ -122,7 +122,10 @@ class Layer extends Component {
     }
   };
   setOracle = (e) => {
-    console.log(e.target.value);
+    console.log(
+      e.target.value,
+      wLayers[this.props.layerProps].layerOracle.name
+    );
     let wLayers = this.props.PYE.layers;
     console.log(e.target.value, e.target.id);
     const split = e.target.value.split(",");

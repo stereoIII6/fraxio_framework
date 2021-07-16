@@ -64,6 +64,7 @@ const initState = {
         },
         layerOracle: {
           // oracle object
+          type: "",
           name: null, // Oracle Feed Name
           stamps: [], // THE GRAPH IMPORT timestamps of Oracle
           starter: null, // Initial Custom Start Price at Mint // Default Real Time Value NOW
@@ -139,6 +140,7 @@ const initState = {
         },
         layerOracle: {
           // oracle object
+          type: "",
           name: null, // Oracle Feed Name
           stamps: [], // THE GRAPH IMPORT timestamps of Oracle
           starter: null, // Initial Custom Start Price at Mint // Default Real Time Value NOW
@@ -281,9 +283,21 @@ export default function(state = initState, action) {
       };
     case ADD_FRAME:
     case EDIT_SLICE:
-    case EDIT_FRAME:
       console.log(
         "Fractio Framework :: RED// Editing Layer of your Asset :: Layer",
+        state.activeL,
+        action.payload
+      );
+      return {
+        ...state,
+        PYE: {
+          ...state.PYE,
+          layers: action.payload,
+        },
+      };
+    case EDIT_FRAME:
+      console.log(
+        "Fractio Framework :: RED// Editing Frame of Layer of your Asset :: Layer",
         state.activeL,
         action.payload
       );

@@ -199,6 +199,7 @@ class MaskThree extends Component {
                 width: "900px",
                 margin: "0px auto",
                 marginTop: "100px",
+                zIndex: 1000,
               }}
             >
               <InputGroup id="saveMod">

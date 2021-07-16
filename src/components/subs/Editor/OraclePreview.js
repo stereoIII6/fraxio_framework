@@ -15,11 +15,11 @@
 //                                                                                  //
 //                                                                                  //
 //          @title :: Fractio Framework React App                                   // 
-//          @id :: FR-92727                                                         //
+//          @id :: FR-90405                                                         //
 //          @versiom :: 1.0.0                                                       //
 //                                                                                  //
 //          @description ::                                                         //
-//          The Factory FR-92727 is Layers Editor for the React Frontend.           //
+//          The Factory FR-90405 is Mini Player for the React Frontend.           //
 //                                                                                  //
 //                                                                                  //
 //          @author :: fractio.xyz                                                  //
@@ -37,18 +37,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Draggable from "react-draggable";
-import { activateSlice } from "../../action/pyeActions";
-import LayerInput from "./LayerInput";
-import OraclePreview from "./OraclePreview";
-import MediaPreview from "./MediaPreview";
-import MiniPlayer from "./MiniPlayer";
-import Layer from "./Layer";
-import { Button } from "reactstrap";
-
-// class definition
-class Layers extends Component {
-  // redux state prop declaration
+import {} from "../../action/pyeActions";
+class OraclePreview extends Component {
   static propTypes = {
     bake: PropTypes.bool,
     slice: PropTypes.bool,
@@ -63,89 +53,61 @@ class Layers extends Component {
     cols: PropTypes.object,
     PYE: PropTypes.object,
     INIT: PropTypes.object,
-    activateSlice: PropTypes.func,
   };
 
-  // set local state
-  state = {
-    layerSize: true,
-    cols: this.props.cols,
-  };
-  onSizeLayers = (e) => {
-    e.preventDefault();
-    this.setState({ layerSize: !this.state.layerSize });
-  };
-  onLayerActivate = (e) => {
-    e.preventDefault();
-    this.props.activateSlice(e.target.id);
+  state = {};
+  fiindOracles = () => {
+    const layerCount = this.props.PYE.layers.length;
+    let oracleInfo = [];
+    for (let i = 0; i < layerCount; i++) {
+      if (
+        this.props.PYE.layers[i].layerOracle.name !== "no" ||
+        this.props.PYE.layers[i].layerOracle.name !== "static"
+      ) {
+        oracleInfo[i] = {
+          layerID: this.props.PYE.layers[i].layerID,
+          type: "static",
+          keyInfo: [],
+        };
+      } else if (
+        this.props.PYE.layers[i].layerOracle.name !== "crypto" ||
+        this.props.PYE.layers[i].layerOracle.name !== "currency" ||
+        this.props.PYE.layers[i].layerOracle.name !== "commodity"
+      ) {
+        const keyCount = this.props.PYE.layers[i].keys.length;
+        let keyInfo = [];
+        for (let j = 0; j < keyCount; j++) {
+          keyInfo[j] = {};
+        }
+        oracleInfo[i] = {};
+      }
+    }
   };
   render() {
-    const { bg1, bg2, bg3, c1, c2, c3, w, b, r } = this.state.cols;
-    // exclude layer 0
-    const display = this.props.PYE.layers.filter(
-      (layer) => parseInt(layer.layerID) !== 0
-    );
-
     return (
-      <div>
-        {/* CREATE NEW LAYER FORM*/}
-        <LayerInput />
-        <div>
-          {display.length < 1 ? (
-            console.log("no layer")
-          ) : (
-            <Draggable>
-              <div
-                className="alert alert-info"
-                style={{
-                  position: "absolute",
-                  top: "400px",
-                  left: "20px",
-                  width: "280px",
-                  minHeight: this.state.layerSize ? "200px" : "70px",
-                  maxHeight: this.state.layerSize ? "900px" : "70px",
-                  zIndex: 100,
-                  overflow: "scroll",
-                }}
-              >
-                <div style={{ height: "70px" }}>
-                  Layers{" "}
-                  <Button
-                    className="btn sm-btn"
-                    onClick={this.onSizeLayers}
-                    style={{ float: "right" }}
-                  >
-                    {this.state.layerSize ? " - " : " + "}
-                  </Button>
-                </div>
-                {
-                  (console.log("LAYER // just a check up", display),
-                  display.map((layer) => (
-                    <Layer
-                      key={layer.layerID}
-                      id={layer.layerID}
-                      layerProps={layer.layerID}
-                      onMouseOver={this.onLayerActivate}
-                      style={{
-                        border: `5px ${
-                          this.props.activeL === layer.layerID ? bg1 : bg2
-                        } solid`,
-                        background:
-                          this.props.activeL === layer.layerID ? bg3 : c3,
-                      }}
-                    />
-                  )))
-                }
-              </div>
-            </Draggable>
-          )}
+      <div
+        style={{
+          width: "820px",
+          height: `${this.props.PYE.format.y}20px`,
+          margin: "0px auto",
+        }}
+      >
+        <div
+          id="md-screen"
+          style={{
+            background: "white",
 
-          <div className="alert alert-warning">
-            Layer Preview
-            {/* MINI PREVIEW OF TOKEN */}
-            <OraclePreview />
-          </div>
-        </div>
+            backgroundImage: `url("https://ipfs.io/ipfs/QmTNbkJ5x3iY4VEiEUARfrCreqBZ3tXHU3oFnsUK7QnDie")`,
+            width: this.props.PYE.format.x * 100,
+
+            height: this.props.PYE.format.y * 100,
+            overflow: "hidden",
+            position: "relative",
+            top: "10px",
+            left: (820 - this.props.PYE.format.x * 100) / 2,
+            marginBottom: "20px",
+          }}
+        ></div>
       </div>
     );
   }
@@ -166,4 +128,4 @@ const mapStateToProps = (state) => ({
   cols: state.userState.cols,
 });
 
-export default connect(mapStateToProps, { activateSlice })(Layers);
+export default connect(mapStateToProps, {})(OraclePreview);

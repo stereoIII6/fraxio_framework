@@ -202,8 +202,10 @@ class MaskTwo extends Component {
                 className="alert alert-info"
                 style={{
                   width: "900px",
+                  maxHeight: "900px",
                   margin: "0px auto",
                   marginTop: "100px",
+                  zIndex: 1000,
                 }}
               >
                 <InputGroup id="saveMod">
