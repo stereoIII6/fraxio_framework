@@ -83,9 +83,12 @@ class MediaPreview extends Component {
       top: `${parseInt(keyZero.keyParams.y) + 5}%`,
       fontSize: `${keyZero.keyParams.z / 20}em`,
       height:
-        this.props.PYE.format.x !== 8 ? `${keyZero.keyParams.z}%` : "auto",
+        this.props.PYE.format.x < this.props.PYE.format.y
+          ? `${keyZero.keyParams.z}%`
+          : "auto",
       width:
-        this.props.PYE.format.x === 8 || layerZero.layerType.name !== "typo"
+        this.props.PYE.format.x > this.props.PYE.format.y ||
+        layerZero.layerType.name !== "typo"
           ? `${keyZero.keyParams.z}%`
           : "auto",
       transform: `rotate(${keyZero.keyParams.r}deg)`,
@@ -203,7 +206,7 @@ class MediaPreview extends Component {
                       ? `${layer.keys[nowKey].keyParams.z}%`
                       : "auto",
                   transform: `rotate(${layer.keys[nowKey].keyParams.r}deg)`,
-                  opacity: 0.3,
+                  opacity: 0.8,
                   zIndex: layer.keys[nowKey].keyID,
                 }}
               />

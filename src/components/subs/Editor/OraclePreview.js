@@ -67,7 +67,7 @@ class OraclePreview extends Component {
         oracleInfo[i] = {
           layerID: this.props.PYE.layers[i].layerID,
           type: "static",
-          keyInfo: [],
+          keys: [],
         };
       } else if (
         this.props.PYE.layers[i].layerOracle.name !== "crypto" ||
@@ -77,13 +77,22 @@ class OraclePreview extends Component {
         const keyCount = this.props.PYE.layers[i].keys.length;
         let keyInfo = [];
         for (let j = 0; j < keyCount; j++) {
-          keyInfo[j] = {};
+          keyInfo[j] = {
+            keyID: this.props.PYE.layers[i].keys[j].keyID,
+            keyVal: this.props.PYE.layers[i].keys[j].keyParams.v,
+          };
         }
-        oracleInfo[i] = {};
+        oracleInfo[i] = {
+          layerID: this.props.PYE.layers[i].layerID,
+          type: "",
+          keys: keyInfo,
+        };
       }
+      return oracleInfo;
     }
   };
   render() {
+    const oI = this.fiindOracles();
     return (
       <div
         style={{
@@ -95,7 +104,7 @@ class OraclePreview extends Component {
         <div
           id="md-screen"
           style={{
-            background: "white",
+            background: "black",
 
             backgroundImage: `url("https://ipfs.io/ipfs/QmTNbkJ5x3iY4VEiEUARfrCreqBZ3tXHU3oFnsUK7QnDie")`,
             width: this.props.PYE.format.x * 100,
@@ -107,7 +116,64 @@ class OraclePreview extends Component {
             left: (820 - this.props.PYE.format.x * 100) / 2,
             marginBottom: "20px",
           }}
-        ></div>
+        >
+          {this.props.PYE.layers.map((layer) =>
+            layer.layerID === 0 ? null : layer.layerOracle.type === "static" ? (
+              // STATIC LAYER
+              layer.layerType === "empty" ? null : layer.layerType === // handle empty layer types
+                "text" ? (
+                <div style={{ fontFamily: layer.layerData.font }}>
+                  {layer.layerData.text}
+                </div> // handle text layer types
+              ) : (
+                <img
+                  src={`https://ipfs.io/ipfs/${layer.layerData.file}`}
+                  alt=""
+                  style={{
+                    position: "absolute",
+                    width:
+                      this.props.PYE.format.x > this.props.PYE.format.y
+                        ? `${layer.keys[0].keyParams.z}%`
+                        : "auto",
+                    height:
+                      this.props.PYE.format.x > this.props.PYE.format.y
+                        ? "auto"
+                        : `${layer.keys[0].keyParams.z}%`,
+                    opacity: layer.keys[0].keyParams.o,
+                    transform: `rotate(${layer.keys[0].keyParams.r}deg)`,
+                    left: `${parseInt(layer.keys[0].keyParams.x) + 5}%`,
+                    top: `${parseInt(layer.keys[0].keyParams.y) + 5}%`,
+                  }}
+                /> // handle image layer types
+              )
+            ) : // ORACLE LAYER
+            layer.layerType === "empty" ? null : layer.layerType === "text" ? ( // handle empty layer types
+              <div style={{ fontFamily: layer.layerData.font }}>
+                {layer.layerData.text}
+              </div> // handle text layer types
+            ) : (
+              <img
+                src={`https://ipfs.io/ipfs/${layer.layerData.file}`}
+                alt=""
+                style={{
+                  position: "absolute",
+                  width:
+                    this.props.PYE.format.x > this.props.PYE.format.y
+                      ? `${layer.keys[0].keyParams.z}%`
+                      : "auto",
+                  height:
+                    this.props.PYE.format.x > this.props.PYE.format.y
+                      ? "auto"
+                      : `${layer.keys[0].keyParams.z}%`,
+                  opacity: layer.keys[0].keyParams.o,
+                  transform: `rotate(${layer.keys[0].keyParams.r}deg)`,
+                  left: `${parseInt(layer.keys[0].keyParams.x) + 5}%`,
+                  top: `${parseInt(layer.keys[0].keyParams.y) + 5}%`,
+                }}
+              />
+            )
+          )}
+        </div>
       </div>
     );
   }

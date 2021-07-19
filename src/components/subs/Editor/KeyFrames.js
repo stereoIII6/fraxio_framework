@@ -158,8 +158,18 @@ class KeyFrames extends Component {
           <Button
             className="m-2"
             style={{
-              background: bg2,
-              color: c1,
+              background:
+                this.props.PYE.layers[this.props.activeL].keys[
+                  this.props.activeK
+                ].keyID === parseInt(key.keyID)
+                  ? bg2
+                  : c3,
+              color:
+                this.props.PYE.layers[this.props.activeL].keys[
+                  this.props.activeK
+                ].keyID === key.keyID
+                  ? c1
+                  : bg3,
             }}
             key={key.keyID}
             id={key.keyID}
