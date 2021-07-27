@@ -133,8 +133,10 @@ class KeyFrames extends Component {
   };
   // set key ready to edit
   activateKey = (e) => {
+    let layers = this.props.PYE.layers;
+    layers[this.props.activeL].actK = e.target.id;
     console.log(e.target.id, this.state.key);
-    this.props.activateFrame(parseInt(e.target.id), this.state.key);
+    this.props.activateFrame(parseInt(e.target.id), this.state.key, layers);
   };
   render() {
     console.log("ups and downs //", this.state.ups, this.state.downs);
@@ -143,8 +145,9 @@ class KeyFrames extends Component {
       <div style={{ textAlign: "center", marginBottom: "2em" }}>
         {this.state.keys.length < 9 ? (
           <Button
-            className="m-2"
+            className="m-0 sm"
             style={{
+              fontSize: "0.5em",
               background: bg3,
               color: c3,
             }}
@@ -156,8 +159,9 @@ class KeyFrames extends Component {
         ) : null}
         {this.state.keys.map((key) => (
           <Button
-            className="m-2"
+            className="m-0 sm"
             style={{
+              fontSize: "0.5em",
               background:
                 this.props.PYE.layers[this.props.activeL].keys[
                   this.props.activeK
@@ -175,13 +179,14 @@ class KeyFrames extends Component {
             id={key.keyID}
             onClick={this.activateKey}
           >
-            {`Key ${key.keyID}`}
+            {`${key.keyID}`}
           </Button>
         ))}
         {this.state.keys.length < 9 ? (
           <Button
-            className="m-2"
+            className="m-0 sm"
             style={{
+              fontSize: "0.5em",
               background: bg3,
               color: c3,
             }}

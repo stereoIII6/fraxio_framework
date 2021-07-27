@@ -37,6 +37,9 @@ class PriceFeeder extends Component {
     this.props.setOracle(e, el.id);
     this.setState({ value: e.target.value });
   };
+  getFeed = () => {
+    this.props.getFeed();
+  };
   countProperties(obj) {
     var count = 0;
 
@@ -50,16 +53,41 @@ class PriceFeeder extends Component {
     const web3 = window.web3;
     let PriceFeeds;
     let result;
+    let namer = [];
+    let feed = [];
+
     console.log(this.props.oracle);
     PriceFeeds = new web3.eth.Contract(PriceFeed.abi, RinkPFAddress);
     if (this.props.oracle === "no") result = null;
     if (this.props.oracle === "static") result = null;
-    if (this.props.oracle === "crypto")
+    if (this.props.oracle === "crypto") {
       result = await PriceFeeds.methods.cryptoFeeds().call();
-    if (this.props.oracle === "currency")
+      namer = ["bat", "bnb", "btc", "eth", "link", "rep", "snx", "zrx"];
+      for (let i = 0; i < this.countProperties(result); i++) {
+        feed[i] = { name: namer[i], value: result[i] };
+      }
+      console.log(feed);
+      this.getFeed(feed);
+    }
+    if (this.props.oracle === "currency") {
       result = await PriceFeeds.methods.currencyFeeds().call();
-    if (this.props.oracle === "commodity")
+      namer = ["aud", "chf", "eur", "gbp", "jpy", "usdc", "dai"];
+      for (let i = 0; i < this.countProperties(result); i++) {
+        feed[i] = { name: namer[i], value: result[i] };
+      }
+      console.log(feed);
+      this.props.getFeed(feed);
+    }
+    if (this.props.oracle === "commodity") {
       result = await PriceFeeds.methods.commodFeeds().call();
+      namer = ["oil", "silver", "gold"];
+      for (let i = 0; i < this.countProperties(result); i++) {
+        feed[i] = { name: namer[i], value: result[i] };
+      }
+      console.log(feed);
+      this.props.getFeed(feed);
+    }
+
     console.log("FEED LOG // ", result, this.countProperties(result), Date());
     let x = 0;
     let hold = [];

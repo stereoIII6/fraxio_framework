@@ -212,6 +212,7 @@ class TopMenu extends Component {
             >
               Contact
             </div>
+
             <div
               className="btn mr-1"
               style={{

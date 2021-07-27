@@ -3,6 +3,7 @@ import {
   USERS_LOADED,
   SET_SCREEN_MODE,
   GET_ERC721_TX,
+  GET_FEEDS,
 } from "../action/types";
 
 const initState = {
@@ -81,6 +82,11 @@ export default function(state = initState, action) {
       return {
         ...state,
         erc721s: [action.payload],
+      };
+    case GET_FEEDS:
+      return {
+        ...state,
+        feeds: action.payload,
       };
     default:
       return state;

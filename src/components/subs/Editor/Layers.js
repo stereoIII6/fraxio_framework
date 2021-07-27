@@ -45,6 +45,7 @@ import MediaPreview from "./MediaPreview";
 import MiniPlayer from "./MiniPlayer";
 import Layer from "./Layer";
 import { Button } from "reactstrap";
+import KeyFrames from "./KeyFrames";
 
 // class definition
 class Layers extends Component {
@@ -56,6 +57,7 @@ class Layers extends Component {
     frame: PropTypes.bool,
     activeK: PropTypes.number,
     stateK: PropTypes.object,
+    kopn: PropTypes.bool,
     pyes: PropTypes.array,
     pyeDrafts: PropTypes.array,
     pyeSamples: PropTypes.array,
@@ -139,12 +141,19 @@ class Layers extends Component {
               </div>
             </Draggable>
           )}
-
           <div className="alert alert-warning">
             Layer Preview
             {/* MINI PREVIEW OF TOKEN */}
             <OraclePreview />
           </div>
+          {display.map((layer) => (
+            <div className="row">
+              <div className="col-4">Layer {layer.layerID}</div>
+              <div className="col-8">
+                {this.props.kopn ? <KeyFrames /> : null}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     );
@@ -158,6 +167,7 @@ const mapStateToProps = (state) => ({
   frame: state.pyeState.frame,
   activeK: state.pyeState.activeK,
   stateK: state.pyeState.stateK,
+  kopn: state.pyeState.kopn,
   pyeDrafts: state.pyeState.pyeDrafts,
   pyeSamples: state.pyeState.pyeSamples,
   PYE: state.pyeState.PYE,

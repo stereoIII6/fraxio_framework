@@ -15,6 +15,7 @@ import Wallet from "./subs/User/Wallet.js";
 import Settings from "./subs/User/Settings.js";
 import Dashboard from "./subs/User/Dashboard.js";
 import Won from "./subs/Surveys/Won.js";
+import ArtPreset from "./subs/Presets/ArtPreset.js";
 class Screen extends Component {
   static propTypes = {
     getUsers: PropTypes.func,
@@ -26,7 +27,7 @@ class Screen extends Component {
         {this.props.screenMode === "landing_lnk" ? (
           <Landing />
         ) : this.props.screenMode === "pyeditor_lnk" ? (
-          <Editor />
+          <ArtPreset />
         ) : this.props.screenMode === "about_lnk" ? (
           <About />
         ) : this.props.screenMode === "team_lnk" ? (

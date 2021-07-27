@@ -158,12 +158,13 @@ export const addFrame = (LAYERS) => {
   };
 };
 // INPUT // KEY ID
-export const activateFrame = (ID, KEY) => {
+export const activateFrame = (ID, KEY, LAYERS) => {
   console.log("ACTION // activate Key of Layer in your Asset ", ID);
   return {
     type: ACTIVATE_FRAME,
     payload: ID,
     kopn: KEY,
+    layers: LAYERS,
   };
 };
 // INPUT // array of LAYERS

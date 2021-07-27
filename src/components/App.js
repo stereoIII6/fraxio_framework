@@ -118,7 +118,11 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="App" style={{ background: grey, height: "100%" }}>
+        <div
+          className="App"
+          id="App"
+          style={{ background: grey, height: "auto", minWidth: "1210px" }}
+        >
           <main>
             <div className="container py-4">
               <TopMenu />

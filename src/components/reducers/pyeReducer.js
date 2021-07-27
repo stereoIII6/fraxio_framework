@@ -50,6 +50,7 @@ const initState = {
 
     layers: [
       {
+        actK: 0,
         layerID: 0, // layerID
         layerName: null, // layerName
         layerType: "no", // Type of Layer // empty / image / text / form / audio / video
@@ -127,6 +128,7 @@ const initState = {
     layers: [
       {
         layerID: 0, // layerID
+        actK: 0,
         layerName: null, // layerName
         layerType: null, // Type of Layer // empty / image / text / form / audio / video
         layerData: {
@@ -261,7 +263,7 @@ export default function(state = initState, action) {
         ...state,
         bake: true,
         slice: true,
-        frame: true,
+        kopn: true,
         activeL: action.payload,
         activeK: 0,
       };
@@ -377,6 +379,7 @@ export default function(state = initState, action) {
         kopn: true,
         activeK: action.payload,
         stateK: action.key,
+        layers: action.layers,
       };
     default:
       return state;

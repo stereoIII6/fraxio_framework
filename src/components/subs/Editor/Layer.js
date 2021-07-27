@@ -43,7 +43,9 @@ import {
   editSlice,
   discardSlice,
 } from "../../action/pyeActions";
+import { getFeeds } from "../../action/userActions";
 import PriceFeeder from "./PriceFeeder";
+import KeyFrames from "./KeyFrames";
 
 class Layer extends Component {
   static propTypes = {
@@ -63,6 +65,8 @@ class Layer extends Component {
     activateSlice: PropTypes.func,
     editSlice: PropTypes.func,
     discardSlice: PropTypes.func,
+    getFeeds: PropTypes.func,
+    kopn: PropTypes.bool,
   };
   state = {
     cols:
@@ -134,6 +138,9 @@ class Layer extends Component {
     wLayers[this.props.layerProps].layerOracle.name = n;
     this.props.editSlice(wLayers);
     this.setState({ sel: split[0], nom: split[1] });
+  };
+  getFeed = (feed) => {
+    this.props.getFeeds(feed);
   };
   onExternal = (e) => {
     e.preventDefault();
@@ -597,7 +604,9 @@ class Layer extends Component {
           oracle={layer.layerOracle.type}
           starter={layer.layerOracle.starter}
           setOracle={this.setOracle}
+          getFeed={this.getFeed}
         />
+        {this.props.kopn ? <KeyFrames /> : null}
         {this.state.ext ? (
           <InputGroup id="extrigger" disabled>
             <b style={{ fontSize: "0.8em" }}>
@@ -637,6 +646,7 @@ const mapStateToProps = (state) => ({
   frame: state.pyeState.frame,
   activeK: state.pyeState.activeK,
   stateK: state.pyeState.stateK,
+  kopn: state.pyeState.kopn,
   pyeDrafts: state.pyeState.pyeDrafts,
   pyeSamples: state.pyeState.pyeSamples,
   PYE: state.pyeState.PYE,
@@ -649,4 +659,5 @@ export default connect(mapStateToProps, {
   activateSlice,
   editSlice,
   discardSlice,
+  getFeeds,
 })(Layer);

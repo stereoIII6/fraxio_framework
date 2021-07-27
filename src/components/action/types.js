@@ -28,6 +28,7 @@ export const DISCARD_FRAME = "DISCARD_FRAME";
 export const LOAD_USERS = "LOAD_USERS";
 export const SET_SCREEN_MODE = "SET_SCREEN_MODE";
 export const GET_ERC721_TX = "GET_ERC721_TX";
+export const GET_FEEDS = "GET_FEEDS";
 // ERROR RED
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const GET_ERRORS = "GET_ERRORS";

@@ -73,9 +73,9 @@ class LayerInput extends Component {
     layerFeed: "no",
     layerText: "",
     layerFont: "",
-    file: null,
     layerName: "",
     layerID: 0,
+    file: null,
     fileURL: null,
     buffer: null,
     check: "orange",
@@ -111,6 +111,7 @@ class LayerInput extends Component {
     console.log(this.state.buffer);
     const newLayer = {
       layerID: this.props.PYE.layers.length, // layerID
+      actK: 0,
       layerName: this.state.layerName, // layerName
       layerType: this.state.layerType, // Type of Layer // empty / image / text / form / audio / video
       layerData: {

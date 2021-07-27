@@ -86,10 +86,13 @@ class ToolBox extends Component {
     );
     // find index for key ID
     let y = 0;
-    let i = null;
+    let i = 0;
     for (y; y < wKeys.length; y++) {
       console.log("at", y);
-      if (wKeys[y].keyID === this.props.activeK) i = y;
+      if (wKeys[y].keyID === this.props.PYE.layers[this.props.activeL].actK) {
+        i = y;
+        console.log(i, "middle of");
+      }
     }
     console.log("after", i);
     wKeys[i].keyParams.x = parseInt(e.target.value);
@@ -119,7 +122,8 @@ class ToolBox extends Component {
     let i = null;
     for (y; y < wKeys.length; y++) {
       console.log("at", y);
-      if (wKeys[y].keyID === this.props.activeK) i = y;
+      if (wKeys[y].keyID === this.props.PYE.layers[this.props.activeL].actK)
+        i = y;
     }
     console.log("after", i);
     wKeys[i].keyParams.y = parseInt(e.target.value);
@@ -149,7 +153,8 @@ class ToolBox extends Component {
     let i = null;
     for (y; y < wKeys.length; y++) {
       console.log("at", y);
-      if (wKeys[y].keyID === this.props.activeK) i = y;
+      if (wKeys[y].keyID === this.props.PYE.layers[this.props.activeL].actK)
+        i = y;
     }
     console.log("after", i);
     wKeys[i].keyParams.z = parseInt(e.target.value);
@@ -179,7 +184,8 @@ class ToolBox extends Component {
     let i = null;
     for (y; y < wKeys.length; y++) {
       console.log("at", y);
-      if (wKeys[y].keyID === this.props.activeK) i = y;
+      if (wKeys[y].keyID === this.props.PYE.layers[this.props.activeL].actK)
+        i = y;
     }
     console.log("after", i);
     wKeys[i].keyParams.r = parseInt(e.target.value);
@@ -209,7 +215,8 @@ class ToolBox extends Component {
     let i = null;
     for (y; y < wKeys.length; y++) {
       console.log("at", y);
-      if (wKeys[y].keyID === this.props.activeK) i = y;
+      if (wKeys[y].keyID === this.props.PYE.layers[this.props.activeL].actK)
+        i = y;
     }
     console.log("after", i);
     wKeys[i].keyParams.o = parseInt(e.target.value);
@@ -273,8 +280,8 @@ class ToolBox extends Component {
             zIndex: 100,
             background: c3,
             color: bg3,
-            top: "400px",
-            left: "20px",
+            top: "200px",
+            right: "20px",
           }}
         >
           {this.props.PYE.layers[this.props.activeL].layerType !== "audio" ||
