@@ -173,361 +173,375 @@ class ArtPreset extends Component {
   bakePYE = (e) => {
     e.preventDefault();
     console.log("go mint");
-    const randy = (Math.random() * 10 ** 8).toFixed(),
-    const PYE =  {
-    id: randy,
-    vrf: false,
-    author: 0x0,
-    name: this.state.name,
-    symbol: this.state.symbol,
-    description: this.state.description,
-    format: {
-      // Token Format
-      formatX:  this.state.format === "instagram" ? 1080 : 
-                this.state.format === "facebook" ? 1080 :
-                this.state.format === "pinterest" ? 1080 :
-                this.state.format === "twitter" ? 1080 :
-                this.state.format === "a4p" ? 1080 :
-                this.state.format === "a4l" ? 1080 :
-                this.state.format === "hd" ? 1080 :
-                this.state.format === "ws" ? 1080 :
-                null, // Token width
-      formatY:  this.state.format === "instagram" ? 1080 : 
-                this.state.format === "facebook" ? 1080 :
-                this.state.format === "pinterest" ? 1080 :
-                this.state.format === "twitter" ? 1080 :
-                this.state.format === "a4p" ? 1080 :
-                this.state.format === "a4l" ? 1080 :
-                this.state.format === "hd" ? 1080 :
-                this.state.format === "ws" ? 1080 :
-                null, // Token height
-    },
+    const randy = (Math.random() * 10 ** 8).toFixed();
+    const PYE = {
+      id: randy,
+      vrf: false,
+      author: 0x0,
+      name: this.state.name,
+      symbol: this.state.symbol,
+      description: this.state.description,
+      format: {
+        // Token Format
+        formatX:
+          this.state.format === "instagram"
+            ? 1080
+            : this.state.format === "facebook"
+            ? 1080
+            : this.state.format === "pinterest"
+            ? 1080
+            : this.state.format === "twitter"
+            ? 1080
+            : this.state.format === "a4p"
+            ? 1080
+            : this.state.format === "a4l"
+            ? 1080
+            : this.state.format === "hd"
+            ? 1080
+            : this.state.format === "ws"
+            ? 1080
+            : null, // Token width
+        formatY:
+          this.state.format === "instagram"
+            ? 1080
+            : this.state.format === "facebook"
+            ? 1080
+            : this.state.format === "pinterest"
+            ? 1080
+            : this.state.format === "twitter"
+            ? 1080
+            : this.state.format === "a4p"
+            ? 1080
+            : this.state.format === "a4l"
+            ? 1080
+            : this.state.format === "hd"
+            ? 1080
+            : this.state.format === "ws"
+            ? 1080
+            : null, // Token height
+      },
 
-    layers: [
-      {
-        actK: 0,
-        layerID: 0, // layerID
-        layerName: "BG1", // layerName
-        layerType: "no", // Type of Layer // empty / image / text / form / audio / video
-        layerData: {
-          access: {
-            private: false,
-            limitedTo: [],
-          }, // access object
-          file: this.state.fileBG1, // IPFS hash
-          text: null, // text to display in text layer
-          font: null, // font to display in text layer
-        },
-        layerOracle: {
-          // oracle object
-          type: this.state.fxBG1,
-          name: this.state.fxBG1, // Oracle Feed Name
-          stamps: [], // THE GRAPH IMPORT timestamps of Oracle
-          starter: null, // Initial Custom Start Price at Mint // Default Real Time Value NOW
-        },
-        exTrigger: {
-          // External Trigger Object
-          abi: null, // contract ABI
-          contractAdr: null, // contract address
-          funcName: null, // function to call
-          funcParams: null, // params to call in function (optional)
-        },
-        keys: [
-          {
-            keyID: 0,
-            keyParams: {
-              v: 0, // oracle value TRIGGER
-              e: false, // external triggered by thhis key boolean
-              x: this.state.xBG1, // x position in % (-100 - 100)
-              y: this.state.yBG1, // y position in % (-100 - 100)
-              z: 100, // fixed scale (10 - 500)
-              p: 0, // x/y ratio // default 0(1:1) // min -1(10:1) max 1(1:10)
-              o: this.state.oBG1, // opacity (0 - 100)
-              r: this.state.rBG1, // rotation (-360 - 360)
-              b: 0, // border thickness (1 - 5)
-              c: null, // font and border color in #HEX // (#000000 - #ffffff)
-              h: null, // bgcolor in #HEX // (#000000 - #ffffff)
-              lc: 0, // left cut in timeline from start // video and audio only
-              rc: 0, // right cut in timeline from end // video and audio only
-              pl: false, // play timeline // video and audio only
-              re: false, // restart play timeline // video and audio only
-              ps: 0, // pause in timeline // video and audio only
-              gp: 0,
-              gs: 0,
-              st: false, // stop and reset// video and audio only
-              lp: false, // loop // video and audio only
-              vl: 63, // audio volume // video and audio only
-              pn: 63, // l r pan //
-            },
+      layers: [
+        {
+          actK: 0,
+          layerID: 0, // layerID
+          layerName: "BG1", // layerName
+          layerType: "no", // Type of Layer // empty / image / text / form / audio / video
+          layerData: {
+            access: {
+              private: false,
+              limitedTo: [],
+            }, // access object
+            file: this.state.fileBG1, // IPFS hash
+            text: null, // text to display in text layer
+            font: null, // font to display in text layer
           },
-        ],
-      },
-      {
-        actK: 0,
-        layerID: 1, // layerID
-        layerName: "BG2", // layerName
-        layerType: "img", // Type of Layer // empty / img / text / form / audio / video
-        layerData: {
-          access: {
-            private: false,
-            limitedTo: [],
-          }, // access object
-          file: this.state.fileBG2, // IPFS hash
-          text: null, // text to display in text layer
-          font: null, // font to display in text layer
-        },
-        layerOracle: {
-          // oracle object
-          type: this.state.fxBG2,
-          name: this.state.fxBG2, // Oracle Feed Name
-          stamps: [], // THE GRAPH IMPORT timestamps of Oracle
-          starter: 0, // Initial Custom Start Price at Mint // Default Real Time Value NOW
-        },
-        exTrigger: {
-          // External Trigger Object
-          abi: null, // contract ABI
-          contractAdr: null, // contract address
-          funcName: null, // function to call
-          funcParams: null, // params to call in function (optional)
-        },
-        keys: [
-          {
-            keyID: 0,
-            keyParams: {
-              v: 0, // oracle value TRIGGER
-              e: false, // external triggered by thhis key boolean
-              x: this.state.xBG2, // x position in % (-100 - 100)
-              y: this.state.yBG2, // y position in % (-100 - 100)
-              z: 90, // fixed scale (10 - 500)
-              p: 0, // x/y ratio // default 0(1:1) // min -1(10:1) max 1(1:10)
-              o: this.state.oBG2, // opacity (0 - 100)
-              r: this.state.rBG2, // rotation (-360 - 360)
-              b: 0, // border thickness (1 - 5)
-              c: null, // font and border color in #HEX // (#000000 - #ffffff)
-              h: null, // bgcolor in #HEX // (#000000 - #ffffff)
-              lc: 0, // left cut in timeline from start // video and audio only
-              rc: 0, // right cut in timeline from end // video and audio only
-              pl: false, // play timeline // video and audio only
-              re: false, // restart play timeline // video and audio only
-              ps: 0, // pause in timeline // video and audio only
-              gp: 0,
-              gs: 0,
-              st: false, // stop and reset// video and audio only
-              lp: false, // loop // video and audio only
-              vl: 63, // audio volume // video and audio only
-              pn: 63, // l r pan //
-            },
+          layerOracle: {
+            // oracle object
+            type: this.state.fxBG1,
+            name: this.state.fxBG1, // Oracle Feed Name
+            stamps: [], // THE GRAPH IMPORT timestamps of Oracle
+            starter: null, // Initial Custom Start Price at Mint // Default Real Time Value NOW
           },
-        ],
-      },
-      {
-        actK: 0,
-        layerID: 2, // layerID
-        layerName: "OL", // layerName
-        layerType: "img", // Type of Layer // empty / image / text / form / audio / video
-        layerData: {
-          access: {
-            private: false,
-            limitedTo: [],
-          }, // access object
-          file: this.state.fileOL, // IPFS hash
-          text: null, // text to display in text layer
-          font: null, // font to display in text layer
-        },
-        layerOracle: {
-          // oracle object
-          type: this.state.fxOL,
-          name: this.state.fxOL, // Oracle Feed Name
-          stamps: [], // THE GRAPH IMPORT timestamps of Oracle
-          starter: this.state.chosenVal, // Initial Custom Start Price at Mint // Default Real Time Value NOW
-        },
-        exTrigger: {
-          // External Trigger Object
-          abi: null, // contract ABI
-          contractAdr: null, // contract address
-          funcName: null, // function to call
-          funcParams: null, // params to call in function (optional)
-        },
-        keys: [
-          {
-            keyID: 0,
-            keyParams: {
-              v: 0, // oracle value TRIGGER
-              e: false, // external triggered by thhis key boolean
-              x: this.state.xOL1, // x position in % (-100 - 100)
-              y: this.state.xOL1, // y position in % (-100 - 100)
-              z: 100, // fixed scale (10 - 500)
-              p: 0, // x/y ratio // default 0(1:1) // min -1(10:1) max 1(1:10)
-              o: this.state.oOL1, // opacity (0 - 100)
-              r: this.state.rOL1, // rotation (-360 - 360)
-              b: 0, // border thickness (1 - 5)
-              c: null, // font and border color in #HEX // (#000000 - #ffffff)
-              h: null, // bgcolor in #HEX // (#000000 - #ffffff)
-              lc: 0, // left cut in timeline from start // video and audio only
-              rc: 0, // right cut in timeline from end // video and audio only
-              pl: false, // play timeline // video and audio only
-              re: false, // restart play timeline // video and audio only
-              ps: 0, // pause in timeline // video and audio only
-              gp: 0,
-              gs: 0,
-              st: false, // stop and reset// video and audio only
-              lp: false, // loop // video and audio only
-              vl: 63, // audio volume // video and audio only
-              pn: 63, // l r pan //
-            },
+          exTrigger: {
+            // External Trigger Object
+            abi: null, // contract ABI
+            contractAdr: null, // contract address
+            funcName: null, // function to call
+            funcParams: null, // params to call in function (optional)
           },
-          {
-            keyID: 1,
-            keyParams: {
-              v: 0, // oracle value TRIGGER
-              e: false, // external triggered by thhis key boolean
-              x: this.state.xOL2, // x position in % (-100 - 100)
-              y: this.state.xOL2, // y position in % (-100 - 100)
-              z: 100, // fixed scale (10 - 500)
-              p: 0, // x/y ratio // default 0(1:1) // min -1(10:1) max 1(1:10)
-              o: this.state.oOL2, // opacity (0 - 100)
-              r: this.state.rOL2, // rotation (-360 - 360)
-              b: 0, // border thickness (1 - 5)
-              c: null, // font and border color in #HEX // (#000000 - #ffffff)
-              h: null, // bgcolor in #HEX // (#000000 - #ffffff)
-              lc: 0, // left cut in timeline from start // video and audio only
-              rc: 0, // right cut in timeline from end // video and audio only
-              pl: false, // play timeline // video and audio only
-              re: false, // restart play timeline // video and audio only
-              ps: 0, // pause in timeline // video and audio only
-              gp: 0,
-              gs: 0,
-              st: false, // stop and reset// video and audio only
-              lp: false, // loop // video and audio only
-              vl: 63, // audio volume // video and audio only
-              pn: 63, // l r pan //
+          keys: [
+            {
+              keyID: 0,
+              keyParams: {
+                v: 0, // oracle value TRIGGER
+                e: false, // external triggered by thhis key boolean
+                x: this.state.xBG1, // x position in % (-100 - 100)
+                y: this.state.yBG1, // y position in % (-100 - 100)
+                z: 100, // fixed scale (10 - 500)
+                p: 0, // x/y ratio // default 0(1:1) // min -1(10:1) max 1(1:10)
+                o: this.state.oBG1, // opacity (0 - 100)
+                r: this.state.rBG1, // rotation (-360 - 360)
+                b: 0, // border thickness (1 - 5)
+                c: null, // font and border color in #HEX // (#000000 - #ffffff)
+                h: null, // bgcolor in #HEX // (#000000 - #ffffff)
+                lc: 0, // left cut in timeline from start // video and audio only
+                rc: 0, // right cut in timeline from end // video and audio only
+                pl: false, // play timeline // video and audio only
+                re: false, // restart play timeline // video and audio only
+                ps: 0, // pause in timeline // video and audio only
+                gp: 0,
+                gs: 0,
+                st: false, // stop and reset// video and audio only
+                lp: false, // loop // video and audio only
+                vl: 63, // audio volume // video and audio only
+                pn: 63, // l r pan //
+              },
             },
+          ],
+        },
+        {
+          actK: 0,
+          layerID: 1, // layerID
+          layerName: "BG2", // layerName
+          layerType: "img", // Type of Layer // empty / img / text / form / audio / video
+          layerData: {
+            access: {
+              private: false,
+              limitedTo: [],
+            }, // access object
+            file: this.state.fileBG2, // IPFS hash
+            text: null, // text to display in text layer
+            font: null, // font to display in text layer
           },
-        ],
-      },
-      {
-        actK: 0,
-        layerID: 3, // layerID
-        layerName: "FG1", // layerName
-        layerType: "img", // Type of Layer // empty / image / text / form / audio / video
-        layerData: {
-          access: {
-            private: false,
-            limitedTo: [],
-          }, // access object
-          file: this.state.fileFG1, // IPFS hash
-          text: null, // text to display in text layer
-          font: null, // font to display in text layer
-        },
-        layerOracle: {
-          // oracle object
-          type: this.state.fxFG1,
-          name: this.state.fxFG1, // Oracle Feed Name
-          stamps: [], // THE GRAPH IMPORT timestamps of Oracle
-          starter: null, // Initial Custom Start Price at Mint // Default Real Time Value NOW
-        },
-        exTrigger: {
-          // External Trigger Object
-          abi: null, // contract ABI
-          contractAdr: null, // contract address
-          funcName: null, // function to call
-          funcParams: null, // params to call in function (optional)
-        },
-        keys: [
-          {
-            keyID: 0,
-            keyParams: {
-              v: 0, // oracle value TRIGGER
-              e: false, // external triggered by thhis key boolean
-              x: this.state.xFG1, // x position in % (-100 - 100)
-              y: this.state.yFG1, // y position in % (-100 - 100)
-              z: 100, // fixed scale (10 - 500)
-              p: 0, // x/y ratio // default 0(1:1) // min -1(10:1) max 1(1:10)
-              o: this.state.oFG1, // opacity (0 - 100)
-              r: this.state.rFG1, // rotation (-360 - 360)
-              b: 0, // border thickness (1 - 5)
-              c: null, // font and border color in #HEX // (#000000 - #ffffff)
-              h: null, // bgcolor in #HEX // (#000000 - #ffffff)
-              lc: 0, // left cut in timeline from start // video and audio only
-              rc: 0, // right cut in timeline from end // video and audio only
-              pl: false, // play timeline // video and audio only
-              re: false, // restart play timeline // video and audio only
-              ps: 0, // pause in timeline // video and audio only
-              gp: 0,
-              gs: 0,
-              st: false, // stop and reset// video and audio only
-              lp: false, // loop // video and audio only
-              vl: 63, // audio volume // video and audio only
-              pn: 63, // l r pan //
+          layerOracle: {
+            // oracle object
+            type: this.state.fxBG2,
+            name: this.state.fxBG2, // Oracle Feed Name
+            stamps: [], // THE GRAPH IMPORT timestamps of Oracle
+            starter: 0, // Initial Custom Start Price at Mint // Default Real Time Value NOW
+          },
+          exTrigger: {
+            // External Trigger Object
+            abi: null, // contract ABI
+            contractAdr: null, // contract address
+            funcName: null, // function to call
+            funcParams: null, // params to call in function (optional)
+          },
+          keys: [
+            {
+              keyID: 0,
+              keyParams: {
+                v: 0, // oracle value TRIGGER
+                e: false, // external triggered by thhis key boolean
+                x: this.state.xBG2, // x position in % (-100 - 100)
+                y: this.state.yBG2, // y position in % (-100 - 100)
+                z: 90, // fixed scale (10 - 500)
+                p: 0, // x/y ratio // default 0(1:1) // min -1(10:1) max 1(1:10)
+                o: this.state.oBG2, // opacity (0 - 100)
+                r: this.state.rBG2, // rotation (-360 - 360)
+                b: 0, // border thickness (1 - 5)
+                c: null, // font and border color in #HEX // (#000000 - #ffffff)
+                h: null, // bgcolor in #HEX // (#000000 - #ffffff)
+                lc: 0, // left cut in timeline from start // video and audio only
+                rc: 0, // right cut in timeline from end // video and audio only
+                pl: false, // play timeline // video and audio only
+                re: false, // restart play timeline // video and audio only
+                ps: 0, // pause in timeline // video and audio only
+                gp: 0,
+                gs: 0,
+                st: false, // stop and reset// video and audio only
+                lp: false, // loop // video and audio only
+                vl: 63, // audio volume // video and audio only
+                pn: 63, // l r pan //
+              },
             },
+          ],
+        },
+        {
+          actK: 0,
+          layerID: 2, // layerID
+          layerName: "OL", // layerName
+          layerType: "img", // Type of Layer // empty / image / text / form / audio / video
+          layerData: {
+            access: {
+              private: false,
+              limitedTo: [],
+            }, // access object
+            file: this.state.fileOL, // IPFS hash
+            text: null, // text to display in text layer
+            font: null, // font to display in text layer
           },
-        ],
-      },
-      {
-        actK: 0,
-        layerID: 4, // layerID
-        layerName: "FG2", // layerName
-        layerType: "img", // Type of Layer // empty / image / text / form / audio / video
-        layerData: {
-          access: {
-            private: false,
-            limitedTo: [],
-          }, // access object
-          file: this.state.fileFG2, // IPFS hash
-          text: null, // text to display in text layer
-          font: null, // font to display in text layer
-        },
-        layerOracle: {
-          // oracle object
-          type: this.state.fxFG2,
-          name: this.state.fxFG2, // Oracle Feed Name
-          stamps: [], // THE GRAPH IMPORT timestamps of Oracle
-          starter: null, // Initial Custom Start Price at Mint // Default Real Time Value NOW
-        },
-        exTrigger: {
-          // External Trigger Object
-          abi: null, // contract ABI
-          contractAdr: null, // contract address
-          funcName: null, // function to call
-          funcParams: null, // params to call in function (optional)
-        },
-        keys: [
-          {
-            keyID: 0,
-            keyParams: {
-              v: 0, // oracle value TRIGGER
-              e: false, // external triggered by thhis key boolean
-              x: this.state.xFG2, // x position in % (-100 - 100)
-              y: this.state.yFG2, // y position in % (-100 - 100)
-              z: 100, // fixed scale (10 - 500)
-              p: 0, // x/y ratio // default 0(1:1) // min -1(10:1) max 1(1:10)
-              o: this.state.oFG2, // opacity (0 - 100)
-              r: this.state.rFG2, // rotation (-360 - 360)
-              b: 0, // border thickness (1 - 5)
-              c: null, // font and border color in #HEX // (#000000 - #ffffff)
-              h: null, // bgcolor in #HEX // (#000000 - #ffffff)
-              lc: 0, // left cut in timeline from start // video and audio only
-              rc: 0, // right cut in timeline from end // video and audio only
-              pl: false, // play timeline // video and audio only
-              re: false, // restart play timeline // video and audio only
-              ps: 0, // pause in timeline // video and audio only
-              gp: 0,
-              gs: 0,
-              st: false, // stop and reset// video and audio only
-              lp: false, // loop // video and audio only
-              vl: 63, // audio volume // video and audio only
-              pn: 63, // l r pan //
+          layerOracle: {
+            // oracle object
+            type: this.state.fxOL,
+            name: this.state.fxOL, // Oracle Feed Name
+            stamps: [], // THE GRAPH IMPORT timestamps of Oracle
+            starter: this.state.chosenVal, // Initial Custom Start Price at Mint // Default Real Time Value NOW
+          },
+          exTrigger: {
+            // External Trigger Object
+            abi: null, // contract ABI
+            contractAdr: null, // contract address
+            funcName: null, // function to call
+            funcParams: null, // params to call in function (optional)
+          },
+          keys: [
+            {
+              keyID: 0,
+              keyParams: {
+                v: 0, // oracle value TRIGGER
+                e: false, // external triggered by thhis key boolean
+                x: this.state.xOL1, // x position in % (-100 - 100)
+                y: this.state.xOL1, // y position in % (-100 - 100)
+                z: 100, // fixed scale (10 - 500)
+                p: 0, // x/y ratio // default 0(1:1) // min -1(10:1) max 1(1:10)
+                o: this.state.oOL1, // opacity (0 - 100)
+                r: this.state.rOL1, // rotation (-360 - 360)
+                b: 0, // border thickness (1 - 5)
+                c: null, // font and border color in #HEX // (#000000 - #ffffff)
+                h: null, // bgcolor in #HEX // (#000000 - #ffffff)
+                lc: 0, // left cut in timeline from start // video and audio only
+                rc: 0, // right cut in timeline from end // video and audio only
+                pl: false, // play timeline // video and audio only
+                re: false, // restart play timeline // video and audio only
+                ps: 0, // pause in timeline // video and audio only
+                gp: 0,
+                gs: 0,
+                st: false, // stop and reset// video and audio only
+                lp: false, // loop // video and audio only
+                vl: 63, // audio volume // video and audio only
+                pn: 63, // l r pan //
+              },
             },
+            {
+              keyID: 1,
+              keyParams: {
+                v: 0, // oracle value TRIGGER
+                e: false, // external triggered by thhis key boolean
+                x: this.state.xOL2, // x position in % (-100 - 100)
+                y: this.state.xOL2, // y position in % (-100 - 100)
+                z: 100, // fixed scale (10 - 500)
+                p: 0, // x/y ratio // default 0(1:1) // min -1(10:1) max 1(1:10)
+                o: this.state.oOL2, // opacity (0 - 100)
+                r: this.state.rOL2, // rotation (-360 - 360)
+                b: 0, // border thickness (1 - 5)
+                c: null, // font and border color in #HEX // (#000000 - #ffffff)
+                h: null, // bgcolor in #HEX // (#000000 - #ffffff)
+                lc: 0, // left cut in timeline from start // video and audio only
+                rc: 0, // right cut in timeline from end // video and audio only
+                pl: false, // play timeline // video and audio only
+                re: false, // restart play timeline // video and audio only
+                ps: 0, // pause in timeline // video and audio only
+                gp: 0,
+                gs: 0,
+                st: false, // stop and reset// video and audio only
+                lp: false, // loop // video and audio only
+                vl: 63, // audio volume // video and audio only
+                pn: 63, // l r pan //
+              },
+            },
+          ],
+        },
+        {
+          actK: 0,
+          layerID: 3, // layerID
+          layerName: "FG1", // layerName
+          layerType: "img", // Type of Layer // empty / image / text / form / audio / video
+          layerData: {
+            access: {
+              private: false,
+              limitedTo: [],
+            }, // access object
+            file: this.state.fileFG1, // IPFS hash
+            text: null, // text to display in text layer
+            font: null, // font to display in text layer
           },
-        ],
-      },
-    ],
-  };
-    this.mintPYE(
-      randy,
-      JSON.stringify({ id: randy }),
-      0
-    );
+          layerOracle: {
+            // oracle object
+            type: this.state.fxFG1,
+            name: this.state.fxFG1, // Oracle Feed Name
+            stamps: [], // THE GRAPH IMPORT timestamps of Oracle
+            starter: null, // Initial Custom Start Price at Mint // Default Real Time Value NOW
+          },
+          exTrigger: {
+            // External Trigger Object
+            abi: null, // contract ABI
+            contractAdr: null, // contract address
+            funcName: null, // function to call
+            funcParams: null, // params to call in function (optional)
+          },
+          keys: [
+            {
+              keyID: 0,
+              keyParams: {
+                v: 0, // oracle value TRIGGER
+                e: false, // external triggered by thhis key boolean
+                x: this.state.xFG1, // x position in % (-100 - 100)
+                y: this.state.yFG1, // y position in % (-100 - 100)
+                z: 100, // fixed scale (10 - 500)
+                p: 0, // x/y ratio // default 0(1:1) // min -1(10:1) max 1(1:10)
+                o: this.state.oFG1, // opacity (0 - 100)
+                r: this.state.rFG1, // rotation (-360 - 360)
+                b: 0, // border thickness (1 - 5)
+                c: null, // font and border color in #HEX // (#000000 - #ffffff)
+                h: null, // bgcolor in #HEX // (#000000 - #ffffff)
+                lc: 0, // left cut in timeline from start // video and audio only
+                rc: 0, // right cut in timeline from end // video and audio only
+                pl: false, // play timeline // video and audio only
+                re: false, // restart play timeline // video and audio only
+                ps: 0, // pause in timeline // video and audio only
+                gp: 0,
+                gs: 0,
+                st: false, // stop and reset// video and audio only
+                lp: false, // loop // video and audio only
+                vl: 63, // audio volume // video and audio only
+                pn: 63, // l r pan //
+              },
+            },
+          ],
+        },
+        {
+          actK: 0,
+          layerID: 4, // layerID
+          layerName: "FG2", // layerName
+          layerType: "img", // Type of Layer // empty / image / text / form / audio / video
+          layerData: {
+            access: {
+              private: false,
+              limitedTo: [],
+            }, // access object
+            file: this.state.fileFG2, // IPFS hash
+            text: null, // text to display in text layer
+            font: null, // font to display in text layer
+          },
+          layerOracle: {
+            // oracle object
+            type: this.state.fxFG2,
+            name: this.state.fxFG2, // Oracle Feed Name
+            stamps: [], // THE GRAPH IMPORT timestamps of Oracle
+            starter: null, // Initial Custom Start Price at Mint // Default Real Time Value NOW
+          },
+          exTrigger: {
+            // External Trigger Object
+            abi: null, // contract ABI
+            contractAdr: null, // contract address
+            funcName: null, // function to call
+            funcParams: null, // params to call in function (optional)
+          },
+          keys: [
+            {
+              keyID: 0,
+              keyParams: {
+                v: 0, // oracle value TRIGGER
+                e: false, // external triggered by thhis key boolean
+                x: this.state.xFG2, // x position in % (-100 - 100)
+                y: this.state.yFG2, // y position in % (-100 - 100)
+                z: 100, // fixed scale (10 - 500)
+                p: 0, // x/y ratio // default 0(1:1) // min -1(10:1) max 1(1:10)
+                o: this.state.oFG2, // opacity (0 - 100)
+                r: this.state.rFG2, // rotation (-360 - 360)
+                b: 0, // border thickness (1 - 5)
+                c: null, // font and border color in #HEX // (#000000 - #ffffff)
+                h: null, // bgcolor in #HEX // (#000000 - #ffffff)
+                lc: 0, // left cut in timeline from start // video and audio only
+                rc: 0, // right cut in timeline from end // video and audio only
+                pl: false, // play timeline // video and audio only
+                re: false, // restart play timeline // video and audio only
+                ps: 0, // pause in timeline // video and audio only
+                gp: 0,
+                gs: 0,
+                st: false, // stop and reset// video and audio only
+                lp: false, // loop // video and audio only
+                vl: 63, // audio volume // video and audio only
+                pn: 63, // l r pan //
+              },
+            },
+          ],
+        },
+      ],
+    };
+    this.mintPYE(randy, JSON.stringify(PYE), 0);
   };
   async mintPYE(_ID, _PYEO, _MLQ) {
     this.setState({ mint: true, fnls: false });
