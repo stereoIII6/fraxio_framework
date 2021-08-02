@@ -1,0 +1,217 @@
+body {
+  margin: 0px auto;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+.App {
+  margin: 0px auto;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+#top {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  top: 0;
+  left: 0;
+  background: ivory;
+  z-index: 100;
+}
+#bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-image: url("https://ipfs.io/ipfs/QmeWNBdV7ZuLfcqzUyPCGh1rcB3BU2iiwaua23tri8YSsq");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#appBtn {
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+  font-size: 1.8em;
+  font-weight: 100;
+  padding: 0em 1em 0em 1em;
+  border: 1px solid;
+  border-radius: 9px;
+  background: mediumseagreen;
+  color: ivory;
+}
+#logo {
+  width: 30px;
+  height: auto;
+  float: left;
+}
+#logotxt {
+  width: auto;
+  height: auto;
+  float: left;
+  margin-left: 10px;
+  margin-top: -3px;
+}
+#frx {
+  position: relative;
+  top: 20px;
+  left: 20px;
+  width: 300px;
+  height: auto;
+  font-family: comfortaa;
+  font-weight: 100;
+  font-size: 1.8em;
+}
+#slogan {
+  position: relative;
+  top: 400px;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-size: 2.8em;
+  font-family: comfortaa;
+  font-weight: 100;
+  color: dimgray;
+}
+#oneliner {
+  position: relative;
+  top: 420px;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-size: 1.4em;
+  font-family: comfortaa;
+  font-weight: 100;
+  color: dimgray;
+}
+#screenBtn {
+  font-size: 2.8em;
+  font-weight: 100;
+  padding: 0.5em 1.2em 0.5em 1.2em;
+  border: 1px solid cornflowerblue;
+  border-radius: 9px;
+  color: ivory;
+  background: cornflowerblue;
+}
+#scr {
+  position: absolute;
+  top: 550px;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+#more {
+  margin-top: 20px;
+  width: 100px;
+  opacity: 0.5;
+  z-index: 101;
+}
+#more:hover {
+  opacity: 1;
+}
+#tween {
+  width: 100%;
+  min-height: 800px;
+  height: auto;
+  background: lightgray;
+  color: dimgray;
+  text-align: center;
+  margin-top: 700px;
+}
+#form {
+  width: 100%;
+  min-height: 200px;
+  height: auto;
+}
+#screen {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  min-height: 900px;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+#artBoard,
+#layerMod {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("https://ipfs.io/ipfs/");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background: rgba(0, 127, 0, 0.3);
+  overflow: hidden;
+}
+label {
+  margin-top: 0px;
+  font-size: 0.2em;
+}
+#board {
+  position: relative;
+  top: 20px;
+  left: 0px;
+  width: 100%;
+  height: 1200px;
+  background: rgba(0, 0, 0, 0.1);
+}
+#modBg {
+  position: relative;
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  height: 40%;
+  background: ivory;
+  border: 1px solid dimgray;
+  border-radius: 9px;
+  padding: 18px;
+  font-size: 2.8em;
+  font-family: comfortaa;
+  font-weight: 100;
+  color: dimgray;
+}
+hr {
+  height: 1px;
+  background: tomato;
+}
+#newLayer {
+  float: right;
+  margin-top: 29px;
+  margin-right: 20px;
+  font-size: 1em;
+  font-weight: 100;
+  padding: 0em 0.5em 0.2em 0.5em;
+  border: 1px solid;
+  border-radius: 9px;
+  background: mediumseagreen;
+  color: ivory;
+}
+#mainBtns {
+  float: right;
+  margin-top: 29px;
+  margin-right: 20px;
+  font-size: 1em;
+  font-weight: 100;
+  padding: 0em 0.5em 0.2em 0.5em;
+  border: 1px solid;
+  border-radius: 9px;
+  background: mediumseagreen;
+  color: ivory;
+}
+#close {
+  float: right;
+  margin-top: -2px;
+  margin-right: 0px;
+  font-size: 0.8em;
+  font-weight: 700;
+  padding: 0em 0.5em 0.1em 0.5em;
+  border: 1px solid black;
+  border-radius: 28px;
+  background: tomato;
+  color: ivory;
+}
