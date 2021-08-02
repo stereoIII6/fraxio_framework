@@ -1,11 +1,11 @@
 .c {
   position: absolute;
 
-  max-width: 100%;
+  width: "100%";
   top: 0px;
-  max-height: 220px;
+  max-height: 300px;
   width: 100%;
-  height: 220px;
+  height: 300px;
   cursor: pointer;
   will-change: transform, opacity;
   border-radius: 9px;
@@ -17,11 +17,11 @@
 }
 
 .back {
-  background-image: url(https://ipfs.io/ipfs/QmcuixeiT2z79LmvmxjGoNqZ9cPouMh19D49sp7E8Pguih);
+  background-image: url(https://ipfs.io/ipfs/QmdAPLjpb3nvS9jtY1f6XM1wyXGw34eXCLdcyHXxq893fY);
 }
 
 .front {
-  background-image: url(https://ipfs.io/ipfs/QmaX6UXZcYW1ACTHt7fGPK4iAfwcrhm5orNt9dFeBomHz4);
+  background-image: url(https://ipfs.io/ipfs/QmfPaSppwJwpFjtZWCa9skSu2TR4XPy6p3M6w6AKYDZm6G);
 }
 
 .container {
