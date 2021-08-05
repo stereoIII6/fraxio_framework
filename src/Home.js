@@ -13,6 +13,7 @@ class Home extends Component {
     more:
       "Connect real world data and digital assets without the need for code",
     nl_email: "",
+    nft: true,
   };
   moreNow = (e) => {
     // console.log("more");
@@ -27,6 +28,9 @@ class Home extends Component {
     this.setState({ nl_email: e.target.value });
   };
   nlPush = (e) => {};
+  changeNL = (e) => {
+    this.setState({ nft: !this.state.nft });
+  };
   render() {
     const { headLine, more } = this.state;
     return (
@@ -46,7 +50,6 @@ class Home extends Component {
             alt=""
             onClick={this.moreNow}
           />
-          <AsyncSpring />
         </div>
         <div id="form">
           <Form>
@@ -58,15 +61,16 @@ class Home extends Component {
                 id="valid"
                 style={{
                   fontSize: "2em",
-
-                  width: "5%",
+                  width: "15%",
                   float: "left",
                 }}
+                value={this.state.nft}
+                onChange={this.changeNL}
               >
-                <option name="nft" value="nft" id="nft">
+                <option name="nft" value={true} id="nft">
                   NFT
                 </option>
-                <option name="email" value="email" id="email">
+                <option name="email" value={false} id="email">
                   EMAIL
                 </option>
               </Input>
@@ -74,12 +78,16 @@ class Home extends Component {
                 type="email"
                 id="nlEmail"
                 value={this.state.nl_email}
-                placeholder="Enter Your Email"
+                placeholder={
+                  this.state.nft
+                    ? "Enter Your Wallet Address"
+                    : "Enter Your Email"
+                }
                 onChange={this.onNewsLetter}
                 style={{
                   fontSize: "2em",
                   fontFamily: "comfortaa",
-                  width: "65%",
+                  width: "55%",
                   float: "left",
                 }}
               />

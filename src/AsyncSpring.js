@@ -22,7 +22,7 @@ class AsyncSpring extends PureComponent {
   render() {
     return (
       <div
-        style={{ background: "red", width: "100%", height: "800px" }}
+        style={{ background: "none", width: "100%", height: "800px" }}
         onMouseMove={this.mMove}
       >
         <Spring

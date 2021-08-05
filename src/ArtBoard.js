@@ -6,6 +6,7 @@ import NewLayer from "./NewLayer";
 import { grabFeed } from "./action/userActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import ArtPreset from "./ArtPreset";
 const RinkPFAddress = "0x7CAc519Ab2245938DDd087eD29A16794CC090EaD";
 class ArtBoard extends Component {
   static propTypes = {
@@ -87,6 +88,7 @@ class ArtBoard extends Component {
     return (
       <div id="artBoard">
         <div id="board">
+          {/**
           <Button
             id="mainBtns"
             onClick={this.doImport}
@@ -114,8 +116,9 @@ class ArtBoard extends Component {
             <img
               src="https://ipfs.io/ipfs/QmettwE4WigZAiEQ5EFNR9hJGiYohv5fhG5zGZVBDLvora"
               alt=""
+              style={{ width: "18px", height: "18px" }}
             />
-          </Button>
+          </Button> */}
           <br />
           <br />
           <div
@@ -144,6 +147,9 @@ class ArtBoard extends Component {
             }}
           >
             Add a new Layer
+          </div>
+          <div className="container">
+            <ArtPreset />
           </div>
           <div
             id="layerMod"

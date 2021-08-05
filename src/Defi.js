@@ -15,13 +15,11 @@ class Defi extends Component {
     user: PropTypes.object,
   };
   state = {
-    screenMode: "about",
     users: null,
   };
   onClick = (e) => {
     e.preventDefault();
     console.log(e.target.id);
-    this.setState({ screenMode: e.target.id });
   };
 
   render() {
