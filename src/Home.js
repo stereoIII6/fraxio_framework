@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Button, Form, InputGroup, Input } from "reactstrap";
 import { onCreateNow } from "./action/userActions";
 import AsyncSpring from "./AsyncSpring";
+import YoutubeEmbed from "./YoutubeEmbed";
 class Home extends Component {
   static propTypes = {
     onCreateNow: PropTypes.func,
@@ -14,6 +15,7 @@ class Home extends Component {
       "Connect real world data and digital assets without the need for code",
     nl_email: "",
     nft: true,
+    url: "ZDU0Yz1EG3M",
   };
   moreNow = (e) => {
     // console.log("more");
@@ -49,7 +51,10 @@ class Home extends Component {
             src="https://ipfs.io/ipfs/QmUZwzXZRYToP8PvN7r39aAKpMYBQZPfDkM8FyHBJ7r3Rs"
             alt=""
             onClick={this.moreNow}
+            style={{ marginBottom: "2em" }}
           />
+
+          <YoutubeEmbed embedId={this.state.url} />
         </div>
         <div id="form">
           <Form>

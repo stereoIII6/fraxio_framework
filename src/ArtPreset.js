@@ -18,6 +18,8 @@ const ipfs = IpfsHttpClient({
 });
 class ArtPreset extends Component {
   state = {
+    rvw: "",
+    review: true,
     name: "",
     symbol: "",
     description: "",
@@ -172,6 +174,11 @@ class ArtPreset extends Component {
     console.log(feed);
     this.setState({ feeds: feed });
   }
+  reviewSet = (e) => {
+    e.preventDefault();
+    console.log("review set // ", this.state.review);
+    this.setState({ rvw: e.target.value, review: !this.state.review });
+  };
   bakePYE = (e) => {
     e.preventDefault();
     console.log("go mint");
@@ -556,7 +563,7 @@ class ArtPreset extends Component {
       .bake(_ID, _PYEO, _MLQ)
       .send({ from: accounts[0] });
     console.log("after mint", result);
-    if (result) this.setState({ mint: false, bgs: true });
+    if (result) this.setState({ mint: false, bgs: false });
   }
   // Input Functions
   onRangeHi = (e) => {
@@ -3112,6 +3119,80 @@ class ArtPreset extends Component {
                     }}
                   />
                 ) : null}
+              </div>
+              <div
+                className="alert alert-info"
+                style={{
+                  textAlign: "center",
+                  display: this.state.review ? "block" : "none",
+                }}
+              >
+                <h3>What would you want us to build next ?</h3>
+                <div className="row">
+                  <Button
+                    value="A Dynamic Photography Calender Preset Preset"
+                    onClick={this.reviewSet}
+                    style={{
+                      width: "40px",
+                      marginBottom: "1em",
+                      marginRight: "1em",
+                    }}
+                  >
+                    A
+                  </Button>
+                  A Dynamic Photography Calender Preset Preset
+                </div>
+                <div className="row">
+                  <Button
+                    value="A Collectible Creator Preset"
+                    onClick={this.reviewSet}
+                    style={{
+                      width: "40px",
+                      marginBottom: "1em",
+                      marginRight: "1em",
+                    }}
+                  >
+                    B
+                  </Button>
+                  A Collectible Creator Preset
+                </div>
+                <div className="row">
+                  <Button
+                    value="A Dynamic Musicalbum Preset"
+                    onClick={this.reviewSet}
+                    style={{
+                      width: "40px",
+                      marginBottom: "1em",
+                      marginRight: "1em",
+                    }}
+                  >
+                    C
+                  </Button>
+                  A Dynamic Musicalbum Preset
+                </div>
+                <div className="row">
+                  <Button
+                    value="A Dynamic Bonus Card Preset"
+                    onClick={this.reviewSet}
+                    style={{
+                      width: "40px",
+                      marginBottom: "1em",
+                      marginRight: "1em",
+                    }}
+                  >
+                    D
+                  </Button>
+                  A Dynamic Bonus Card Preset
+                </div>
+              </div>
+              <div
+                className="alert alert-info"
+                style={{
+                  textAlign: "center",
+                  display: this.state.review ? "none" : "block",
+                }}
+              >
+                <h1>{this.state.rvw}</h1>
               </div>
             </>
           ) : null}
