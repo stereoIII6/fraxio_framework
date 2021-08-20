@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import Web3 from "web3";
 import { getUser } from "./action/userActions.js";
 import Home from "./Home";
-import ArtBoard from "./ArtBoard";
 import Wallet from "./Wallet";
 import EditSel from "./EditSel";
 import Order from "./Order";
