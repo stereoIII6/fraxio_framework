@@ -33,14 +33,14 @@
     "absolutePath": "@openzeppelin/contracts/introspection/IERC165.sol",
     "exportedSymbols": {
       "IERC165": [
-        4531
+        4575
       ]
     },
-    "id": 4532,
+    "id": 4576,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4521,
+        "id": 4565,
         "literals": [
           "solidity",
           ">=",
@@ -51,7 +51,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "33:31:20"
+        "src": "33:31:21"
       },
       {
         "abstract": false,
@@ -59,15 +59,15 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 4522,
+          "id": 4566,
           "nodeType": "StructuredDocumentation",
-          "src": "66:279:20",
+          "src": "66:279:21",
           "text": "@dev Interface of the ERC165 standard, as defined in the\nhttps://eips.ethereum.org/EIPS/eip-165[EIP].\n * Implementers can declare support of contract interfaces, which can then be\nqueried by others ({ERC165Checker}).\n * For an implementation, see {ERC165}."
         },
         "fullyImplemented": false,
-        "id": 4531,
+        "id": 4575,
         "linearizedBaseContracts": [
-          4531
+          4575
         ],
         "name": "IERC165",
         "nodeType": "ContractDefinition",
@@ -75,13 +75,13 @@
           {
             "body": null,
             "documentation": {
-              "id": 4523,
+              "id": 4567,
               "nodeType": "StructuredDocumentation",
-              "src": "370:340:20",
+              "src": "370:340:21",
               "text": "@dev Returns true if this contract implements the interface defined by\n`interfaceId`. See the corresponding\nhttps://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section]\nto learn more about how these ids are created.\n     * This function call must use less than 30 000 gas."
             },
             "functionSelector": "01ffc9a7",
-            "id": 4530,
+            "id": 4574,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -89,18 +89,18 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 4526,
+              "id": 4570,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4525,
+                  "id": 4569,
                   "mutability": "mutable",
                   "name": "interfaceId",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 4530,
-                  "src": "742:18:20",
+                  "scope": 4574,
+                  "src": "742:18:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -108,10 +108,10 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 4524,
+                    "id": 4568,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
-                    "src": "742:6:20",
+                    "src": "742:6:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes4",
                       "typeString": "bytes4"
@@ -121,21 +121,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "741:20:20"
+              "src": "741:20:21"
             },
             "returnParameters": {
-              "id": 4529,
+              "id": 4573,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4528,
+                  "id": 4572,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 4530,
-                  "src": "785:4:20",
+                  "scope": 4574,
+                  "src": "785:4:21",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -143,10 +143,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 4527,
+                    "id": 4571,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "785:4:20",
+                    "src": "785:4:21",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -156,27 +156,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "784:6:20"
+              "src": "784:6:21"
             },
-            "scope": 4531,
-            "src": "715:76:20",
+            "scope": 4575,
+            "src": "715:76:21",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 4532,
-        "src": "346:447:20"
+        "scope": 4576,
+        "src": "346:447:21"
       }
     ],
-    "src": "33:761:20"
+    "src": "33:761:21"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "@openzeppelin/contracts/introspection/IERC165.sol",
       "exportedSymbols": {
         "IERC165": [
-          4531
+          4575
         ]
       }
     },
@@ -193,9 +193,9 @@
             ".0"
           ]
         },
-        "id": 4521,
+        "id": 4565,
         "name": "PragmaDirective",
-        "src": "33:31:20"
+        "src": "33:31:21"
       },
       {
         "attributes": {
@@ -209,19 +209,19 @@
           "contractKind": "interface",
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            4531
+            4575
           ],
           "name": "IERC165",
-          "scope": 4532
+          "scope": 4576
         },
         "children": [
           {
             "attributes": {
               "text": "@dev Interface of the ERC165 standard, as defined in the\nhttps://eips.ethereum.org/EIPS/eip-165[EIP].\n * Implementers can declare support of contract interfaces, which can then be\nqueried by others ({ERC165Checker}).\n * For an implementation, see {ERC165}."
             },
-            "id": 4522,
+            "id": 4566,
             "name": "StructuredDocumentation",
-            "src": "66:279:20"
+            "src": "66:279:21"
           },
           {
             "attributes": {
@@ -235,7 +235,7 @@
               ],
               "name": "supportsInterface",
               "overrides": null,
-              "scope": 4531,
+              "scope": 4575,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -245,9 +245,9 @@
                 "attributes": {
                   "text": "@dev Returns true if this contract implements the interface defined by\n`interfaceId`. See the corresponding\nhttps://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section]\nto learn more about how these ids are created.\n     * This function call must use less than 30 000 gas."
                 },
-                "id": 4523,
+                "id": 4567,
                 "name": "StructuredDocumentation",
-                "src": "370:340:20"
+                "src": "370:340:21"
               },
               {
                 "children": [
@@ -257,7 +257,7 @@
                       "mutability": "mutable",
                       "name": "interfaceId",
                       "overrides": null,
-                      "scope": 4530,
+                      "scope": 4574,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes4",
@@ -270,19 +270,19 @@
                           "name": "bytes4",
                           "type": "bytes4"
                         },
-                        "id": 4524,
+                        "id": 4568,
                         "name": "ElementaryTypeName",
-                        "src": "742:6:20"
+                        "src": "742:6:21"
                       }
                     ],
-                    "id": 4525,
+                    "id": 4569,
                     "name": "VariableDeclaration",
-                    "src": "742:18:20"
+                    "src": "742:18:21"
                   }
                 ],
-                "id": 4526,
+                "id": 4570,
                 "name": "ParameterList",
-                "src": "741:20:20"
+                "src": "741:20:21"
               },
               {
                 "children": [
@@ -292,7 +292,7 @@
                       "mutability": "mutable",
                       "name": "",
                       "overrides": null,
-                      "scope": 4530,
+                      "scope": 4574,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -305,34 +305,34 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 4527,
+                        "id": 4571,
                         "name": "ElementaryTypeName",
-                        "src": "785:4:20"
+                        "src": "785:4:21"
                       }
                     ],
-                    "id": 4528,
+                    "id": 4572,
                     "name": "VariableDeclaration",
-                    "src": "785:4:20"
+                    "src": "785:4:21"
                   }
                 ],
-                "id": 4529,
+                "id": 4573,
                 "name": "ParameterList",
-                "src": "784:6:20"
+                "src": "784:6:21"
               }
             ],
-            "id": 4530,
+            "id": 4574,
             "name": "FunctionDefinition",
-            "src": "715:76:20"
+            "src": "715:76:21"
           }
         ],
-        "id": 4531,
+        "id": 4575,
         "name": "ContractDefinition",
-        "src": "346:447:20"
+        "src": "346:447:21"
       }
     ],
-    "id": 4532,
+    "id": 4576,
     "name": "SourceUnit",
-    "src": "33:761:20"
+    "src": "33:761:21"
   },
   "compiler": {
     "name": "solc",
@@ -340,7 +340,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.1",
-  "updatedAt": "2021-06-30T21:53:37.747Z",
+  "updatedAt": "2021-08-03T11:34:54.335Z",
   "devdoc": {
     "details": "Interface of the ERC165 standard, as defined in the https://eips.ethereum.org/EIPS/eip-165[EIP]. * Implementers can declare support of contract interfaces, which can then be queried by others ({ERC165Checker}). * For an implementation, see {ERC165}.",
     "methods": {

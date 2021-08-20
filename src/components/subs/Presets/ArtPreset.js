@@ -1513,7 +1513,7 @@ class ArtPreset extends Component {
                       />
                     ) : null}
                     {this.state.fileURLBG2 !== null ? (
-                      <Draggable onStop={this.setBG2pos}>
+                      <div>
                         <img
                           src={this.state.fileURLBG2}
                           alt=""
@@ -1534,7 +1534,34 @@ class ArtPreset extends Component {
                           onMouseEnter={this.mBG2tgglOn}
                           onMouseLeave={this.mBG2tgglOff}
                         />
-                      </Draggable>
+                        <Draggable onStop={this.setBG2pos}>
+                          <img
+                            src="https://ipfs.io/ipfs/QmVZPQQScPTxYWezSoWBqSPrzrv9YwnJxabR2RK2ZBASbi"
+                            alt=""
+                            style={{
+                              width: "18px",
+                              height: "auto",
+                              position: "relative",
+                              left: "50%",
+                            }}
+                          />
+                        </Draggable>
+                        <img
+                          src="https://ipfs.io/ipfs/QmdaJCC9ZxzfR8pnWA45BXhXVM8QQvi1UitUHzXaV1pbSn"
+                          alt=""
+                          style={{ width: "18px", height: "auto" }}
+                        />
+                        <img
+                          src="https://ipfs.io/ipfs/QmUcpGBSFTS9xHJVEtderWvWuX1yzFzLLn8kEzX2EZtFFu"
+                          alt=""
+                          style={{ width: "18px", height: "auto" }}
+                        />
+                        <img
+                          src="https://ipfs.io/ipfs/QmYwpVyvse8ErpEzUcdQNukWdwHowkk2ZoUHwx3LrdnjWB"
+                          alt=""
+                          style={{ width: "18px", height: "auto" }}
+                        />
+                      </div>
                     ) : null}
                   </div>
                 </div>
@@ -2027,6 +2054,9 @@ class ArtPreset extends Component {
                             width: `${this.state.wFG1}%`,
                             height: `${this.state.hFG1}%`,
                           }}
+                          onMouseMove={this.onBG3}
+                          onMouseEnter={this.mBG3tgglOn}
+                          onMouseLeave={this.mBG3tgglOff}
                         />
                       </Draggable>
                     ) : null}
@@ -2144,6 +2174,9 @@ class ArtPreset extends Component {
                             width: `${this.state.wFG2}%`,
                             height: `${this.state.hFG2}%`,
                           }}
+                          onMouseMove={this.onBG4}
+                          onMouseEnter={this.mBG4tgglOn}
+                          onMouseLeave={this.mBG4tgglOff}
                         />
                       </Draggable>
                     ) : null}
@@ -2393,6 +2426,9 @@ class ArtPreset extends Component {
                       width: `${this.state.wFG2}%`,
                       height: `${this.state.hFG2}%`,
                     }}
+                    onMouseMove={this.onBG4}
+                    onMouseEnter={this.mBG4tgglOn}
+                    onMouseLeave={this.mBG4tgglOff}
                   />
                 ) : null}
               </div>

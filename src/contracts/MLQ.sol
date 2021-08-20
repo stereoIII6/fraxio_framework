@@ -22,7 +22,7 @@ pragma solidity ^0.6.6;
 //          @versiom :: 1.0.0                                                       //
 //                                                                                  //
 //          @description ::                                                         //
-//          The Factory FR-81972 creates Fractionizer Contracts.                    //
+//          The Factory FR-99999 MLQ Contract                                       //
 //                                                                                  //
 //                                                                                  //
 //          @author :: fractio.xyz                                                  //
@@ -56,7 +56,7 @@ contract MLQ is ERC20 {
         _mint(0xA46A7B2A856c15E6A6F6C89C77Bd6B4017b2Fe89, 100000008 * 10**18);
     }
 
-    function gimmeSomeMLQ(uint256 ml) public {
-        _mint(msg.sender, ml * 10**18);
+    function gimmeSomeMLQ() public {
+        _mint(msg.sender, 5 * 10**18);
     }
 }
