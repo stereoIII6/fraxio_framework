@@ -20,14 +20,14 @@ class Newsletter extends Component {
     console.log(
       e.target,
       process.env.REACT_APP_USER_ID,
-      process.env.REACT_APP_TEMPLATE_ID,
+      process.env.REACT_APP_NL_TEMPLATE_ID,
       process.env.REACT_APP_SERVICE_ID
     );
 
     emailjs
       .sendForm(
         process.env.REACT_APP_SERVICE_ID,
-        process.env.REACT_APP_TEMPLATE_ID,
+        process.env.REACT_APP_NL_TEMPLATE_ID,
         e.target,
         process.env.REACT_APP_USER_ID
       )
@@ -82,8 +82,8 @@ class Newsletter extends Component {
             </Input>
             <Input
               type="email"
-              id="nlEmail"
-              name="nlEmail"
+              id="userMail"
+              name="userMail"
               value={this.state.nl_email}
               placeholder={
                 this.state.nft
@@ -107,9 +107,8 @@ class Newsletter extends Component {
                 float: "left",
                 width: "20%",
               }}
-            >
-              News
-            </Input>
+              value="News"
+            />
           </InputGroup>
         </Form>
       </div>
