@@ -15,6 +15,7 @@ class Order extends Component {
     tName: "",
     tSym: "",
     tDesc: "",
+    sent: false,
   };
   sendEmail(e) {
     e.preventDefault();
@@ -35,6 +36,14 @@ class Order extends Component {
       .then(
         (result) => {
           console.log(result.text);
+          this.setState({
+            tMail: "",
+            tType: "no",
+            tName: "",
+            tSym: "",
+            tDesc: "",
+            sent: true,
+          });
         },
         (error) => {
           console.log(error.text);
@@ -67,7 +76,9 @@ class Order extends Component {
             fontFamily: "comfortaa",
           }}
         >
-          Order a custom Asset &amp; we will create It for you.
+          {!this.state.sent
+            ? "Order a custom Asset &amp; we will create It for you."
+            : "Your request was sent ! "}
         </h1>
         <Form className="contact-form" onSubmit={this.sendEmail}>
           <Input
