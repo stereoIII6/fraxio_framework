@@ -3,8 +3,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import emailjs from "emailjs-com";
 import { Button, Form, InputGroup, Input } from "reactstrap";
+import { init } from "emailjs-com";
+const path = require("path");
 require("dotenv").config();
-
+console.log(process.env.REACT_APP_USER_ID);
+init(process.env.REACT_APP_USER_ID);
 class Order extends Component {
   state = {
     tType: "no",
@@ -14,10 +17,15 @@ class Order extends Component {
   };
   sendEmail(e) {
     e.preventDefault();
-    console.log(e.target);
+    console.log(
+      e.target,
+      process.env.REACT_APP_USER_ID,
+      process.env.REACT_APP_TEMPLATE_ID,
+      process.env.REACT_APP_SERVICE_ID
+    );
 
-    /*
-    emailjs
+    /* 
+      emailjs
       .sendForm(
         process.env.SERVICE_ID,
         process.env.TEMPLATE_ID,
