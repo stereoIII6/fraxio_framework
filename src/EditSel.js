@@ -36,14 +36,19 @@ class EditSel extends Component {
                 </Button>
               </div>
               <div className="col m-0 p-0">
-                <Button id="bigBtn" name="uploader" onClick={this.onClickBtn}>
+                <Button
+                  id="bigBtn"
+                  name="uploader"
+                  onClick={this.onClickBtn}
+                  disabled
+                >
                   Load Asset
                 </Button>
               </div>
             </div>
             <div className="row" style={{ height: "230px" }}>
               <div className="col m-0 p-0">
-                <Button id="bigBtn" onClick={this.onClickBtn} name="art">
+                <Button id="bigBtnDone" onClick={this.onClickBtn} name="art">
                   Digital Art
                 </Button>
               </div>

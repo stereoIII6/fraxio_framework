@@ -34,7 +34,7 @@ class Preview extends Component {
               }}
               key={layer.layerID}
             />
-            <p>{(layer.layerID, Number(layer.keys[0].keyParams.y))}</p>
+            <p>{layer.layerID}</p>
           </div>
         ))}
       </div>

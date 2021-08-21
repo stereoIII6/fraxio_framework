@@ -44,6 +44,18 @@ body {
 #bigBtn:hover {
   background: lightgrey;
 }
+#bigBtnDone {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  color: ivory;
+  background: darkcyan;
+  font-family: comfortaa;
+  font-size: 2em;
+}
+#bigBtnDone:hover {
+  background: darkblue;
+}
 
 #appBtn {
   float: right;

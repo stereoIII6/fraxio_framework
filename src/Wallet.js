@@ -78,172 +78,63 @@ class Wallet extends Component {
       <div>
         {
           // Render Users Tokens
-          <Form>
-            <FormGroup>
-              <Alert
-                style={{
-                  width: "100%",
-                  height: "520px",
-                  overflow: "hidden",
-                  background: "ivory",
-                }}
+
+          <Alert
+            style={{
+              width: "100%",
+              height: "520px",
+              overflow: "hidden",
+              background: "ivory",
+            }}
+          >
+            {
+              // console.log(this.state.erc721TXs)
+              <div
+                id="slideshow"
+                style={{ position: "relative", overflow: "hidden" }}
               >
-                {
-                  // console.log(this.state.erc721TXs)
-                  <div
-                    id="slideshow"
-                    style={{ position: "relative", overflow: "hidden" }}
-                  >
+                <div
+                  id="slider"
+                  style={{
+                    position: "relative",
+                    top: "0",
+                    left: "0",
+                    width:
+                      "auto" /* `${this.state.erc721TXs.length * 120}px` */,
+                    height: "500px",
+                  }}
+                >
+                  {this.state.pyes.map((pye) => (
                     <div
-                      id="slider"
+                      key={pye}
                       style={{
-                        position: "relative",
-                        top: "0",
-                        left: "0",
-                        width:
-                          "auto" /* `${this.state.erc721TXs.length * 120}px` */,
-                        height: "500px",
+                        width: `${JSON.parse(pye).format.formatX / 4}px`,
+                        height: `${JSON.parse(pye).format.formatY / 4}px`,
+                        overflow: "hidden",
+                        marginRight: "10px",
+                        marginBottom: "10px",
+                        float: "left",
+                        background: "lightgrey",
+                        padding: "0px",
+                        lineBreak: "anywhere",
+                        fontSize: "0.3em",
                       }}
                     >
-                      {this.state.pyes.map((pye) => (
-                        <div
-                          key={pye}
-                          style={{
-                            width: `${JSON.parse(pye).format.formatX / 4}px`,
-                            height: `${JSON.parse(pye).format.formatY / 4}px`,
-                            overflow: "hidden",
-                            marginRight: "10px",
-                            marginBottom: "10px",
-                            float: "left",
-                            background: "lightgrey",
-                            padding: "0px",
-                            lineBreak: "anywhere",
-                            fontSize: "0.3em",
-                          }}
-                        >
-                          <Preview
-                            pye={pye}
-                            key={pye.id}
-                            style={{
-                              position: "absolute",
-                            }}
-                          />
-                        </div>
-                      ))}
+                      <Preview
+                        pye={pye}
+                        key={pye.id}
+                        style={{
+                          position: "absolute",
+                        }}
+                      />
+                      {`${pye.id} | ${pye.name} [${pye.symbol}]`}
                     </div>
-                  </div>
-                }
-              </Alert>
-              <InputGroup>
-                <Input
-                  type="button"
-                  value="USE THIS ERC721 TOKEN"
-                  style={{
-                    height: "3em",
-                    fontSize: "2em",
-                    color: "lightgrey",
-                    background: "#9f95c3",
-                    marginBottom: "2em",
-                  }}
-                ></Input>
-              </InputGroup>
+                  ))}
+                </div>
+              </div>
+            }
+          </Alert>
 
-              <InputGroup style={{}}>
-                <Input
-                  type="text"
-                  placeholder="Fractional Token Name"
-                  style={{ height: "3em", fontSize: "2em", width: "70%" }}
-                />
-                <Input
-                  type="text"
-                  placeholder="$YMBOL"
-                  style={{ height: "3em", fontSize: "2em", width: "30%" }}
-                />
-              </InputGroup>
-
-              <InputGroup>
-                <Input
-                  type="text"
-                  placeholder="Token Supply"
-                  style={{
-                    height: "3em",
-                    fontSize: "2em",
-
-                    width: "70%",
-                  }}
-                />
-                <Input
-                  type="select"
-                  style={{
-                    height: "3em",
-                    fontSize: "2em",
-
-                    width: "30%",
-                  }}
-                >
-                  <option id="default">Choose Option</option>
-                  <option id="airdrop">Self Mint</option>
-                  <option id="airdrop">Airdrop</option>
-                  <option id="airdrop">Device ID</option>
-                  <option id="airdrop">Sale</option>
-                  <option id="airdrop">Auction</option>
-                  <option id="airdrop">Order Book</option>
-                  <option id="airdrop">Pool</option>
-                </Input>
-              </InputGroup>
-
-              <InputGroup>
-                <Input
-                  type="text"
-                  placeholder="Token Price"
-                  style={{ width: "85%", height: "3em", fontSize: "2em" }}
-                />
-                <Input
-                  type="select"
-                  style={{
-                    height: "3em",
-                    fontSize: "2em",
-                    width: "15%",
-                    marginBottom: "3em",
-                    textAlign: "center",
-                  }}
-                >
-                  <option id="MLQ">MLQ</option>
-                  <option id="ETH">ETH</option>
-                  <option id="DAI">Dai</option>
-                  <option id="LINK">Link</option>
-                  <option id="UNI">Uni</option>
-                  <option id="USDC">USDC</option>
-                  <option id="GRT">GRT</option>
-                  <option id="wFIL">wFIL</option>
-                  <option id="wBTC">wBTC</option>
-                  <option id="custom">custom</option>
-                </Input>
-              </InputGroup>
-              <InputGroup>
-                <Input
-                  type="button"
-                  value="Approve"
-                  style={{
-                    height: "3em",
-                    fontSize: "2em",
-                    color: "lightgrey",
-                    background: "#9f95c3",
-                  }}
-                ></Input>
-                <Input
-                  type="button"
-                  value="Submit"
-                  style={{
-                    height: "3em",
-                    fontSize: "2em",
-                    color: "#9f95c3",
-                    background: "lightgrey",
-                  }}
-                ></Input>
-              </InputGroup>
-            </FormGroup>
-          </Form>
           // Info Form
 
           // FRX Name
