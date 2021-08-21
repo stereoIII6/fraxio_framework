@@ -10,6 +10,7 @@ console.log(process.env.REACT_APP_USER_ID);
 init(process.env.REACT_APP_USER_ID);
 class Order extends Component {
   state = {
+    tMail: "",
     tType: "no",
     tName: "",
     tSym: "",
@@ -46,8 +47,14 @@ class Order extends Component {
   onName = (e) => {
     this.setState({ tName: e.target.value });
   };
+  onSymbol = (e) => {
+    this.setState({ tSym: e.target.value });
+  };
   onDesc = (e) => {
     this.setState({ tDesc: e.target.value });
+  };
+  onMail = (e) => {
+    this.setState({ tMail: e.target.value });
   };
   render() {
     return (
@@ -74,6 +81,8 @@ class Order extends Component {
               marginTop: "1em",
               fontFamily: "comfortaa",
             }}
+            id="orderSelect"
+            name="orderSelect"
           >
             <option id="no" name="no" value="no">
               ---
@@ -111,6 +120,7 @@ class Order extends Component {
             <Input
               type="text"
               id="tokenName"
+              name="tokenName"
               value={this.state.tName}
               onChange={this.onName}
               placeholder="Token Title"
@@ -140,6 +150,10 @@ class Order extends Component {
                   color: "mediumseagreen",
                   border: "1px solid mediumseagreen",
                 }}
+                id="orderSymbol"
+                name="orderSymbol"
+                onChange={this.onSymbol}
+                required
               />
             ) : null}
           </InputGroup>
@@ -154,6 +168,8 @@ class Order extends Component {
 
           <Input
             type="textarea"
+            id="message"
+            name="message"
             value={this.state.tDesc}
             onChange={this.onDesc}
             placeholder="Your idea goes here ..."
@@ -166,9 +182,26 @@ class Order extends Component {
               background: "lightgrey",
               color: "mediumseagreen",
             }}
+            required
           />
           <label style={{ fontSize: "2em" }}>Describe your Idea</label>
-
+          <Input
+            type="text"
+            id="userMail"
+            name="userMail"
+            value={this.state.tMail}
+            onChange={this.onMail}
+            placeholder="Enter Your Email Address"
+            required
+            style={{
+              fontSize: "2em",
+              marginTop: "1em",
+              fontFamily: "comfortaa",
+              padding: "1em",
+              background: "lightgrey",
+              color: "mediumseagreen",
+            }}
+          />
           <Input type="submit" value="Order a Token Now !" />
         </Form>
       </div>

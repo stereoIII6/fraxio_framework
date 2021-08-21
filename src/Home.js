@@ -5,6 +5,7 @@ import { Button, Form, InputGroup, Input } from "reactstrap";
 import { onCreateNow, onOrderNow } from "./action/userActions";
 
 import YoutubeEmbed from "./YoutubeEmbed";
+import Newsletter from "./Newsletter";
 class Home extends Component {
   static propTypes = {
     onCreateNow: PropTypes.func,
@@ -75,59 +76,13 @@ class Home extends Component {
           </p>
           <YoutubeEmbed embedId={this.state.url} />
         </div>
-        <div id="form">
-          <Form>
-            <InputGroup
-              style={{ width: "60%", marginTop: "5em", marginLeft: "20%" }}
-            >
-              <Input
-                type="select"
-                id="valid"
-                style={{
-                  fontSize: "2em",
-                  width: "15%",
-                  float: "left",
-                }}
-                value={this.state.nft}
-                onChange={this.changeNL}
-              >
-                <option name="nft" value={true} id="nft">
-                  NFT
-                </option>
-                <option name="email" value={false} id="email">
-                  EMAIL
-                </option>
-              </Input>
-              <Input
-                type="email"
-                id="nlEmail"
-                value={this.state.nl_email}
-                placeholder={
-                  this.state.nft
-                    ? "Enter Your Wallet Address"
-                    : "Enter Your Email"
-                }
-                onChange={this.onNewsLetter}
-                style={{
-                  fontSize: "2em",
-                  fontFamily: "comfortaa",
-                  width: "55%",
-                  float: "left",
-                }}
-              />
-              <Button
-                onClick={this.nlPush}
-                style={{
-                  fontSize: "2em",
-                  fontFamily: "comfortaa",
-                  float: "left",
-                  width: "20%",
-                }}
-              >
-                News
-              </Button>
-            </InputGroup>
-          </Form>
+        <div
+          id="form"
+          style={{
+            paddingBottom: "100px",
+          }}
+        >
+          <Newsletter />
         </div>
       </div>
     );
