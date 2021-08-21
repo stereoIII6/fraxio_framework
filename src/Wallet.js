@@ -105,34 +105,50 @@ class Wallet extends Component {
                   }}
                 >
                   {this.state.pyes.map((pye) => (
-                    <>
-                      <div
-                        key={JSON.parse(pye)}
+                    <div
+                      key={pye}
+                      style={{
+                        width: `${JSON.parse(pye).format.formatX / 4}px`,
+                        height: `${JSON.parse(pye).format.formatY / 4}px`,
+                        overflow: "hidden",
+                        marginRight: "10px",
+                        marginBottom: "10px",
+                        float: "left",
+                        background: "lightgrey",
+                        padding: "0px",
+                        lineBreak: "anywhere",
+                        fontSize: "0.3em",
+                      }}
+                    >
+                      <Preview
+                        pye={JSON.parse(pye)}
+                        key={JSON.parse(pye).id}
                         style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
                           width: `${JSON.parse(pye).format.formatX / 4}px`,
                           height: `${JSON.parse(pye).format.formatY / 4}px`,
                           overflow: "hidden",
-                          marginRight: "10px",
-                          marginBottom: "10px",
-                          float: "left",
-                          background: "lightgrey",
-                          padding: "0px",
-                          lineBreak: "anywhere",
-                          fontSize: "0.3em",
                         }}
-                      >
-                        <Preview
-                          pye={JSON.parse(pye)}
-                          key={JSON.parse(pye).id}
-                          style={{
-                            position: "absolute",
-                          }}
-                        />
-                      </div>
-                      <p>{`${JSON.parse(pye).id} | ${JSON.parse(pye).name} [${
+                      />
+                      <p
+                        style={{
+                          position: "relative",
+                          top: `${JSON.parse(pye).format.formatY / 4 - 70}px`,
+                          left: 20,
+                          width: "auto",
+                          background: "ivory",
+                          fontSize: "2em",
+                          fontFamily: "comfortaa",
+                          padding: "9px",
+                          borderRadius: "9px",
+                          zIndex: 100,
+                        }}
+                      >{`${JSON.parse(pye).id} | ${JSON.parse(pye).name} [${
                         JSON.parse(pye).symbol
                       }]`}</p>
-                    </>
+                    </div>
                   ))}
                 </div>
               </div>

@@ -34,17 +34,6 @@ class Preview extends Component {
               }}
               key={layer.layerID}
             />
-            <p
-              style={{
-                position: "absolute",
-                width: `${Number(layer.keys[0].keyParams.z)}%`,
-                height: "auto",
-                bottom: `${0}%`,
-                left: `${0}%`,
-              }}
-            >
-              {layer.layerID}
-            </p>
           </div>
         ))}
       </div>
