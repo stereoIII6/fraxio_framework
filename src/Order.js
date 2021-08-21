@@ -24,8 +24,7 @@ class Order extends Component {
       process.env.REACT_APP_SERVICE_ID
     );
 
-    /* 
-      emailjs
+    emailjs
       .sendForm(
         process.env.SERVICE_ID,
         process.env.TEMPLATE_ID,
