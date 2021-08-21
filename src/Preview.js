@@ -16,7 +16,7 @@ class Preview extends Component {
   };
 
   render() {
-    const Pye = JSON.parse(this.props.pye);
+    const Pye = this.props.pye;
     console.log(Pye);
     return (
       <div key={Pye.id} style={{ position: "relative" }}>
@@ -34,7 +34,17 @@ class Preview extends Component {
               }}
               key={layer.layerID}
             />
-            <p>{layer.layerID}</p>
+            <p
+              style={{
+                position: "absolute",
+                width: `${Number(layer.keys[0].keyParams.z)}%`,
+                height: "auto",
+                bottom: `${0}%`,
+                left: `${0}%`,
+              }}
+            >
+              {layer.layerID}
+            </p>
           </div>
         ))}
       </div>
