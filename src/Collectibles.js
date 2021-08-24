@@ -69,20 +69,8 @@ class Collectibles extends Component {
               Choose Layer Stack Size <Button id="help">?</Button>
             </label>
           </div>
-          <InputGroup>
-            <Input
-              id="fx"
-              type="select"
-              value={this.state.fx}
-              onChange={this.onChange}
-            >
-              <option value="default">---</option>
-              <option value="bg">Mouse FX</option>
-              <option value="trait">Oracle FX</option>
-              <option value="fg">Stats FX</option>
-            </Input>
-          </InputGroup>
         </Form>
+        <Form></Form>
       </div>
     );
   }

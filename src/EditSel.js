@@ -55,7 +55,7 @@ class EditSel extends Component {
               </div>
               <div className="col m-0 p-0">
                 <Button
-                  id="bigBtn"
+                  id="bigBtnDone"
                   onClick={this.onClickBtn}
                   name="collectibles"
                   disabled

@@ -67,7 +67,7 @@ class Order extends Component {
   };
   render() {
     return (
-      <div className="container" style={{ overflowY: "scroll" }}>
+      <div className="container">
         <h1
           style={{
             color: "mediumseagreen",
@@ -77,7 +77,7 @@ class Order extends Component {
           }}
         >
           {!this.state.sent
-            ? "Order a custom Asset &amp; we will create It for you."
+            ? "Order a custom Asset & we will create It for you."
             : "Your request was sent ! "}
         </h1>
         <Form className="contact-form" onSubmit={this.sendEmail}>
