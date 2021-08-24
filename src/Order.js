@@ -12,7 +12,7 @@ class Order extends Component {
   state = {
     tMail: "",
     tWallet: "",
-    tType: "no",
+    tType: "",
     tName: "",
     tSym: "",
     tDesc: "",
@@ -40,7 +40,7 @@ class Order extends Component {
           this.setState({
             tMail: "",
             tWallet: "",
-            tType: "no",
+            tType: "default",
             tName: "",
             tSym: "",
             tDesc: "",
@@ -87,7 +87,7 @@ class Order extends Component {
             id="tType"
             name="tType"
           >
-            <option id="no" name="no" value="no">
+            <option id="default" name="default" value="default">
               ---
             </option>
             <option id="dynamicArt" name="dynamicArt" value="dynamicArt">
