@@ -67,7 +67,7 @@ class Order extends Component {
   };
   render() {
     return (
-      <div className="container">
+      <div className="container" style={{ overflowY: "scroll" }}>
         <h1
           style={{
             color: "mediumseagreen",
@@ -215,6 +215,7 @@ class Order extends Component {
           />
           <Input type="submit" value="Order a Token Now !" />
         </Form>
+        <div style={{ height: "180px" }}></div>
       </div>
     );
   }
