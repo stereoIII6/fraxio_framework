@@ -30,8 +30,8 @@ class Collectibles extends Component {
               onChange={this.onChange}
             />
             <Input
-              id="type"
-              name="type"
+              id="group"
+              name="group"
               type="select"
               value={this.state.group}
               onChange={this.onChange}
@@ -70,7 +70,63 @@ class Collectibles extends Component {
             </label>
           </div>
         </Form>
-        <Form></Form>
+        {this.state.groupFX ? (
+          <Form>
+            {" "}
+            <InputGroup>
+              <Input
+                id="fx"
+                type="select"
+                value={this.state.fx}
+                onChange={this.onChange}
+              >
+                <option value="default">---</option>
+                <option value="mouse">Mouse FX</option>
+                <option value="oracle">Oracle FX</option>
+                <option value="stats">Stats FX</option>
+              </Input>
+              {this.state.fx === "mouse" ? (
+                <Input
+                  id="mouse"
+                  type="select"
+                  value={this.state.fx}
+                  onChange={this.onChange}
+                >
+                  <option value="default">---</option>
+                  <option value="mouse">Paralax Strong</option>
+                  <option value="oracle">Paralax Medium</option>
+                  <option value="stats">Paralax Soft</option>
+                </Input>
+              ) : null}
+              {this.state.fx === "oracle" ? (
+                <Input
+                  id="oracle"
+                  type="select"
+                  value={this.state.fx}
+                  onChange={this.onChange}
+                >
+                  <option value="default">---</option>
+                  <option value="mouse">ETH</option>
+                  <option value="oracle">Link</option>
+                  <option value="stats">Dai</option>
+                </Input>
+              ) : null}
+              {this.state.fx === "stats" ? (
+                <Input
+                  id="stats"
+                  type="select"
+                  value={this.state.fx}
+                  onChange={this.onChange}
+                >
+                  <option value="default">---</option>
+                  <option value="mouse">Likes</option>
+                  <option value="oracle">Views</option>
+                  <option value="stats">Sales</option>
+                </Input>
+              ) : null}
+            </InputGroup>
+          </Form>
+        ) : null}
       </div>
     );
   }

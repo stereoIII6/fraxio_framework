@@ -11,6 +11,7 @@ init(process.env.REACT_APP_USER_ID);
 class Order extends Component {
   state = {
     tMail: "",
+    tWallet: "",
     tType: "no",
     tName: "",
     tSym: "",
@@ -50,25 +51,13 @@ class Order extends Component {
         }
       ); /* **/
   }
-  onType = (e) => {
-    this.setState({ tType: e.target.value });
-  };
-  onName = (e) => {
-    this.setState({ tName: e.target.value });
-  };
-  onSymbol = (e) => {
-    this.setState({ tSym: e.target.value });
-  };
-  onDesc = (e) => {
-    this.setState({ tDesc: e.target.value });
-  };
-  onMail = (e) => {
-    this.setState({ tMail: e.target.value });
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
   };
   render() {
     return (
       <div className="container">
-        <h1
+        <h3
           style={{
             color: "mediumseagreen",
             fontSize: "2em",
@@ -77,14 +66,16 @@ class Order extends Component {
           }}
         >
           {!this.state.sent
-            ? "Order a custom Asset & we will create It for you."
+            ? "Order a custom Asset & we will create It for you. Tell us what your dynamic NFT is supposed to look like ?"
             : "Your request was sent ! "}
-        </h1>
+        </h3>
+        <p></p>
         <Form className="contact-form" onSubmit={this.sendEmail}>
           <Input
             type="select"
+            required
             value={this.state.tType}
-            onChange={this.onType}
+            onChange={this.onChange}
             style={{
               background: "lightgrey",
               color: "mediumseagreen",
@@ -132,8 +123,9 @@ class Order extends Component {
               type="text"
               id="tokenName"
               name="tokenName"
+              required
               value={this.state.tName}
-              onChange={this.onName}
+              onChange={this.onChange}
               placeholder="Token Title"
               style={{
                 fontSize: "2em",
@@ -150,7 +142,7 @@ class Order extends Component {
               <Input
                 type="text"
                 value={this.state.tSym}
-                onChange={this.onSym}
+                onChange={this.onChange}
                 placeholder="Token Symbol"
                 style={{
                   fontSize: "2em",
@@ -163,7 +155,7 @@ class Order extends Component {
                 }}
                 id="orderSymbol"
                 name="orderSymbol"
-                onChange={this.onSymbol}
+                onChange={this.onChange}
                 required
               />
             ) : null}
@@ -181,8 +173,9 @@ class Order extends Component {
             type="textarea"
             id="message"
             name="message"
+            required
             value={this.state.tDesc}
-            onChange={this.onDesc}
+            onChange={this.onChange}
             placeholder="Your idea goes here ..."
             style={{
               fontSize: "2em",
@@ -193,15 +186,17 @@ class Order extends Component {
               background: "lightgrey",
               color: "mediumseagreen",
             }}
+            min={1500}
+            max={9999}
             required
           />
           <label style={{ fontSize: "2em" }}>Describe your Idea</label>
           <Input
-            type="text"
+            type="email"
             id="userMail"
             name="userMail"
             value={this.state.tMail}
-            onChange={this.onMail}
+            onChange={this.onChange}
             placeholder="Enter Your Email Address"
             required
             style={{
@@ -213,7 +208,35 @@ class Order extends Component {
               color: "mediumseagreen",
             }}
           />
-          <Input type="submit" value="Order a Token Now !" />
+          <Input
+            type="text"
+            id="wallet"
+            name="wallet"
+            value={this.state.twallet}
+            onChange={this.onChange}
+            placeholder="Enter Your ETH Wallet Address"
+            required
+            style={{
+              fontSize: "2em",
+              marginTop: "1em",
+              fontFamily: "comfortaa",
+              padding: "1em",
+              background: "lightgrey",
+              color: "mediumseagreen",
+            }}
+          />
+          <Input
+            type="submit"
+            value="Describe your Idea and get your Token designed !"
+            style={{
+              fontSize: "2em",
+              marginTop: "1em",
+              fontFamily: "comfortaa",
+              padding: "0 1em 0 1em",
+              color: "lightgrey",
+              background: "mediumseagreen",
+            }}
+          />
         </Form>
         <div style={{ height: "180px" }}></div>
       </div>
