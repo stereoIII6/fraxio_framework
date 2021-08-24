@@ -22,7 +22,7 @@ class EditSel extends Component {
   };
   render() {
     return (
-      <div className="container" style={{ overflowY: "scroll" }}>
+      <div className="container">
         {this.state.sel ? (
           <div>
             <div className="row" style={{ height: "130px" }}>
@@ -55,10 +55,9 @@ class EditSel extends Component {
               </div>
               <div className="col m-0 p-0">
                 <Button
-                  id="bigBtn"
+                  id="bigBtnDone"
                   onClick={this.onClickBtn}
                   name="collectibles"
-                  disabled
                 >
                   Collectibles
                 </Button>

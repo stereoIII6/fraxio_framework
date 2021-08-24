@@ -7,13 +7,14 @@ class Collectibles extends Component {
     name: "",
     group: "default", // default / bg / trait / fg / c1 / c2
     size: "default", // 1 / 2 / 4 / 9 / 16 / 25 / 255(colors)
+    fx: "default",
     files: [],
   };
   newTrait = (e) => {
     e.preventDefault();
   };
   onChange = (e) => {
-    this.setState({ [e.target.id]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
   render() {
     return (
@@ -22,6 +23,7 @@ class Collectibles extends Component {
           <InputGroup>
             <Input
               id="name"
+              name="name"
               type="text"
               placeholder="Layer Name"
               value={this.state.name}
@@ -29,6 +31,7 @@ class Collectibles extends Component {
             />
             <Input
               id="type"
+              name="type"
               type="select"
               value={this.state.group}
               onChange={this.onChange}
@@ -42,6 +45,7 @@ class Collectibles extends Component {
             </Input>
             <Input
               id="size"
+              name="size"
               type="select"
               value={this.state.size}
               onChange={this.onChange}
@@ -67,29 +71,15 @@ class Collectibles extends Component {
           </div>
           <InputGroup>
             <Input
-              id="type"
+              id="fx"
               type="select"
-              value={this.state.type}
+              value={this.state.fx}
               onChange={this.onChange}
             >
               <option value="default">---</option>
-              <option value="bg">Background</option>
-              <option value="trait">Trait</option>
-              <option value="fg">Foreground</option>
-            </Input>
-            <Input
-              id="size"
-              type="select"
-              value={this.state.size}
-              onChange={this.onChange}
-            >
-              <option value="default">---</option>
-              <option>5</option>
-              <option>9</option>
-              <option>16</option>
-              <option>25</option>
-              <option>99</option>
-              <option>255</option>
+              <option value="bg">Mouse FX</option>
+              <option value="trait">Oracle FX</option>
+              <option value="fg">Stats FX</option>
             </Input>
           </InputGroup>
         </Form>
