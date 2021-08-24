@@ -109,6 +109,7 @@ class App extends Component {
           {seeWallet ? <Wallet /> : null}
           {seeOrders ? <Order /> : null}
         </div>
+        <div style={{ height: "180px" }}></div>
       </div>
     );
   }

@@ -4,6 +4,7 @@ body {
   width: 100%;
   padding: 0;
   overflow: hidden;
+  font-family: comfortaa;
 }
 .App {
   margin: 0px auto;
@@ -192,7 +193,8 @@ body {
 }
 label {
   margin-top: 0px;
-  font-size: 0.2em;
+  font-size: 1;
+  font-family: comfortaa;
 }
 #board {
   position: relative;
@@ -259,5 +261,12 @@ hr {
   border: 1px solid black;
   border-radius: 28px;
   background: tomato;
+  color: ivory;
+}
+#help {
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  background: cornflowerblue;
   color: ivory;
 }

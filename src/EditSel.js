@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Input, InputGroup, Form, FormGroup, Alert, Button } from "reactstrap";
 import ArtBoard from "./ArtBoard";
 import ArtPreset from "./ArtPreset";
+import Collectibles from "./Collectibles";
 class EditSel extends Component {
   state = {
     sel: true,
@@ -21,17 +22,12 @@ class EditSel extends Component {
   };
   render() {
     return (
-      <div className="container">
+      <div className="container" style={{ overflowY: "scroll" }}>
         {this.state.sel ? (
           <div>
             <div className="row" style={{ height: "130px" }}>
               <div className="col m-0 p-0">
-                <Button
-                  id="bigBtn"
-                  name="new"
-                  onClick={this.onClickBtn}
-                  disabled
-                >
+                <Button id="bigBtn" name="new" onClick={this.onClickBtn}>
                   New Asset
                 </Button>
               </div>
@@ -59,10 +55,9 @@ class EditSel extends Component {
               </div>
               <div className="col m-0 p-0">
                 <Button
-                  id="bigBtn"
+                  id="bigBtnDone"
                   onClick={this.onClickBtn}
                   name="collectibles"
-                  disabled
                 >
                   Collectibles
                 </Button>
@@ -97,10 +92,11 @@ class EditSel extends Component {
             </div>
           </div>
         ) : null}
-        {/*this.state.new ? <ArtBoard /> : null*/}
+        {this.state.new ? <ArtBoard /> : null}
         {this.state.uploader ? <div>Upload Your Token File</div> : null}
         {this.state.art ? <ArtPreset /> : null}
-        {/*this.state.collectibles ? <ArtPreset /> : null*/}
+        {this.state.collectibles ? <Collectibles /> : null}
+        <div style={{ height: "180px" }}></div>
       </div>
     );
   }
