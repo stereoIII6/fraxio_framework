@@ -269,4 +269,8 @@ hr {
   border-radius: 9px;
   background: cornflowerblue;
   color: ivory;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 12px;
 }
