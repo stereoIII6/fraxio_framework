@@ -58,6 +58,7 @@ class EditSel extends Component {
                   id="bigBtnDone"
                   onClick={this.onClickBtn}
                   name="collectibles"
+                  disabled
                 >
                   Collectibles
                 </Button>

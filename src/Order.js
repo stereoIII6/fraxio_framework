@@ -39,6 +39,7 @@ class Order extends Component {
           console.log(result.text);
           this.setState({
             tMail: "",
+            tWallet: "",
             tType: "no",
             tName: "",
             tSym: "",
@@ -66,7 +67,7 @@ class Order extends Component {
           }}
         >
           {!this.state.sent
-            ? "Order a custom Asset & we will create It for you. Tell us what your dynamic NFT is supposed to look like ?"
+            ? "Tell us what your dynamic NFT is supposed to look like ?"
             : "Your request was sent ! "}
         </h3>
         <p></p>
@@ -83,8 +84,8 @@ class Order extends Component {
               marginTop: "1em",
               fontFamily: "comfortaa",
             }}
-            id="orderSelect"
-            name="orderSelect"
+            id="tType"
+            name="tType"
           >
             <option id="no" name="no" value="no">
               ---
@@ -115,14 +116,14 @@ class Order extends Component {
               Other
             </option>
           </Input>
-          <label style={{ fontSize: "2em" }}>
+          <label style={{ fontSize: "1em" }}>
             Choose the Type of Token you are looking for ?
           </label>
           <InputGroup>
             <Input
               type="text"
-              id="tokenName"
-              name="tokenName"
+              id="tName"
+              name="tName"
               required
               value={this.state.tName}
               onChange={this.onChange}
@@ -153,14 +154,14 @@ class Order extends Component {
                   color: "mediumseagreen",
                   border: "1px solid mediumseagreen",
                 }}
-                id="orderSymbol"
-                name="orderSymbol"
+                id="tSym"
+                name="tSym"
                 onChange={this.onChange}
                 required
               />
             ) : null}
           </InputGroup>
-          <label style={{ fontSize: "2em" }}>
+          <label style={{ fontSize: "1em" }}>
             Enter a Token Name
             {this.state.tType === "collectibles" ||
             this.state.tType === "newsletter" ||
@@ -168,11 +169,10 @@ class Order extends Component {
               ? " & Token Symbol"
               : null}
           </label>
-
           <Input
             type="textarea"
-            id="message"
-            name="message"
+            id="tDesc"
+            name="tDesc"
             required
             value={this.state.tDesc}
             onChange={this.onChange}
@@ -190,14 +190,14 @@ class Order extends Component {
             max={9999}
             required
           />
-          <label style={{ fontSize: "2em" }}>Describe your Idea</label>
+          <label style={{ fontSize: "1em" }}>Describe your Idea</label>
           <Input
             type="email"
-            id="userMail"
-            name="userMail"
+            id="tMail"
+            name="tMail"
             value={this.state.tMail}
             onChange={this.onChange}
-            placeholder="Enter Your Email Address"
+            placeholder="Email Address"
             required
             style={{
               fontSize: "2em",
@@ -208,13 +208,15 @@ class Order extends Component {
               color: "mediumseagreen",
             }}
           />
+          <label style={{ fontSize: "1em" }}>Enter Your Email Address</label>
+
           <Input
             type="text"
-            id="wallet"
-            name="wallet"
-            value={this.state.twallet}
+            id="tWallet"
+            name="tWallet"
+            value={this.state.tWallet}
             onChange={this.onChange}
-            placeholder="Enter Your ETH Wallet Address"
+            placeholder="ETH Wallet Address"
             required
             style={{
               fontSize: "2em",
@@ -225,6 +227,9 @@ class Order extends Component {
               color: "mediumseagreen",
             }}
           />
+          <label style={{ fontSize: "1em" }}>
+            Enter Your ETH Wallet Address
+          </label>
           <Input
             type="submit"
             value="Describe your Idea and get your Token designed !"
