@@ -17,8 +17,8 @@ class EditSel extends Component {
     if (e.target.name === "uploader")
       this.setState({ sel: false, uploader: true });
     if (e.target.name === "art") this.setState({ sel: false, art: true });
-    // if (e.target.name === "collectibles")
-    this.setState({ sel: false, collectibles: true });
+    /* if (e.target.name === "collectibles")
+    this.setState({ sel: false, collectibles: true }); */
   };
   render() {
     return (
