@@ -8,6 +8,7 @@ class Editor extends Component {
     return <div></div>;
   }
 }
+
 const mapStateToProps = (state) => ({});
 
 export default connect(mapStateToProps, {})(Editor);

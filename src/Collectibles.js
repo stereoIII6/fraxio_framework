@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Input, InputGroup, Form, FormGroup, Alert, Button } from "reactstrap";
+import { Input, InputGroup, Form, Button } from "reactstrap";
+import Layers from "./Layers";
 class Collectibles extends Component {
   state = {
     tCount: 0,
@@ -17,6 +18,7 @@ class Collectibles extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   render() {
+    console.log(this.state.size);
     return (
       <div>
         <Form>
@@ -52,11 +54,12 @@ class Collectibles extends Component {
             >
               <option value="default">---</option>
               <option value={1}>1</option>
-              <option value={5}>5</option>
+              <option value={2}>2</option>
+              <option value={4}>4</option>
               <option value={9}>9</option>
               <option value={16}>16</option>
               <option value={25}>25</option>
-              <option value={99}>99</option>
+              <option value={100}>99</option>
               <option value={255}>255</option>
             </Input>
           </InputGroup>
@@ -69,6 +72,118 @@ class Collectibles extends Component {
               Choose Layer Stack Size <Button id="help">?</Button>
             </label>
           </div>
+
+          {Number(this.state.size) === 1 ? (
+            <InputGroup>
+              <Input type="file"></Input>
+            </InputGroup>
+          ) : null}
+          {Number(this.state.size) === 2 ? (
+            <InputGroup className="row">
+              <Input type="file" className="col"></Input>
+              <Input type="file" className="col"></Input>
+            </InputGroup>
+          ) : null}
+          {Number(this.state.size) === 4 ? (
+            <>
+              <InputGroup className="row">
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+              </InputGroup>
+              <InputGroup className="row">
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+              </InputGroup>
+            </>
+          ) : null}
+          {Number(this.state.size) === 9 ? (
+            <>
+              <InputGroup className="row">
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+              </InputGroup>
+              <InputGroup className="row">
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+              </InputGroup>
+              <InputGroup className="row">
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+              </InputGroup>
+            </>
+          ) : null}
+          {Number(this.state.size) === 16 ? (
+            <>
+              <InputGroup className="row">
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+              </InputGroup>
+              <InputGroup className="row">
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+              </InputGroup>
+              <InputGroup className="row">
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+              </InputGroup>
+              <InputGroup className="row">
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+              </InputGroup>
+            </>
+          ) : null}
+          {Number(this.state.size) === 25 ? (
+            <>
+              <InputGroup className="row">
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+              </InputGroup>
+              <InputGroup className="row">
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+              </InputGroup>
+              <InputGroup className="row">
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+              </InputGroup>
+              <InputGroup className="row">
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+              </InputGroup>
+              <InputGroup className="row">
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+                <Input type="file" className="col"></Input>
+              </InputGroup>
+            </>
+          ) : null}
+          {Number(this.state.size) === 100 ? <h3>100 Colors</h3> : null}
+          {Number(this.state.size) === 255 ? <h3>255 Colors</h3> : null}
         </Form>
         {this.state.groupFX ? (
           <Form>
@@ -83,6 +198,7 @@ class Collectibles extends Component {
                 <option value="default">---</option>
                 <option value="mouse">Mouse FX</option>
                 <option value="oracle">Oracle FX</option>
+                <option value="oracle">Geodata FX</option>
                 <option value="stats">Stats FX</option>
               </Input>
               {this.state.fx === "mouse" ? (
@@ -111,6 +227,19 @@ class Collectibles extends Component {
                   <option value="stats">Dai</option>
                 </Input>
               ) : null}
+              {this.state.fx === "geo" ? (
+                <Input
+                  id="geo"
+                  type="geo"
+                  value={this.state.fx}
+                  onChange={this.onChange}
+                >
+                  <option value="default">---</option>
+                  <option value="mouse">ETH</option>
+                  <option value="oracle">Link</option>
+                  <option value="stats">Dai</option>
+                </Input>
+              ) : null}
               {this.state.fx === "stats" ? (
                 <Input
                   id="stats"
@@ -127,6 +256,7 @@ class Collectibles extends Component {
             </InputGroup>
           </Form>
         ) : null}
+        <Layers />
       </div>
     );
   }

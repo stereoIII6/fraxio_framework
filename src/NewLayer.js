@@ -36,10 +36,18 @@
 */
 // Imports
 import React, { Component } from "react";
-import { Button, InputGroup, Input, Form, CustomInput } from "reactstrap";
+import {
+  Button,
+  InputGroup,
+  Input,
+  Form,
+  CustomInput,
+  InputGroupAddon,
+  InputGroupText,
+} from "reactstrap";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getUser } from "./action/userActions.js";
+import { getUser, addSlice } from "./action/userActions.js";
 
 const IpfsHttpClient = require("ipfs-http-client");
 
@@ -54,6 +62,8 @@ class NewLayer extends Component {
   static propTypes = {
     feeds: PropTypes.array,
     getUser: PropTypes.func,
+    addSlice: PropTypes.func,
+    newImla: PropTypes.object,
   };
   state = {
     layerType: "no",
@@ -65,7 +75,8 @@ class NewLayer extends Component {
     layerText: "",
     layerFont: "",
     layerName: "",
-    layerID: 0,
+    layerGroup: "",
+    checkBox: false,
     file: null,
     fileURL: null,
     buffer: null,
@@ -86,12 +97,13 @@ class NewLayer extends Component {
   };
   newSlice = (e) => {
     e.preventDefault();
+    const newLayer = {};
     console.log("testing output newslice btn");
   };
   submitFile = (e) => {
     e.preventDefault();
-
-    console.log(this.state.layerType);
+    let newLayer = {};
+    console.log(this.state.layerType, this.props.newImla);
     if (
       this.state.buffer &&
       (this.state.layerType === "img" ||
@@ -103,7 +115,6 @@ class NewLayer extends Component {
       console.log(this.state.buffer);
       ipfs.add(this.state.buffer).then((result, err) => {
         console.log("Ipfs Result", result);
-
         if (err) {
           // console.error(err);
           return;
@@ -114,6 +125,61 @@ class NewLayer extends Component {
           check: "orange",
           urlList: [...this.state.urlList, result.path],
         });
+        console.log("imla // ", this.props.newImla.iData.layers.length);
+        newLayer = {
+          lId: this.props.newImla.iData.layers.length,
+          lConf: {
+            name: this.state.layerName,
+            type: this.state.layerType,
+            group: this.state.layerGroup,
+            master: this.state.checkBox,
+          },
+          lData: {
+            hash: this.state.file,
+            url: this.state.fileURL,
+            text: "",
+            font: "",
+            auth: {
+              public: true,
+            },
+          },
+          lFeed: {
+            feed: this.state.layerFeed,
+            oracle: this.state.layerFeedName,
+            value: this.state.layerFeedValue,
+            hi: this.state.hiVal,
+            lo: this.state.loVal,
+          },
+          keys: [
+            {
+              kId: 0,
+              f: this.state.layerFeed,
+              o: this.state.layerFeedName,
+              v: this.state.layerFeedValue * 0.8,
+              x: 0,
+              y: 0,
+              z: 1,
+              q: 1,
+              r: 0,
+              a: 100,
+            },
+            {
+              kId: 1,
+              f: this.state.layerFeed,
+              o: this.state.layerFeedName,
+              v: this.state.layerFeedValue * 1.2,
+              x: 0,
+              y: 0,
+              z: 1,
+              q: 1,
+              r: 0,
+              a: 100,
+            },
+          ],
+        };
+        console.log(newLayer);
+        this.props.addSlice(newLayer);
+        this.props.doToggleEx();
       });
     } else if (this.state.layerType === "typo") {
     } else {
@@ -151,14 +217,21 @@ class NewLayer extends Component {
     // e.preventDefault();
     console.log(e.target.value);
     this.setState({
-      layerFeedName: e.target.value,
+      layerFeedName: e.target.id,
       layerFeedValue: e.target.value,
+      loVal: e.target.value * 0.8,
+      hiVal: e.target.value * 1.2,
     });
   };
   onChangeName = (e) => {
     // e.preventDefault();
     console.log(e.target.value);
     this.setState({ layerName: e.target.value });
+  };
+  onChangeGroup = (e) => {
+    // e.preventDefault();
+    console.log(e.target.value);
+    this.setState({ layerGroup: e.target.value });
   };
   onChangeText = (e) => {
     // e.preventDefault();
@@ -170,12 +243,21 @@ class NewLayer extends Component {
     console.log(e.target.value);
     this.setState({ layerFont: e.target.value });
   };
+  onCheckBox = (e) => {
+    // e.preventDefault();
+    console.log(this.state.checkBox, e.target);
+    this.setState({ checkBox: !this.state.checkBox });
+  };
   slideLo = (e) => {
     console.log(e);
-    this.setState({ loVal: e.target.value });
+    this.setState({
+      loVal: (e.target.value * this.state.layerFeedValue) / 100,
+    });
   };
   slideHi = (e) => {
-    this.setState({ hiVal: e.target.value });
+    this.setState({
+      hiVal: (e.target.value * this.state.layerFeedValue) / 100,
+    });
   };
   render() {
     let empty = false;
@@ -485,7 +567,7 @@ class NewLayer extends Component {
                   id="loVal"
                   type="range"
                   min={0}
-                  value={this.state.loVal}
+                  value={(this.state.loVal / this.state.layerFeedValue) * 100}
                   max={100}
                   style={{ width: "50%" }}
                   onChange={this.slideLo}
@@ -494,7 +576,7 @@ class NewLayer extends Component {
                   id="hiVal"
                   type="range"
                   min={100}
-                  value={this.state.hiVal}
+                  value={(this.state.hiVal / this.state.layerFeedValue) * 100}
                   max={1000}
                   style={{ width: "50%" }}
                   onChange={this.slideHi}
@@ -505,30 +587,66 @@ class NewLayer extends Component {
               </div>
             </div>
           ) : null}
-
-          <Input
-            type="text"
-            bssize="normal"
-            placeholder="Name"
-            name="LayerName"
-            id="LayerName"
-            onChange={this.onChangeName}
-          />
-          <div style={{ fontSize: "0.3em", marginBottom: "2em" }}>
-            <i>Enter a Layer Name</i>
+          <InputGroup>
+            <Input
+              type="text"
+              bssize="normal"
+              placeholder="Name"
+              name="LayerName"
+              id="LayerName"
+              onChange={this.onChangeName}
+            />
+            <Input
+              type="text"
+              bssize="normal"
+              placeholder="Group Name"
+              name="LayerGroup"
+              id="LayerGroup"
+              onChange={this.onChangeGroup}
+            />
+            <InputGroupAddon addonType="append">
+              <InputGroupText>
+                <Input
+                  type="checkbox"
+                  id="GroupMaster"
+                  name="GroupMaster"
+                  addon
+                  onChange={this.onCheckBox}
+                  disabled={this.state.layerGroup === "" ? true : false}
+                />
+              </InputGroupText>
+            </InputGroupAddon>
+          </InputGroup>
+          <div className="row">
+            <div
+              className="col-5"
+              style={{ fontSize: "0.3em", marginBottom: "2em" }}
+            >
+              <i>Enter a Layer Name</i>
+            </div>
+            <div
+              className="col-5"
+              style={{ fontSize: "0.3em", marginBottom: "2em" }}
+            >
+              <i>
+                Enter a Group Name (optional) <Button id="help">?</Button>
+              </i>
+            </div>
+            <div
+              className="col-2"
+              style={{ fontSize: "0.3em", marginBottom: "2em" }}
+            >
+              <i>
+                Master <Button id="help">?</Button>
+              </i>
+            </div>
           </div>
           <Button type="submit" className="btn btn-success" disabled={ready}>
-            +{" "}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="bi bi-layers-half"
-              viewBox="0 0 16 16"
-            >
-              <path d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z" />
-            </svg>
+            <img
+              src="https://ipfs.io/ipfs/QmettwE4WigZAiEQ5EFNR9hJGiYohv5fhG5zGZVBDLvora"
+              alt=""
+              style={{ width: "18px", height: "18px" }}
+            />
           </Button>
         </Form>
       </div>
@@ -538,6 +656,7 @@ class NewLayer extends Component {
 
 const mapStateToProps = (state) => ({
   feeds: state.userState.feeds,
+  newImla: state.userState.newImla,
 });
 
-export default connect(mapStateToProps, { getUser })(NewLayer);
+export default connect(mapStateToProps, { getUser, addSlice })(NewLayer);

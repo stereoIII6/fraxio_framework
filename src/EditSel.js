@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, InputGroup, Form, FormGroup, Alert, Button } from "reactstrap";
+import { Button } from "reactstrap";
 import ArtBoard from "./ArtBoard";
 import ArtPreset from "./ArtPreset";
 import Collectibles from "./Collectibles";
@@ -13,12 +13,12 @@ class EditSel extends Component {
   };
   onClickBtn = (e) => {
     e.preventDefault();
-    if (e.target.name === "new") this.setState({ sel: false, new: true });
+    // if (e.target.name === "new") this.setState({ sel: false, new: true });
     if (e.target.name === "uploader")
       this.setState({ sel: false, uploader: true });
     if (e.target.name === "art") this.setState({ sel: false, art: true });
-    if (e.target.name === "collectibles")
-      this.setState({ sel: false, collectibles: true });
+    // if (e.target.name === "collectibles")
+    this.setState({ sel: false, collectibles: true });
   };
   render() {
     return (
@@ -55,10 +55,9 @@ class EditSel extends Component {
               </div>
               <div className="col m-0 p-0">
                 <Button
-                  id="bigBtnDone"
+                  id="bigBtn"
                   onClick={this.onClickBtn}
                   name="collectibles"
-                  disabled
                 >
                   Collectibles
                 </Button>

@@ -6,11 +6,32 @@ import {
   GET_USER,
   GO_WALLET,
   GET_NFT_LIST,
+  SET_FORMAT,
+  DISCARD_TOKEN,
+  ADD_SLICE,
+  ACTIVATE_LAYER,
 } from "./types";
+
+export const addSlice = (newSlice) => {
+  console.log("layer added", newSlice);
+  return { type: ADD_SLICE, payload: newSlice };
+};
+export const discardToken = () => {
+  console.log("token discarded");
+  return { type: DISCARD_TOKEN };
+};
 
 export const onCreateNow = () => {
   console.log("create pushed");
   return { type: DO_CREATE };
+};
+export const activateLayer = (lId) => {
+  console.log("activate Layer ", lId);
+  return { type: ACTIVATE_LAYER, payload: lId };
+};
+export const setFormat = (format) => {
+  console.log("set format pushed");
+  return { type: SET_FORMAT, payload: format };
 };
 export const onOrderNow = () => {
   console.log("order clicked");

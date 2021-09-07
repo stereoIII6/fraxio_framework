@@ -10,7 +10,7 @@ console.log(process.env.REACT_APP_USER_ID);
 init(process.env.REACT_APP_USER_ID);
 class Newsletter extends Component {
   state = {
-    nft: "no",
+    nft: true,
     nl_email: "",
     sent: false,
   };
@@ -47,9 +47,13 @@ class Newsletter extends Component {
   changeNL = (e) => {
     this.setState({ nft: !this.state.nft });
   };
+  nlPush = (e) => {
+    e.preventDefault();
+    this.setState({ sent: true });
+  };
   render() {
     return (
-      <div className="container">
+      <div>
         {!this.state.sent ? (
           <Form onSubmit={this.sendEmail}>
             <InputGroup
@@ -93,7 +97,7 @@ class Newsletter extends Component {
                 style={{
                   fontSize: "2em",
                   fontFamily: "comfortaa",
-                  width: "55%",
+                  width: "50%",
                   float: "left",
                 }}
               />
@@ -104,14 +108,41 @@ class Newsletter extends Component {
                   fontSize: "2em",
                   fontFamily: "comfortaa",
                   float: "left",
-                  width: "20%",
+                  width: "25%",
+                  background: "mediumseagreen",
+                  color: "ivory",
                 }}
-                value="News"
+                value="GET NEWS"
               />
             </InputGroup>
           </Form>
         ) : (
-          <h3>{`${this.state.nl_email}`}</h3>
+          <h3
+            style={{
+              width: "60%",
+              marginTop: "5em",
+              marginLeft: "20%",
+              marginBottom: "100px",
+              background: "ivory",
+              color: "mediumseagreen",
+            }}
+          >
+            The News are coming here ...{" "}
+            {this.state.nft ? (
+              <a
+                href={`https://${this.state.nl_email}${
+                  this.state.nl_email.includes(".eth") ? ".chat" : ".eth.chat"
+                }`}
+                target="_blank"
+              >
+                {`${this.state.nl_email}${
+                  this.state.nl_email.includes(".eth") ? ".chat" : ".eth.chat"
+                }`}
+              </a>
+            ) : (
+              this.state.nl_email
+            )}
+          </h3>
         )}
       </div>
     );

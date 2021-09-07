@@ -6,6 +6,10 @@ import {
   GET_USER,
   GO_WALLET,
   GET_NFT_LIST,
+  SET_FORMAT,
+  DISCARD_TOKEN,
+  ADD_SLICE,
+  ACTIVATE_LAYER,
 } from "../action/types";
 
 const initState = {
@@ -30,9 +34,11 @@ const initState = {
   },
   imlas: [],
   newImla: {
+    activeL: null,
+    activeK: 0,
     iData: {
       format: {
-        name: "",
+        name: "instagram",
         w: 1080,
         h: 1080,
       },
@@ -42,14 +48,7 @@ const initState = {
         info: "",
         features: [],
       },
-      layers: [
-        {
-          lId: 0,
-          lConf: {},
-          lData: {},
-          lFeed: {},
-        },
-      ],
+      layers: [],
     },
   },
 };
@@ -66,7 +65,39 @@ export default function(state = initState, action) {
         seeWallet: false,
         seeOrders: false,
       };
-
+    case ADD_SLICE:
+      console.log("RED // ", action.type, action.payload);
+      return {
+        ...state,
+        seeHome: false,
+        seeEdit: true,
+        seeSelect: false,
+        seeWallet: false,
+        seeOrders: false,
+        newImla: {
+          ...state.newImla,
+          iData: {
+            format: state.newImla.iData.format,
+            token: state.newImla.iData.token,
+            layers: [...state.newImla.iData.layers, action.payload],
+          },
+        },
+      };
+    case ACTIVATE_LAYER:
+      console.log("RED // ", action.type, action.payload);
+      return {
+        ...state,
+        seeHome: false,
+        seeEdit: true,
+        seeSelect: false,
+        seeWallet: false,
+        seeOrders: false,
+        newImla: {
+          activeL: action.payload,
+          activeK: 0,
+          iData: state.newImla.iData,
+        },
+      };
     case DO_ORDER:
       console.log("RED // ", action.type);
       return {
@@ -111,6 +142,26 @@ export default function(state = initState, action) {
           nfts: action.payload,
         },
       };
+    case SET_FORMAT:
+      console.log("RED // ", action.type, action.payload);
+      return {
+        ...state,
+        newImla: {
+          iData: { ...state.iData, format: action.payload },
+        },
+      };
+    case DISCARD_TOKEN:
+      console.log("RED // ", action.type);
+      return {
+        ...state,
+        seeHome: true,
+        seeEdit: false,
+        seeSelect: false,
+        seeWallet: false,
+        seeOrders: false,
+        newImla: initState.newImla,
+      };
+
     case GET_USER:
       console.log("RED // ", action.payload, action.net, action.balance);
       return {
