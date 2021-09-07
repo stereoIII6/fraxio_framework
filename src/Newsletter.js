@@ -18,7 +18,7 @@ class Newsletter extends Component {
     e.preventDefault();
     this.nlPush();
     console.log(
-      e.target,
+      e.target.value,
       process.env.REACT_APP_USER_ID,
       process.env.REACT_APP_NL_TEMPLATE_ID,
       process.env.REACT_APP_SERVICE_ID
