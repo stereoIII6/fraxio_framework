@@ -13,7 +13,7 @@ class EditSel extends Component {
   };
   onClickBtn = (e) => {
     e.preventDefault();
-    if (e.target.name === "new") this.setState({ sel: false, new: true });
+    // if (e.target.name === "new") this.setState({ sel: false, new: true });
     /* if (e.target.name === "uploader")
       this.setState({ sel: false, uploader: true }); */
     if (e.target.name === "art") this.setState({ sel: false, art: true });
