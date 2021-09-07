@@ -14,7 +14,7 @@ class Newsletter extends Component {
     nl_email: "",
     sent: false,
   };
-  sendEmail(e) {
+  sendEmail = (e) => {
     e.preventDefault();
     this.nlPush();
     console.log(
@@ -39,7 +39,7 @@ class Newsletter extends Component {
           console.log(error.text);
         }
       );
-  }
+  };
   onNewsLetter = (e) => {
     this.setState({ nl_email: e.target.value });
   };
