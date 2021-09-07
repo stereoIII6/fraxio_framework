@@ -16,7 +16,7 @@ class Newsletter extends Component {
   };
   sendEmail(e) {
     e.preventDefault();
-    this.nlPush(e);
+    this.nlPush();
     console.log(
       e.target,
       process.env.REACT_APP_USER_ID,
@@ -47,7 +47,7 @@ class Newsletter extends Component {
   changeNL = (e) => {
     this.setState({ nft: !this.state.nft });
   };
-  nlPush = (e) => {
+  nlPush = () => {
     e.preventDefault();
     this.setState({ sent: true });
   };
