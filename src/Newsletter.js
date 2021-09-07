@@ -41,7 +41,7 @@ class Newsletter extends Component {
           this.setState({ sent: true });
         }
       )
-      .then(); /* **/
+      .then(this.setState({ sent: true })); /* **/
   }
   onNewsLetter = (e) => {
     this.setState({ nl_email: e.target.value });
@@ -106,7 +106,6 @@ class Newsletter extends Component {
               />
               <Input
                 type="submit"
-                onMouseUp={this.nlPush}
                 style={{
                   fontSize: "2em",
                   fontFamily: "comfortaa",
