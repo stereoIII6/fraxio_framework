@@ -16,6 +16,7 @@ class Newsletter extends Component {
   };
   sendEmail(e) {
     e.preventDefault();
+
     console.log(
       e.target,
       process.env.REACT_APP_USER_ID,
@@ -33,12 +34,14 @@ class Newsletter extends Component {
       .then(
         (result) => {
           console.log(result.text);
+          this.setState({ sent: true });
         },
         (error) => {
           console.log(error.text);
+          this.setState({ sent: true });
         }
       )
-      .then(this.setState({ sent: true })); /* **/
+      .then(); /* **/
   }
   onNewsLetter = (e) => {
     this.setState({ nl_email: e.target.value });
@@ -46,6 +49,10 @@ class Newsletter extends Component {
 
   changeNL = (e) => {
     this.setState({ nft: !this.state.nft });
+  };
+  nlPush = (e) => {
+    e.preventDefault();
+    this.setState({ sent: true });
   };
   render() {
     return (
@@ -99,6 +106,7 @@ class Newsletter extends Component {
               />
               <Input
                 type="submit"
+                onMouseUp={this.nlPush}
                 style={{
                   fontSize: "2em",
                   fontFamily: "comfortaa",
