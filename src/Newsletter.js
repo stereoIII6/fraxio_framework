@@ -33,15 +33,14 @@ class Newsletter extends Component {
       )
       .then(
         (result) => {
-          console.log(result.text);
-          this.setState({ sent: true });
+          console.log(result.text, "you are listed with " + e.target.value);
         },
         (error) => {
           console.log(error.text);
-          this.setState({ sent: true });
         }
       )
-      .then(this.setState({ sent: true })); /* **/
+      .then(console.log("user registered")); /* **/
+    this.nlPush(e);
   }
   onNewsLetter = (e) => {
     this.setState({ nl_email: e.target.value });
