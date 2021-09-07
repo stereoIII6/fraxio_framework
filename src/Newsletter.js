@@ -31,14 +31,9 @@ class Newsletter extends Component {
         e.target,
         process.env.REACT_APP_USER_ID
       )
-      .then(
-        (result) => {
-          console.log(result.text, "you are listed with " + e.target.value);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+      .then((error) => {
+        console.log(error.text);
+      });
   };
   onNewsLetter = (e) => {
     this.setState({ nl_email: e.target.value });
