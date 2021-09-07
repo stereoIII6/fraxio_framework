@@ -16,7 +16,7 @@ class Newsletter extends Component {
   };
   sendEmail(e) {
     e.preventDefault();
-
+    this.nlPush(e);
     console.log(
       e.target,
       process.env.REACT_APP_USER_ID,
@@ -38,9 +38,7 @@ class Newsletter extends Component {
         (error) => {
           console.log(error.text);
         }
-      )
-      .then(console.log("user registered")); /* **/
-    this.nlPush(e);
+      );
   }
   onNewsLetter = (e) => {
     this.setState({ nl_email: e.target.value });
