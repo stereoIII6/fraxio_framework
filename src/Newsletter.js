@@ -47,10 +47,6 @@ class Newsletter extends Component {
   changeNL = (e) => {
     this.setState({ nft: !this.state.nft });
   };
-  nlPush = (e) => {
-    e.preventDefault();
-    this.setState({ sent: true });
-  };
   render() {
     return (
       <div>
@@ -103,7 +99,6 @@ class Newsletter extends Component {
               />
               <Input
                 type="submit"
-                onClick={this.nlPush}
                 style={{
                   fontSize: "2em",
                   fontFamily: "comfortaa",
