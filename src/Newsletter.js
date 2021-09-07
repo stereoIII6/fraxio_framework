@@ -48,7 +48,6 @@ class Newsletter extends Component {
     this.setState({ nft: !this.state.nft });
   };
   nlPush = () => {
-    e.preventDefault();
     this.setState({ sent: true });
   };
   render() {
