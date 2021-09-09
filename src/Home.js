@@ -6,6 +6,7 @@ import { onCreateNow, onOrderNow } from "./action/userActions";
 
 import YoutubeEmbed from "./YoutubeEmbed";
 import Newsletter from "./Newsletter";
+import Footer from "./Footer";
 class Home extends Component {
   static propTypes = {
     onCreateNow: PropTypes.func,
@@ -83,6 +84,7 @@ class Home extends Component {
           }}
         >
           <Newsletter />
+          <Footer />
         </div>
       </div>
     );

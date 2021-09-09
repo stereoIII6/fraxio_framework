@@ -10,6 +10,8 @@ import {
   DISCARD_TOKEN,
   ADD_SLICE,
   ACTIVATE_LAYER,
+  SET_MOVE,
+  SET_ALPHA,
 } from "../action/types";
 
 const initState = {
@@ -148,6 +150,19 @@ export default function(state = initState, action) {
         ...state,
         newImla: {
           iData: { ...state.iData, format: action.payload },
+        },
+      };
+    case SET_MOVE:
+    case SET_ALPHA:
+      console.log("RED // ", action.type, action.payload);
+      return {
+        ...state,
+        newImla: {
+          ...state.newImla,
+          iData: {
+            ...state.newImla.iData,
+            layers: action.payload,
+          },
         },
       };
     case DISCARD_TOKEN:

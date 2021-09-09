@@ -10,6 +10,8 @@ import {
   DISCARD_TOKEN,
   ADD_SLICE,
   ACTIVATE_LAYER,
+  SET_ALPHA,
+  SET_MOVE,
 } from "./types";
 
 export const addSlice = (newSlice) => {
@@ -32,6 +34,14 @@ export const activateLayer = (lId) => {
 export const setFormat = (format) => {
   console.log("set format pushed");
   return { type: SET_FORMAT, payload: format };
+};
+export const setAlpha = (layers) => {
+  console.log("set format pushed");
+  return { type: SET_ALPHA, payload: layers };
+};
+export const setMove = (layers) => {
+  console.log("set format pushed");
+  return { type: SET_MOVE, payload: layers };
 };
 export const onOrderNow = () => {
   console.log("order clicked");

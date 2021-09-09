@@ -9,3 +9,5 @@ export const SET_FORMAT = "SET_FORMAT";
 export const DISCARD_TOKEN = "DISCARD_TOKEN";
 export const ADD_SLICE = "ADD_SLICE";
 export const ACTIVATE_LAYER = "ACTIVATE_LAYER";
+export const SET_ALPHA = "SET_ALPHA";
+export const SET_MOVE = "SET_MOVE";

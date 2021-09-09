@@ -971,6 +971,7 @@ class ArtPreset extends Component {
   };
   // Editing Functions
   onBG1 = (e) => {
+    e.preventDefault();
     let moux = (e.pageX - (window.innerWidth - 490) / 2 - 245) / 100;
     moux *= -1;
     moux -= 2.6;
@@ -1028,6 +1029,7 @@ class ArtPreset extends Component {
     this.setState({ mBG1: false });
   };
   onBG2 = (e) => {
+    e.preventDefault();
     let moux = (e.pageX - (window.innerWidth - 50) / 2 - 285) / 100;
     moux *= -1;
     let fH =
@@ -1112,6 +1114,7 @@ class ArtPreset extends Component {
     this.setState({ mBG2: false, mBG1: false });
   };
   onBG3 = (e) => {
+    e.preventDefault();
     let moux = (e.pageX - (window.innerWidth - 50) / 2 - 285) / 100;
     moux *= -1;
     let fH =
@@ -1222,6 +1225,7 @@ class ArtPreset extends Component {
     this.setState({ mFG1: false, mBG2: false, mBG1: false });
   };
   onBG4 = (e) => {
+    e.preventDefault();
     let moux = (e.pageX - (window.innerWidth - 50) / 2 - 285) / 100;
     moux *= -1;
     let fH =
