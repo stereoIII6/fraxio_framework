@@ -43,7 +43,9 @@ class ArtPreset extends Component {
     fxBG1: "static",
     mBG1: false,
     xBG1: 0,
+    txBG1: 0,
     yBG1: 0,
+    tyBG1: 0,
     wBG1: 100,
     hBG1: "auto",
     oBG1: 100, // OBG1
@@ -776,6 +778,12 @@ class ArtPreset extends Component {
     console.log("ROTATE BG1 // ", e.target.value);
     this.setState({ oFG2: e.target.value });
   };
+  handleStart = (e) => {
+    e.preventDefault();
+  };
+  handleDrag = (e) => {
+    e.preventDefault();
+  };
   captureBG1 = (e) => {
     e.preventDefault();
     // console.log("file captured");
@@ -1060,7 +1068,7 @@ class ArtPreset extends Component {
     } else if (this.state.fxBG1 === "mm1" && this.state.mBG1) {
       console.log(moux, mouy, this.state.fxBG1);
       this.setState({ xBG1: moux - 5, yBG1: mouy - 5 });
-    } else if (this.state.fxBG1 === "mm2" && this.state.mBG1) {
+    } else if (this.state.fxBG1 === "mm2") {
       console.log(moux, mouy, this.state.fxBG1);
       this.setState({
         xBG1: moux * 2 - 25,
@@ -1077,7 +1085,7 @@ class ArtPreset extends Component {
       this.setState({ yBG1: mouy - 5 });
     } else if (this.state.fxBG1 === "my2") {
       console.log(moux, mouy, this.state.fxBG1);
-      this.setState({ yBG1: mouy * 2 - 10 });
+      this.setState({ yBG1: mouy * 2 - 25 });
     }
 
     if (this.state.fxBG2 === "static") {
@@ -1145,7 +1153,7 @@ class ArtPreset extends Component {
     } else if (this.state.fxBG1 === "mm1" && this.state.mBG1) {
       console.log(moux, mouy, this.state.fxBG1);
       this.setState({ xBG1: moux - 5, yBG1: mouy - 5 });
-    } else if (this.state.fxBG1 === "mm2" && this.state.mBG1) {
+    } else if (this.state.fxBG1 === "mm2") {
       console.log(moux, mouy, this.state.fxBG1);
       this.setState({
         xBG1: moux * 2 - 25,
@@ -1162,7 +1170,7 @@ class ArtPreset extends Component {
       this.setState({ yBG1: mouy - 5 });
     } else if (this.state.fxBG1 === "my2") {
       console.log(moux, mouy, this.state.fxBG1);
-      this.setState({ yBG1: mouy * 2 - 10 });
+      this.setState({ yBG1: mouy * 2 - 25 });
     }
 
     if (this.state.fxBG2 === "static") {
@@ -1256,7 +1264,7 @@ class ArtPreset extends Component {
     } else if (this.state.fxBG1 === "mm1" && this.state.mBG1) {
       console.log(moux, mouy, this.state.fxBG1);
       this.setState({ xBG1: moux - 5, yBG1: mouy - 5 });
-    } else if (this.state.fxBG1 === "mm2" && this.state.mBG1) {
+    } else if (this.state.fxBG1 === "mm2") {
       console.log(moux, mouy, this.state.fxBG1);
       this.setState({
         xBG1: moux * 2 - 25,
@@ -1273,7 +1281,7 @@ class ArtPreset extends Component {
       this.setState({ yBG1: mouy - 5 });
     } else if (this.state.fxBG1 === "my2") {
       console.log(moux, mouy, this.state.fxBG1);
-      this.setState({ yBG1: mouy * 2 - 10 });
+      this.setState({ yBG1: mouy * 2 - 25 });
     }
 
     if (this.state.fxBG2 === "static") {
@@ -1366,6 +1374,43 @@ class ArtPreset extends Component {
   };
   mBG4tgglOff = (e) => {
     this.setState({ mFG2: false, mFG1: false, mBG2: false, mBG1: false });
+  };
+  setBG1pos = (e) => {
+    const heighty =
+      this.state.format === "instagram" // 1080 x 1080px
+        ? 490
+        : this.state.format === "pinterest"
+        ? 735
+        : this.state.format === "facebook" // 640 x 511px
+        ? 391
+        : this.state.format === "twitter" // 1125 x 632 px
+        ? 275
+        : this.state.format === "a4l" // 2480 x 3508px
+        ? 693
+        : this.state.format === "a4p" // 7.159
+        ? 346
+        : this.state.format === "hd"
+        ? 276
+        : this.state.format === "ws"
+        ? 275
+        : 490;
+    let grab = e.target.style.transform.toString();
+    document.getElementById("BG1").style.transform = "translate(0px,0px)";
+    console.log("grabcheck //", grab);
+    if (grab !== "") {
+      const front = grab.split("(");
+      const fronty = front[1];
+      const back = fronty.split("px)");
+      const backy = back[0];
+      const vals = backy.split("px,");
+      const valX = Number(vals[0]);
+      const valY = Number(vals[1]);
+      const X = 100 / (490 / valX);
+      const Y = 100 / (heighty / valY);
+      console.log("check position // ", valX, valY);
+
+      this.setState({ txBG1: X, tyBG1: Y });
+    }
   };
   setBG2pos = (e) => {
     const heighty =
@@ -1816,7 +1861,11 @@ class ArtPreset extends Component {
                     onMouseLeave={this.mBG1tgglOff}
                   >
                     {this.state.fileURLBG1 !== null ? (
-                      <Draggable>
+                      <Draggable
+                        onStart={this.handleStart}
+                        onDrag={this.handleDrag}
+                        onStop={this.setBG1pos}
+                      >
                         <img
                           src={this.state.fileURLBG1}
                           alt=""
@@ -1824,8 +1873,8 @@ class ArtPreset extends Component {
                           key="0"
                           style={{
                             position: "absolute",
-                            top: `${this.state.yBG1}%`,
-                            left: `${this.state.xBG1}%`,
+                            top: `${this.state.yBG1 + this.state.tyBG1}%`,
+                            left: `${this.state.xBG1 + this.state.txBG1}%`,
                             width: `${this.state.wBG1}%`,
                             height: "auto",
                             transform: `rotate(${this.state.rBG1}deg)`,
@@ -1878,8 +1927,8 @@ class ArtPreset extends Component {
                         key="0"
                         style={{
                           position: "absolute",
-                          top: `${this.state.yBG1}%`,
-                          left: `${this.state.xBG1}%`,
+                          top: `${this.state.yBG1 + this.state.tyBG1}%`,
+                          left: `${this.state.xBG1 + this.state.txBG1}%`,
                           width: `${this.state.wBG1}%`,
                           height: "auto",
                           transform: `rotate(${this.state.rBG1}deg)`,
@@ -1889,7 +1938,11 @@ class ArtPreset extends Component {
                     ) : null}
                     {this.state.fileURLBG2 !== null ? (
                       <div>
-                        <Draggable onStop={this.setBG2pos}>
+                        <Draggable
+                          onStart={this.handleStart}
+                          onDrag={this.handleDrag}
+                          onStop={this.setBG2pos}
+                        >
                           <img
                             src={this.state.fileURLBG2}
                             alt=""
@@ -2148,8 +2201,8 @@ class ArtPreset extends Component {
                         key="0"
                         style={{
                           position: "absolute",
-                          top: `${this.state.yBG1}%`,
-                          left: `${this.state.xBG1}%`,
+                          top: `${this.state.yBG1 + this.state.tyBG1}%`,
+                          left: `${this.state.xBG1 + this.state.txBG1}%`,
                           width: `${this.state.wBG1}%`,
                           height: "auto",
                           transform: `rotate(${this.state.rBG1}deg)`,
@@ -2177,7 +2230,11 @@ class ArtPreset extends Component {
                     {
                       (console.log(this.state.fileURLOL),
                       this.state.fileURLOL !== null ? (
-                        <Draggable onStop={this.setOL1pos}>
+                        <Draggable
+                          onStart={this.handleStart}
+                          onDrag={this.handleDrag}
+                          onStop={this.setOL1pos}
+                        >
                           <img
                             src={this.state.fileURLOL}
                             alt=""
@@ -2237,8 +2294,8 @@ class ArtPreset extends Component {
                         key="0"
                         style={{
                           position: "absolute",
-                          top: `${this.state.yBG1}%`,
-                          left: `${this.state.xBG1}%`,
+                          top: `${this.state.yBG1 + this.state.tyBG1}%`,
+                          left: `${this.state.xBG1 + this.state.txBG1}%`,
                           width: `${this.state.wBG1}%`,
                           height: "auto",
                           transform: `rotate(${this.state.rBG1}deg)`,
@@ -2264,7 +2321,11 @@ class ArtPreset extends Component {
                       />
                     ) : null}
                     {this.state.fileURLOL !== null ? (
-                      <Draggable onStop={this.setOL2pos}>
+                      <Draggable
+                        onStart={this.handleStart}
+                        onDrag={this.handleDrag}
+                        onStop={this.setOL2pos}
+                      >
                         <img
                           src={this.state.fileURLOL}
                           alt=""
@@ -2485,10 +2546,12 @@ class ArtPreset extends Component {
                         key="0"
                         style={{
                           position: "absolute",
-                          top: `${this.state.yBG1}%`,
-                          left: `${this.state.xBG1}%`,
+                          top: `${this.state.yBG1 + this.state.tyBG1}%`,
+                          left: `${this.state.xBG1 + this.state.txBG1}%`,
                           width: `${this.state.wBG1}%`,
                           height: "auto",
+                          transform: `rotate(${this.state.rBG1}deg)`,
+                          opacity: this.state.oBG1 / 100,
                         }}
                       />
                     ) : null}
@@ -2526,7 +2589,11 @@ class ArtPreset extends Component {
                       ) : null)
                     }
                     {this.state.fileURLFG1 !== null ? (
-                      <Draggable onStop={this.setFG1pos}>
+                      <Draggable
+                        onStart={this.handleStart}
+                        onDrag={this.handleDrag}
+                        onStop={this.setFG1pos}
+                      >
                         <img
                           src={this.state.fileURLFG1}
                           alt=""
@@ -2585,8 +2652,8 @@ class ArtPreset extends Component {
                         key="0"
                         style={{
                           position: "absolute",
-                          top: `${this.state.yBG1}%`,
-                          left: `${this.state.xBG1}%`,
+                          top: `${this.state.yBG1 + this.state.tyBG1}%`,
+                          left: `${this.state.xBG1 + this.state.txBG1}%`,
                           width: `${this.state.wBG1}%`,
                           height: "auto",
                           transform: `rotate(${this.state.rBG1}deg)`,
@@ -2646,7 +2713,11 @@ class ArtPreset extends Component {
                       />
                     ) : null}
                     {this.state.fileURLFG2 !== null ? (
-                      <Draggable onStop={this.setFG2pos}>
+                      <Draggable
+                        onStart={this.handleStart}
+                        onDrag={this.handleDrag}
+                        onStop={this.setFG2pos}
+                      >
                         <img
                           src={this.state.fileURLFG2}
                           alt=""
@@ -2903,10 +2974,12 @@ class ArtPreset extends Component {
                     key="0"
                     style={{
                       position: "absolute",
-                      top: `${this.state.yBG1}%`,
-                      left: `${this.state.xBG1}%`,
+                      top: `${this.state.yBG1 + this.state.tyBG1}%`,
+                      left: `${this.state.xBG1 + this.state.txBG1}%`,
                       width: `${this.state.wBG1}%`,
                       height: "auto",
+                      transform: `rotate(${this.state.rBG1}deg)`,
+                      opacity: this.state.oBG1 / 100,
                     }}
                   />
                 ) : null}
@@ -3050,6 +3123,8 @@ class ArtPreset extends Component {
                       left: `${this.state.xBG1}%`,
                       width: `${this.state.wBG1}%`,
                       height: "auto",
+                      transform: `rotate(${this.state.rBG1}deg)`,
+                      opacity: this.state.oBG1 / 100,
                     }}
                   />
                 ) : null}
