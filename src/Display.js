@@ -86,7 +86,32 @@ class Display extends Component {
 
     this.props.setMove(editLayers);
   };
-
+  startTurn = (e) => {
+    e.preventDefault();
+  };
+  dragTurn = (e) => {
+    e.preventDefault();
+    console.log(
+      e.target.style.transform,
+      document.getElementById("main" + e.target.id).style.width
+    );
+  };
+  stopTurn = (e) => {
+    e.preventDefault();
+  };
+  startScale = (e) => {
+    e.preventDefault();
+  };
+  dragScale = (e) => {
+    e.preventDefault();
+    console.log(
+      e.target.style.transform,
+      document.getElementById("main" + e.target.id)
+    );
+  };
+  stopScale = (e) => {
+    e.preventDefault();
+  };
   render() {
     let { format } = this.props;
 
@@ -110,7 +135,7 @@ class Display extends Component {
         {this.props.layers.map((layer) => (
           <div
             key={layer.lId}
-            id={layer.lId}
+            id={"main" + layer.lId}
             style={{
               transform: `rotate(${
                 layer.keys[this.props.newImla.activeK].r
@@ -140,8 +165,12 @@ class Display extends Component {
                   width: "100%",
                   height: "auto",
                   opacity: layer.keys[this.props.newImla.activeK].a / 100,
+                  transform: `rotate(${
+                    layer.keys[this.props.newImla.activeK].r
+                  }deg)`,
                 }}
                 key={layer.lId}
+                id={layer.lId}
               />
             </Draggable>
             {this.props.newImla.activeL === layer.lId ? (
