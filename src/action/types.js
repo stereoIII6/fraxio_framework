@@ -11,3 +11,5 @@ export const ADD_SLICE = "ADD_SLICE";
 export const ACTIVATE_LAYER = "ACTIVATE_LAYER";
 export const SET_ALPHA = "SET_ALPHA";
 export const SET_MOVE = "SET_MOVE";
+export const SET_SCALE = "SET_SCALE";
+export const SET_TURN = "SET_TURN";

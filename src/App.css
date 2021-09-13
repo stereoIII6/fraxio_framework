@@ -313,3 +313,15 @@ hr {
   max-width: 600px;
   max-height: 600px;
 }
+#visibleBorder {
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  margin: 0;
+  margin-top: -600px;
+  padding: 0;
+  border: 2px ivory solid;
+  background: none;
+  max-width: 600px;
+  max-height: 600px;
+}

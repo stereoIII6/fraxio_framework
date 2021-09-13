@@ -12,6 +12,8 @@ import {
   ACTIVATE_LAYER,
   SET_MOVE,
   SET_ALPHA,
+  SET_SCALE,
+  SET_TURN,
 } from "../action/types";
 
 const initState = {
@@ -152,6 +154,9 @@ export default function(state = initState, action) {
           iData: { ...state.iData, format: action.payload },
         },
       };
+
+    case SET_SCALE:
+    case SET_TURN:
     case SET_MOVE:
     case SET_ALPHA:
       console.log("RED // ", action.type, action.payload);

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { setAlpha, setMove } from "./action/userActions";
+import { setAlpha, setMove, setScale, setTurn } from "./action/userActions";
 import Draggable, { DraggableCore } from "react-draggable";
 class Display extends Component {
   static propTypes = {
@@ -10,6 +10,8 @@ class Display extends Component {
     layers: PropTypes.array,
     setAlpha: PropTypes.func,
     setMove: PropTypes.func,
+    setScale: PropTypes.func,
+    setTurn: PropTypes.func,
   };
 
   state = {
@@ -64,6 +66,7 @@ class Display extends Component {
   };
   startMove = (e) => {
     e.preventDefault();
+    // e.target.style.transform = "translate(0px, 0px)";
   };
   dragMove = (e) => {
     e.preventDefault();
@@ -75,42 +78,89 @@ class Display extends Component {
     let x = Number(h[0].slice(0, -2));
     let y = h[1] ? Number(h[1].slice(0, -2)) : 0;
     console.log(x, y);
-
     let editLayers = this.props.layers;
     editLayers[this.props.newImla.activeL].keys[
       this.props.newImla.activeK
-    ].x = Number(x);
+    ].x = Number(x * 2);
     editLayers[this.props.newImla.activeL].keys[
       this.props.newImla.activeK
-    ].y = Number(y);
-
+    ].y = Number(y * 2);
+    // e.target.style.transform = "translate(0px, 0px)";
     this.props.setMove(editLayers);
   };
   startTurn = (e) => {
     e.preventDefault();
+    console.log(
+      e.target.id,
+      document.getElementById("main" + e.target.id).style.width,
+      document.getElementById("main" + e.target.id).style.height
+    );
   };
   dragTurn = (e) => {
     e.preventDefault();
-    console.log(
-      e.target.style.transform,
-      document.getElementById("main" + e.target.id).style.width
-    );
   };
   stopTurn = (e) => {
     e.preventDefault();
+    let { format } = this.props;
+    let displayFactor = this.checkFormat(format);
+    console.log(format, displayFactor);
+    let tokenWidth = format.w / displayFactor;
+    let tokenHeight = format.h / displayFactor;
+    let g = e.target.style.transform.slice(10, -1);
+    let h = g.split(",");
+    let x = Number(h[0].slice(0, -2));
+    let y = h[1] ? Number(h[1].slice(0, -2)) : 0;
+    let rX = x + tokenWidth;
+    let rY = y + tokenHeight;
+    let sc = (((100 / tokenWidth) * rX) / 100) * 720 - 720;
+    let rq = rY / rX;
+    if (rq >= 9999) rq = 1;
+    console.log(sc, "degrees radial trn");
+    let editLayers = this.props.layers;
+    editLayers[this.props.newImla.activeL].keys[
+      this.props.newImla.activeK
+    ].r = sc;
+
+    this.props.setTurn(editLayers);
   };
   startScale = (e) => {
     e.preventDefault();
+    console.log(
+      e.target.style.transform,
+      Number(
+        document.getElementById("main" + e.target.id).style.width.slice(0, -2)
+      ) / 2
+    );
   };
   dragScale = (e) => {
     e.preventDefault();
-    console.log(
-      e.target.style.transform,
-      document.getElementById("main" + e.target.id)
-    );
   };
   stopScale = (e) => {
     e.preventDefault();
+    let { format } = this.props;
+    let displayFactor = this.checkFormat(format);
+    console.log(format, displayFactor);
+    let tokenWidth = format.w / displayFactor;
+    let tokenHeight = format.h / displayFactor;
+    let g = e.target.style.transform.slice(10, -1);
+    let h = g.split(",");
+    let x = Number(h[0].slice(0, -2));
+    let y = h[1] ? Number(h[1].slice(0, -2)) : 0;
+    let rX = x + tokenWidth;
+    let rY = y + tokenHeight;
+    let sc = ((100 / tokenWidth) * rX) / 100;
+    let rq = rY / rX;
+    if (rq >= 9999) rq = 1;
+    console.log(sc, rq);
+    let editLayers = this.props.layers;
+    editLayers[this.props.newImla.activeL].keys[
+      this.props.newImla.activeK
+    ].z = sc;
+    editLayers[this.props.newImla.activeL].keys[
+      this.props.newImla.activeK
+    ].q = rq;
+
+    this.props.setScale(editLayers);
   };
   render() {
     let { format } = this.props;
@@ -129,7 +179,17 @@ class Display extends Component {
             width: tokenWidth,
             height: tokenHeight,
             left: `${xPosCentered}px`,
-            top: `${200 + (600 - tokenHeight) / 2}px`,
+            top: `${300 + (600 - tokenHeight) / 2}px`,
+          }}
+        ></div>
+        <div
+          id="visibleBorder"
+          style={{
+            width: tokenWidth,
+            height: tokenHeight,
+            left: `${xPosCentered}px`,
+            top: `${300 + (600 - tokenHeight) / 2}px`,
+            zIndex: this.props.newImla.activeL === null ? 9009 : null,
           }}
         ></div>
         {this.props.layers.map((layer) => (
@@ -137,9 +197,6 @@ class Display extends Component {
             key={layer.lId}
             id={"main" + layer.lId}
             style={{
-              transform: `rotate(${
-                layer.keys[this.props.newImla.activeK].r
-              }deg)`,
               position: "absolute",
               width: tokenWidth * layer.keys[this.props.newImla.activeK].z,
               height:
@@ -148,35 +205,54 @@ class Display extends Component {
                 layer.keys[this.props.newImla.activeK].q,
               left: `${xPosCentered +
                 layer.keys[this.props.newImla.activeK].x}px`,
-              top: `${200 +
+              top: `${300 +
                 (600 - tokenHeight) / 2 +
                 layer.keys[this.props.newImla.activeK].y}px`,
+              background:
+                this.props.newImla.activeL === layer.lId
+                  ? "rgba(0,0,2220,0.1)"
+                  : null,
+              transform: `rotate(${
+                layer.keys[this.props.newImla.activeK].r
+              }deg)`,
             }}
           >
             <Draggable
-              onStart={this.startMove}
-              onDrag={this.dragMove}
-              onStop={this.stopMove}
+              onStart={
+                this.props.newImla.activeL === layer.lId ? this.startMove : null
+              }
+              onDrag={
+                this.props.newImla.activeL === layer.lId ? this.dragMove : null
+              }
+              onStop={
+                this.props.newImla.activeL === layer.lId ? this.stopMove : null
+              }
             >
               <img
                 src={layer.lData.url}
                 alt=""
                 style={{
                   width: "100%",
-                  height: "auto",
+                  height: "100%",
                   opacity: layer.keys[this.props.newImla.activeK].a / 100,
                   transform: `rotate(${
                     layer.keys[this.props.newImla.activeK].r
                   }deg)`,
                 }}
                 key={layer.lId}
-                id={layer.lId}
+                id={"pic" + layer.lId}
               />
             </Draggable>
             {this.props.newImla.activeL === layer.lId ? (
               <div>
                 <Draggable
-                  grid={[10, 10]}
+                  grid={[tokenWidth / 20, tokenWidth / 20]}
+                  bounds={{
+                    left: -tokenWidth,
+                    top: -tokenWidth,
+                    right: tokenWidth,
+                    bottom: tokenWidth,
+                  }}
                   onStart={this.startScale}
                   onDrag={this.dragScale}
                   onStop={this.stopScale}
@@ -195,6 +271,9 @@ class Display extends Component {
                   />
                 </Draggable>
                 <Draggable
+                  axis="x"
+                  bounds={{ left: -tokenWidth / 2, right: tokenWidth / 2 }}
+                  grid={[tokenWidth / 24, tokenWidth / 24]}
                   onStart={this.startTurn}
                   onDrag={this.dragTurn}
                   onStop={this.stopTurn}
@@ -205,7 +284,7 @@ class Display extends Component {
                     style={{
                       position: "absolute",
                       top: `${(600 - tokenHeight) / 2 - 18}px`,
-                      left: `${-18}px`,
+                      left: `${tokenWidth / 2 - 18}px`,
                       width: "36px",
                       zIndex: 3001,
                     }}
@@ -269,4 +348,9 @@ const mapStateToProps = (state) => ({
   format: state.userState.newImla.iData.format,
 });
 
-export default connect(mapStateToProps, { setAlpha, setMove })(Display);
+export default connect(mapStateToProps, {
+  setAlpha,
+  setMove,
+  setScale,
+  setTurn,
+})(Display);

@@ -14,14 +14,14 @@ class Footer extends React.Component {
           </a>
           <a href="https://www.instagram.com/fractio.xyz/" target="_blank">
             <img
-              src="https://ipfs.io/ipfs/QmYq46HAjbTNosVSfLALxcKdaHfNL1GkNm287PNdMDUKhG"
               alt="twitter"
+              src="https://ipfs.io/ipfs/QmWhFHjJmAJLnyQj58UhhfMCeVWw7WchvHSodbPqMPL4Mn"
               style={{ width: "32px" }}
             ></img>
           </a>
           <a href="https://twitter.com/Fractioxyz" target="_blank">
             <img
-              src="https://ipfs.io/ipfs/QmWhFHjJmAJLnyQj58UhhfMCeVWw7WchvHSodbPqMPL4Mn"
+              src="https://ipfs.io/ipfs/QmYq46HAjbTNosVSfLALxcKdaHfNL1GkNm287PNdMDUKhG"
               alt="insta"
               style={{ width: "32px" }}
             ></img>

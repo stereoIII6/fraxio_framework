@@ -27,7 +27,7 @@ class EditSel extends Component {
           <div>
             <div className="row" style={{ height: "130px" }}>
               <div className="col m-0 p-0">
-                <Button id="bigBtn" name="new" onClick={this.onClickBtn}>
+                <Button id="bigBtnDone" name="new" onClick={this.onClickBtn}>
                   New Asset
                 </Button>
               </div>

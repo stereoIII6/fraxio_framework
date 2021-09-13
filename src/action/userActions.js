@@ -12,6 +12,8 @@ import {
   ACTIVATE_LAYER,
   SET_ALPHA,
   SET_MOVE,
+  SET_SCALE,
+  SET_TURN,
 } from "./types";
 
 export const addSlice = (newSlice) => {
@@ -42,6 +44,14 @@ export const setAlpha = (layers) => {
 export const setMove = (layers) => {
   console.log("set format pushed");
   return { type: SET_MOVE, payload: layers };
+};
+export const setScale = (layers) => {
+  console.log("set scale pushed");
+  return { type: SET_SCALE, payload: layers };
+};
+export const setTurn = (layers) => {
+  console.log("set format pushed");
+  return { type: SET_TURN, payload: layers };
 };
 export const onOrderNow = () => {
   console.log("order clicked");
