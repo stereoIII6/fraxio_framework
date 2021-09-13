@@ -179,7 +179,7 @@ class Display extends Component {
             width: tokenWidth,
             height: tokenHeight,
             left: `${xPosCentered}px`,
-            top: `${300 + (600 - tokenHeight) / 2}px`,
+            top: `${150 + (600 - tokenHeight) / 2}px`,
           }}
         ></div>
         <div
@@ -188,7 +188,7 @@ class Display extends Component {
             width: tokenWidth,
             height: tokenHeight,
             left: `${xPosCentered}px`,
-            top: `${300 + (600 - tokenHeight) / 2}px`,
+            top: `${150 + (600 - tokenHeight) / 2}px`,
             zIndex: this.props.newImla.activeL === null ? 9009 : null,
           }}
         ></div>
@@ -205,16 +205,13 @@ class Display extends Component {
                 layer.keys[this.props.newImla.activeK].q,
               left: `${xPosCentered +
                 layer.keys[this.props.newImla.activeK].x}px`,
-              top: `${300 +
+              top: `${150 +
                 (600 - tokenHeight) / 2 +
                 layer.keys[this.props.newImla.activeK].y}px`,
               background:
                 this.props.newImla.activeL === layer.lId
                   ? "rgba(0,0,2220,0.1)"
                   : null,
-              transform: `rotate(${
-                layer.keys[this.props.newImla.activeK].r
-              }deg)`,
             }}
           >
             <Draggable
