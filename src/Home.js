@@ -18,7 +18,7 @@ class Home extends Component {
       "Connect real world data and digital assets without the need for code",
     nl_email: "",
     nft: true,
-    url: "ZDU0Yz1EG3M",
+    url: "8O8aoz_kNII",
   };
   moreNow = (e) => {
     // console.log("more");

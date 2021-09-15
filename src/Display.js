@@ -66,7 +66,15 @@ class Display extends Component {
   };
   startMove = (e) => {
     e.preventDefault();
-    // e.target.style.transform = "translate(0px, 0px)";
+    e.target.style.transform = `translate(${
+      this.props.newImla.layers[this.props.newImla.activeL].keys[
+        this.props.newImla.activeK
+      ].x
+    }px, ${
+      this.props.newImla.layers[this.props.newImla.activeL].keys[
+        this.props.newImla.activeK
+      ].y
+    }px)`;
   };
   dragMove = (e) => {
     e.preventDefault();
