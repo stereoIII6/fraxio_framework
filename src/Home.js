@@ -68,13 +68,6 @@ class Home extends Component {
             onClick={this.moreNow}
             style={{ marginBottom: "2em" }}
           />
-          <p style={{ fontFamily: "comfortaa" }}>
-            What is the fractio framework? <br></br>Fractio is the first creator
-            facing Non-Fungible Token [NFT] editor that enables user to connect
-            their NFT’s creations to oracles and use that information to create
-            new, fun, and innovative works of art. All this is possible without
-            ever having to code a single line.
-          </p>
           <YoutubeEmbed embedId={this.state.url} />
         </div>
         <div
