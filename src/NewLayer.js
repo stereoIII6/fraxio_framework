@@ -266,6 +266,8 @@ class NewLayer extends Component {
     if (this.state.layerType === "form") allowed = [".svg"];
     if (this.state.layerType === "typo") allowed = [".ttf"];
     if (this.state.layerType === "img") allowed = [".jpg", ".gif", ".png"];
+    if (this.state.layerType === "cllct")
+      allowed = [".jpg", ".gif", ".png", ".svg"];
     if (this.state.layerType === "audio")
       allowed = [".mp3", ".wav", ".aiff", ".midi"];
     if (this.state.layerType === "video") allowed = [".f4v", ".mp4"];
@@ -299,16 +301,19 @@ class NewLayer extends Component {
               <option name="img" value="img" bssize="normal">
                 Images
               </option>
+              <option name="img" value="cllct" bssize="normal">
+                Collectible Layer
+              </option>
               <option name="form" value="form" bssize="normal">
                 Polygon
               </option>
               <option name="typo" value="typo" bssize="normal">
                 Text
               </option>
-              <option name="audio" value="audio" bssize="normal" disabled>
+              <option name="audio" value="audio" bssize="normal">
                 Audio
               </option>
-              <option name="video" value="video" bssize="normal" disabled>
+              <option name="video" value="video" bssize="normal">
                 Video
               </option>
             </Input>
@@ -316,6 +321,7 @@ class NewLayer extends Component {
             <>
               {this.state.layerType === "no" ||
               this.state.layerType === "empty" ||
+              this.state.layerType === "cllct" ||
               this.state.layerType === "typo"
                 ? (empty = true)
                 : (empty = false)}
@@ -329,6 +335,8 @@ class NewLayer extends Component {
                     style={{
                       width:
                         this.state.layerType === "img" ||
+                        this.state.layerType === "audio" ||
+                        this.state.layerType === "video" ||
                         this.state.layerType === "form"
                           ? "100%"
                           : 0,
@@ -357,7 +365,8 @@ class NewLayer extends Component {
                     )}
                   </Button>
                 </div>
-              ) : this.state.layerType === "typo" ? (
+              ) : this.state.layerType === "cllct" ? null : this.state
+                  .layerType === "typo" ? (
                 <div>
                   <Input
                     type="text"

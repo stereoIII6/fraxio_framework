@@ -70,6 +70,7 @@ class Display extends Component {
   };
   dragMove = (e) => {
     e.preventDefault();
+    // e.target.style.transform = "translate(0px, 0px)";
   };
   stopMove = (e) => {
     e.preventDefault();
@@ -85,8 +86,9 @@ class Display extends Component {
     editLayers[this.props.newImla.activeL].keys[
       this.props.newImla.activeK
     ].y = Number(y * 2);
-    // e.target.style.transform = "translate(0px, 0px)";
+
     this.props.setMove(editLayers);
+    e.target.style.transform = "translate(0px, 0px)";
   };
   startTurn = (e) => {
     e.preventDefault();
@@ -189,7 +191,6 @@ class Display extends Component {
             height: tokenHeight,
             left: `${xPosCentered}px`,
             top: `${150 + (600 - tokenHeight) / 2}px`,
-            zIndex: this.props.newImla.activeL === null ? 9009 : null,
           }}
         ></div>
         {this.props.layers.map((layer) => (
@@ -214,32 +215,21 @@ class Display extends Component {
                   : null,
             }}
           >
-            <Draggable
-              onStart={
-                this.props.newImla.activeL === layer.lId ? this.startMove : null
-              }
-              onDrag={
-                this.props.newImla.activeL === layer.lId ? this.dragMove : null
-              }
-              onStop={
-                this.props.newImla.activeL === layer.lId ? this.stopMove : null
-              }
-            >
-              <img
-                src={layer.lData.url}
-                alt=""
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  opacity: layer.keys[this.props.newImla.activeK].a / 100,
-                  transform: `rotate(${
-                    layer.keys[this.props.newImla.activeK].r
-                  }deg)`,
-                }}
-                key={layer.lId}
-                id={"pic" + layer.lId}
-              />
-            </Draggable>
+            <img
+              src={layer.lData.url}
+              alt=""
+              style={{
+                width: "100%",
+                height: "100%",
+                opacity: layer.keys[this.props.newImla.activeK].a / 100,
+                transform: `rotate(${
+                  layer.keys[this.props.newImla.activeK].r
+                }deg)`,
+              }}
+              key={layer.lId}
+              id={"pic" + layer.lId}
+            />
+
             {this.props.newImla.activeL === layer.lId ? (
               <div>
                 <Draggable
@@ -261,6 +251,33 @@ class Display extends Component {
                       position: "absolute",
                       top: `${(600 - tokenHeight) / 2 + tokenHeight - 18}px`,
                       left: `${tokenWidth - 18}px`,
+                      width: "36px",
+                      zIndex: 3001,
+                    }}
+                    id={layer.lId}
+                  />
+                </Draggable>
+                <Draggable
+                  grid={[tokenWidth / 20, tokenWidth / 20]}
+                  bounds={{
+                    left: -tokenWidth,
+                    top: -tokenWidth,
+                    right: tokenWidth,
+                    bottom: tokenWidth,
+                  }}
+                  onStart={this.startMove}
+                  onDrag={this.dragMove}
+                  onStop={this.stopMove}
+                >
+                  <img
+                    src="https://ipfs.io/ipfs/QmYwpVyvse8ErpEzUcdQNukWdwHowkk2ZoUHwx3LrdnjWB"
+                    alt=""
+                    style={{
+                      position: "absolute",
+                      top: `${(600 - tokenHeight) / 2 +
+                        tokenHeight / 2 -
+                        18}px`,
+                      left: `${tokenWidth / 2 - 18}px`,
                       width: "36px",
                       zIndex: 3001,
                     }}
